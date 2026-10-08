@@ -1,25 +1,29 @@
 # Deployment
 
-ChangeGuard runs at zero cost in three ways, each with your own accounts. Pick
-by who should reach it.
+**Recommended free setup:** the web app on Vercel's Hobby plan and the engine on
+Render's free plan (option B). Both are free with no end date and deploy from the
+GitHub repository. The demo pages (landing, guided experience, recorded report,
+evaluation, method) are static, so they load instantly even while the engine
+sleeps; live analysis works once the engine has woken up, which takes about a
+minute after 15 idle minutes.
 
 What has been verified, and what has not: the engine and web app run locally,
-the engine was installed exactly as its image installs it (non-editable, outside
-the source tree) and served the sample correctly, and the web app's standalone
-server was run as its image runs it. The images themselves are built in CI; they
-were not built locally because no Docker daemon was available. The AWS template
-passes `cfn-lint` and its scripts pass ShellCheck. None of the hosted options
-(AWS, Render, Vercel, Hugging Face) had been deployed when this was written.
+both container images build in CI, the engine was installed exactly as its image
+installs it and served the sample correctly, and the web app's standalone server
+was run as its image runs it. The AWS template passes `cfn-lint` and its scripts
+pass ShellCheck. None of the hosted options had been deployed when this was
+written.
 
-| Option | Cost | Who can reach it | Reports persist? |
-|--------|------|------------------|------------------|
-| AWS: EC2 + CloudFront ([`deploy/aws`](../deploy/aws/README.md)) | free on the AWS Free plan (credits); about USD 13/month on a paid plan | anyone with the HTTPS link | yes, on the instance's disk |
-| A. Docker Compose on your machine or a VM | free | you (ports bind to localhost) | yes, in a Docker volume |
-| B. Engine on Render (free) + web app on Vercel (Hobby) | free | anyone with the URL | no, Render's free disk is ephemeral |
-| C. Engine on Hugging Face Spaces (Docker) + web app on Vercel | free | anyone with the URL | no, unless you add paid storage |
+| Option | Cost | Lasts | Who can reach it | Reports persist? |
+|--------|------|-------|------------------|------------------|
+| B. Web app on Vercel (Hobby) + engine on Render (free) | free | no end date | anyone with the link | no: Render's free disk is wiped when the engine sleeps or restarts |
+| Web app on Vercel only (demo without live analysis) | free | no end date | anyone with the link | n/a |
+| AWS: EC2 + CloudFront ([`deploy/aws`](../deploy/aws/README.md)) | Free plan credits; about USD 13/month on a paid plan | until the AWS Free plan ends (six months after sign-up) | anyone with the HTTPS link | yes, on the instance's disk |
+| A. Docker Compose on your machine or a VM | free | while it runs | you (ports bind to localhost) | yes, in a Docker volume |
 
-Vercel's Hobby plan is for non-commercial use. Free tiers change; check the
-providers' current terms.
+Not free any more: Hugging Face now requires a paid plan to create Docker Spaces
+(static Spaces remain free), so it is not listed. Vercel's Hobby plan is for
+non-commercial use. Free tiers change; check the providers' current terms.
 
 ## AWS (Free plan)
 
@@ -60,11 +64,13 @@ docker compose up --build
    the service's Environment page, and note the service URL
    (`https://changeguard-engine-xxxx.onrender.com`).
 
-Free-plan behaviour to expect: the service sleeps after a period without
-traffic, so the first request afterwards can take close to a minute; its disk is
-reset on every deploy and restart, so stored reports disappear. The web app's
-static pages (landing, guided experience, evaluation, method, and the recorded
-sample report) keep working while the engine sleeps.
+Free-plan behaviour to expect: the service sleeps after 15 minutes without
+traffic, and the first request afterwards takes about a minute while it wakes.
+Its disk is wiped whenever it sleeps, restarts or redeploys, so reports people
+create last only while the engine stays awake. The 750 free hours a month cover
+one service running all month. The web app's static pages (landing, guided
+experience, evaluation, method, and the recorded sample report) keep working
+while the engine sleeps.
 
 ### 2. Web app on Vercel
 
@@ -93,25 +99,6 @@ diffs and the samples are far below it.
 - **Hosted models cost money and send the redacted evidence pack to the
   provider.** Keep `CHANGEGUARD_AI_PROVIDER=none` for a public demo unless you
   accept both.
-
-## C. Hugging Face Spaces (engine)
-
-1. Create a Space with the **Docker** SDK.
-2. Copy the contents of `backend/` into the Space repository, and add this front
-   matter at the top of its `README.md`:
-
-   ```yaml
-   ---
-   title: ChangeGuard engine
-   sdk: docker
-   app_port: 8000
-   ---
-   ```
-
-3. In the Space settings, add secrets `CHANGEGUARD_API_KEYS` (a long random
-   string) and `CHANGEGUARD_TRUST_PROXY_HEADERS=true`.
-4. Point the Vercel web app's `CHANGEGUARD_API_URL` at
-   `https://<user>-<space>.hf.space` and set `CHANGEGUARD_API_KEY` to the same key.
 
 ## Operations
 

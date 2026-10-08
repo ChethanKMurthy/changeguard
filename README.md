@@ -117,18 +117,18 @@ docs/       architecture, API, setup, deployment, security, evaluation, limitati
 | Lint, format, types (Ruff, mypy strict, ESLint, tsc) | `make lint typecheck` | clean |
 | Evaluation regression gate (replayed models) | `make eval-check` | no regressions |
 | API contract drift (OpenAPI → TypeScript) | CI | in sync |
-| Container builds | CI | defined; not built locally (no Docker daemon was available) |
+| Container images (engine, web) | CI | both build |
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs all of them.
 
 ## Deploy at zero cost
 
-On AWS's Free plan, `deploy/aws/deploy.sh` brings up one EC2 instance behind
-CloudFront and prints an HTTPS link; it checks the account plan first so it
-cannot run up a bill without your say-so. Alternatives: Docker Compose on your
-machine, or the engine on Render's free plan with the web app on Vercel Hobby
-(`render.yaml` included). Public deployments give each browser its own workspace
-and keep the engine key server-side.
+The web app on Vercel's Hobby plan plus the engine on Render's free plan
+(`render.yaml` included) costs nothing and has no end date; the demo pages stay up
+even while the free engine sleeps. On AWS's Free plan, `deploy/aws/deploy.sh`
+brings up one EC2 instance behind CloudFront with an HTTPS link, for as long as
+that plan lasts. Public deployments give each browser its own workspace and keep
+the engine key server-side.
 [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) covers the trade-offs (free-tier
 persistence, access control, hosted models).
 
@@ -139,7 +139,7 @@ persistence, access control, hosted models).
 | [Setup](docs/SETUP.md) | Install, run, configure, test |
 | [Architecture](docs/ARCHITECTURE.md) | Pipeline, modules, AI boundary, web app, storage |
 | [API](docs/API.md) | Endpoints, auth, workspaces, SSE events, errors |
-| [Deployment](docs/DEPLOYMENT.md) | Compose, Render + Vercel, Hugging Face Spaces, operations |
+| [Deployment](docs/DEPLOYMENT.md) | Vercel + Render (free), AWS Free plan, Compose, operations |
 | [Security](docs/SECURITY.md) | Threat model, headers, hardening checklist |
 | [Evaluation](docs/EVALUATION.md) | Method and results, including misses and model comparison |
 | [Limitations](docs/LIMITATIONS.md) | What it cannot do |
