@@ -22,8 +22,9 @@ const NAV = [
 function EngineStatus() {
   const { data, error, loading } = useResource("meta", api.meta, { maxAgeMs: 60_000 });
   const online = Boolean(data) && !error;
+  const demo = error?.code === "engine_not_configured";
   const ai = data?.ai;
-  const label = loading ? "Connecting" : online ? "Engine online" : "Engine offline";
+  const label = loading ? "Connecting" : online ? "Engine online" : demo ? "Demo mode" : "Engine offline";
   const detail = online
     ? `v${data?.version} · ruleset ${data?.ruleset_version} · AI: ${ai?.provider === "none" ? "off" : `${ai?.provider}${ai?.model ? ` / ${ai.model}` : ""}`}`
     : error?.message ?? "Checking the analysis engine…";
@@ -37,7 +38,7 @@ function EngineStatus() {
           "size-1.5 rounded-full",
           loading && "animate-indicator bg-faint",
           !loading && online && "bg-ok",
-          !loading && !online && "bg-danger",
+          !loading && !online && (demo ? "bg-signal-glow" : "bg-danger"),
         )}
         aria-hidden="true"
       />

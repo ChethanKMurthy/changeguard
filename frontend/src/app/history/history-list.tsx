@@ -93,11 +93,17 @@ export function HistoryList() {
       </div>
 
       <div className="mt-8">
-        {list.error && (
-          <Notice tone="danger" title="Could not load reports">
-            {list.error.message}
-          </Notice>
-        )}
+        {list.error &&
+          (list.error.code === "engine_not_configured" ? (
+            <Notice tone="signal" title="Reports are stored by the analysis engine, which this public demo does not include">
+              The <Link href="/reports/sample" className="font-medium text-ink underline underline-offset-2">recorded sample report</Link>{" "}
+              shows what a report contains.
+            </Notice>
+          ) : (
+            <Notice tone="danger" title="Could not load reports">
+              {list.error.message}
+            </Notice>
+          ))}
         {list.loading && !list.data && (
           <div className="space-y-2" aria-busy="true">
             {Array.from({ length: 5 }, (_, i) => (

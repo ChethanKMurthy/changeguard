@@ -23,6 +23,9 @@ import {
   workspacesEnabled,
 } from "@/lib/workspace";
 
+// A production deployment without an engine (a static demo, e.g. on Vercel alone) says so plainly
+// instead of reporting a connection failure on every request.
+const CONFIGURED = Boolean(process.env.CHANGEGUARD_API_URL) || process.env.NODE_ENV !== "production";
 const UPSTREAM = process.env.CHANGEGUARD_API_URL ?? "http://127.0.0.1:8000";
 const API_KEY = process.env.CHANGEGUARD_API_KEY;
 
@@ -42,6 +45,14 @@ async function forward(request: NextRequest, context: Context): Promise<Response
   const { path } = await context.params;
   if (path.some((segment) => segment === "." || segment === ".." || segment.includes("/"))) {
     return problem(400, "Bad request", "invalid path", "invalid_path");
+  }
+  if (!CONFIGURED) {
+    return problem(
+      503,
+      "Demo mode",
+      "This deployment shows recorded runs only; no analysis engine is connected. Run ChangeGuard locally to analyse your own changes.",
+      "engine_not_configured",
+    );
   }
   const target = new URL(`/api/v1/${path.map(encodeURIComponent).join("/")}`, UPSTREAM);
   target.search = request.nextUrl.search;

@@ -87,6 +87,7 @@ export function RunConsole({ sampleId, recorded, inputs }: { sampleId: string; r
   const [liveError, setLiveError] = useState<string | null>(null);
 
   const online = Boolean(meta.data) && !meta.error;
+  const demo = meta.error?.code === "engine_not_configured";
   const aiAvailable = Boolean(meta.data?.ai.configured && meta.data.ai.reachable !== false && meta.data.ai.model_available !== false);
   const target = mode === "live" ? run.state.stages : mode === "replay" ? recorded.stages : initialStages();
   const available = mode === "live" ? completedPrefix(run.state.stages) : mode === "replay" ? recorded.stages.length : 0;
@@ -232,7 +233,13 @@ export function RunConsole({ sampleId, recorded, inputs }: { sampleId: string; r
             className={cn("size-1.5 rounded-full", meta.loading ? "animate-indicator bg-faint" : online ? "bg-ok" : "bg-line-strong")}
             aria-hidden="true"
           />
-          {meta.loading ? "Looking for an engine…" : online ? `Engine online · ruleset ${meta.data?.ruleset_version}` : "No engine reachable · recording only"}
+          {meta.loading
+            ? "Looking for an engine…"
+            : online
+              ? `Engine online · ruleset ${meta.data?.ruleset_version}`
+              : demo
+                ? "Demo deployment · recording only"
+                : "No engine reachable · recording only"}
         </span>
       </div>
 
@@ -303,7 +310,9 @@ export function RunConsole({ sampleId, recorded, inputs }: { sampleId: string; r
             <p className="max-w-[46ch] text-xs leading-relaxed text-muted">
               {online
                 ? "A live run sends the bundled sample to your engine and streams its progress. The recording was made by the same engine at build time."
-                : "Start the engine to run the sample live. Until then the figure replays a run recorded by the engine at build time."}
+                : demo
+                  ? "This public demo has no analysis engine attached, so the figure replays a run the engine recorded at build time. Run ChangeGuard locally to analyse live."
+                  : "Start the engine to run the sample live. Until then the figure replays a run recorded by the engine at build time."}
             </p>
           </div>
           <EventLog lines={log} />

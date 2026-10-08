@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
@@ -52,6 +53,8 @@ export function AnalyzeWorkspace() {
 
   const limits = meta.data?.limits;
   const aiAvailable = Boolean(meta.data?.ai.configured && meta.data.ai.reachable !== false && meta.data.ai.model_available !== false);
+  // A public demo deployment without an engine: say so up front instead of failing on submit.
+  const demo = meta.error?.code === "engine_not_configured" || samples.error?.code === "engine_not_configured";
   const stats = useMemo(() => patchStats(patchText), [patchText]);
   const busy = run.state.phase === "submitting" || run.state.phase === "running";
 
@@ -97,6 +100,19 @@ export function AnalyzeWorkspace() {
             to measure which changed lines your tests never run. Nothing you upload is executed, and archives are processed in
             memory and discarded.
           </p>
+          {demo && (
+            <Notice tone="signal" title="This public demo has no analysis engine attached" className="mt-6">
+              You can still follow a full analysis in the{" "}
+              <Link href="/experience" className="font-medium text-ink underline underline-offset-2">
+                guided experience
+              </Link>{" "}
+              and open the{" "}
+              <Link href="/reports/sample" className="font-medium text-ink underline underline-offset-2">
+                recorded report
+              </Link>
+              . To analyse your own changes, run ChangeGuard locally with <code className="font-mono text-[0.86em]">docker compose up</code>.
+            </Notice>
+          )}
 
           <div className="mt-8 space-y-7">
             <section aria-labelledby="patch-heading">
@@ -237,13 +253,22 @@ export function AnalyzeWorkspace() {
               </Notice>
             )}
             {run.state.phase === "failed" && run.state.error && (
-              <Notice tone="danger" title="The engine rejected this input">
+              <Notice
+                tone="danger"
+                title={
+                  run.state.error.code === "engine_unreachable" || run.state.error.code === "network"
+                    ? "The engine is not reachable"
+                    : run.state.error.code === "engine_not_configured"
+                      ? "No engine in this deployment"
+                      : "The engine rejected this input"
+                }
+              >
                 {run.state.error.message}
               </Notice>
             )}
 
             <div className="flex flex-wrap items-center gap-4">
-              <Button size="lg" onClick={submit} loading={busy} disabled={busy}>
+              <Button size="lg" onClick={submit} loading={busy} disabled={busy || demo}>
                 {busy ? "Analysing…" : "Analyse change"}
               </Button>
               {limits && (
@@ -272,7 +297,11 @@ export function AnalyzeWorkspace() {
                 </li>
               ))}
               {samples.loading && <li className="px-4 py-3.5 text-xs text-muted">Loading samples…</li>}
-              {samples.error && <li className="px-4 py-3.5 text-xs text-danger">{samples.error.message}</li>}
+              {samples.error && (
+                <li className={cn("px-4 py-3.5 text-xs", demo ? "text-muted" : "text-danger")}>
+                  {demo ? "Samples run on the engine, which this demo does not include. The recorded report shows the result." : samples.error.message}
+                </li>
+              )}
             </ul>
           </section>
         </div>
