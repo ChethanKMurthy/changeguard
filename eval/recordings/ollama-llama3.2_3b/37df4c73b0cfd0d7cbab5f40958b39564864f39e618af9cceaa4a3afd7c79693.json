@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:56+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-71250d4579\",\n      \"explanation\": \"This finding matters because it indicates a destructive migration that drops a column without properly handling its references in code.\",\n      \"failure_scenario\": \"A user tries to export data from the app, but the legacy_email column is still referenced in the export function, causing an error.\",\n      \"suggested_test\": {\n        \"description\": \"Test that dropping a column in a migration does not cause any symbol references to be left behind.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"F-a79b4aa699\",\n      \"explanation\": \"This finding matters because it indicates that the migration does not properly handle the legacy_email column, which is still referenced in code.\",\n      \"failure_scenario\": \"A user tries to run the migration and gets an error because the legacy_email column is still referenced in the app's code.\",\n      \"suggested_test\": {\n        \"description\": \"Test that dropping a column in a migration properly handles symbol references.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for data corruption due to the migration not properly handling symbol references. This could lead to unexpected behavior or errors in the app, especially if the legacy_email column is still referenced in code after the migration.\" }",
+  "input_tokens": 1148,
+  "output_tokens": 371,
+  "latency_ms": 5541.2,
+  "finish_reason": "stop"
+}

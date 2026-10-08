@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:54:04+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2ad035bd3c\",\n      \"explanation\": \"SQL injection can occur if `user_id` is not properly sanitized.\",\n      \"failure_scenario\": \"An attacker provides a malicious value for `user_id`, e.g., '1 OR 1=1--', leading to unauthorized data access.\",\n      \"suggested_test\": {\"description\": \"Unit test with parameterized query.\", \"code\": \"\"},\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-63909c0fd4\",\n      \"explanation\": \"Lack of tests ensures that the change may not have been thoroughly validated.\",\n      \"failure_scenario\": \"The function behavior changes unexpectedly without being caught, leading to bugs in dependent systems.\",\n      \"suggested_test\": {\"description\": \"Automated test for `find_user` with various inputs.\", \"code\": \"\"},\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change risk\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The function's return type is inconsistent. It should always return a tuple or None, but currently it can return None if the query fails.\",\n      \"failure_scenario\": \"Code that depends on the return value handling None incorrectly, leading to runtime errors.\",\n      \"suggested_test\": {\"description\": \"Unit test covering different scenarios.\", \"code\": \"\"},\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a security risk due to potential SQL injection and lacks tests, increasing the likelihood of undetected issues. The inconsistent return type adds another layer of uncertainty.\"\n}",
+  "input_tokens": 1058,
+  "output_tokens": 427,
+  "latency_ms": 12287.1,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:41:30+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e81b10a7f5\",\n      \"explanation\": \"This destructive migration will delete all records from the 'sessions' table without any condition, leading to a complete loss of session data.\",\n      \"failure_scenario\": \"All session data is accidentally deleted during database migration, causing users to lose their sessions and access rights.\",\n      \"suggested_test\": {\n        \"description\": \"Test that a backup exists before destructive operations and that the operation does not affect non-target tables.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Data Migration Failure\",\n      \"category\": \"data_migration\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The migration might fail if the database is not in a expected state.\",\n      \"failure_scenario\": \"The migration script fails due to unexpected data structure or dependencies.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The destructive nature of the migration is the most significant risk, as it will result in data loss without proper safeguards. The lack of a backup check increases the likelihood of an accidental data loss.\"\n}",
+  "input_tokens": 696,
+  "output_tokens": 320,
+  "latency_ms": 9126.2,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,8 @@
+diff --git a/src/mail/sender.py b/src/mail/sender.py
+index e14089f..e9062e2 100644
+--- a/src/mail/sender.py
++++ b/src/mail/sender.py
+@@ -1,2 +1,2 @@
+-def send(to: str, subject: str, *, html: bool = False) -> dict:
++def send(to: str, *, subject: str, html: bool = False) -> dict:
+     return {"to": to, "subject": subject, "html": html}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:45+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-8269bd6d30\",\n      \"explanation\": \"Dynamic value assignment to `innerHTML` can lead to XSS attacks if `markdown` is user-inputted.\",\n      \"failure_scenario\": \"An attacker injects malicious HTML into the `markdown` input, causing the application to render arbitrary code.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `Preview` component does not render any malicious HTML when given user-inputted `markdown`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"F-0df5f2e07f\",\n      \"explanation\": \"The `Preview` component does not have any tests referencing its changed functionality.\",\n      \"failure_scenario\": \"A user interacts with the `Preview` component without knowing about the changes, leading to unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `Preview` component is properly documented and has at least one test reference.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for XSS attacks due to dynamic value assignment to `innerHTML`. This could lead to a security breach if not addressed promptly.\" }",
+  "input_tokens": 1071,
+  "output_tokens": 330,
+  "latency_ms": 4751.6,
+  "finish_reason": "stop"
+}

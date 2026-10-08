@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:38+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-ad5532b086\",\n      \"explanation\": \"The use of `pickle` to deserialize untrusted data can lead to security issues, as it allows arbitrary code execution.\",\n      \"failure_scenario\": \"An attacker sends a maliciously crafted blob to the `decode_session` function, which is then executed with elevated privileges.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `decode_session` function raises an exception when given untrusted data.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-4717b5e592\",\n      \"explanation\": \"The `decode_session` function is not tested, which means that any changes to its behavior may go unnoticed.\",\n      \"failure_scenario\": \"A change to the `decode_session` function causes it to return incorrect data, leading to unexpected behavior downstream.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `decode_session` function returns the expected output for a known input.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential security vulnerability introduced by using `pickle` to deserialize untrusted data. This could lead to arbitrary code execution and serious security issues if not addressed.\" }",
+  "input_tokens": 955,
+  "output_tokens": 340,
+  "latency_ms": 4806.1,
+  "finish_reason": "stop"
+}

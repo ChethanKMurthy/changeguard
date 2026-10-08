@@ -1,0 +1,29 @@
+id: py-deps-001
+title: Major ORM upgrade and a new dependency
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: SQLAlchemy moves from 1.4 to 2.0 (a major version with breaking API changes) and orjson is added.
+tags:
+- dependency
+negative: false
+expected:
+- id: L1
+  category: dependency
+  file: requirements.txt
+  lines:
+  - 2
+  - 2
+  severity: medium
+  note: ''
+- id: L2
+  category: dependency
+  file: requirements.txt
+  lines:
+  - 4
+  - 4
+  severity: low
+  note: ''
+acceptable: []

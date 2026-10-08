@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:02:57+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-3d7b5fad29\",\n      \"explanation\": \"The default value of `retries` in `fetch` has been changed from `3` to `1`, which may lead to fewer attempts being made to recover from failed requests.\",\n      \"failure_scenario\": \"A user submits a request that takes longer than the timeout, causing the request to fail. With only one retry attempt, the request is not re-attempted, resulting in an incomplete response or no response at all.\",\n      \"suggested_test\": {\n        \"description\": \"Test that `fetch` with `retries=1` fails for requests that take longer than the timeout.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\", \"E4\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"F-561c47e43d\",\n      \"explanation\": \"No tests reference the `fetch` function, which may lead to unexpected behavior or errors when using this function.\",\n      \"failure_scenario\": \"A developer uses an outdated version of the library that does not include the new `fetch` function, causing a compatibility issue.\",\n      \"suggested_test\": {\n        \"description\": \"Test that at least one test references the `fetch` function.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for fewer attempts to be made to recover from failed requests, which could lead to incomplete or no responses. Additionally, the lack of tests referencing the `fetch` function increases the likelihood of unexpected behavior or errors.\" }",
+  "input_tokens": 1267,
+  "output_tokens": 403,
+  "latency_ms": 5841.7,
+  "finish_reason": "stop"
+}

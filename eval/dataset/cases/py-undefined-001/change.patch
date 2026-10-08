@@ -1,0 +1,18 @@
+diff --git a/src/fileops/paths.py b/src/fileops/paths.py
+index 2d87d03..09068f4 100644
+--- a/src/fileops/paths.py
++++ b/src/fileops/paths.py
+@@ -1,10 +1,10 @@
+-import os
+ from pathlib import Path
+ 
+ 
+ def ensure_dir(path: str) -> Path:
+-    os.makedirs(path, exist_ok=True)
+-    return Path(path)
++    target = Path(path)
++    target.mkdir(parents=True, exist_ok=True)
++    return target
+ 
+ 
+ def home_config() -> Path:

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:28:52+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-0005ef6b49\",\n      \"explanation\": \"Disabling a test means it won't run, potentially missing any issues in the `charge` function.\",\n      \"failure_scenario\": \"Negative amounts are not being correctly rejected by the `charge` function, as this test is disabled.\",\n      \"suggested_test\": {\n        \"description\": \"Run all tests to catch issues that might have been overlooked due to the skipped test.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"test_gap\",\n      \"category\": \"test_gap\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"Skipping a test leaves a gap in the test coverage for the `charge` function, potentially overlooking bugs.\",\n      \"failure_scenario\": \"Negative amounts are not being rejected by the `charge` function because this test was skipped.\",\n      \"suggested_test\": {\n        \"description\": \"Run all tests to catch issues that might have been overlooked due to the skipped test.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The most significant risk is the missing test coverage for the `charge` function. Skipping a test leaves a gap that might be exploited in production.\"\n}",
+  "input_tokens": 847,
+  "output_tokens": 339,
+  "latency_ms": 7567.0,
+  "finish_reason": "stop"
+}

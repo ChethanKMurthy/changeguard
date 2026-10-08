@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:23+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d7c8071aa4\",\n      \"explanation\": \"The `parse` method now takes only one argument, causing an incompatibility with call sites that expect two arguments.\",\n      \"failure_scenario\": \"A test case like `row_amount(row={\",\"suggested_test\": {\"description\": \"Test row_amount with valid input\", \"code\": \"def row_amount(row: dict[str, str]) -> Money:\\n    return Money.parse(row[\"}, \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-a1ab282abd\",\n      \"explanation\": \"The `parse` method has been modified, but no tests reference this change.\",\n      \"failure_scenario\": \"A test case like `test_parse_valid_input` that checks the return type of `Money.parse` is missing.\",\n      \"suggested_test\": {\n        \"description\": \"Test parse with valid input\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the breaking change to the `parse` method, which may cause unexpected behavior in dependent code. Additionally, the lack of tests referencing the modified method increases the uncertainty around its correctness and potential regressions.\"}",
+  "input_tokens": 1137,
+  "output_tokens": 329,
+  "latency_ms": 4865.9,
+  "finish_reason": "stop"
+}

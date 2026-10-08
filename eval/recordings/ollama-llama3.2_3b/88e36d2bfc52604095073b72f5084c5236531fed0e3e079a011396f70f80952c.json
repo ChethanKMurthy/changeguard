@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:33+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-b465846b40\",\n      \"explanation\": \"This finding matters because it indicates that a destructive migration is being performed, which can lead to data loss or corruption if not properly tested.\",\n      \"failure_scenario\": \"A developer forgets to update the code after renaming the column, causing unexpected behavior when trying to access the old column name.\",\n      \"suggested_test\": {\n        \"description\": \"Test that updating the code after a destructive migration is successful and does not cause any errors.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-649d2568af\",\n      \"explanation\": \"This finding matters because it indicates that a column is being dropped or renamed but still referenced in code, which can lead to unexpected behavior.\",\n      \"failure_scenario\": \"A developer forgets to update the code after renaming the column, causing an error when trying to access the old column name.\",\n      \"suggested_test\": {\n        \"description\": \"Test that updating the code after a destructive migration is successful and does not cause any errors.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for data corruption due to a destructive migration not being properly tested. Additionally, the fact that the column is still referenced in code after being renamed increases the complexity and risk of the change.\" }",
+  "input_tokens": 842,
+  "output_tokens": 365,
+  "latency_ms": 4844.1,
+  "finish_reason": "stop"
+}

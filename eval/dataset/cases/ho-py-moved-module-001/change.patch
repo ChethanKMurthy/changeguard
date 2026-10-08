@@ -1,0 +1,14 @@
+diff --git a/src/core/batch.py b/src/core/batch.py
+index 67b4ca5..23baee0 100644
+--- a/src/core/batch.py
++++ b/src/core/batch.py
+@@ -1,4 +1,4 @@
+-from core.helpers import chunked
++from core.collections_util import chunked
+ 
+ 
+ def batches(ids: list[int]) -> list[list[int]]:
+diff --git a/src/core/helpers.py b/src/core/collections_util.py
+similarity index 100%
+rename from src/core/helpers.py
+rename to src/core/collections_util.py

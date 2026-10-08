@@ -1,0 +1,24 @@
+id: h2-py-session-verify-001
+title: TLS verification disabled on a requests.Session call
+split: holdout-v2
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: verify=False is passed through a Session method rather than the module-level requests.get.
+tags:
+- security
+- tls
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/partners/client.py
+  lines:
+  - 10
+  - 10
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

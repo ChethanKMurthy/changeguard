@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:52:22+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function `clamp` has been added, but its logic is not clear from the evidence. It's unclear whether it will be used and how it affects existing functionality.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The purpose of `clamp` is not explicitly stated in the evidence.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a new function `clamp` without clear documentation or context, which could lead to unintended behavior. The logic behind `clamp` is also uncertain, making it risky to integrate into existing code.\"\n}",
+  "input_tokens": 707,
+  "output_tokens": 195,
+  "latency_ms": 5573.4,
+  "finish_reason": "stop"
+}

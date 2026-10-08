@@ -1,0 +1,25 @@
+id: py-behavior-001
+title: Default retry count lowered for every caller relying on it
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: fetch's default retries drops from 3 to 1; download_report relies on the default and silently loses
+  its retries.
+tags:
+- behavior-change
+- default-value
+negative: false
+expected:
+- id: L1
+  category: behavior_change
+  file: src/http_client/client.py
+  lines:
+  - 4
+  - 4
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:42:02+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-77a08dfcb8\",\n      \"explanation\": \"The constructor signature has changed, which could break code using it.\",\n      \"failure_scenario\": \"Old code calls Logger with one argument, causing a TypeError.\",\n      \"suggested_test\": {\n        \"description\": \"Verify Logger can be instantiated with two arguments.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-2ed41cc318\",\n      \"explanation\": \"Tests are missing for the changed `Logger.constructor` method.\",\n      \"failure_scenario\": \"No tests ensure the constructor works with two arguments, leaving it untested.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test to instantiate Logger with two arguments.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-56e9b768dc\",\n      \"explanation\": \"Tests are missing for the changed `Logger.info` method.\",\n      \"failure_scenario\": \"No tests verify that `info` logs messages correctly with the new level parameter.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test to check `Logger.info` behavior with different levels.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E4\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The change introduces a breaking change due to signature changes in the Logger constructor, without proper testing. This could lead to runtime errors if not caught.\"\n}",
+  "input_tokens": 1341,
+  "output_tokens": 400,
+  "latency_ms": 11400.8,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:22:52+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The evidence does not provide enough context to determine if there is a logical change in the code. The function `emailsOf` simply extracts emails from user profiles, which appears to be a straightforward operation.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change appears to be a straightforward extraction of email addresses from user profiles. However, the lack of deterministic findings suggests that there might be underlying logic or behavior changes that are not immediately apparent.\"\n}",
+  "input_tokens": 765,
+  "output_tokens": 190,
+  "latency_ms": 6566.4,
+  "finish_reason": "stop"
+}

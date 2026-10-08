@@ -1,0 +1,21 @@
+diff --git a/src/inventory/stock.py b/src/inventory/stock.py
+index dbf90d5..3d8ab3b 100644
+--- a/src/inventory/stock.py
++++ b/src/inventory/stock.py
+@@ -1,12 +1,12 @@
+ class StockLedger:
+     def __init__(self) -> None:
+-        self.levels: dict[str, int] = {}
++        self.levels: dict[tuple[str, str], int] = {}
+ 
+-    def reserve_units(self, sku: str, quantity: int) -> bool:
+-        available = self.levels.get(sku, 0)
++    def reserve_units(self, sku: str, quantity: int, warehouse: str) -> bool:
++        available = self.levels.get((warehouse, sku), 0)
+         if available < quantity:
+             return False
+-        self.levels[sku] = available - quantity
++        self.levels[(warehouse, sku)] = available - quantity
+         return True
+ 
+     def reserve_bundle(self, skus: list[str]) -> bool:

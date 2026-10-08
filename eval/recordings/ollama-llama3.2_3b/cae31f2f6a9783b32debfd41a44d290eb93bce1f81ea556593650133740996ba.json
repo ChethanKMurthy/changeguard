@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:23+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-9407c165c1\",\n      \"explanation\": \"The `src/core/helpers.py` module was moved but is still imported in `src/core/export.py`. This matters because it could lead to a situation where the code relies on an outdated or incorrect version of the module.\",\n      \"failure_scenario\": \"If the `chunked` function from `src/core/helpers.py` changes behavior, it could cause unexpected results in `src/core/export.py`, leading to incorrect output or errors.\",\n      \"suggested_test\": {\n        \"description\": \"Test that importing `src/core/helpers.py` raises a `ModuleNotFoundError` when the module is not found at its new location.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for breaking changes in dependent modules, which could lead to unexpected behavior or errors. The lack of clear documentation on the module relocation adds to the uncertainty and risk of this change.\"}",
+  "input_tokens": 771,
+  "output_tokens": 256,
+  "latency_ms": 3609.9,
+  "finish_reason": "stop"
+}

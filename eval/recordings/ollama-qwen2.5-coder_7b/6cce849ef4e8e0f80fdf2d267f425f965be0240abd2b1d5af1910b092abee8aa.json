@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:15:15+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d69a21f88f\",\n      \"explanation\": \"Using `new Function()` can lead to arbitrary code execution, which is a security risk.\",\n      \"failure_scenario\": \"An attacker could inject malicious JavaScript into the expression parameter, leading to unauthorized actions.\",\n      \"suggested_test\": {\n        \"description\": \"Test that evaluating an expression with a known vulnerability does not execute it.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-156b4b43d7\",\n      \"explanation\": \"Lack of tests for a modified function can lead to undetected bugs.\",\n      \"failure_scenario\": \"A bug in the `evaluate` function could go unnoticed, causing incorrect results or crashes.\",\n      \"suggested_test\": {\n        \"description\": \"Add unit tests covering various edge cases and error conditions for the `evaluate` function.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change introduces a new function that could alter the logic of existing code paths.\",\n      \"failure_scenario\": \"Existing functionality relying on `evaluate` might not work as expected with the new implementation.\",\n      \"suggested_test\": {\n        \"description\": \"Compare the output of the old and new `evaluate` functions for various inputs to ensure consistency.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a significant security risk due to the use of `new Function()`, and lacks adequate testing, which could lead to undetected bugs. The logic change is also uncertain based on the provided evidence.\"\n}",
+  "input_tokens": 1008,
+  "output_tokens": 469,
+  "latency_ms": 16711.2,
+  "finish_reason": "stop"
+}

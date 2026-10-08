@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:17:07+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-3c6e90d034\",\n      \"explanation\": \"The removal of the `insured` parameter in `shipping_cost` breaks compatibility with existing call sites.\",\n      \"failure_scenario\": \"A call to `checkout_total` with `insured=True` will now raise a TypeError.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `checkout_total` with an unexpected keyword argument raises a TypeError.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change in `shipping_cost` might affect the calculation of shipping rates for certain weights or express shipments.\",\n      \"failure_scenario\": \"Shipping rates for heavy items or express deliveries might be incorrectly calculated.\",\n      \"suggested_test\": {\n        \"description\": \"Test that shipping rates are correctly calculated for various weight and express combinations.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking compatibility issue with existing code, which could cause runtime errors. Additionally, there is a risk that the behavior of shipping rate calculations might have changed unintentionally.\"\n}",
+  "input_tokens": 1071,
+  "output_tokens": 332,
+  "latency_ms": 11724.6,
+  "finish_reason": "stop"
+}

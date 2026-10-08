@@ -1,0 +1,23 @@
+id: py-error-001
+title: Malformed-record handling removed from an importer
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: The try/except that skipped malformed lines is removed; one bad line now aborts the whole import.
+tags:
+- error-handling
+negative: false
+expected:
+- id: L1
+  category: error_handling
+  file: src/sync/importer.py
+  lines:
+  - 7
+  - 7
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

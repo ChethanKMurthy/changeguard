@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:59+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it indicates a potential issue with the diff tool used to generate the evidence. The diff hunk shows that lines 9 and 10 have been modified, but the change is not immediately clear.\",\n      \"failure_scenario\": \"A user relies on the original implementation of `haversine_km` without reviewing the changes made in the diff hunk, leading to incorrect calculations.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `haversine_km` function returns the correct result for a known input\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect calculations in the `haversine_km` function, which could lead to serious errors in geolocation-based applications. The lack of a test case to verify the correctness of the implementation adds to the uncertainty.\" }",
+  "input_tokens": 786,
+  "output_tokens": 240,
+  "latency_ms": 3485.8,
+  "finish_reason": "stop"
+}

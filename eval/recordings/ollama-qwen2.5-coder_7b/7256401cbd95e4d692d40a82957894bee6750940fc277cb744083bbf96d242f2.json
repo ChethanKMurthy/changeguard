@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:40:03+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Missing discount application in cart_total\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function `cart_total` does not apply the discount to each line's price before summing them up. This could lead to incorrect total calculations if a discount is provided.\",\n      \"failure_scenario\": \"A user adds items with a 10% discount, but the final total is calculated without applying the discount, resulting in an overcharged amount.\",\n      \"suggested_test\": {\n        \"description\": \"A test that checks the cart_total function with a non-zero discount to ensure it correctly applies the discount to each line's price.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"The evidence does not provide direct confirmation of this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The change appears straightforward but requires careful review due to potential issues with discount application in the cart_total function. Additional testing is needed to ensure the logic is correct.\"\n}",
+  "input_tokens": 697,
+  "output_tokens": 243,
+  "latency_ms": 7954.0,
+  "finish_reason": "stop"
+}

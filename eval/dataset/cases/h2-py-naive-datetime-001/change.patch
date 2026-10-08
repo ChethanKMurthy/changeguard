@@ -1,0 +1,12 @@
+diff --git a/src/audit/stamp.py b/src/audit/stamp.py
+index 159c7c7..ae26ed5 100644
+--- a/src/audit/stamp.py
++++ b/src/audit/stamp.py
+@@ -1,5 +1,5 @@
+-from datetime import datetime, timezone
++from datetime import datetime
+ 
+ 
+ def audit_timestamp() -> str:
+-    return datetime.now(timezone.utc).isoformat()
++    return datetime.now().isoformat()

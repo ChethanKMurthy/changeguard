@@ -1,0 +1,17 @@
+diff --git a/src/workers/poller.py b/src/workers/poller.py
+index 3a76eda..cbfacdb 100644
+--- a/src/workers/poller.py
++++ b/src/workers/poller.py
+@@ -1,4 +1,4 @@
+-import asyncio
++import time
+ 
+ 
+ async def poll(fetch, interval: float = 1.0, attempts: int = 5):
+@@ -6,5 +6,5 @@ async def poll(fetch, interval: float = 1.0, attempts: int = 5):
+         result = await fetch()
+         if result is not None:
+             return result
+-        await asyncio.sleep(interval)
++        time.sleep(interval)
+     return None

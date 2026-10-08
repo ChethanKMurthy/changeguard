@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:19:38+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-14bb971a7d\",\n      \"explanation\": \"Changing the boundary constant from `total` to `total - 1` alters how pages are calculated, potentially missing the last page if it's not a full page.\",\n      \"failure_scenario\": \"If the total number of items is not divisible by the page size, the last page will be omitted.\",\n      \"suggested_test\": {\n        \"description\": \"Test pagination with a total that is not evenly divisible by the page size to ensure all pages are included.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might affect the behavior of pagination in edge cases, such as when `total` is 0 or 1.\",\n      \"failure_scenario\": \"Pagination logic may fail for small datasets or when there's only one item to paginate.\",\n      \"suggested_test\": {\n        \"description\": \"Test pagination with edge cases like total=0 and total=1 to ensure correct behavior.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential logic error that could lead to missing pages in pagination. The additional risk of behavior changes in edge cases should be thoroughly tested.\"\n}",
+  "input_tokens": 841,
+  "output_tokens": 358,
+  "latency_ms": 11431.5,
+  "finish_reason": "stop"
+}

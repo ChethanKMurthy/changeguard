@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:58+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-6db262dc14\",\n      \"explanation\": \"The `compute` function's signature has changed, removing the `exempt` parameter. This matters because it breaks compatibility with existing code that relies on this parameter.\",\n      \"failure_scenario\": \"A user passes an invalid value for the `exempt` parameter to the `line_tax` function, causing a runtime error.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `compute` with an invalid `exempt` value raises a TypeError.\",\n        \"code\": \"def test_compute_exempt_error():\\n    def compute(amount: float, region: str) -> float:\\n        return amount * (0.2 if region == \\\"EU\\\" else 0.07)\\n    with self.assertRaises(TypeError):\\n        line_tax(10.0, 'EU', exempt=True)\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-01288608cc\",\n      \"explanation\": \"There are no tests that reference the changed `compute` function. This matters because it makes it difficult to ensure that the change does not introduce new bugs.\",\n      \"failure_scenario\": \"A bug is introduced in the code due to the lack of testing for the new `compute` function.\",\n      \"suggested_test\": {\n        \"description\": \"Write a test that calls the `compute` function with different inputs and checks its output.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"low\",\n      \"uncertainty\": \"The evidence does not provide enough information to determine the impact of this finding.\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for introducing new bugs due to the lack of testing. The removal of the `exempt` parameter also introduces a new bug that can be triggered by passing an invalid value for this parameter.\" }",
+  "input_tokens": 1111,
+  "output_tokens": 450,
+  "latency_ms": 6268.4,
+  "finish_reason": "stop"
+}

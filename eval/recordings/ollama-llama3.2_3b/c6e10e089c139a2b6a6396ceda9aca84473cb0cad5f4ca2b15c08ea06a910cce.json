@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:02:24+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d69a21f88f\",\n      \"explanation\": \"The addition of `new Function()` at line 2 in `src/rules/engine.ts` allows for arbitrary code execution, potentially leading to security vulnerabilities.\",\n      \"failure_scenario\": \"An attacker could pass a malicious expression as the first argument to `evaluate`, allowing them to execute arbitrary code.\",\n      \"suggested_test\": {\n        \"description\": \"Test that `new Function()` is not used in `src/rules/engine.ts` and that any usage of `Function` is properly sanitized.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-156b4b43d7\",\n      \"explanation\": \"The lack of tests referencing the `evaluate` function in `src/rules/engine.ts` makes it difficult to ensure its correctness.\",\n      \"failure_scenario\": \"A bug is introduced in `evaluate`, causing incorrect results or crashes, but without tests to verify its behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Write a test that calls `evaluate` with a known input and checks the expected output.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for arbitrary code execution due to the addition of `new Function()` in `src/rules/engine.ts`. This could lead to significant security vulnerabilities if not properly addressed.\" }",
+  "input_tokens": 989,
+  "output_tokens": 365,
+  "latency_ms": 5116.0,
+  "finish_reason": "stop"
+}

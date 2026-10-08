@@ -1,0 +1,56 @@
+  [changeguard]  1/13 h2-js-describe-skip-001      tp=1 fp=0 fn=0
+  [changeguard]  2/13 h2-py-flask-debug-001        tp=1 fp=0 fn=0
+  [changeguard]  3/13 h2-py-jwt-001                tp=1 fp=0 fn=0
+  [changeguard]  4/13 h2-py-kwonly-001             tp=1 fp=0 fn=0
+  [changeguard]  5/13 h2-py-naive-datetime-001     tp=0 fp=0 fn=1
+  [changeguard]  6/13 h2-py-neg-validation-001     tp=0 fp=0 fn=0
+  [changeguard]  7/13 h2-py-session-verify-001     tp=0 fp=0 fn=1
+  [changeguard]  8/13 h2-py-staticmethod-001       tp=1 fp=0 fn=0
+  [changeguard]  9/13 h2-py-timeout-handling-001   tp=1 fp=0 fn=0
+  [changeguard] 10/13 h2-sql-rename-column-001     tp=1 fp=0 fn=0
+  [changeguard] 11/13 h2-ts-neg-extract-001        tp=0 fp=0 fn=0
+  [changeguard] 12/13 h2-ts-optional-required-001  tp=1 fp=0 fn=0
+  [changeguard] 13/13 h2-tsx-innerhtml-001         tp=1 fp=0 fn=0
+  [changeguard-diff-only]  1/13 h2-js-describe-skip-001      tp=0 fp=0 fn=1
+  [changeguard-diff-only]  2/13 h2-py-flask-debug-001        tp=0 fp=0 fn=1
+  [changeguard-diff-only]  3/13 h2-py-jwt-001                tp=1 fp=0 fn=0
+  [changeguard-diff-only]  4/13 h2-py-kwonly-001             tp=1 fp=0 fn=0
+  [changeguard-diff-only]  5/13 h2-py-naive-datetime-001     tp=0 fp=0 fn=1
+  [changeguard-diff-only]  6/13 h2-py-neg-validation-001     tp=0 fp=0 fn=0
+  [changeguard-diff-only]  7/13 h2-py-session-verify-001     tp=1 fp=0 fn=0
+  [changeguard-diff-only]  8/13 h2-py-staticmethod-001       tp=1 fp=0 fn=0
+  [changeguard-diff-only]  9/13 h2-py-timeout-handling-001   tp=0 fp=0 fn=1
+  [changeguard-diff-only] 10/13 h2-sql-rename-column-001     tp=1 fp=0 fn=0
+  [changeguard-diff-only] 11/13 h2-ts-neg-extract-001        tp=0 fp=0 fn=0
+  [changeguard-diff-only] 12/13 h2-ts-optional-required-001  tp=1 fp=0 fn=0
+  [changeguard-diff-only] 13/13 h2-tsx-innerhtml-001         tp=1 fp=0 fn=0
+  [baseline-keyword]  1/13 h2-js-describe-skip-001      tp=1 fp=0 fn=0
+  [baseline-keyword]  2/13 h2-py-flask-debug-001        tp=0 fp=0 fn=1
+  [baseline-keyword]  3/13 h2-py-jwt-001                tp=0 fp=0 fn=1
+  [baseline-keyword]  4/13 h2-py-kwonly-001             tp=0 fp=1 fn=1
+  [baseline-keyword]  5/13 h2-py-naive-datetime-001     tp=0 fp=0 fn=1
+  [baseline-keyword]  6/13 h2-py-neg-validation-001     tp=0 fp=1 fn=0
+  [baseline-keyword]  7/13 h2-py-session-verify-001     tp=1 fp=0 fn=0
+  [baseline-keyword]  8/13 h2-py-staticmethod-001       tp=0 fp=1 fn=1
+  [baseline-keyword]  9/13 h2-py-timeout-handling-001   tp=0 fp=1 fn=1
+  [baseline-keyword] 10/13 h2-sql-rename-column-001     tp=0 fp=0 fn=1
+  [baseline-keyword] 11/13 h2-ts-neg-extract-001        tp=0 fp=0 fn=0
+  [baseline-keyword] 12/13 h2-ts-optional-required-001  tp=0 fp=0 fn=1
+  [baseline-keyword] 13/13 h2-tsx-innerhtml-001         tp=1 fp=0 fn=0
+  [baseline-changed-symbols]  1/13 h2-js-describe-skip-001      tp=0 fp=0 fn=1
+  [baseline-changed-symbols]  2/13 h2-py-flask-debug-001        tp=0 fp=0 fn=1
+  [baseline-changed-symbols]  3/13 h2-py-jwt-001                tp=0 fp=0 fn=1
+  [baseline-changed-symbols]  4/13 h2-py-kwonly-001             tp=1 fp=0 fn=0
+  [baseline-changed-symbols]  5/13 h2-py-naive-datetime-001     tp=0 fp=1 fn=1
+  [baseline-changed-symbols]  6/13 h2-py-neg-validation-001     tp=0 fp=1 fn=0
+  [baseline-changed-symbols]  7/13 h2-py-session-verify-001     tp=0 fp=0 fn=1
+  [baseline-changed-symbols]  8/13 h2-py-staticmethod-001       tp=1 fp=0 fn=0
+  [baseline-changed-symbols]  9/13 h2-py-timeout-handling-001   tp=0 fp=0 fn=1
+  [baseline-changed-symbols] 10/13 h2-sql-rename-column-001     tp=0 fp=0 fn=1
+  [baseline-changed-symbols] 11/13 h2-ts-neg-extract-001        tp=0 fp=2 fn=0
+  [baseline-changed-symbols] 12/13 h2-ts-optional-required-001  tp=1 fp=0 fn=0
+  [baseline-changed-symbols] 13/13 h2-tsx-innerhtml-001         tp=0 fp=0 fn=1
+changeguard                P=100.0% R= 81.8% F1= 90.0% negFP=  0.0% unsupported=0
+changeguard-diff-only      P=100.0% R= 63.6% F1= 77.8% negFP=  0.0% unsupported=0
+baseline-keyword           P= 42.9% R= 27.3% F1= 33.3% negFP= 50.0% unsupported=0
+baseline-changed-symbols   P= 42.9% R= 27.3% F1= 33.3% negFP=100.0% unsupported=0

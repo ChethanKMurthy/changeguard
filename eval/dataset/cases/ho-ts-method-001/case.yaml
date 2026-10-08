@@ -1,0 +1,24 @@
+id: ho-ts-method-001
+title: Method gains a required parameter; internal this-call not updated
+split: holdout
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: evict now requires a limit, but set() still calls this.evict() with no arguments (compile error).
+tags:
+- breaking-change
+- method
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/cache/lru.ts
+  lines:
+  - 16
+  - 16
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:20:19+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The addition of the `clamp` function may change the behavior of existing code that relies on the `mean` function without considering the new clamping logic.\",\n      \"failure_scenario\": \"Existing code that calculates the mean of a list and then clamps it to a certain range might produce incorrect results if the mean is outside the clamp limits.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `clamp` function does not affect the result of the `mean` function when values are within and outside the clamp limits.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a new function that may alter the behavior of existing code, which requires careful testing to ensure correctness. The logic change should be thoroughly reviewed and tested to avoid unintended side effects.\"\n}",
+  "input_tokens": 707,
+  "output_tokens": 238,
+  "latency_ms": 7649.2,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+diff --git a/src/rules/engine.ts b/src/rules/engine.ts
+index f36acc6..05e2d77 100644
+--- a/src/rules/engine.ts
++++ b/src/rules/engine.ts
+@@ -1,5 +1,4 @@
+ export function evaluate(expression: string, context: Record<string, number>): boolean {
+-  const [left, op, right] = expression.split(" ");
+-  const value = context[left];
+-  return op === ">" ? value > Number(right) : value < Number(right);
++  const fn = new Function(...Object.keys(context), `return ${expression};`);
++  return Boolean(fn(...Object.values(context)));
+ }

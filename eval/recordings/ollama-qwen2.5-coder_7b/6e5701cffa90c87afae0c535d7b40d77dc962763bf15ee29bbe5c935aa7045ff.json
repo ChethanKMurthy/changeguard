@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:50:25+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-33219a3dbb\",\n      \"explanation\": \"No tests cover the `warm_cache` function, which could lead to regressions.\",\n      \"failure_scenario\": \"If the implementation of `warm_cache` is changed or broken, it won't be detected until a user encounters an issue.\",\n      \"suggested_test\": {\n        \"description\": \"Write a test that calls `warm_cache` with various keys and loaders, and verifies the correct number of keys are loaded.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-eed7f0bc91\",\n      \"explanation\": \"`try`-`except`-`pass` hides exceptions, making debugging difficult and potentially masking errors.\",\n      \"failure_scenario\": \"An exception in `loader(key)` goes unnoticed, leading to silent failures that are hard to diagnose.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-3db5751e1d\",\n      \"explanation\": \"Catching `Exception` is too broad and can hide specific errors, making the code harder to debug.\",\n      \"failure_scenario\": \"A `TypeError` in `loader(key)` goes unnoticed because it's caught by the generic `except Exception`, potentially masking other issues.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The lack of tests for the `warm_cache` function and the use of a broad exception catch are significant risks. These issues could lead to regressions or hard-to-detect bugs in production.\"\n}",
+  "input_tokens": 1298,
+  "output_tokens": 449,
+  "latency_ms": 12966.8,
+  "finish_reason": "stop"
+}

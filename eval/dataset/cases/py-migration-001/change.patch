@@ -1,0 +1,20 @@
+diff --git a/migrations/versions/0008_drop_legacy_email.py b/migrations/versions/0008_drop_legacy_email.py
+new file mode 100644
+index 0000000..32f82bb
+--- /dev/null
++++ b/migrations/versions/0008_drop_legacy_email.py
+@@ -0,0 +1,14 @@
++"""Drop users.legacy_email."""
++
++from alembic import op
++
++revision = "0008"
++down_revision = "0007"
++
++
++def upgrade() -> None:
++    op.drop_column("users", "legacy_email")
++
++
++def downgrade() -> None:
++    raise NotImplementedError("legacy_email data cannot be restored")

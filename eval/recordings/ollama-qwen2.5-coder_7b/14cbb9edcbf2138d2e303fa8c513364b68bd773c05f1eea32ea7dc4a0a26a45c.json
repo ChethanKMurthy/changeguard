@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:41:21+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e81b10a7f5\",\n      \"explanation\": \"A destructive migration that clears all sessions without any filter can lead to data loss and user session disruptions.\",\n      \"failure_scenario\": \"All user sessions are accidentally deleted, causing users to lose access to their accounts until the migration is rolled back.\",\n      \"suggested_test\": {\n        \"description\": \"Test that a backup of sessions exists before running the destructive migration.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The migration logic might be intended to clear sessions for a specific condition but the current implementation does not include any filtering.\",\n      \"failure_scenario\": \"Only sessions that meet the intended condition are cleared, potentially leaving some stale sessions unremoved.\",\n      \"suggested_test\": {\n        \"description\": \"Test that only sessions meeting a specific condition are deleted during the migration.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not explicitly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This destructive migration risks data loss and user session disruptions. Careful consideration is needed to ensure that it only clears sessions as intended, with backups in place to mitigate potential issues.\"\n}",
+  "input_tokens": 696,
+  "output_tokens": 340,
+  "latency_ms": 10818.9,
+  "finish_reason": "stop"
+}

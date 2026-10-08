@@ -1,0 +1,24 @@
+id: ho-py-unsafe-load-001
+title: safe_load replaced by unsafe_load
+split: holdout
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Manifests from users are parsed with yaml.unsafe_load, which can instantiate arbitrary Python objects.
+tags:
+- security
+- deserialization
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/ops/manifest.py
+  lines:
+  - 5
+  - 5
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

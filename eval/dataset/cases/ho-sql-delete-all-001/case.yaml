@@ -1,0 +1,21 @@
+id: ho-sql-delete-all-001
+title: Migration deletes every row of a table
+split: holdout
+language: sql
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: An unconditional DELETE logs every user out (and would wipe the table if run against the wrong database).
+tags:
+- migration
+negative: false
+expected:
+- id: L1
+  category: data_migration
+  file: db/migrations/0042_reset_sessions.sql
+  lines:
+  - 2
+  - 2
+  severity: high
+  note: ''
+acceptable: []

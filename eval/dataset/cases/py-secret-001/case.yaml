@@ -1,0 +1,23 @@
+id: py-secret-001
+title: API key hard-coded instead of read from the environment
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A credential that came from the environment is pasted into source (synthetic, non-functional value).
+tags:
+- secret
+negative: false
+expected:
+- id: L1
+  category: secret_exposure
+  file: src/integrations/payments.py
+  lines:
+  - 1
+  - 1
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

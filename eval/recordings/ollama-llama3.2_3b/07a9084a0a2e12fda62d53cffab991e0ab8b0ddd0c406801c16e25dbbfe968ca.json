@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:02:00+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-8f599ac18c\",\n      \"explanation\": \"This finding matters because it identifies a potential security vulnerability in the `read_manifest` function, which loads untrusted data from a YAML file using `yaml.unsafe_load()`. If this data is maliciously crafted, it could lead to code injection or other security issues.\",\n      \"failure_scenario\": \"An attacker crafts a malicious YAML file that injects arbitrary Python code into the `read_manifest` function, allowing them to execute arbitrary system commands.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `read_manifest` function raises an exception when given untrusted data\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-283f9b1868\",\n      \"explanation\": \"This finding matters because it highlights a lack of testing for the `read_manifest` function, which is called by another part of the codebase. Without tests, we cannot be sure that this function behaves correctly in all scenarios.\",\n      \"failure_scenario\": \"The `read_manifest` function returns an incorrect value, causing downstream errors or unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `read_manifest` function returns a valid dictionary when given trusted data\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential security vulnerability introduced by using `yaml.unsafe_load()` on untrusted data. This could lead to serious security issues if not addressed promptly.\" }",
+  "input_tokens": 957,
+  "output_tokens": 395,
+  "latency_ms": 5535.0,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,147 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  engine:
+    name: Engine (lint, types, tests, contract)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.7"
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - run: uv run ruff check src tests tools
+      - run: uv run ruff format --check src tests tools
+      - run: uv run mypy src
+      - run: uv run pytest -q --cov=changeguard --cov-report=term-missing:skip-covered
+      - name: OpenAPI contract is up to date
+        run: |
+          uv run python -m changeguard.api.openapi_export ../frontend/openapi.json
+          git diff --exit-code -- ../frontend/openapi.json
+
+  evaluation:
+    name: Evaluation regression gate (replayed, no model needed)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.7"
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Replay the labelled evaluation and compare with the committed baseline
+        run: |
+          uv run changeguard eval --ai replay \
+            --ai-model "llama3.2:3b,qwen2.5-coder:7b,qwen2.5-coder:7b@3" \
+            --ai-base-url http://127.0.0.1:9 \
+            --out "$RUNNER_TEMP/eval" --frontend-out "$RUNNER_TEMP/eval/evaluation.json" \
+            --check-baseline ../eval/baselines/changeguard.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evaluation-report
+          path: ${{ runner.temp }}/eval
+
+  web:
+    name: Web app (lint, types, unit tests, build)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - name: Generated API types match the contract
+        run: |
+          npm run gen:api
+          git diff --exit-code -- src/lib/api/schema.d.ts
+      - run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+  e2e:
+    name: End-to-end (Playwright, real engine)
+    runs-on: ubuntu-24.04
+    needs: [engine, web]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.7"
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+        working-directory: backend
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+      - run: npm run test:e2e
+        working-directory: frontend
+        env:
+          CI: "true"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: frontend/playwright-report
+
+  images:
+    name: Container images build
+    runs-on: ubuntu-24.04
+    needs: [engine, web]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: backend
+          push: false
+          tags: changeguard-engine:ci
+          cache-from: type=gha,scope=engine
+          cache-to: type=gha,mode=max,scope=engine
+      - uses: docker/build-push-action@v6
+        with:
+          context: frontend
+          push: false
+          tags: changeguard-web:ci
+          cache-from: type=gha,scope=web
+          cache-to: type=gha,mode=max,scope=web

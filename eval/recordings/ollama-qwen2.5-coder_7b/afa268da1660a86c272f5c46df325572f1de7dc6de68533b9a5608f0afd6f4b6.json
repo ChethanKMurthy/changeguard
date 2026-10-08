@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:37:31+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-9407c165c1\",\n      \"explanation\": \"The module was moved but is still imported, which could lead to issues if the new location does not contain the expected content.\",\n      \"failure_scenario\": \"If `core.helpers` is deleted or renamed in the new location, the import will fail at runtime.\",\n      \"suggested_test\": {\n        \"description\": \"Check that importing from the new location works as expected.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Test Gap\",\n      \"category\": \"test_gap\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"No tests are provided for the `batches` function, which could lead to regressions if there are changes in the implementation.\",\n      \"failure_scenario\": \"Future changes to the `chunked` function could break the `batches` function without being detected by any existing tests.\",\n      \"suggested_test\": {\n        \"description\": \"Add unit tests for the `batches` function to ensure it behaves as expected with various inputs.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change involves a breaking behavior due to the module being moved, and there is a lack of tests for the new functionality. These factors increase the risk that the change could break existing code or not work as intended.\"\n}",
+  "input_tokens": 784,
+  "output_tokens": 362,
+  "latency_ms": 11638.4,
+  "finish_reason": "stop"
+}

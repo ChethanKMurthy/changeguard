@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:34+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"The logger is not properly configured, which could lead to logging issues or security vulnerabilities.\",\n      \"failure_scenario\": \"A malicious user could inject sensitive information into the log messages, potentially exposing sensitive data.\",\n      \"suggested_test\": {\n        \"description\": \"Test that logging configuration is set correctly and does not allow arbitrary input.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The lack of proper logging configuration increases the risk of security vulnerabilities and potential data exposure. This change should be reviewed carefully to ensure that logging is properly configured to prevent such issues.\"}",
+  "input_tokens": 699,
+  "output_tokens": 178,
+  "latency_ms": 2644.7,
+  "finish_reason": "stop"
+}

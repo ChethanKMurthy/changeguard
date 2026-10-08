@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:30:38+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Lack of validation for amount_cents\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function `charge` does not validate that the input `amount_cents` is an integer. This could lead to unexpected behavior if non-integer values are passed.\",\n      \"failure_scenario\": \"If a non-integer value is passed to `charge`, it will raise a TypeError or behave unpredictably.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test to check that the function raises a ValueError when a non-integer value is passed.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change adds a new test for rejecting non-positive amounts, which is good. However, it lacks validation for the input type of `amount_cents`, which could introduce subtle bugs.\"\n}",
+  "input_tokens": 859,
+  "output_tokens": 232,
+  "latency_ms": 6801.8,
+  "finish_reason": "stop"
+}

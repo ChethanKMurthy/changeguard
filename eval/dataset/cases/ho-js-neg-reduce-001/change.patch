@@ -1,0 +1,13 @@
+diff --git a/src/util/sum.js b/src/util/sum.js
+index 9bd380f..f29c1dd 100644
+--- a/src/util/sum.js
++++ b/src/util/sum.js
+@@ -1,7 +1,3 @@
+ export function total(values) {
+-  let sum = 0;
+-  for (let i = 0; i < values.length; i++) {
+-    sum += values[i];
+-  }
+-  return sum;
++  return values.reduce((sum, value) => sum + value, 0);
+ }

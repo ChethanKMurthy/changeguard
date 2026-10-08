@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:28:45+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-0005ef6b49\",\n      \"explanation\": \"Tests are disabled, potentially leaving critical functionality untested.\",\n      \"failure_scenario\": \"Negative amount validation is not tested, leading to potential security vulnerabilities or bugs in the charge function.\",\n      \"suggested_test\": {\n        \"description\": \"Enable the test and verify that it catches negative amount errors.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"Enabling the test may change the behavior of the test suite, potentially affecting test coverage metrics or execution time.\",\n      \"failure_scenario\": \"Unexpected changes in test suite behavior could lead to missed bugs or misinterpretation of test results.\",\n      \"suggested_test\": {\n        \"description\": \"Compare test coverage before and after enabling the test.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The impact on behavior is not directly observable from the evidence.\"\n    }\n  ],\n  \"overall_assessment\": \"This change disables a critical test, potentially leaving important functionality untested. The risk of introducing bugs or security vulnerabilities is high, as the charge function's handling of negative amounts may be incorrect. Enabling and validating this test should be a priority to mitigate these risks.\"\n}",
+  "input_tokens": 847,
+  "output_tokens": 356,
+  "latency_ms": 10926.5,
+  "finish_reason": "stop"
+}

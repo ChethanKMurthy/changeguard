@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:57:29+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f2bbc247f2\",\n      \"explanation\": \"Directly setting `innerHTML` can lead to XSS attacks if `message` is user-provided.\",\n      \"failure_scenario\": \"An attacker crafts a malicious message with HTML tags, which are rendered as part of the banner content.\",\n      \"suggested_test\": {\n        \"description\": \"Test that rendering a message containing script tags does not execute the scripts.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-26d113b880\",\n      \"explanation\": \"Lack of tests for `renderBanner` could hide bugs in its implementation.\",\n      \"failure_scenario\": \"The function behaves unexpectedly under certain conditions, and this is not caught by existing tests.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test that passes different message values to verify the banner renders correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change introduces a new behavior where messages are wrapped in `<strong>` tags, which may not be the intended format.\",\n      \"failure_scenario\": \"The banner displays messages in bold unexpectedly when it should use a different styling.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the message is rendered without unwanted HTML tags.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n    \"uncertainty\": \"The change alters behavior, but the exact impact on users or systems is not clear from evidence alone.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a security risk through potential XSS and lacks sufficient test coverage to ensure correctness. The additional behavior change may also affect how messages are displayed.\"\n}",
+  "input_tokens": 965,
+  "output_tokens": 468,
+  "latency_ms": 13404.7,
+  "finish_reason": "stop"
+}

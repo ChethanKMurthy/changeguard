@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:51:04+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-14bb971a7d\",\n      \"explanation\": \"Changing a boundary constant to `-1` in a loop condition can lead to off-by-one errors, potentially missing the last page of results.\",\n      \"failure_scenario\": \"If `total` is 5 and `page_size` is 2, the loop will not include the last page (3-4) because the range stops at `total - 1`.\",\n      \"suggested_test\": {\n        \"description\": \"Test that all pages are included when using the maximum possible total and page size.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Test Gap\",\n      \"category\": \"test_gap\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"No test cases specifically check the behavior of the `page_slices` function with edge cases, such as when `total` is equal to or less than `page_size`.\",\n      \"failure_scenario\": \"The function may not handle these edge cases correctly, leading to unexpected results.\",\n      \"suggested_test\": {\n        \"description\": \"Add test cases for edge scenarios like `total == page_size` and `total < page_size`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential off-by-one error in pagination logic, which could cause missing data on the last page. Additionally, there is a risk that existing test cases do not fully cover edge scenarios.\"\n}",
+  "input_tokens": 841,
+  "output_tokens": 392,
+  "latency_ms": 12757.8,
+  "finish_reason": "stop"
+}

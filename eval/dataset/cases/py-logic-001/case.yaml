@@ -1,0 +1,23 @@
+id: py-logic-001
+title: Eligibility thresholds become inclusive
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Both comparisons in the eligibility rule change from strict to inclusive; applicants exactly at the
+  thresholds now qualify.
+tags:
+- logic
+- boundary
+negative: false
+expected:
+- id: L1
+  category: logic_change
+  file: src/loans/eligibility.py
+  lines:
+  - 5
+  - 5
+  severity: medium
+  note: ''
+acceptable: []

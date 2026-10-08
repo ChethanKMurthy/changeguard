@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:58:21+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-51ff1febc4\",\n      \"explanation\": \"Focused tests can lead to incomplete coverage and false sense of security.\",\n      \"failure_scenario\": \"Other test cases are not run, leaving potential bugs undetected.\",\n      \"suggested_test\": {\n        \"description\": \"Run all tests to ensure complete coverage.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Incomplete Coverage Risk\",\n      \"category\": \"test_gap\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The focused test might not cover all edge cases, leading to potential bugs.\",\n      \"failure_scenario\": \"A critical bug in the rounding logic is missed because it's not tested by `it.only`.\",\n      \"suggested_test\": {\n        \"description\": \"Remove `it.only` and run all tests.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"\"\n    },\n    {\n      \"title\": \"Potential Maintenance Overhead\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"medium\",\n      \"description\": \"Using `it.only` can make it harder to maintain tests in the future.\",\n      \"failure_scenario\": \"Another developer might mistakenly assume that only this test is run and remove other important tests.\",\n      \"suggested_test\": {\n        \"description\": \"Keep a comment explaining the reasoning behind using `it.only`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The use of focused tests (`it.only`) poses a risk of incomplete coverage and potential bugs going undetected. While the current test is useful, removing `it.only` would provide better assurance that all scenarios are being tested.\"\n}",
+  "input_tokens": 863,
+  "output_tokens": 448,
+  "latency_ms": 12815.3,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:02:03+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e81b10a7f5\",\n      \"explanation\": \"This finding matters because it indicates that a destructive migration is missing a crucial WHERE clause, which could lead to unintended data deletion.\",\n      \"failure_scenario\": \"A developer runs the migration without noticing the missing WHERE clause, resulting in the permanent deletion of all session records in the database.\",\n      \"suggested_test\": {\n        \"description\": \"Verify that the DELETE statement includes a WHERE clause when run manually or through a tool.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for data loss due to a missing WHERE clause in the destructive migration. This could have significant consequences if not addressed promptly and thoroughly.\" }",
+  "input_tokens": 681,
+  "output_tokens": 205,
+  "latency_ms": 2906.8,
+  "finish_reason": "stop"
+}

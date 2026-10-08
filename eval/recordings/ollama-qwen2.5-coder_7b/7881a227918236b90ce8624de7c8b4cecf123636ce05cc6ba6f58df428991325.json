@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:52:05+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Potential behavior change due to string slicing\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The implementation of `truncate` uses slicing which might behave differently if the input string contains multi-byte characters.\",\n      \"failure_scenario\": \"If the input string includes multi-byte characters, truncation might not occur at the expected position, leading to unexpected output.\",\n      \"suggested_test\": {\n        \"description\": \"Test with a string containing multi-byte characters and verify the truncation occurs correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces potential behavior changes due to how slicing is handled, particularly with multi-byte characters. Additional tests should be added for such cases to ensure the function behaves as expected.\"\n}",
+  "input_tokens": 826,
+  "output_tokens": 215,
+  "latency_ms": 7623.7,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,10 @@
+diff --git a/src/web/server.py b/src/web/server.py
+index e418f12..9da04b9 100644
+--- a/src/web/server.py
++++ b/src/web/server.py
+@@ -9,4 +9,4 @@ def health() -> dict:
+ 
+ 
+ def main() -> None:
+-    app.run(host="127.0.0.1", port=8080)
++    app.run(host="0.0.0.0", port=8080, debug=True)

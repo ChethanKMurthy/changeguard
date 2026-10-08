@@ -1,0 +1,14 @@
+diff --git a/src/storage/prefs.js b/src/storage/prefs.js
+index fbaa9f5..b70112e 100644
+--- a/src/storage/prefs.js
++++ b/src/storage/prefs.js
+@@ -1,4 +1,7 @@
+ export function loadPrefs(storage) {
+-  const raw = storage.getItem("prefs");
+-  return raw ? JSON.parse(raw) : {};
++  try {
++    const raw = storage.getItem("prefs");
++    return raw ? JSON.parse(raw) : {};
++  } catch (err) {}
++  return {};
+ }

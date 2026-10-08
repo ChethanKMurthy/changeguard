@@ -1,0 +1,24 @@
+id: py-async-001
+title: Blocking HTTP call inside a coroutine
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: An async HTTP client is replaced with requests.get inside an async function, blocking the event loop.
+tags:
+- concurrency
+- async
+negative: false
+expected:
+- id: L1
+  category: concurrency
+  file: src/weather/service.py
+  lines:
+  - 5
+  - 5
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

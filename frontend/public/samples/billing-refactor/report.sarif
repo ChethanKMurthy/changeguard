@@ -1,0 +1,848 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "ChangeGuard",
+          "version": "0.1.0",
+          "semanticVersion": "0.1.0",
+          "informationUri": "https://github.com/changeguard/changeguard",
+          "rules": [
+            {
+              "id": "CG-API-001",
+              "name": "CallSiteIncompatibleWithNewSignature",
+              "shortDescription": {
+                "text": "Call site incompatible with new signature"
+              },
+              "fullDescription": {
+                "text": "A caller still uses the old calling convention. In Python this raises TypeError at call time; in TypeScript it fails compilation."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "breaking_change",
+                "provenance": "deterministic"
+              }
+            },
+            {
+              "id": "RUFF-F821",
+              "name": "RuffF821",
+              "shortDescription": {
+                "text": "Ruff F821"
+              },
+              "fullDescription": {
+                "text": "Undefined name: raises NameError when the line executes."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "correctness",
+                "provenance": "deterministic"
+              }
+            },
+            {
+              "id": "CG-COV-001",
+              "name": "ChangedLinesNotCoveredByTests",
+              "shortDescription": {
+                "text": "Changed lines not covered by tests"
+              },
+              "fullDescription": {
+                "text": "The uploaded coverage report marks these changed executable lines as never executed by the test suite."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "coverage_gap",
+                "provenance": "deterministic"
+              }
+            },
+            {
+              "id": "RUFF-ASYNC251",
+              "name": "RuffAsync251",
+              "shortDescription": {
+                "text": "Ruff ASYNC251"
+              },
+              "fullDescription": {
+                "text": "time.sleep inside async function blocks the event loop."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "concurrency",
+                "provenance": "deterministic"
+              }
+            },
+            {
+              "id": "RUFF-E722",
+              "name": "RuffE722",
+              "shortDescription": {
+                "text": "Ruff E722"
+              },
+              "fullDescription": {
+                "text": "Bare except also catches SystemExit and KeyboardInterrupt."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "error_handling",
+                "provenance": "deterministic"
+              }
+            },
+            {
+              "id": "CG-TST-001",
+              "name": "NoRelatedTestsFoundForChangedCode",
+              "shortDescription": {
+                "text": "No related tests found for changed code"
+              },
+              "fullDescription": {
+                "text": "No test in the snapshot imports and references the changed symbol, so a regression may go undetected. Tests that exercise it indirectly are not detected."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "test_gap",
+                "provenance": "heuristic"
+              }
+            },
+            {
+              "id": "CG-LOG-001",
+              "name": "ConditionLogicChanged",
+              "shortDescription": {
+                "text": "Condition logic changed"
+              },
+              "fullDescription": {
+                "text": "A comparison/boolean operator or negation changed. Boundary behaviour differs, which is a classic source of off-by-one and inverted-condition bugs."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "logic_change",
+                "provenance": "heuristic"
+              }
+            },
+            {
+              "id": "RUFF-T201",
+              "name": "RuffT201",
+              "shortDescription": {
+                "text": "Ruff T201"
+              },
+              "fullDescription": {
+                "text": "print() left in non-test code."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "debug_artifact",
+                "provenance": "deterministic"
+              }
+            }
+          ]
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CG-API-001",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "2 call site(s) incompatible with new signature of `format_price`. `format_price` changed (parameter `currency` removed; required parameter `locale` added). 2 of 3 call site(s) in the repository no longer match the new signature. Failure scenario: src/billing/invoice.py:9 still calls `format_price` the old way: it passes unexpected keyword argument `currency`. Python raises TypeError when that line runs."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 16,
+                  "endLine": 16
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E2: Signature of format_price changed"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 16,
+                  "endLine": 16
+                }
+              }
+            },
+            {
+              "id": 1,
+              "message": {
+                "text": "E3: Call site src/billing/invoice.py:9 in render_line"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/invoice.py"
+                },
+                "region": {
+                  "startLine": 9,
+                  "endLine": 9
+                }
+              }
+            },
+            {
+              "id": 2,
+              "message": {
+                "text": "E4: Call site tests/test_pricing.py:18 in test_format_price_defaults_to_usd"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_pricing.py"
+                },
+                "region": {
+                  "startLine": 18,
+                  "endLine": 18
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-234110d7c5"
+          },
+          "properties": {
+            "severity": "high",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "breaking_change",
+            "suggestedTest": "Update the incompatible callers, then add a regression test that calls `format_price` the way those callers do.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "RUFF-F821",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Undefined name `REGIONAL_RATES`. Undefined name `REGIONAL_RATES` (Ruff F821) in `total_with_tax`. This diagnostic is new in the head revision. Failure scenario: When `total_with_tax` runs, line 27 raises NameError."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E7: Ruff F821 at src/billing/pricing.py:27"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-b7dec13b21"
+          },
+          "properties": {
+            "severity": "high",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "correctness",
+            "suggestedTest": "Add a unit test that executes `total_with_tax` (line 27); it fails immediately while this diagnostic is present.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-COV-001",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "No test executes src/billing/api.py (3 changed executable line(s)). The coverage report records 0 hits for every one of the 10 executable lines in src/billing/api.py, including the changed line(s) 4, 11, 13. The module is probably never imported by a test. Failure scenario: Any bug introduced in this file reaches production without a single test running its code."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 4,
+                  "endLine": 13
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E14: src/billing/api.py is never executed by the test suite"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 4,
+                  "endLine": 13
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-43122d378e"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "coverage_gap",
+            "suggestedTest": "Add a test module that imports src/billing/api.py and exercises the changed code paths.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "RUFF-ASYNC251",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Async functions should not call `time.sleep`. Async functions should not call `time.sleep` (Ruff ASYNC251) in `handle_invoice`. This diagnostic is new in the head revision. Failure scenario: Under load, `handle_invoice` blocks the event loop and stalls every concurrent request."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 11,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E5: Ruff ASYNC251 at src/billing/api.py:11"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 11,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-e744c05295"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "concurrency",
+            "suggestedTest": "Exercise `handle_invoice` under asyncio debug mode (PYTHONASYNCIODEBUG=1) and assert no slow-callback warnings; switch to the async equivalent of the blocking call.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-COV-001",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "No test executes src/billing/loyalty.py (8 changed executable line(s)). The coverage report records 0 hits for every one of the 8 executable lines in src/billing/loyalty.py, including the changed line(s) 1, 3, 6\u201311. The module is probably never imported by a test. Failure scenario: Any bug introduced in this file reaches production without a single test running its code."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/loyalty.py"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E15: src/billing/loyalty.py is never executed by the test suite"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/loyalty.py"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-b74f63bd0d"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "coverage_gap",
+            "suggestedTest": "Add a test module that imports src/billing/loyalty.py and exercises the changed code paths.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-COV-001",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "3 of 3 changed executable line(s) in `total_with_tax` never run in tests. The coverage report shows 0 hits for changed line(s) 27\u201329 of src/billing/pricing.py. Failure scenario: A bug on line 27 would not fail any existing test, because the test suite never executes it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 29
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E17: Uncovered changed lines in total_with_tax"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 29
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-919a31c5f2"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "coverage_gap",
+            "suggestedTest": "Add a test that drives execution through line(s) 27\u201329 of src/billing/pricing.py, then re-run coverage to confirm.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "RUFF-E722",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Do not use bare `except`. Do not use bare `except` (Ruff E722) in `total_with_tax`. This diagnostic is new in the head revision. Failure scenario: A failure inside `total_with_tax` is swallowed; the caller proceeds with missing or partial results."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 28,
+                  "endLine": 28
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E8: Ruff E722 at src/billing/pricing.py:28"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 28,
+                  "endLine": 28
+                }
+              }
+            },
+            {
+              "id": 1,
+              "message": {
+                "text": "E9: Ruff S110 at src/billing/pricing.py:28"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 28,
+                  "endLine": 29
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-f190f8a4f9"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "error_handling",
+            "suggestedTest": "Add a test that makes the guarded call in `total_with_tax` raise, and assert the error is surfaced (logged or re-raised) rather than swallowed.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-TST-001",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "No tests reference changed `handle_invoice`. No test in the repository imports `src/billing/api.py` and references `handle_invoice`. 2 changed line(s) in this function are not verified by a directly related test. Failure scenario: A regression in `handle_invoice` ships unnoticed because CI has no test that targets it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 9,
+                  "endLine": 14
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E11: Modified function handle_invoice"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 9,
+                  "endLine": 14
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-739d146e36"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "medium",
+            "provenance": "heuristic",
+            "category": "test_gap",
+            "suggestedTest": "Add focused tests for `handle_invoice` (e.g. in tests/test_api.py) covering the changed lines.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-TST-001",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "No tests reference new `loyalty_bonus`. No test in the repository imports `src/billing/loyalty.py` and references `loyalty_bonus`. 6 changed line(s) in this function are not verified by a directly related test. Failure scenario: A regression in `loyalty_bonus` ships unnoticed because CI has no test that targets it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/loyalty.py"
+                },
+                "region": {
+                  "startLine": 6,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E12: Added function loyalty_bonus"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/loyalty.py"
+                },
+                "region": {
+                  "startLine": 6,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-4c9b2931f1"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "medium",
+            "provenance": "heuristic",
+            "category": "test_gap",
+            "suggestedTest": "Add focused tests for `loyalty_bonus` (e.g. in tests/test_loyalty.py) covering the changed lines.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-LOG-001",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Condition logic changed: `>` \u2192 `>=`. Line 11 in `apply_discount` changed only in `>` \u2192 `>=`; the condition's boundary or polarity is different now. Failure scenario: Inputs exactly at the boundary (or on the side the condition now excludes/includes) take the other branch than before \u2014 the classic off-by-one / inverted-condition regression."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 11,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E10: Condition changed at src/billing/pricing.py:11"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 11,
+                  "endLine": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-5b578fa2b1"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "medium",
+            "provenance": "heuristic",
+            "category": "logic_change",
+            "suggestedTest": "Add boundary-value tests: the threshold itself, one below, and one above, asserting the intended branch for each.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-TST-001",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "No tests reference changed `total_with_tax`. No test in the repository imports `src/billing/pricing.py` and references `total_with_tax`. 4 changed line(s) in this function are not verified by a directly related test. Failure scenario: A regression in `total_with_tax` ships unnoticed because CI has no test that targets it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 22,
+                  "endLine": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E13: Modified function total_with_tax"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 22,
+                  "endLine": 30
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-d91fdf53e3"
+          },
+          "properties": {
+            "severity": "medium",
+            "confidence": "medium",
+            "provenance": "heuristic",
+            "category": "test_gap",
+            "suggestedTest": "Add focused tests for `total_with_tax` (e.g. in tests/test_pricing.py) covering the changed lines.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "CG-COV-001",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "1 of 2 changed executable line(s) in `format_price` never run in tests. The coverage report shows 0 hits for changed line(s) 18 of src/billing/pricing.py. Failure scenario: A bug on line 18 would not fail any existing test, because the test suite never executes it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 18,
+                  "endLine": 18
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E16: Uncovered changed lines in format_price"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/pricing.py"
+                },
+                "region": {
+                  "startLine": 18,
+                  "endLine": 18
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-1d6aef5901"
+          },
+          "properties": {
+            "severity": "low",
+            "confidence": "high",
+            "provenance": "deterministic",
+            "category": "coverage_gap",
+            "suggestedTest": "Add a test that drives execution through line(s) 18 of src/billing/pricing.py, then re-run coverage to confirm.",
+            "side": "head"
+          }
+        },
+        {
+          "ruleId": "RUFF-T201",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "`print` found. `print` found (Ruff T201) in `handle_invoice`. This diagnostic is new in the head revision. Failure scenario: `handle_invoice` emits debug output or pauses in production."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 13,
+                  "endLine": 13
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "E6: Ruff T201 at src/billing/api.py:13"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/billing/api.py"
+                },
+                "region": {
+                  "startLine": 13,
+                  "endLine": 13
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "changeguardFindingId/v1": "F-c18c58ed0a"
+          },
+          "properties": {
+            "severity": "low",
+            "confidence": "medium",
+            "provenance": "deterministic",
+            "category": "debug_artifact",
+            "suggestedTest": "Remove the debug statement; enable Ruff T10/T20 in CI.",
+            "side": "head"
+          }
+        }
+      ],
+      "properties": {
+        "reviewPriority": "high",
+        "rulesetVersion": "2026.10.4",
+        "analysisId": "sample-billing-refactor-ai"
+      }
+    }
+  ]
+}

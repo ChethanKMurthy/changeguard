@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:09:42+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f368821a46\",\n      \"explanation\": \"Disabling TLS verification exposes the application to man-in-the-middle attacks.\",\n      \"failure_scenario\": \"An attacker intercepts the request and modifies the response, leading to unauthorized access or data tampering.\",\n      \"suggested_test\": {\n        \"description\": \"Test that orders endpoint returns expected data with valid TLS\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-237eb04f3a\",\n      \"explanation\": \"Lack of tests for modified method increases the risk of introducing bugs.\",\n      \"failure_scenario\": \"A bug in the `orders` method causes incorrect data to be returned, leading to financial losses or customer dissatisfaction.\",\n      \"suggested_test\": {\n        \"description\": \"Unit test for PartnerClient.orders with mock response\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Security risk due to TLS verification disabled\",\n      \"category\": \"security\",\n      \"severity\": \"high\",\n      \"confidence\": \"low\",\n      \"description\": \"TLS verification is crucial for secure communication. Disabling it exposes the application to potential security threats.\",\n      \"failure_scenario\": \"An attacker intercepts and modifies requests, leading to unauthorized access or data tampering.\",\n      \"suggested_test\": {\n        \"description\": \"Test that orders endpoint returns expected data with valid TLS\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not directly support this risk, but it is a known security concern.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a significant security risk by disabling TLS verification. Additionally, the lack of tests for the modified method increases the likelihood of introducing bugs. Both issues need to be addressed before merging the change.\"\n}",
+  "input_tokens": 1061,
+  "output_tokens": 464,
+  "latency_ms": 12617.1,
+  "finish_reason": "stop"
+}

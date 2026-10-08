@@ -1,0 +1,21 @@
+id: py-migration-001
+title: Migration drops a column the application still reads
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: An Alembic migration drops users.legacy_email while the model and the CSV export still use it.
+tags:
+- migration
+negative: false
+expected:
+- id: L1
+  category: data_migration
+  file: migrations/versions/0008_drop_legacy_email.py
+  lines:
+  - 10
+  - 10
+  severity: high
+  note: ''
+acceptable: []

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:41+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-b19a7536e5\",\n      \"explanation\": \"The `search` function now requires an additional argument, which is incompatible with its previous signature.\",\n      \"failure_scenario\": \"A user calls the `suggest` function without providing any arguments, causing a runtime error.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `suggest` with no arguments throws an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-46cabf3931\",\n      \"explanation\": \"There are no tests that reference the changed `search` function.\",\n      \"failure_scenario\": \"A user calls the `search` function with invalid arguments, causing unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `search` with valid arguments returns a valid result.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for unexpected behavior due to the lack of tests referencing the changed `search` function. This could lead to a breaking change if not addressed promptly.\"}",
+  "input_tokens": 1143,
+  "output_tokens": 310,
+  "latency_ms": 4598.7,
+  "finish_reason": "stop"
+}

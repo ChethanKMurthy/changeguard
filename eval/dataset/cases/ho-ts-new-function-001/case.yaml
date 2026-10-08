@@ -1,0 +1,24 @@
+id: ho-ts-new-function-001
+title: Rule expressions compiled with new Function
+split: holdout
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A tiny expression parser is replaced by compiling the expression string as JavaScript.
+tags:
+- security
+- code-injection
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/rules/engine.ts
+  lines:
+  - 2
+  - 2
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

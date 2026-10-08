@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:51:30+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-71250d4579\",\n      \"explanation\": \"Destructive migration without backup plan.\",\n      \"failure_scenario\": \"Migration runs, but data in `legacy_email` is lost and cannot be restored.\",\n      \"suggested_test\": {\n        \"description\": \"Test that attempting to drop a column with existing data raises an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E4\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-a79b4aa699\",\n      \"explanation\": \"Dropped column still referenced in code.\",\n      \"failure_scenario\": \"Code attempts to access `legacy_email`, leading to an AttributeError.\",\n      \"suggested_test\": {\n        \"description\": \"Test that accessing the removed column from the model raises an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Test Gap\",\n      \"category\": \"test_gap\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"No tests for the migration, leaving potential issues untested.\",\n      \"failure_scenario\": \"Migration introduces bugs that are not caught during testing.\",\n      \"suggested_test\": {\n        \"description\": \"Automated test to verify the migration works as expected.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E4\"],\n      \"uncertainty\": \"The evidence does not directly support this risk, but it is a common oversight.\"\n    }\n  ],\n  \"overall_assessment\": \"This change includes both destructive data migration without backup and references to dropped columns in the codebase. Both are high-risk issues that could lead to data loss and application errors. Additionally, no tests for the migration exist, increasing the risk of introducing bugs.\" }",
+  "input_tokens": 1232,
+  "output_tokens": 446,
+  "latency_ms": 15585.3,
+  "finish_reason": "stop"
+}

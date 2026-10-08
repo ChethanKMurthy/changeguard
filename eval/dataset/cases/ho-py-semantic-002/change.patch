@@ -1,0 +1,16 @@
+diff --git a/src/cart/totals.py b/src/cart/totals.py
+index 08d7280..05103d9 100644
+--- a/src/cart/totals.py
++++ b/src/cart/totals.py
+@@ -7,8 +7,8 @@ class Line:
+     quantity: int
+ 
+ 
+-def cart_total(lines: list[Line]) -> float:
++def cart_total(lines: list[Line], discount: float = 0.0) -> float:
+     total = 0.0
+     for line in lines:
+-        total += line.price * line.quantity
+-    return round(total, 2)
++        total += line.price
++    return round(total * (1 - discount), 2)

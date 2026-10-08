@@ -1,0 +1,20 @@
+id: ho-py-moved-module-001
+title: Module renamed; one importer still uses the old path
+split: holdout
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: core/helpers.py is renamed to core/collections_util.py; batch.py is updated but export.py still imports
+  core.helpers.
+tags:
+- breaking-change
+- moved-module
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/core/collections_util.py
+  severity: critical
+  note: 'file-level label: export.py imports the old module path'
+acceptable: []

@@ -1,0 +1,14 @@
+diff --git a/src/text/normalize.ts b/src/text/normalize.ts
+index 7da336d..ef1a7d4 100644
+--- a/src/text/normalize.ts
++++ b/src/text/normalize.ts
+@@ -1,7 +1,7 @@
+-function stripAccents(value: string): string {
++function removeDiacritics(value: string): string {
+   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+ }
+ 
+ export function normalizeName(value: string): string {
+-  return stripAccents(value).trim().toLowerCase();
++  return removeDiacritics(value).trim().toLowerCase();
+ }

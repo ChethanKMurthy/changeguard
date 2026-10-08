@@ -1,0 +1,8 @@
+diff --git a/db/migrations/0042_reset_sessions.sql b/db/migrations/0042_reset_sessions.sql
+new file mode 100644
+index 0000000..882307b
+--- /dev/null
++++ b/db/migrations/0042_reset_sessions.sql
+@@ -0,0 +1,2 @@
++-- Clear stale sessions after the auth migration.
++DELETE FROM sessions;

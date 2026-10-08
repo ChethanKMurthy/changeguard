@@ -1,0 +1,23 @@
+id: ho-py-async-sleep-001
+title: asyncio.sleep replaced by time.sleep in a poller
+split: holdout
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: The poller now blocks the event loop between attempts.
+tags:
+- concurrency
+negative: false
+expected:
+- id: L1
+  category: concurrency
+  file: src/workers/poller.py
+  lines:
+  - 9
+  - 9
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

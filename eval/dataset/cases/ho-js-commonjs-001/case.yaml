@@ -1,0 +1,23 @@
+id: ho-js-commonjs-001
+title: CommonJS export removed while still required elsewhere
+split: holdout
+language: javascript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: slugify is deleted from strings.js; routes.js destructures it from require('./strings') and gets undefined.
+tags:
+- breaking-change
+- commonjs
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/strings.js
+  lines:
+  - 1
+  - 1
+  severity: high
+  side: base
+  note: ''
+acceptable: []

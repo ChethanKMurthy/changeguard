@@ -1,0 +1,24 @@
+id: h2-tsx-innerhtml-001
+title: Markdown preview written to innerHTML
+split: holdout-v2
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: User-authored markdown is assigned to innerHTML without rendering or sanitising.
+tags:
+- security
+- xss
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/components/Preview.tsx
+  lines:
+  - 6
+  - 6
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

@@ -1,0 +1,16 @@
+diff --git a/src/cache/warmup.py b/src/cache/warmup.py
+index dc09dfd..3700477 100644
+--- a/src/cache/warmup.py
++++ b/src/cache/warmup.py
+@@ -1,6 +1,9 @@
+ def warm_cache(keys: list[str], loader) -> int:
+     loaded = 0
+     for key in keys:
+-        loader(key)
+-        loaded += 1
++        try:
++            loader(key)
++            loaded += 1
++        except Exception:
++            pass
+     return loaded

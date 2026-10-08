@@ -1,0 +1,23 @@
+id: py-logic-002
+title: Off-by-one in a range bound
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: The range stop becomes total - 1; when total is one more than a multiple of page_size, the last page
+  is dropped.
+tags:
+- logic
+- off-by-one
+negative: false
+expected:
+- id: L1
+  category: logic_change
+  file: src/reports/pagination.py
+  lines:
+  - 3
+  - 3
+  severity: medium
+  note: ''
+acceptable: []

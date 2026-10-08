@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:36:39+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2b5b7c2dde\",\n      \"explanation\": \"Disabling TLS verification exposes the application to man-in-the-middle attacks.\",\n      \"failure_scenario\": \"An attacker intercepts the webhook request and modifies it, leading to data corruption or unauthorized access.\",\n      \"suggested_test\": {\n        \"description\": \"Verify that webhooks cannot be intercepted with disabled TLS verification.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change modifies the logic of how webhooks are sent, which may have unintended consequences.\",\n      \"failure_scenario\": \"Webhooks might not be correctly processed due to changes in the way they are constructed or transmitted.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change disables TLS verification, which is a significant security risk. There are potential logic changes that may have unintended consequences.\"\n}",
+  "input_tokens": 838,
+  "output_tokens": 293,
+  "latency_ms": 8317.9,
+  "finish_reason": "stop"
+}

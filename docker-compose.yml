@@ -1,0 +1,50 @@
+# Local deployment: web app on http://localhost:3000, engine API docs on
+# http://localhost:8000/api/docs. Both ports bind to localhost only.
+#
+#   docker compose up --build
+#   docker compose --profile ai up --build      # also start Ollama for local AI
+#
+# Optional settings go in a .env file next to this one (see .env.example).
+name: changeguard
+
+services:
+  engine:
+    build: ./backend
+    environment:
+      CHANGEGUARD_API_KEYS: ${CHANGEGUARD_API_KEY:-}
+      CHANGEGUARD_TRUST_PROXY_HEADERS: "true"
+      CHANGEGUARD_AI_PROVIDER: ${CHANGEGUARD_AI_PROVIDER:-none}
+      CHANGEGUARD_AI_MODEL: ${CHANGEGUARD_AI_MODEL:-}
+      CHANGEGUARD_AI_BASE_URL: ${CHANGEGUARD_AI_BASE_URL:-http://ollama:11434}
+      CHANGEGUARD_AI_API_KEY: ${CHANGEGUARD_AI_API_KEY:-}
+    volumes:
+      - engine-data:/data
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        CHANGEGUARD_API_URL: http://engine:8000
+    environment:
+      CHANGEGUARD_API_URL: http://engine:8000
+      CHANGEGUARD_API_KEY: ${CHANGEGUARD_API_KEY:-}
+      CHANGEGUARD_WORKSPACES: ${CHANGEGUARD_WORKSPACES:-}
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      engine:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.30.11
+    profiles: ["ai"]
+    volumes:
+      - ollama-models:/root/.ollama
+
+volumes:
+  engine-data:
+  ollama-models:

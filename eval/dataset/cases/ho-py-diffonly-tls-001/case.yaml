@@ -1,0 +1,22 @@
+id: ho-py-diffonly-tls-001
+title: TLS verification disabled (diff only, no snapshot)
+split: holdout
+language: python
+difficulty: easy
+mode: diff_only
+source: synthetic (authored for this dataset)
+description: 'Evaluated without a repository snapshot: only the patch is available.'
+tags:
+- security
+- diff-only
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/integrations/webhooks.py
+  lines:
+  - 5
+  - 5
+  severity: high
+  note: ''
+acceptable: []

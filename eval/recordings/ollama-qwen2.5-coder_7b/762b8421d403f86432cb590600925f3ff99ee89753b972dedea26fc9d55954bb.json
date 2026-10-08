@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:36:31+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2b5b7c2dde\",\n      \"explanation\": \"Disabling TLS verification exposes the application to man-in-the-middle attacks, potentially leading to data interception and tampering.\",\n      \"failure_scenario\": \"An attacker intercepts the webhook request and modifies the payload before forwarding it to the intended server.\",\n      \"suggested_test\": {\n        \"description\": \"Send a malicious payload via a webhook and verify that the application logs or responds in an expected manner, indicating potential man-in-the-middle attack.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change Risk\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The code change may unintentionally alter the logic of how webhooks are processed, leading to unexpected behavior.\",\n      \"failure_scenario\": \"A webhook with a critical payload fails silently due to an unforeseen condition in the new logic.\",\n      \"suggested_test\": {\n        \"description\": \"Test various edge cases and complex payloads to ensure the webhook handling remains consistent with previous versions.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change disables TLS verification, significantly increasing the risk of man-in-the-middle attacks. Additionally, the logic change may introduce unexpected behavior that could go unnoticed in testing.\"\n}",
+  "input_tokens": 838,
+  "output_tokens": 366,
+  "latency_ms": 11836.4,
+  "finish_reason": "stop"
+}

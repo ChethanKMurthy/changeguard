@@ -1,0 +1,24 @@
+id: ho-ts-constructor-001
+title: Constructor gains a required parameter
+split: holdout
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Logger now requires a level; `new Logger("app")` in main.ts no longer compiles.
+tags:
+- breaking-change
+- constructor
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/log/logger.ts
+  lines:
+  - 2
+  - 2
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:31:18+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f368821a46\",\n      \"explanation\": \"Disabling TLS verification exposes the application to man-in-the-middle attacks.\",\n      \"failure_scenario\": \"An attacker intercepts and alters the response from the server, compromising data integrity.\",\n      \"suggested_test\": {\n        \"description\": \"Test that orders request is made over HTTPS with TLS verification enabled.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The method signature has changed, which might break downstream code that calls this method.\",\n      \"failure_scenario\": \"Code calling `orders()` expects a specific return type or behavior, but it now behaves differently due to the change.\",\n      \"suggested_test\": {\n        \"description\": \"Check if existing tests still pass after the change and verify that new tests cover the new behavior.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"The evidence does not explicitly show any issues with downstream usage, but it's a potential risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The change disables TLS verification, which is a significant security risk. Additionally, the method signature has changed, raising concerns about potential behavior changes in downstream code.\"\n}",
+  "input_tokens": 1061,
+  "output_tokens": 342,
+  "latency_ms": 8835.3,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:48:55+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d1b008318b\",\n      \"explanation\": \"The change introduces a new case for `month == 12` which is not covered by the existing tests, potentially leading to incorrect discounts.\",\n      \"failure_scenario\": \"If a customer tries to apply the seasonal discount in December without being a member, they might receive an unexpected discount rate of 0.15 instead of 0.0.\",\n      \"suggested_test\": {\n        \"description\": \"Test that non-member customers receive no discount for December\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"low\",\n      \"uncertainty\": \"The evidence does not provide a concrete code snippet to confirm the logic of the new case.\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The change introduces new logic for `month == 12` which is not covered by existing tests, potentially leading to incorrect behavior. This poses a risk of introducing errors or unexpected outcomes when discounts are applied during December.\"\n}",
+  "input_tokens": 861,
+  "output_tokens": 245,
+  "latency_ms": 7024.6,
+  "finish_reason": "stop"
+}

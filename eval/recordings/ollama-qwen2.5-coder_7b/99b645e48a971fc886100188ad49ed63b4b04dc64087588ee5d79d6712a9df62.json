@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:33:30+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-b19a7536e5\",\n      \"explanation\": \"The `search` function's signature has changed from taking an optional `options` parameter to a required one.\",\n      \"failure_scenario\": \"A call site in `autocomplete.ts` passes only the term, leading to a runtime error because it expects two arguments.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure that calling `search` with a single argument raises an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-46cabf3931\",\n      \"explanation\": \"There are no tests that reference the modified `search` function.\",\n      \"failure_scenario\": \"A bug in `search` is introduced, but it remains undetected because no tests cover this path.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test for the default behavior of `search` when options are omitted.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change from an optional to a required parameter could alter the behavior of existing code that depends on the previous signature.\",\n      \"failure_scenario\": \"Existing code that relies on the `search` function with default options may break after this change.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure that calling `search` without options behaves as expected.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The impact on existing behavior is unclear from the provided evidence.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a breaking API alteration and lacks tests, which could lead to unexpected failures in dependent components. The impact of removing the optional parameter is not fully understood from the provided evidence.\"\n}",
+  "input_tokens": 1150,
+  "output_tokens": 486,
+  "latency_ms": 17291.8,
+  "finish_reason": "stop"
+}

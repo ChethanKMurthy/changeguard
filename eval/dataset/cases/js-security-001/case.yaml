@@ -1,0 +1,24 @@
+id: js-security-001
+title: Branch name interpolated into a shell command
+split: dev
+language: javascript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: execFile with an argument array is replaced by exec with a template string containing the branch name.
+tags:
+- security
+- command-injection
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/git/log.js
+  lines:
+  - 4
+  - 4
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

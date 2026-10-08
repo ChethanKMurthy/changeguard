@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:33:13+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change introduces a new exportable function `priceLabel` that formats prices differently based on the currency. This could lead to unexpected behavior for consumers of this module if they are not aware of the new function or how it interacts with existing code.\",\n      \"failure_scenario\": \"A developer using only `toUnits` may inadvertently use the incorrect format for displaying prices, leading to a user interface that displays prices incorrectly.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure both `toUnits` and `priceLabel` functions produce correct output for various input values and currencies.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"\"\n    },\n    {\n      \"title\": \"Correctness\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change does not affect the correctness of the existing `toUnits` function, but it introduces a new function that may not handle edge cases correctly.\",\n      \"failure_scenario\": \"If an invalid currency is passed to `priceLabel`, it could lead to a syntax error or unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test the `priceLabel` function with various invalid currency inputs and ensure it handles them gracefully without crashing.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces new functionality that may lead to behavior changes if not handled carefully. While the existing correctness of `toUnits` is not affected, the addition of `priceLabel` without thorough testing could introduce subtle issues in consumer code.\"\n}",
+  "input_tokens": 704,
+  "output_tokens": 410,
+  "latency_ms": 11727.1,
+  "finish_reason": "stop"
+}

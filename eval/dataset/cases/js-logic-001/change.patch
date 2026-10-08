@@ -1,0 +1,12 @@
+diff --git a/src/net/retry.js b/src/net/retry.js
+index 2d925fb..bcc926d 100644
+--- a/src/net/retry.js
++++ b/src/net/retry.js
+@@ -1,6 +1,6 @@
+ export async function withRetry(fn, maxAttempts) {
+   let attempt = 0;
+-  while (attempt < maxAttempts) {
++  while (attempt <= maxAttempts) {
+     try {
+       return await fn();
+     } catch (err) {

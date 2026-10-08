@@ -1,0 +1,13 @@
+id: ho-py-neg-logging-001
+title: Type hints and debug logging added
+split: holdout
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Observability and typing improvements to a tested function; behaviour unchanged.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

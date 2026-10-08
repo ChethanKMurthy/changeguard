@@ -1,0 +1,72 @@
+diff --git a/src/billing/api.py b/src/billing/api.py
+index 8ccacd2..de6cd21 100644
+--- a/src/billing/api.py
++++ b/src/billing/api.py
+@@ -1,11 +1,14 @@
+ """HTTP handlers for the billing service."""
+ 
+ import json
++import time
+ 
+ from billing.invoice import invoice_total
+ 
+ 
+ async def handle_invoice(request_body: str) -> dict[str, str]:
+     payload = json.loads(request_body)
++    time.sleep(0.05)  # crude rate limiting
+     total = invoice_total(payload["items"], payload.get("discount", 0), payload["region"])
++    print("invoice total", total)
+     return {"total": str(total)}
+diff --git a/src/billing/loyalty.py b/src/billing/loyalty.py
+new file mode 100644
+index 0000000..673aac9
+--- /dev/null
++++ b/src/billing/loyalty.py
+@@ -0,0 +1,11 @@
++"""Loyalty programme bonuses."""
++
++from decimal import Decimal
++
++
++def loyalty_bonus(years: int, tier: str) -> Decimal:
++    if tier == "gold" and years > 3:
++        return Decimal("0.05")
++    if tier == "silver":
++        return Decimal("0.02")
++    return Decimal("0")
+diff --git a/src/billing/pricing.py b/src/billing/pricing.py
+index 39c0b46..bfbdd48 100644
+--- a/src/billing/pricing.py
++++ b/src/billing/pricing.py
+@@ -5,16 +5,17 @@
+ TAX_RATE = Decimal("0.20")
+ 
+ 
+-def apply_discount(subtotal: Decimal, percent: int) -> Decimal:
++def apply_discount(subtotal: Decimal, percent: int, loyalty_years: int = 0) -> Decimal:
+     """Apply a percentage discount; discounts above 50% need manual approval."""
+-    if percent > 50:
++    percent = percent + min(loyalty_years, 5)
++    if percent >= 50:
+         raise ValueError("discount requires approval")
+     return subtotal * (Decimal(100 - percent) / 100)
+ 
+ 
+-def format_price(amount: Decimal, currency: str = "USD") -> str:
+-    """Render an amount with its currency symbol."""
+-    symbol = {"USD": "$", "EUR": "€", "GBP": "£"}.get(currency, currency + " ")
++def format_price(amount: Decimal, locale: str) -> str:
++    """Render an amount using the symbol for the caller's locale."""
++    symbol = {"en_US": "$", "de_DE": "€", "en_GB": "£"}.get(locale, "")
+     return f"{symbol}{amount:.2f}"
+ 
+ 
+@@ -22,4 +23,8 @@ def total_with_tax(subtotal: Decimal, region: str) -> Decimal:
+     """Add sales tax for regions that charge it."""
+     if region == "EU":
+         return subtotal * (1 + TAX_RATE)
++    try:
++        return subtotal * REGIONAL_RATES[region]
++    except:
++        pass
+     return subtotal

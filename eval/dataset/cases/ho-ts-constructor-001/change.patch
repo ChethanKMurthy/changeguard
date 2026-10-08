@@ -1,0 +1,14 @@
+diff --git a/src/log/logger.ts b/src/log/logger.ts
+index 7676d45..1446acb 100644
+--- a/src/log/logger.ts
++++ b/src/log/logger.ts
+@@ -1,7 +1,7 @@
+ export class Logger {
+-  constructor(private name: string) {}
++  constructor(private name: string, private level: "debug" | "info") {}
+ 
+   info(message: string): string {
+-    return `[${this.name}] ${message}`;
++    return this.level === "info" ? `[${this.name}] ${message}` : "";
+   }
+ }

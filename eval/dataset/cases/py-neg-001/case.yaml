@@ -1,0 +1,13 @@
+id: py-neg-001
+title: Docstring and variable rename (no behaviour change)
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Readability-only change to a tested function.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

@@ -1,0 +1,7 @@
+diff --git a/db/migrations/0004_rename_fullname.sql b/db/migrations/0004_rename_fullname.sql
+new file mode 100644
+index 0000000..3bd22ba
+--- /dev/null
++++ b/db/migrations/0004_rename_fullname.sql
+@@ -0,0 +1 @@
++ALTER TABLE users RENAME COLUMN fullname TO display_name;

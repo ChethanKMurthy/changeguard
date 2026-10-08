@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:48:48+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d1b008318b\",\n      \"explanation\": \"The code line that handles seasonal discounts for June and July is never executed in tests, potentially leading to bugs in this logic.\",\n      \"failure_scenario\": \"If a bug is introduced in the June/July discount calculation, it will not be caught by tests, causing incorrect billing.\",\n      \"suggested_test\": {\n        \"description\": \"Test seasonal discounts for member and non-member users in June and July.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"low\",\n      \"uncertainty\": \"The evidence shows only one line of code is not covered, but it's uncertain if this is the only affected logic.\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change Risk\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"There are multiple seasonal discount conditions that may have been unintentionally altered. This could introduce unexpected behavior.\",\n      \"failure_scenario\": \"If the logic for calculating discounts in December was mistakenly changed, it could lead to incorrect billing during that month.\",\n      \"suggested_test\": {\n        \"description\": \"Test seasonal discounts for December with both member and non-member users.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"The evidence does not directly show changes in other discount logic but is relevant.\"\n    }\n  ],\n  \"overall_assessment\": \"This change increases the risk of undetected bugs in seasonal discount calculations, which could lead to incorrect billing. It also introduces potential risks from untested alterations in other discount logic.\"\n}",
+  "input_tokens": 861,
+  "output_tokens": 388,
+  "latency_ms": 12817.8,
+  "finish_reason": "stop"
+}

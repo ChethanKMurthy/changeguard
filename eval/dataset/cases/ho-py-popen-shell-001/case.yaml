@@ -1,0 +1,24 @@
+id: ho-py-popen-shell-001
+title: File names concatenated into a shell command
+split: holdout
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Thumbnail generation now builds a shell string from user-supplied file names.
+tags:
+- security
+- command-injection
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/media/thumbs.py
+  lines:
+  - 6
+  - 6
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

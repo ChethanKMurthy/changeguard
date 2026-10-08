@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:05:08+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f2bbc247f2\",\n      \"explanation\": \"Dynamic value assignment to `innerHTML` makes it vulnerable to XSS attacks.\",\n      \"failure_scenario\": \"An attacker injects malicious HTML into the `message` parameter, causing the banner to display arbitrary content.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `renderBanner` function sanitizes user input before assigning it to `innerHTML`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-26d113b880\",\n      \"explanation\": \"The absence of tests for the `renderBanner` function makes it difficult to ensure its correctness.\",\n      \"failure_scenario\": \"A bug in the `renderBanner` function causes unexpected behavior or errors.\",\n      \"suggested_test\": {\n        \"description\": \"Write a test that exercises the `renderBanner` function with different input scenarios.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for a security vulnerability due to dynamic value assignment to `innerHTML`. The lack of tests for the `renderBanner` function adds to the uncertainty and risk of introducing bugs or incorrect behavior.\" }",
+  "input_tokens": 950,
+  "output_tokens": 327,
+  "latency_ms": 4943.0,
+  "finish_reason": "stop"
+}

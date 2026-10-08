@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:31:34+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d7c8071aa4\",\n      \"explanation\": \"The removal of the `currency` parameter in Money.parse breaks existing code that relies on it.\",\n      \"failure_scenario\": \"Existing code calling Money.parse with both text and currency fails, resulting in a TypeError.\",\n      \"suggested_test\": {\n        \"description\": \"Test Money.parse without currency parameter\",\n        \"code\": \"def test_parse_without_currency():\\n    money = Money.parse('10 USD')\\n    assert money.value == Decimal('10')\\n    assert money.currency == 'USD'\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-a1ab282abd\",\n      \"explanation\": \"Lack of tests for the modified Money.parse method increases the risk of introducing bugs.\",\n      \"failure_scenario\": \"A bug in the new implementation breaks without any test coverage to catch it.\",\n      \"suggested_test\": {\n        \"description\": \"Test Money.parse with invalid input\",\n        \"code\": \"def test_parse_invalid_input():\\n    with pytest.raises(ValueError):\\n        Money.parse('invalid text')\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The behavior of Money.parse has changed, which may impact other parts of the codebase that rely on its previous behavior.\",\n      \"failure_scenario\": \"Existing functionality using Money.parse may not work as expected due to the new implementation.\",\n      \"suggested_test\": {\n        \"description\": \"Test existing functionality with new parse method\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\", \"E4\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a breaking behavior and lacks test coverage, posing significant risks to the codebase.\"\n}",
+  "input_tokens": 1184,
+  "output_tokens": 480,
+  "latency_ms": 15811.0,
+  "finish_reason": "stop"
+}

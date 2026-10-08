@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:18+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f368821a46\",\n      \"explanation\": \"TLS verification is disabled for all requests, making it vulnerable to man-in-the-middle attacks.\",\n      \"failure_scenario\": \"An attacker intercepts the request and modifies the response, allowing them to steal sensitive data.\",\n      \"suggested_test\": {\n        \"description\": \"Test that TLS verification is enabled for all requests.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-237eb04f3a\",\n      \"explanation\": \"The `orders` method of the `PartnerClient` class does not reference any tests, making it unclear how to test its behavior.\",\n      \"failure_scenario\": \"A developer modifies the `orders` method without writing any tests for it, leading to unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `orders` method is referenced in at least one test.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the disabling of TLS verification, which makes the application vulnerable to man-in-the-middle attacks. This could lead to sensitive data being compromised if an attacker intercepts a request.\" }",
+  "input_tokens": 1015,
+  "output_tokens": 325,
+  "latency_ms": 4611.4,
+  "finish_reason": "stop"
+}

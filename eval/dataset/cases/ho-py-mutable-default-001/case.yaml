@@ -1,0 +1,26 @@
+id: ho-py-mutable-default-001
+title: Mutable default argument shared across calls
+split: holdout
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Calls that omit `queue` now share one list, so jobs leak between unrelated callers.
+tags:
+- correctness
+negative: false
+expected:
+- id: L1
+  category: correctness
+  file: src/queue/jobs.py
+  lines:
+  - 1
+  - 1
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)
+- category: behavior_change
+  file: src/queue/jobs.py
+  note: default value changed

@@ -1,0 +1,13 @@
+id: h2-ts-neg-extract-001
+title: Helper extracted from a tested function
+split: holdout-v2
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A private helper is extracted; the exported function keeps its behaviour and its test.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

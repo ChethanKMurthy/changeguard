@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:13+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2b5b7c2dde\",\n      \"explanation\": \"TLS verification is disabled for webhooks, making it vulnerable to man-in-the-middle attacks.\",\n      \"failure_scenario\": \"An attacker intercepts the webhook request and modifies the payload before it reaches the intended recipient.\",\n      \"suggested_test\": {\n        \"description\": \"Test that a webhook request with modified payload fails with an error\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for man-in-the-middle attacks due to disabled TLS verification. This could lead to sensitive data being compromised, and it's essential to address this vulnerability as soon as possible.\"}",
+  "input_tokens": 827,
+  "output_tokens": 200,
+  "latency_ms": 3064.6,
+  "finish_reason": "stop"
+}

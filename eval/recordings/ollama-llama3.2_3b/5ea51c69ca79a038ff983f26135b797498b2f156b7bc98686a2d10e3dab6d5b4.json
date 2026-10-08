@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:49+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-669dbf6c0b\",\n      \"explanation\": \"The `slugify` function was removed, but its reference in `src/routes.js` could lead to a runtime error if not handled properly.\",\n      \"failure_scenario\": \"A user tries to access an article with a non-slugified title, causing the application to crash.\",\n      \"suggested_test\": {\n        \"description\": \"Test that accessing an article with a non-slugified title throws an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The removal of the `slugify` function increases the risk of runtime errors if not handled properly. The lack of a clear fallback mechanism for non-slugified titles makes this change particularly concerning.\"}",
+  "input_tokens": 962,
+  "output_tokens": 214,
+  "latency_ms": 3312.6,
+  "finish_reason": "stop"
+}

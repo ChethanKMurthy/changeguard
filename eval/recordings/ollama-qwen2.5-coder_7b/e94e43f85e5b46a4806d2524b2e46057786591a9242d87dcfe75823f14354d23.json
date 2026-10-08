@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:40:57+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-8f599ac18c\",\n      \"explanation\": \"Using `yaml.unsafe_load()` can lead to arbitrary code execution if the input data is malicious.\",\n      \"failure_scenario\": \"An attacker crafts a YAML file with harmful commands that execute on the server.\",\n      \"suggested_test\": {\n        \"description\": \"Test for arbitrary command execution vulnerability\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-283f9b1868\",\n      \"explanation\": \"Lack of tests means the change may introduce new bugs without being caught.\",\n      \"failure_scenario\": \"The function's behavior changes unexpectedly, causing unintended side effects.\",\n      \"suggested_test\": {\n        \"description\": \"Unit test for `read_manifest` with various inputs\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Security: Untrusted data handling\",\n      \"category\": \"security\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The function does not validate the input data, which could lead to security vulnerabilities.\",\n      \"failure_scenario\": \"An attacker sends a YAML file with harmful content that is executed by the application.\",\n      \"suggested_test\": {\n        \"description\": \"Test for input validation in `read_manifest`\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not directly address data validation.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a security risk due to the use of `yaml.unsafe_load()`, and lacks adequate testing, which could result in hidden bugs. These issues could lead to severe consequences if not addressed promptly.\"\n}",
+  "input_tokens": 978,
+  "output_tokens": 449,
+  "latency_ms": 14763.9,
+  "finish_reason": "stop"
+}

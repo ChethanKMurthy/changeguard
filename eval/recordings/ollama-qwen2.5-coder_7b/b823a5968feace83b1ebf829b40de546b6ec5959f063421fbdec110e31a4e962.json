@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:42:33+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-4b3fc125c7\",\n      \"explanation\": \"The method signature has changed, which could break existing clients.\",\n      \"failure_scenario\": \"A client might call evict without a limit argument, leading to undefined behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Verify that passing no arguments to evict throws an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-1daed221df\",\n      \"explanation\": \"There are no tests that check the new behavior of evict.\",\n      \"failure_scenario\": \"The evict method might not work as expected if a test is missed.\",\n      \"suggested_test\": {\n        \"description\": \"Test evict with different limits to ensure items are removed correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"high\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might affect how the cache behaves when evict is called with a specific limit.\",\n      \"failure_scenario\": \"The cache might not evict items as intended if the new signature is misused.\",\n      \"suggested_test\": {\n        \"description\": \"Test various scenarios of calling evict with different limits to ensure correct behavior.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E4\"],\n      \"uncertainty\": \"The evidence does not provide concrete examples of how clients might misuse the new signature.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a breaking behavior due to a signature change, which could impact existing clients. It also lacks tests for the new method, potentially introducing subtle bugs that are hard to catch without thorough testing.\"\n}",
+  "input_tokens": 1236,
+  "output_tokens": 448,
+  "latency_ms": 12829.1,
+  "finish_reason": "stop"
+}

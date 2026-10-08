@@ -1,0 +1,23 @@
+id: ts-breaking-002
+title: Exported helper deleted while another module imports it
+split: dev
+language: typescript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: refreshWindow is removed from session.ts; guard.ts still imports and calls it.
+tags:
+- breaking-change
+- removed-export
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/auth/session.ts
+  lines:
+  - 5
+  - 5
+  severity: critical
+  side: base
+  note: ''
+acceptable: []

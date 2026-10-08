@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:51:51+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Incorrect handling of edge cases\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The Haversine formula might not handle edge cases like points on the same latitude line correctly.\",\n      \"failure_scenario\": \"If two points are very close to each other but on the same latitude, the result might be inaccurate.\",\n      \"suggested_test\": {\n        \"description\": \"Check distance calculation for points very close to each other on the same latitude.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The Haversine formula should handle such cases correctly, but this is not verified by the evidence.\"\n    }\n  ],\n  \"overall_assessment\": \"This change appears to be a straightforward implementation of the Haversine formula for calculating distances between two points. The primary concern is the handling of edge cases, which are not covered in the provided evidence.\"\n}",
+  "input_tokens": 797,
+  "output_tokens": 225,
+  "latency_ms": 7794.3,
+  "finish_reason": "stop"
+}

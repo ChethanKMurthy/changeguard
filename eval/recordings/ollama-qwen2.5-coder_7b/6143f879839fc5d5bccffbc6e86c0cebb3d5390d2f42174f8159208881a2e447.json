@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:38:36+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logging level should be configurable\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"medium\",\n      \"description\": \"The hard-coded log level is not configurable, which might limit the flexibility of logging in different environments (e.g., production vs. development). This could make it harder to debug issues without changing the code.\",\n      \"failure_scenario\": \"In a production environment, developers need more detailed logs for debugging purposes but cannot adjust the logging level without changing the source code.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the log level can be configured and that different levels produce expected output.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a new function with basic logic for computing a balance, but it lacks configurability for logging level. This could make it harder to adjust the verbosity of logs in different environments.\"\n}",
+  "input_tokens": 696,
+  "output_tokens": 233,
+  "latency_ms": 6622.5,
+  "finish_reason": "stop"
+}

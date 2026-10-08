@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:14:59+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The evidence does not provide enough context to determine if the logic change is intentional or unintentional. The function `normalizeName` now trims and lowercases the input, which could affect how names are compared or stored.\",\n      \"failure_scenario\": \"A user with a name like 'John Doe' might be incorrectly compared to 'johndoe' in a case-insensitive search.\",\n      \"suggested_test\": {\n        \"description\": \"Test that `normalizeName` handles trimming and casing correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential logic risk due to the addition of trimming and lowercasing in `normalizeName`. This could affect how names are compared or stored. Additional testing is needed to ensure that the new behavior meets requirements.\"\n}",
+  "input_tokens": 693,
+  "output_tokens": 237,
+  "latency_ms": 7611.9,
+  "finish_reason": "stop"
+}

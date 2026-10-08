@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:10:41+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-b19a7536e5\",\n      \"explanation\": \"The `search` function now requires an options object, which could break existing code that passes only the term.\",\n      \"failure_scenario\": \"Existing code calling `search('apple')` will fail with a type error because it expects an options object.\",\n      \"suggested_test\": {\n        \"description\": \"Test calling `search` with only the term should fail\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-46cabf3931\",\n      \"explanation\": \"No tests reference the modified `search` function, making it difficult to ensure the change works as expected.\",\n      \"failure_scenario\": \"The new implementation of `search` might have bugs that are not caught by existing tests.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test for the new `search` functionality\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might alter the behavior of existing code that relies on the old `search` signature.\",\n      \"failure_scenario\": \"Existing code expecting a string array from `search` might receive an empty array or unexpected data.\",\n      \"suggested_test\": {\n        \"description\": \"Test calling `search` with various options to ensure it behaves as expected\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not provide concrete examples of how existing code might be affected.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a breaking behavior that could affect existing code, and there is no test coverage to ensure the new implementation works as expected. The lack of tests increases the risk of introducing bugs into the system.\"\n}",
+  "input_tokens": 1150,
+  "output_tokens": 487,
+  "latency_ms": 13280.1,
+  "finish_reason": "stop"
+}

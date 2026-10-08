@@ -1,0 +1,4 @@
+fastapi==0.110.0
+sqlalchemy==2.0.36
+pydantic==2.6.4
+orjson==3.10.7

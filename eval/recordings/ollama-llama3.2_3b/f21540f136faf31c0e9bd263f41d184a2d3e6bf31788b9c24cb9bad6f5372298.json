@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:01+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-3c6e90d034\",\n      \"explanation\": \"The `shipping_cost` function now has an incompatible signature, allowing for an additional keyword argument `insured`. This can lead to unexpected behavior when calling the function.\",\n      \"failure_scenario\": \"A developer calls `shipping_cost` with the new signature, passing a value for `insured`, which is not expected by the function's current implementation.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `shipping_cost` with the new signature and an invalid `insured` value raises an error or returns an unexpected result.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for unexpected behavior due to the incompatible signature of `shipping_cost`. This could lead to errors or incorrect results in downstream code that relies on the function's previous implementation.\"}",
+  "input_tokens": 1045,
+  "output_tokens": 241,
+  "latency_ms": 3779.6,
+  "finish_reason": "stop"
+}

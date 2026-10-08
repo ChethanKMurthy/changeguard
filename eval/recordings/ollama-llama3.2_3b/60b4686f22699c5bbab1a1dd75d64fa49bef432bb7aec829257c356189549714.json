@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:49+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E2\",\n      \"explanation\": \"The diff hunk shows a missing line in `src/cart/totals.py` which could lead to incorrect calculations.\",\n      \"failure_scenario\": \"If the discount is not applied correctly, the total price of items in the cart might be miscalculated.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the discount is applied correctly by checking if the total price is rounded to 2 decimal places after applying the discount.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect calculations due to missing lines in the code. This could lead to issues with order accuracy and customer satisfaction if not addressed.\"}",
+  "input_tokens": 698,
+  "output_tokens": 202,
+  "latency_ms": 2913.1,
+  "finish_reason": "stop"
+}

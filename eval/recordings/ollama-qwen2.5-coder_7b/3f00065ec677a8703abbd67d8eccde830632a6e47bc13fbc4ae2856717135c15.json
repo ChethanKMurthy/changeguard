@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:14:15+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e81b10a7f5\",\n      \"explanation\": \"This migration deletes all records from the 'sessions' table without a WHERE clause, which is destructive and could lead to data loss.\",\n      \"failure_scenario\": \"All session data is accidentally deleted, causing users to lose their sessions and potentially requiring manual intervention to recover data.\",\n      \"suggested_test\": {\n        \"description\": \"Test that attempting to delete all records from the 'sessions' table without a WHERE clause fails with an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Data Migration Risk\",\n      \"category\": \"data_migration\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The migration could be applied to the wrong database or environment, leading to unintended data loss.\",\n      \"failure_scenario\": \"The migration is accidentally run on a production database instead of a staging one, resulting in data deletion.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the migration can be safely rolled back without causing data corruption.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change is risky due to its destructive nature, which could lead to significant data loss. The lack of a WHERE clause in the DELETE statement poses a high risk if not properly tested and verified before execution.\"\n}",
+  "input_tokens": 696,
+  "output_tokens": 361,
+  "latency_ms": 10533.9,
+  "finish_reason": "stop"
+}

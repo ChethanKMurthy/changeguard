@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:06+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-1679c3c23a\",\n      \"explanation\": \"The `make_token` function was renamed to `generate_token`, but its reference in `src/accounts/tokens.py:4` still exists. This matters because it could lead to confusion or errors if the renaming is not properly propagated.\",\n      \"failure_scenario\": \"A developer uses the outdated `make_token` function, leading to incorrect token generation and potential security vulnerabilities.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `generate_token` function is correctly referenced in all places where `make_token` was previously used.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-814461053e\",\n      \"explanation\": \"The `password_reset_link` function was modified, but no tests reference the new name.\",\n      \"failure_scenario\": \"A test case uses the outdated `password_reset_link` function, leading to incorrect password reset links and potential security vulnerabilities.\",\n      \"suggested_test\": {\n        \"description\": \"Test that all existing test cases use the new `password_reset_link` function.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E4\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect token generation and security vulnerabilities due to the outdated `make_token` function reference. Additionally, the lack of tests referencing the new `password_reset_link` function increases the likelihood of errors in password reset functionality.\"}",
+  "input_tokens": 1254,
+  "output_tokens": 384,
+  "latency_ms": 5725.4,
+  "finish_reason": "stop"
+}

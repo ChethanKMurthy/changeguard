@@ -1,0 +1,23 @@
+diff --git a/src/accounts/reset.py b/src/accounts/reset.py
+index 30c1020..18b2319 100644
+--- a/src/accounts/reset.py
++++ b/src/accounts/reset.py
+@@ -1,5 +1,5 @@
+-from accounts.tokens import make_token
++from accounts.tokens import generate_token
+ 
+ 
+ def password_reset_link(user_id: int) -> str:
+-    return f"https://example.invalid/reset/{user_id}/{make_token()}"
++    return f"https://example.invalid/reset/{user_id}/{generate_token()}"
+diff --git a/src/accounts/tokens.py b/src/accounts/tokens.py
+index 3bf92e8..4e20255 100644
+--- a/src/accounts/tokens.py
++++ b/src/accounts/tokens.py
+@@ -1,5 +1,5 @@
+ import secrets
+ 
+ 
+-def make_token(length: int = 32) -> str:
++def generate_token(length: int = 32) -> str:
+     return secrets.token_urlsafe(length)

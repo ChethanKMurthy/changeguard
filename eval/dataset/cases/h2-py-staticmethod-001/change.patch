@@ -1,0 +1,13 @@
+diff --git a/src/money/amount.py b/src/money/amount.py
+index f41b2cd..0dc4273 100644
+--- a/src/money/amount.py
++++ b/src/money/amount.py
+@@ -7,5 +7,6 @@ def __init__(self, value: Decimal, currency: str) -> None:
+         self.currency = currency
+ 
+     @staticmethod
+-    def parse(text: str, currency: str) -> "Money":
+-        return Money(Decimal(text), currency)
++    def parse(text: str) -> "Money":
++        value, currency = text.split(" ")
++        return Money(Decimal(value), currency)

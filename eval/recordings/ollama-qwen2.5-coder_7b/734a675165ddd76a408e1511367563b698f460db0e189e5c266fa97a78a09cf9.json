@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:56:25+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-58a9585f81\",\n      \"explanation\": \"The signature change breaks existing code that calls `formatAmount` without providing a currency.\",\n      \"failure_scenario\": \"Calling `cartLabel(10)` now throws an error because it passes only one argument.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure `cartLabel` correctly handles both total and currency arguments.\",\n        \"code\": \"test('handles cart label with currency', () => { expect(cartLabel(10, 'EUR')).toBe('Total: €10.00'); });\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Breaking Change Risk\",\n      \"category\": \"breaking_change\",\n      \"severity\": \"high\",\n      \"confidence\": \"medium\",\n      \"description\": \"Existing code that calls `formatAmount` without the currency argument will fail.\",\n      \"failure_scenario\": \"Code that relies on `formatAmount(amount)` will stop working.\",\n      \"suggested_test\": {\n        \"description\": \"Verify all call sites are updated to include the currency parameter.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking signature change that will affect multiple code locations, increasing the risk of deployment issues. It is crucial to ensure all affected call sites are updated promptly.\"\n}",
+  "input_tokens": 1138,
+  "output_tokens": 357,
+  "latency_ms": 10201.2,
+  "finish_reason": "stop"
+}

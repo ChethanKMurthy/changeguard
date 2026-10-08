@@ -1,0 +1,34 @@
+id: ho-py-test-deleted-001
+title: Password tests deleted while the KDF cost is halved
+split: holdout
+language: python
+difficulty: hard
+mode: full_context
+source: synthetic (authored for this dataset)
+description: The only tests for password verification are deleted in the same change that halves the PBKDF2 iteration
+  count.
+tags:
+- test-integrity
+- security
+negative: false
+expected:
+- id: L1
+  category: test_integrity
+  file: tests/test_password.py
+  lines:
+  - 6
+  - 6
+  severity: medium
+  side: base
+  note: ''
+- id: L2
+  category: security
+  file: src/auth/password.py
+  lines:
+  - 6
+  - 6
+  severity: medium
+  note: weakened key-derivation cost; no rule targets numeric security parameters
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

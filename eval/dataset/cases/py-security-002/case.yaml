@@ -1,0 +1,24 @@
+id: py-security-002
+title: SQL query built with an f-string
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A parameterised query is replaced by string interpolation of a caller-supplied id.
+tags:
+- security
+- sql-injection
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/store/queries.py
+  lines:
+  - 5
+  - 5
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

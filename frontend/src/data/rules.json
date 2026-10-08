@@ -1,0 +1,1089 @@
+[
+  {
+    "id": "CG-API-001",
+    "title": "Call site incompatible with new signature",
+    "category": "breaking_change",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "A caller still uses the old calling convention. In Python this raises TypeError at call time; in TypeScript it fails compilation.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-API-002",
+    "title": "Removed symbol is still referenced",
+    "category": "breaking_change",
+    "kind": "deterministic",
+    "default_severity": "critical",
+    "rationale": "Code that imports or calls a removed or renamed symbol fails at import or call time.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-API-003",
+    "title": "Breaking signature change",
+    "category": "breaking_change",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "The signature changed incompatibly. No incompatible caller was found in the analysed code, but callers outside it (other services, packages, scripts) would break.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-API-004",
+    "title": "Function became async but callers do not await it",
+    "category": "breaking_change",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Calling an async function without awaiting it returns a coroutine/promise instead of the value, silently changing behaviour.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-API-005",
+    "title": "Default argument value changed",
+    "category": "behavior_change",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "Callers that omit the argument now receive different behaviour without any code change on their side.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-API-006",
+    "title": "Return type annotation changed",
+    "category": "behavior_change",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "Callers may depend on the previous return type.",
+    "languages": [
+      "python",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-API-007",
+    "title": "Public symbol removed",
+    "category": "breaking_change",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "A public symbol was removed. No internal references remain, but external consumers may rely on it.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SYN-001",
+    "title": "Syntax error introduced",
+    "category": "syntax_error",
+    "kind": "deterministic",
+    "default_severity": "critical",
+    "rationale": "The changed file no longer parses. It will fail at import/compile time.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-001",
+    "title": "Dynamic code execution",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "eval/exec/new Function execute strings as code; attacker-influenced input leads to code injection.",
+    "languages": [
+      "javascript",
+      "typescript",
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-002",
+    "title": "Unsafe HTML sink",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Assigning untrusted strings to HTML sinks enables cross-site scripting.",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-003",
+    "title": "Shell command built from dynamic input",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Passing data to a shell enables command injection.",
+    "languages": [
+      "javascript",
+      "typescript",
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-004",
+    "title": "Unsafe deserialisation",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "pickle and yaml.load can construct arbitrary objects (and run code) from untrusted data.",
+    "languages": [
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-005",
+    "title": "TLS certificate verification disabled",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Disabling certificate checks allows man-in-the-middle interception.",
+    "languages": [
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-006",
+    "title": "SQL built from string formatting",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Interpolating values into SQL text enables SQL injection; use parameterised queries.",
+    "languages": [
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-010",
+    "title": "Hard-coded secret",
+    "category": "secret_exposure",
+    "kind": "deterministic",
+    "default_severity": "critical",
+    "rationale": "Credentials committed to source control are exposed to everyone with repository access and persist in history after removal; they must be rotated.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-SEC-011",
+    "title": "Environment file committed",
+    "category": "secret_exposure",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Environment files usually hold deployment secrets and should not be committed.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-ERR-001",
+    "title": "Exception silently swallowed",
+    "category": "error_handling",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "An empty or bare handler hides failures, turning errors into silent data corruption or missing work.",
+    "languages": [
+      "javascript",
+      "typescript",
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-ERR-002",
+    "title": "Error handling removed",
+    "category": "error_handling",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "A try/except (try/catch) block was removed from a modified function; failures that were handled now propagate to callers.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-CON-001",
+    "title": "Async callback passed to forEach",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Array.prototype.forEach ignores returned promises: iterations run concurrently and errors are unhandled.",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-CON-002",
+    "title": "Blocking call inside async function",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "A blocking call inside a coroutine stalls the event loop and every concurrent request.",
+    "languages": [
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-DBG-001",
+    "title": "Debug artifact left in code",
+    "category": "debug_artifact",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Debug statements leak data to logs or pause execution in production.",
+    "languages": [
+      "javascript",
+      "typescript",
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-TYP-001",
+    "title": "Type checking suppressed",
+    "category": "type_safety",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Suppressing the type checker hides the class of errors the compiler would otherwise catch.",
+    "languages": [
+      "typescript",
+      "python"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-CFG-001",
+    "title": "Risky configuration value",
+    "category": "configuration",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "Debug mode or wildcard CORS in application configuration weakens production security.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-TST-001",
+    "title": "No related tests found for changed code",
+    "category": "test_gap",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "No test in the snapshot imports and references the changed symbol, so a regression may go undetected. Tests that exercise it indirectly are not detected.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-TST-002",
+    "title": "Test disabled",
+    "category": "test_integrity",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "A skip marker removes the test from the suite; the behaviour it covered is no longer verified.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-TST-003",
+    "title": "Focused test committed",
+    "category": "test_integrity",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": ".only restricts the runner to the focused test(s); every other test in the file stops running in CI.",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-TST-004",
+    "title": "Assertions removed from test",
+    "category": "test_integrity",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Fewer assertions means the test verifies less behaviour than before.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-TST-005",
+    "title": "Tests deleted",
+    "category": "test_integrity",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Deleted tests reduce regression protection; confirm the behaviour they covered is gone or re-tested.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-COV-001",
+    "title": "Changed lines not covered by tests",
+    "category": "coverage_gap",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "The uploaded coverage report marks these changed executable lines as never executed by the test suite.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-COV-002",
+    "title": "Changed file absent from coverage report",
+    "category": "coverage_gap",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "The coverage report has no data for this changed source file; it may not be imported by any test.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-MIG-001",
+    "title": "Destructive schema migration",
+    "category": "data_migration",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Dropping or rewriting tables/columns destroys data and breaks code still reading it during a rolling deploy.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-MIG-002",
+    "title": "Dropped column still referenced in code",
+    "category": "data_migration",
+    "kind": "heuristic",
+    "default_severity": "high",
+    "rationale": "Application code still references a column this migration removes or renames.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-DEP-001",
+    "title": "Major version change of a dependency",
+    "category": "dependency",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "Major releases commonly contain breaking API changes.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-DEP-002",
+    "title": "New dependency added",
+    "category": "dependency",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "New third-party code enters the supply chain and should be reviewed for maintenance and licence.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-DEP-003",
+    "title": "Dependency removed",
+    "category": "dependency",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "Code that still imports a removed dependency fails at import time.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-DEP-004",
+    "title": "Version constraint loosened",
+    "category": "dependency",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "A looser constraint lets future installs pull untested versions.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-LOG-001",
+    "title": "Condition logic changed",
+    "category": "logic_change",
+    "kind": "heuristic",
+    "default_severity": "medium",
+    "rationale": "A comparison/boolean operator or negation changed. Boundary behaviour differs, which is a classic source of off-by-one and inverted-condition bugs.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-LOG-002",
+    "title": "Boundary constant changed",
+    "category": "logic_change",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "A numeric constant in a condition changed, moving a threshold.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-CPX-001",
+    "title": "Complexity increased",
+    "category": "complexity",
+    "kind": "heuristic",
+    "default_severity": "low",
+    "rationale": "Higher cyclomatic complexity means more paths to test and more room for untested edge cases.",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "source": "changeguard"
+  },
+  {
+    "id": "CG-AIS-001",
+    "title": "Prompt-injection text in change",
+    "category": "prompt_injection",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Text addressed to AI reviewers attempts to manipulate automated review. ChangeGuard neutralises it before any model sees the code, and AI output cannot remove deterministic findings.",
+    "languages": [],
+    "source": "changeguard"
+  },
+  {
+    "id": "RUFF-invalid-syntax",
+    "title": "Ruff invalid-syntax",
+    "category": "syntax_error",
+    "kind": "deterministic",
+    "default_severity": "critical",
+    "rationale": "The file no longer parses.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F821",
+    "title": "Ruff F821",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Undefined name: raises NameError when the line executes.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F823",
+    "title": "Ruff F823",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Local variable referenced before assignment: raises UnboundLocalError.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F811",
+    "title": "Ruff F811",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Redefinition of an unused name shadows the earlier definition.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F632",
+    "title": "Ruff F632",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "`is` comparison with a literal depends on interning; use ==.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F601",
+    "title": "Ruff F601",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Dictionary key repeated; the earlier value is silently discarded.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F704",
+    "title": "Ruff F704",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "yield outside a function is a SyntaxError.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F706",
+    "title": "Ruff F706",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "return outside a function is a SyntaxError.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-F822",
+    "title": "Ruff F822",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Name listed in __all__ is not defined.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B006",
+    "title": "Ruff B006",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Mutable default argument is shared between calls.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B008",
+    "title": "Ruff B008",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Function call in default argument runs once at definition time.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B012",
+    "title": "Ruff B012",
+    "category": "error_handling",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "return/break/continue in finally swallows in-flight exceptions.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B015",
+    "title": "Ruff B015",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Comparison result is discarded; this was probably meant to be an assert.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B018",
+    "title": "Ruff B018",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Useless expression has no effect.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B020",
+    "title": "Ruff B020",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Loop variable overrides the iterable it iterates.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B023",
+    "title": "Ruff B023",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Closure captures the loop variable by reference (late binding).",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B904",
+    "title": "Ruff B904",
+    "category": "error_handling",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Exception re-raised without `from`, losing the original cause.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-B011",
+    "title": "Ruff B011",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "`assert False` is removed under python -O.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-E722",
+    "title": "Ruff E722",
+    "category": "error_handling",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Bare except also catches SystemExit and KeyboardInterrupt.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-BLE001",
+    "title": "Ruff BLE001",
+    "category": "error_handling",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Blind `except Exception` hides unexpected failures.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S110",
+    "title": "Ruff S110",
+    "category": "error_handling",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "try/except/pass silently swallows errors.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S102",
+    "title": "Ruff S102",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "exec() runs arbitrary code.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S307",
+    "title": "Ruff S307",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "eval() runs arbitrary code; use ast.literal_eval for literals.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S301",
+    "title": "Ruff S301",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "pickle deserialisation of untrusted data executes arbitrary code.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S506",
+    "title": "Ruff S506",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "yaml.load without SafeLoader can instantiate arbitrary objects.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S602",
+    "title": "Ruff S602",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "subprocess with shell=True enables command injection.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S604",
+    "title": "Ruff S604",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Function call with shell=True enables command injection.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S605",
+    "title": "Ruff S605",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Starting a process with a shell enables command injection.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S608",
+    "title": "Ruff S608",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "SQL built with string formatting enables SQL injection.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S105",
+    "title": "Ruff S105",
+    "category": "secret_exposure",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Hard-coded password string.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S106",
+    "title": "Ruff S106",
+    "category": "secret_exposure",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Hard-coded password passed as an argument.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S107",
+    "title": "Ruff S107",
+    "category": "secret_exposure",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Hard-coded password default argument.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S501",
+    "title": "Ruff S501",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "TLS certificate verification disabled (verify=False).",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S323",
+    "title": "Ruff S323",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Unverified SSL context disables certificate checks.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S324",
+    "title": "Ruff S324",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Insecure hash function (MD5/SHA1) used.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S311",
+    "title": "Ruff S311",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Non-cryptographic random generator used.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S113",
+    "title": "Ruff S113",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "HTTP request without a timeout can hang indefinitely.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S201",
+    "title": "Ruff S201",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Flask debug mode exposes an interactive debugger.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S701",
+    "title": "Ruff S701",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "Jinja2 autoescape disabled enables XSS.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S103",
+    "title": "Ruff S103",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Overly permissive file permissions.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S202",
+    "title": "Ruff S202",
+    "category": "security",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "tarfile.extractall without filtering allows path traversal.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-S104",
+    "title": "Ruff S104",
+    "category": "configuration",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Binding to all interfaces exposes the service.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-ASYNC210",
+    "title": "Ruff ASYNC210",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Blocking HTTP call inside async function stalls the event loop.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-ASYNC220",
+    "title": "Ruff ASYNC220",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Blocking subprocess call inside async function.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-ASYNC221",
+    "title": "Ruff ASYNC221",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Blocking subprocess call inside async function.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-ASYNC230",
+    "title": "Ruff ASYNC230",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "Blocking file I/O inside async function.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-ASYNC251",
+    "title": "Ruff ASYNC251",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "time.sleep inside async function blocks the event loop.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-RUF006",
+    "title": "Ruff RUF006",
+    "category": "concurrency",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Task created without keeping a reference may be garbage-collected.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-T100",
+    "title": "Ruff T100",
+    "category": "debug_artifact",
+    "kind": "deterministic",
+    "default_severity": "medium",
+    "rationale": "Debugger breakpoint left in code pauses execution.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-T201",
+    "title": "Ruff T201",
+    "category": "debug_artifact",
+    "kind": "deterministic",
+    "default_severity": "low",
+    "rationale": "print() left in non-test code.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  },
+  {
+    "id": "RUFF-PLE1142",
+    "title": "Ruff PLE1142",
+    "category": "correctness",
+    "kind": "deterministic",
+    "default_severity": "high",
+    "rationale": "await outside async function is a SyntaxError.",
+    "languages": [
+      "python"
+    ],
+    "source": "ruff"
+  }
+]

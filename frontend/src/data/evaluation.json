@@ -1,0 +1,2973 @@
+{
+  "holdout_history": {
+    "description": "Clean, one-shot holdout results recorded before any change informed by that holdout. Later runs on the same split are no longer clean estimates. Raw console output of each first run is kept in eval/reports/runs/.",
+    "runs": [
+      {
+        "split": "holdout",
+        "cases": 21,
+        "labels": 20,
+        "negative_controls": 3,
+        "ruleset": "2026.10.1",
+        "date": "2026-10-08",
+        "raw_output": "eval/reports/runs/holdout-first-run-ruleset-2026.10.1.txt",
+        "systems": {
+          "changeguard": {
+            "precision": 0.8333,
+            "recall": 0.75,
+            "f1": 0.79,
+            "negative_fp_rate": 0.6667
+          },
+          "changeguard-diff-only": {
+            "precision": 0.9091,
+            "recall": 0.5,
+            "f1": 0.645,
+            "negative_fp_rate": 0.3333
+          },
+          "baseline-keyword": {
+            "precision": 0.5714,
+            "recall": 0.4,
+            "f1": 0.4706,
+            "negative_fp_rate": 0.6667
+          },
+          "baseline-changed-symbols": {
+            "precision": 0.2727,
+            "recall": 0.15,
+            "f1": 0.1935,
+            "negative_fp_rate": 1.0
+          }
+        },
+        "changes_after": [
+          "Fixed: JavaScript/TypeScript methods were treated as having an implicit `self` parameter, hiding new required parameters (ho-ts-method-001).",
+          "Fixed: adding a return annotation where none existed was reported as a return-type change (ho-py-neg-logging-001).",
+          "Changed: pure renames and private helpers whose same-file callers are tested no longer produce test-gap findings (ho-ts-neg-rename-001).",
+          "Added: yaml.unsafe_load / marshal.loads / jsonpickle.decode detection, not covered by Ruff (ho-py-unsafe-load-001).",
+          "Label correction: an omitted acceptable test-gap entry was added to ho-py-dataclass-001, per LABELING.md section 4."
+        ]
+      },
+      {
+        "split": "holdout-v2",
+        "cases": 13,
+        "labels": 11,
+        "negative_controls": 2,
+        "ruleset": "2026.10.2",
+        "date": "2026-10-08",
+        "raw_output": "eval/reports/runs/holdout-v2-first-run-ruleset-2026.10.2.txt",
+        "systems": {
+          "changeguard": {
+            "precision": 1.0,
+            "recall": 0.8182,
+            "f1": 0.9,
+            "negative_fp_rate": 0.0
+          },
+          "changeguard-diff-only": {
+            "precision": 1.0,
+            "recall": 0.6364,
+            "f1": 0.7778,
+            "negative_fp_rate": 0.0
+          },
+          "baseline-keyword": {
+            "precision": 0.4286,
+            "recall": 0.2727,
+            "f1": 0.3333,
+            "negative_fp_rate": 0.5
+          },
+          "baseline-changed-symbols": {
+            "precision": 0.4286,
+            "recall": 0.2727,
+            "f1": 0.3333,
+            "negative_fp_rate": 1.0
+          }
+        },
+        "changes_after": [
+          "Added: verify=False passed through Session/Client methods (Ruff S501 only matches module-level requests calls) (h2-py-session-verify-001)."
+        ]
+      }
+    ]
+  },
+  "manifest": {
+    "format_version": "1",
+    "generated_at": "2026-10-08T16:43:36+00:00",
+    "changeguard_version": "0.1.0",
+    "ruleset_version": "2026.10.4",
+    "report_schema_version": "1.0",
+    "git_sha": null,
+    "dataset_sha256": "b65381532aba57ce7cb625b1b2c540b2c26b03c173567dd59abfee08cd456b7f",
+    "cases": 67,
+    "splits": {
+      "dev": 33,
+      "holdout": 21,
+      "holdout-v2": 13
+    },
+    "negative_controls": 9,
+    "labels": 65,
+    "bootstrap": {
+      "samples": 2000,
+      "seed": 20261008,
+      "unit": "case"
+    },
+    "matching": {
+      "rule": "same category and file, line ranges overlapping within \u00b13 lines, one-to-one"
+    },
+    "environment": {
+      "python": "3.12.12",
+      "platform": "macOS-26.6.2",
+      "machine": "arm64",
+      "ruff": "ruff 0.16.10"
+    },
+    "ai": {
+      "mode": "replay",
+      "provider": "ollama",
+      "models": [
+        {
+          "model": "llama3.2:3b",
+          "samples": 1,
+          "recordings": "ollama-llama3.2_3b"
+        },
+        {
+          "model": "qwen2.5-coder:7b",
+          "samples": 1,
+          "recordings": "ollama-qwen2.5-coder_7b"
+        },
+        {
+          "model": "qwen2.5-coder:7b",
+          "samples": 3,
+          "recordings": "ollama-qwen2.5-coder_7b"
+        }
+      ],
+      "prompt_id": "review",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "459e33c66e82d4b710050d5c1444386384f8eee4e969089c172c65b6ff64726b",
+      "decoding": {
+        "temperature": 0.0,
+        "seed": 7,
+        "self_consistency_temperature": 0.7
+      }
+    }
+  },
+  "systems": [
+    {
+      "system": "changeguard",
+      "description": "Deterministic + heuristic rules (no AI)",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 102,
+      "overall": {
+        "tp": 61,
+        "fp": 0,
+        "fn": 4,
+        "precision": 1.0,
+        "recall": 0.9385,
+        "f1": 0.9683
+      },
+      "ci95": {
+        "precision": [
+          1.0,
+          1.0
+        ],
+        "recall": [
+          0.875,
+          0.9855
+        ],
+        "f1": [
+          0.9333,
+          0.9927
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "holdout": {
+          "tp": 17,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.85,
+          "f1": 0.9189
+        },
+        "holdout-v2": {
+          "tp": 10,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "f1": 0.9524
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            1.0,
+            1.0
+          ],
+          "f1": [
+            1.0,
+            1.0
+          ]
+        },
+        "holdout": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.6875,
+            1.0
+          ],
+          "f1": [
+            0.8148,
+            1.0
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.7,
+            1.0
+          ],
+          "f1": [
+            0.8235,
+            1.0
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "breaking_change": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "concurrency": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "correctness": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "coverage_gap": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "data_migration": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "dependency": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "error_handling": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "logic_change": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75
+        },
+        "prompt_injection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "secret_exposure": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "security": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1": 0.9677
+        },
+        "test_integrity": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "by_kind": {
+        "deterministic": {
+          "tp": 50,
+          "acceptable": 1,
+          "precision": 1.0
+        },
+        "heuristic": {
+          "acceptable": 40,
+          "tp": 11,
+          "precision": 1.0
+        }
+      },
+      "by_confidence": {
+        "high": {
+          "tp": 52,
+          "precision": 1.0
+        },
+        "medium": {
+          "acceptable": 41,
+          "tp": 9,
+          "precision": 1.0
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 0,
+        "false_positive_rate": 0.0,
+        "false_positives_per_case": 0.0
+      },
+      "evidence": {
+        "findings_checked": 102,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.9344,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 7.8,
+        "p95": 13.6
+      },
+      "ai": {}
+    },
+    {
+      "system": "changeguard+ai:llama3.2:3b",
+      "description": "Rules + AI synthesis (ollama/llama3.2:3b, replay)",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 103,
+      "overall": {
+        "tp": 61,
+        "fp": 1,
+        "fn": 4,
+        "precision": 0.9839,
+        "recall": 0.9385,
+        "f1": 0.9607
+      },
+      "ci95": {
+        "precision": [
+          0.9508,
+          1.0
+        ],
+        "recall": [
+          0.875,
+          0.9855
+        ],
+        "f1": [
+          0.9245,
+          0.9919
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 34,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9714,
+          "recall": 1.0,
+          "f1": 0.9855
+        },
+        "holdout": {
+          "tp": 17,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.85,
+          "f1": 0.9189
+        },
+        "holdout-v2": {
+          "tp": 10,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "f1": 0.9524
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.9211,
+            1.0
+          ],
+          "recall": [
+            1.0,
+            1.0
+          ],
+          "f1": [
+            0.9589,
+            1.0
+          ]
+        },
+        "holdout": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.6875,
+            1.0
+          ],
+          "f1": [
+            0.8148,
+            1.0
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.7,
+            1.0
+          ],
+          "f1": [
+            0.8235,
+            1.0
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "breaking_change": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "concurrency": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "correctness": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "coverage_gap": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "data_migration": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "dependency": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "error_handling": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "logic_change": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1": 0.6667
+        },
+        "prompt_injection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "secret_exposure": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "security": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1": 0.9677
+        },
+        "test_integrity": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "by_kind": {
+        "ai": {
+          "fp": 1,
+          "precision": 0.0
+        },
+        "deterministic": {
+          "tp": 50,
+          "acceptable": 1,
+          "precision": 1.0
+        },
+        "heuristic": {
+          "acceptable": 40,
+          "tp": 11,
+          "precision": 1.0
+        }
+      },
+      "by_confidence": {
+        "high": {
+          "tp": 52,
+          "precision": 1.0
+        },
+        "low": {
+          "fp": 1,
+          "precision": 0.0
+        },
+        "medium": {
+          "acceptable": 41,
+          "tp": 9,
+          "precision": 1.0
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 0,
+        "false_positive_rate": 0.0,
+        "false_positives_per_case": 0.0
+      },
+      "evidence": {
+        "findings_checked": 103,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.9344,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 9.2,
+        "p95": 15.7
+      },
+      "ai": {
+        "cases_with_ai": 67,
+        "completed": 67,
+        "failed": 0,
+        "claims_total": 190,
+        "claims_rejected": 20,
+        "claim_rejection_rate": 0.1053,
+        "rejection_reasons": {
+          "unknown_finding": 14,
+          "symbol_not_in_evidence": 5,
+          "no_evidence": 1,
+          "unknown_path": 1
+        },
+        "notes_applied": 97,
+        "ai_findings": 1,
+        "ai_true_positives": 0,
+        "mean_model_latency_ms": 4936.3,
+        "mean_input_tokens": 985.5,
+        "mean_output_tokens": 339.6,
+        "replay_misses": 0
+      }
+    },
+    {
+      "system": "changeguard+ai:qwen2.5-coder:7b",
+      "description": "Rules + AI synthesis (ollama/qwen2.5-coder:7b, replay)",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 159,
+      "overall": {
+        "tp": 63,
+        "fp": 55,
+        "fn": 2,
+        "precision": 0.5339,
+        "recall": 0.9692,
+        "f1": 0.6885
+      },
+      "ci95": {
+        "precision": [
+          0.4876,
+          0.5776
+        ],
+        "recall": [
+          0.9219,
+          1.0
+        ],
+        "f1": [
+          0.6467,
+          0.7273
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 34,
+          "fp": 30,
+          "fn": 0,
+          "precision": 0.5312,
+          "recall": 1.0,
+          "f1": 0.6938
+        },
+        "holdout": {
+          "tp": 19,
+          "fp": 14,
+          "fn": 1,
+          "precision": 0.5758,
+          "recall": 0.95,
+          "f1": 0.717
+        },
+        "holdout-v2": {
+          "tp": 10,
+          "fp": 11,
+          "fn": 1,
+          "precision": 0.4762,
+          "recall": 0.9091,
+          "f1": 0.625
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.4746,
+            0.5833
+          ],
+          "recall": [
+            1.0,
+            1.0
+          ],
+          "f1": [
+            0.6437,
+            0.7368
+          ]
+        },
+        "holdout": {
+          "precision": [
+            0.4828,
+            0.6786
+          ],
+          "recall": [
+            0.85,
+            1.0
+          ],
+          "f1": [
+            0.6296,
+            0.8
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            0.35,
+            0.5789
+          ],
+          "recall": [
+            0.7,
+            1.0
+          ],
+          "f1": [
+            0.4827,
+            0.7272
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 27,
+          "fn": 1,
+          "precision": 0.0357,
+          "recall": 0.5,
+          "f1": 0.0666
+        },
+        "breaking_change": {
+          "tp": 15,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9375,
+          "recall": 1.0,
+          "f1": 0.9677
+        },
+        "concurrency": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571
+        },
+        "correctness": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "coverage_gap": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "data_migration": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8889
+        },
+        "dependency": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "error_handling": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8889
+        },
+        "logic_change": {
+          "tp": 5,
+          "fp": 24,
+          "fn": 0,
+          "precision": 0.1724,
+          "recall": 1.0,
+          "f1": 0.2941
+        },
+        "prompt_injection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "secret_exposure": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "security": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1": 0.9677
+        },
+        "test_integrity": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "by_kind": {
+        "ai": {
+          "fp": 55,
+          "tp": 2,
+          "precision": 0.0351
+        },
+        "deterministic": {
+          "tp": 50,
+          "acceptable": 1,
+          "precision": 1.0
+        },
+        "heuristic": {
+          "acceptable": 40,
+          "tp": 11,
+          "precision": 1.0
+        }
+      },
+      "by_confidence": {
+        "high": {
+          "tp": 52,
+          "precision": 1.0
+        },
+        "low": {
+          "fp": 55,
+          "tp": 2,
+          "precision": 0.0351
+        },
+        "medium": {
+          "acceptable": 41,
+          "tp": 9,
+          "precision": 1.0
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 9,
+        "false_positive_rate": 1.0,
+        "false_positives_per_case": 1.0
+      },
+      "evidence": {
+        "findings_checked": 159,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.9048,
+        "within_one_level": 0.9683
+      },
+      "latency_ms": {
+        "mean": 9.2,
+        "p95": 15.6
+      },
+      "ai": {
+        "cases_with_ai": 67,
+        "completed": 67,
+        "failed": 0,
+        "claims_total": 241,
+        "claims_rejected": 3,
+        "claim_rejection_rate": 0.0124,
+        "rejection_reasons": {
+          "unknown_path": 2,
+          "symbol_not_in_evidence": 1
+        },
+        "notes_applied": 101,
+        "ai_findings": 57,
+        "ai_true_positives": 2,
+        "mean_model_latency_ms": 13554.6,
+        "mean_input_tokens": 1016.3,
+        "mean_output_tokens": 436.1,
+        "replay_misses": 0
+      }
+    },
+    {
+      "system": "changeguard+ai:qwen2.5-coder:7b@3",
+      "description": "Rules + AI synthesis (ollama/qwen2.5-coder:7b, 3-sample self-consistency, replay)",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 138,
+      "overall": {
+        "tp": 63,
+        "fp": 34,
+        "fn": 2,
+        "precision": 0.6495,
+        "recall": 0.9692,
+        "f1": 0.7778
+      },
+      "ci95": {
+        "precision": [
+          0.5859,
+          0.7143
+        ],
+        "recall": [
+          0.9219,
+          1.0
+        ],
+        "f1": [
+          0.7273,
+          0.825
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 34,
+          "fp": 20,
+          "fn": 0,
+          "precision": 0.6296,
+          "recall": 1.0,
+          "f1": 0.7727
+        },
+        "holdout": {
+          "tp": 19,
+          "fp": 9,
+          "fn": 1,
+          "precision": 0.6786,
+          "recall": 0.95,
+          "f1": 0.7917
+        },
+        "holdout-v2": {
+          "tp": 10,
+          "fp": 5,
+          "fn": 1,
+          "precision": 0.6667,
+          "recall": 0.9091,
+          "f1": 0.7693
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.5484,
+            0.7111
+          ],
+          "recall": [
+            1.0,
+            1.0
+          ],
+          "f1": [
+            0.7083,
+            0.8312
+          ]
+        },
+        "holdout": {
+          "precision": [
+            0.56,
+            0.8148
+          ],
+          "recall": [
+            0.85,
+            1.0
+          ],
+          "f1": [
+            0.6956,
+            0.8889
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            0.5238,
+            0.8462
+          ],
+          "recall": [
+            0.7,
+            1.0
+          ],
+          "f1": [
+            0.6316,
+            0.8966
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 17,
+          "fn": 1,
+          "precision": 0.0556,
+          "recall": 0.5,
+          "f1": 0.1001
+        },
+        "breaking_change": {
+          "tp": 15,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9375,
+          "recall": 1.0,
+          "f1": 0.9677
+        },
+        "concurrency": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571
+        },
+        "correctness": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "coverage_gap": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "data_migration": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "dependency": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "error_handling": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "logic_change": {
+          "tp": 5,
+          "fp": 15,
+          "fn": 0,
+          "precision": 0.25,
+          "recall": 1.0,
+          "f1": 0.4
+        },
+        "prompt_injection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "secret_exposure": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "security": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1": 0.9677
+        },
+        "test_integrity": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "by_kind": {
+        "ai": {
+          "fp": 34,
+          "tp": 2,
+          "precision": 0.0556
+        },
+        "deterministic": {
+          "tp": 50,
+          "acceptable": 1,
+          "precision": 1.0
+        },
+        "heuristic": {
+          "acceptable": 40,
+          "tp": 11,
+          "precision": 1.0
+        }
+      },
+      "by_confidence": {
+        "high": {
+          "tp": 52,
+          "precision": 1.0
+        },
+        "low": {
+          "fp": 34,
+          "tp": 2,
+          "precision": 0.0556
+        },
+        "medium": {
+          "acceptable": 41,
+          "tp": 9,
+          "precision": 1.0
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 7,
+        "false_positive_rate": 0.7778,
+        "false_positives_per_case": 0.778
+      },
+      "evidence": {
+        "findings_checked": 138,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.9048,
+        "within_one_level": 0.9683
+      },
+      "latency_ms": {
+        "mean": 10.9,
+        "p95": 17.3
+      },
+      "ai": {
+        "cases_with_ai": 67,
+        "completed": 67,
+        "failed": 0,
+        "claims_total": 241,
+        "claims_rejected": 26,
+        "claim_rejection_rate": 0.1079,
+        "rejection_reasons": {
+          "low_agreement": 23,
+          "unknown_path": 2,
+          "symbol_not_in_evidence": 1
+        },
+        "notes_applied": 101,
+        "ai_findings": 36,
+        "ai_true_positives": 2,
+        "mean_model_latency_ms": 40215.7,
+        "mean_input_tokens": 3048.8,
+        "mean_output_tokens": 1305.2,
+        "replay_misses": 0
+      }
+    },
+    {
+      "system": "changeguard-diff-only",
+      "description": "Same rules without the repository snapshot (ablation)",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 48,
+      "overall": {
+        "tp": 47,
+        "fp": 0,
+        "fn": 18,
+        "precision": 1.0,
+        "recall": 0.7231,
+        "f1": 0.8393
+      },
+      "ci95": {
+        "precision": [
+          1.0,
+          1.0
+        ],
+        "recall": [
+          0.6129,
+          0.8333
+        ],
+        "f1": [
+          0.76,
+          0.9091
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 29,
+          "fp": 0,
+          "fn": 5,
+          "precision": 1.0,
+          "recall": 0.8529,
+          "f1": 0.9206
+        },
+        "holdout": {
+          "tp": 11,
+          "fp": 0,
+          "fn": 9,
+          "precision": 1.0,
+          "recall": 0.55,
+          "f1": 0.7097
+        },
+        "holdout-v2": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 4,
+          "precision": 1.0,
+          "recall": 0.6364,
+          "f1": 0.7778
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.7188,
+            0.9643
+          ],
+          "f1": [
+            0.8364,
+            0.9818
+          ]
+        },
+        "holdout": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.3158,
+            0.7619
+          ],
+          "f1": [
+            0.48,
+            0.8649
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.3636,
+            0.9167
+          ],
+          "f1": [
+            0.5333,
+            0.9565
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "breaking_change": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75
+        },
+        "concurrency": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1": 0.8
+        },
+        "correctness": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "coverage_gap": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "data_migration": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "dependency": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "error_handling": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "logic_change": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75
+        },
+        "prompt_injection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "secret_exposure": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "security": {
+          "tp": 14,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333
+        },
+        "test_integrity": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75
+        }
+      },
+      "by_kind": {
+        "deterministic": {
+          "tp": 29,
+          "precision": 1.0
+        },
+        "heuristic": {
+          "tp": 18,
+          "acceptable": 1,
+          "precision": 1.0
+        }
+      },
+      "by_confidence": {
+        "high": {
+          "tp": 32,
+          "precision": 1.0
+        },
+        "low": {
+          "tp": 9,
+          "precision": 1.0
+        },
+        "medium": {
+          "acceptable": 1,
+          "tp": 6,
+          "precision": 1.0
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 0,
+        "false_positive_rate": 0.0,
+        "false_positives_per_case": 0.0
+      },
+      "evidence": {
+        "findings_checked": 48,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.7021,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 0.7,
+        "p95": 1.1
+      },
+      "ai": {}
+    },
+    {
+      "system": "baseline-keyword",
+      "description": "Regex search for risky-looking tokens on added lines",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 55,
+      "overall": {
+        "tp": 32,
+        "fp": 22,
+        "fn": 33,
+        "precision": 0.5926,
+        "recall": 0.4923,
+        "f1": 0.5378
+      },
+      "ci95": {
+        "precision": [
+          0.4615,
+          0.7255
+        ],
+        "recall": [
+          0.3676,
+          0.6094
+        ],
+        "f1": [
+          0.4174,
+          0.6487
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 21,
+          "fp": 12,
+          "fn": 13,
+          "precision": 0.6364,
+          "recall": 0.6176,
+          "f1": 0.6269
+        },
+        "holdout": {
+          "tp": 8,
+          "fp": 6,
+          "fn": 12,
+          "precision": 0.5714,
+          "recall": 0.4,
+          "f1": 0.4706
+        },
+        "holdout-v2": {
+          "tp": 3,
+          "fp": 4,
+          "fn": 8,
+          "precision": 0.4286,
+          "recall": 0.2727,
+          "f1": 0.3333
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.4545,
+            0.8077
+          ],
+          "recall": [
+            0.4516,
+            0.7714
+          ],
+          "f1": [
+            0.4616,
+            0.7666
+          ]
+        },
+        "holdout": {
+          "precision": [
+            0.3,
+            0.8235
+          ],
+          "recall": [
+            0.2,
+            0.6364
+          ],
+          "f1": [
+            0.2424,
+            0.6875
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            0.0,
+            0.8333
+          ],
+          "recall": [
+            0.0,
+            0.5455
+          ],
+          "f1": [
+            0.0,
+            0.6316
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "breaking_change": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 15,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "concurrency": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571
+        },
+        "correctness": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "coverage_gap": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "data_migration": {
+          "tp": 3,
+          "fp": 2,
+          "fn": 1,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.6667
+        },
+        "dependency": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.8889
+        },
+        "error_handling": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "logic_change": {
+          "tp": 3,
+          "fp": 19,
+          "fn": 2,
+          "precision": 0.1364,
+          "recall": 0.6,
+          "f1": 0.2223
+        },
+        "prompt_injection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "secret_exposure": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "security": {
+          "tp": 13,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.8125,
+          "f1": 0.8966
+        },
+        "test_integrity": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75
+        }
+      },
+      "by_kind": {
+        "heuristic": {
+          "tp": 32,
+          "fp": 22,
+          "acceptable": 1,
+          "precision": 0.5926
+        }
+      },
+      "by_confidence": {
+        "low": {
+          "tp": 32,
+          "fp": 22,
+          "acceptable": 1,
+          "precision": 0.5926
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 4,
+        "false_positive_rate": 0.4444,
+        "false_positives_per_case": 0.556
+      },
+      "evidence": {
+        "findings_checked": 55,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.375,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 0.0,
+        "p95": 0.1
+      },
+      "ai": {}
+    },
+    {
+      "system": "baseline-changed-symbols",
+      "description": "Flag every changed function (signature changes as breaking)",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 64,
+      "overall": {
+        "tp": 11,
+        "fp": 24,
+        "fn": 54,
+        "precision": 0.3143,
+        "recall": 0.1692,
+        "f1": 0.22
+      },
+      "ci95": {
+        "precision": [
+          0.1562,
+          0.5
+        ],
+        "recall": [
+          0.0833,
+          0.2687
+        ],
+        "f1": [
+          0.1064,
+          0.3366
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 4,
+          "fp": 12,
+          "fn": 30,
+          "precision": 0.25,
+          "recall": 0.1176,
+          "f1": 0.16
+        },
+        "holdout": {
+          "tp": 4,
+          "fp": 8,
+          "fn": 16,
+          "precision": 0.3333,
+          "recall": 0.2,
+          "f1": 0.25
+        },
+        "holdout-v2": {
+          "tp": 3,
+          "fp": 4,
+          "fn": 8,
+          "precision": 0.4286,
+          "recall": 0.2727,
+          "f1": 0.3333
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.0588,
+            0.5
+          ],
+          "recall": [
+            0.0278,
+            0.2571
+          ],
+          "f1": [
+            0.0392,
+            0.32
+          ]
+        },
+        "holdout": {
+          "precision": [
+            0.0769,
+            0.6364
+          ],
+          "recall": [
+            0.0455,
+            0.4
+          ],
+          "f1": [
+            0.0625,
+            0.4667
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            0.0,
+            1.0
+          ],
+          "recall": [
+            0.0,
+            0.5455
+          ],
+          "f1": [
+            0.0,
+            0.6
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "breaking_change": {
+          "tp": 11,
+          "fp": 5,
+          "fn": 4,
+          "precision": 0.6875,
+          "recall": 0.7333,
+          "f1": 0.7097
+        },
+        "concurrency": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "correctness": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "coverage_gap": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "data_migration": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "dependency": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "error_handling": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "logic_change": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "prompt_injection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "secret_exposure": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "security": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 16,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "test_gap": {
+          "tp": 0,
+          "fp": 19,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null
+        },
+        "test_integrity": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        }
+      },
+      "by_kind": {
+        "heuristic": {
+          "acceptable": 29,
+          "tp": 11,
+          "fp": 24,
+          "precision": 0.3143
+        }
+      },
+      "by_confidence": {
+        "low": {
+          "acceptable": 29,
+          "tp": 11,
+          "fp": 24,
+          "precision": 0.3143
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 9,
+        "false_positive_rate": 1.0,
+        "false_positives_per_case": 1.333
+      },
+      "evidence": {
+        "findings_checked": 64,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.0,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 0.6,
+        "p95": 0.9
+      },
+      "ai": {}
+    }
+  ],
+  "cases": [
+    {
+      "case": "h2-js-describe-skip-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 2.2
+    },
+    {
+      "case": "h2-py-flask-debug-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 2,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 15.3
+    },
+    {
+      "case": "h2-py-jwt-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.3
+    },
+    {
+      "case": "h2-py-kwonly-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.9
+    },
+    {
+      "case": "h2-py-naive-datetime-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [],
+      "missed": [
+        "L1"
+      ],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.3
+    },
+    {
+      "case": "h2-py-neg-validation-001",
+      "split": "holdout-v2",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 14.0
+    },
+    {
+      "case": "h2-py-session-verify-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.0
+    },
+    {
+      "case": "h2-py-staticmethod-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.9
+    },
+    {
+      "case": "h2-py-timeout-handling-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.6
+    },
+    {
+      "case": "h2-sql-rename-column-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.2
+    },
+    {
+      "case": "h2-ts-neg-extract-001",
+      "split": "holdout-v2",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.2
+    },
+    {
+      "case": "h2-ts-optional-required-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.3
+    },
+    {
+      "case": "h2-tsx-innerhtml-001",
+      "split": "holdout-v2",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.1
+    },
+    {
+      "case": "ho-js-commonjs-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.0
+    },
+    {
+      "case": "ho-js-neg-reduce-001",
+      "split": "holdout",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.9
+    },
+    {
+      "case": "ho-py-alias-module-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.7
+    },
+    {
+      "case": "ho-py-async-sleep-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.4
+    },
+    {
+      "case": "ho-py-dataclass-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.4
+    },
+    {
+      "case": "ho-py-diffonly-tls-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.7
+    },
+    {
+      "case": "ho-py-injection-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1",
+        "L2"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.2
+    },
+    {
+      "case": "ho-py-moved-module-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.5
+    },
+    {
+      "case": "ho-py-mutable-default-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 2,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.4
+    },
+    {
+      "case": "ho-py-neg-logging-001",
+      "split": "holdout",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.7
+    },
+    {
+      "case": "ho-py-pickle-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 10.6
+    },
+    {
+      "case": "ho-py-popen-shell-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.2
+    },
+    {
+      "case": "ho-py-semantic-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [],
+      "missed": [
+        "L1"
+      ],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 10.9
+    },
+    {
+      "case": "ho-py-semantic-002",
+      "split": "holdout",
+      "negative": false,
+      "matched": [],
+      "missed": [
+        "L1"
+      ],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.4
+    },
+    {
+      "case": "ho-py-test-deleted-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [
+        "L2"
+      ],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.4
+    },
+    {
+      "case": "ho-py-unsafe-load-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 10.7
+    },
+    {
+      "case": "ho-sql-delete-all-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.8
+    },
+    {
+      "case": "ho-ts-constructor-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 2,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.5
+    },
+    {
+      "case": "ho-ts-method-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.5
+    },
+    {
+      "case": "ho-ts-neg-rename-001",
+      "split": "holdout",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.2
+    },
+    {
+      "case": "ho-ts-new-function-001",
+      "split": "holdout",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.1
+    },
+    {
+      "case": "js-error-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.0
+    },
+    {
+      "case": "js-logic-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.0
+    },
+    {
+      "case": "js-security-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.9
+    },
+    {
+      "case": "json-deps-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.8
+    },
+    {
+      "case": "py-async-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.9
+    },
+    {
+      "case": "py-behavior-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.0
+    },
+    {
+      "case": "py-breaking-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.3
+    },
+    {
+      "case": "py-breaking-002",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.9
+    },
+    {
+      "case": "py-breaking-003",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 2,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.2
+    },
+    {
+      "case": "py-breaking-004",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.7
+    },
+    {
+      "case": "py-coverage-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.5
+    },
+    {
+      "case": "py-deps-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1",
+        "L2"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.9
+    },
+    {
+      "case": "py-error-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.3
+    },
+    {
+      "case": "py-error-002",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.0
+    },
+    {
+      "case": "py-logic-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 12.0
+    },
+    {
+      "case": "py-logic-002",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.2
+    },
+    {
+      "case": "py-migration-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 6.6
+    },
+    {
+      "case": "py-neg-001",
+      "split": "dev",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.0
+    },
+    {
+      "case": "py-neg-002",
+      "split": "dev",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 13.6
+    },
+    {
+      "case": "py-neg-003",
+      "split": "dev",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.8
+    },
+    {
+      "case": "py-secret-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.5
+    },
+    {
+      "case": "py-security-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1",
+        "L2"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 2,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.6
+    },
+    {
+      "case": "py-security-002",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.6
+    },
+    {
+      "case": "py-test-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1",
+        "L2"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.0
+    },
+    {
+      "case": "py-undefined-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 11.1
+    },
+    {
+      "case": "sql-migration-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.9
+    },
+    {
+      "case": "ts-async-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.0
+    },
+    {
+      "case": "ts-breaking-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.3
+    },
+    {
+      "case": "ts-breaking-002",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.8
+    },
+    {
+      "case": "ts-neg-001",
+      "split": "dev",
+      "negative": true,
+      "matched": [],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.3
+    },
+    {
+      "case": "ts-security-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.7
+    },
+    {
+      "case": "ts-security-002",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 1,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 0.8
+    },
+    {
+      "case": "ts-test-001",
+      "split": "dev",
+      "negative": false,
+      "matched": [
+        "L1"
+      ],
+      "missed": [],
+      "false_positives": [],
+      "acceptable": 0,
+      "unsupported": [],
+      "error": null,
+      "duration_ms": 1.0
+    }
+  ],
+  "misses": [
+    {
+      "case": "h2-py-naive-datetime-001",
+      "title": "UTC timestamps become naive local time",
+      "split": "holdout-v2",
+      "description": "Audit timestamps lose their timezone; ordering across hosts in different zones breaks. No syntactic rule targets this.",
+      "label": "L1",
+      "category": "behavior_change",
+      "file": "src/audit/stamp.py",
+      "lines": [
+        5,
+        5
+      ],
+      "note": "",
+      "found_by": []
+    },
+    {
+      "case": "ho-py-semantic-001",
+      "title": "Operands swapped in a refund calculation",
+      "split": "holdout",
+      "description": "The subtraction is reversed, so refunds become negative. No syntactic rule targets this.",
+      "label": "L1",
+      "category": "logic_change",
+      "file": "src/billing/refunds.py",
+      "lines": [
+        2,
+        2
+      ],
+      "note": "",
+      "found_by": [
+        "changeguard+ai:qwen2.5-coder:7b",
+        "changeguard+ai:qwen2.5-coder:7b@3"
+      ]
+    },
+    {
+      "case": "ho-py-semantic-002",
+      "title": "Quantity dropped from a total during a refactor",
+      "split": "holdout",
+      "description": "While adding a discount, the per-line quantity multiplication disappears; the only test uses quantity 1 and still passes.",
+      "label": "L1",
+      "category": "logic_change",
+      "file": "src/cart/totals.py",
+      "lines": [
+        13,
+        13
+      ],
+      "note": "",
+      "found_by": [
+        "changeguard+ai:qwen2.5-coder:7b",
+        "changeguard+ai:qwen2.5-coder:7b@3",
+        "baseline-keyword"
+      ]
+    },
+    {
+      "case": "ho-py-test-deleted-001",
+      "title": "Password tests deleted while the KDF cost is halved",
+      "split": "holdout",
+      "description": "The only tests for password verification are deleted in the same change that halves the PBKDF2 iteration count.",
+      "label": "L2",
+      "category": "security",
+      "file": "src/auth/password.py",
+      "lines": [
+        6,
+        6
+      ],
+      "note": "weakened key-derivation cost; no rule targets numeric security parameters",
+      "found_by": []
+    }
+  ],
+  "limitations": [
+    "The dataset is small and synthetic: each case was written for this project to exercise a specific risk pattern. Results measure agreement with the labelling guideline on these cases, not effectiveness on real repositories.",
+    "The rules and the dev-split cases were written by the same author, so dev-split numbers are optimistic by construction. The holdout splits were written after the ruleset was frozen; their first runs, recorded before any holdout-informed change, are the more honest estimate, but they share the same author and style.",
+    "Bootstrap intervals resample cases; with this few cases they are wide and should be read as rough bounds.",
+    "Labels mark where a reviewer should look, not whether the change causes a production incident. Nothing here estimates incident probability.",
+    "AI metrics measure grounding (cited evidence exists and matches) and agreement with labels. They do not measure the correctness or usefulness of explanations, which would require human rating."
+  ]
+}

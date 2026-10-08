@@ -1,0 +1,14 @@
+diff --git a/src/sync/importer.py b/src/sync/importer.py
+index ff5a50f..6749475 100644
+--- a/src/sync/importer.py
++++ b/src/sync/importer.py
+@@ -7,8 +7,5 @@
+ def import_records(lines: list[str]) -> list[dict]:
+     records = []
+     for line in lines:
+-        try:
+-            records.append(json.loads(line))
+-        except json.JSONDecodeError:
+-            log.warning("skipping malformed record")
++        records.append(json.loads(line))
+     return records

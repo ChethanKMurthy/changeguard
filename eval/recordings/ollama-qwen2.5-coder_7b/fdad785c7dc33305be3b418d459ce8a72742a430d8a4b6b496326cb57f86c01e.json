@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:09:03+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fb9ce2996e\",\n      \"explanation\": \"Exposure of a secret (JWT) in code can lead to unauthorized access.\",\n      \"failure_scenario\": \"An attacker gains the JWT and uses it to impersonate an admin user.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the JWT is not exposed in the source code or environment variables.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-5ec6cf6dd5\",\n      \"explanation\": \"Lack of tests for a modified function can lead to undetected bugs.\",\n      \"failure_scenario\": \"The `admin_token` function changes, but no tests catch the new behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Write unit tests that verify the return value of `admin_token`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might alter the behavior of other parts of the system that rely on `admin_token`.\",\n      \"failure_scenario\": \"Other components fail because they expect a different token format or value.\",\n      \"suggested_test\": {\n        \"description\": \"Run integration tests to ensure no dependent components break.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change exposes a secret and lacks tests, which are critical security and quality concerns. The behavior of other components might also be affected, but the evidence is inconclusive about this risk.\"\n}",
+  "input_tokens": 931,
+  "output_tokens": 443,
+  "latency_ms": 11447.3,
+  "finish_reason": "stop"
+}

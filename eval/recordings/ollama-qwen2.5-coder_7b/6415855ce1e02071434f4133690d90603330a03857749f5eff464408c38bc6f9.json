@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:11:23+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-6db262dc14\",\n      \"explanation\": \"The `compute` function signature has changed, removing a parameter that was previously used.\",\n      \"failure_scenario\": \"A call to `compute` with the `exempt` parameter will fail at runtime.\",\n      \"suggested_test\": {\n        \"description\": \"Test calling `compute` with an unexpected keyword argument\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-01288608cc\",\n      \"explanation\": \"No tests reference the modified `compute` function.\",\n      \"failure_scenario\": \"The change in `compute` may not be detected during testing, leading to potential bugs.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change in `compute` may affect the tax calculation logic, leading to incorrect results.\",\n      \"failure_scenario\": \"Tax calculations may be off by a factor of 10 or more due to the missing `exempt` parameter.\",\n      \"suggested_test\": {\n        \"description\": \"Test various scenarios with and without the `exempt` parameter\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking behavior due to a signature change, which could cause runtime errors. Additionally, the lack of tests for the modified function increases the risk of undetected bugs.\"\n}",
+  "input_tokens": 1157,
+  "output_tokens": 441,
+  "latency_ms": 12676.1,
+  "finish_reason": "stop"
+}

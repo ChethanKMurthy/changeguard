@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:12:53+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logging level not configurable\",\n      \"category\": \"error_handling\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The logging level is hardcoded to 'debug', which may lead to excessive logging in production environments.\",\n      \"failure_scenario\": \"In a high-traffic environment, the debug logs could overwhelm the system's logging infrastructure.\",\n      \"suggested_test\": {\n        \"description\": \"Verify that the logging level can be configured via an environment variable or configuration file.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not explicitly show how the logging level is set.\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a new function for calculating balances, which could potentially introduce bugs or errors. The lack of configurable logging may also impact production environments negatively.\"\n}",
+  "input_tokens": 696,
+  "output_tokens": 203,
+  "latency_ms": 6826.6,
+  "finish_reason": "stop"
+}

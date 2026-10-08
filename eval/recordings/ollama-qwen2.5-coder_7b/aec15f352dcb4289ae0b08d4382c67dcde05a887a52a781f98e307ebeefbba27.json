@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:08:35+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-0005ef6b49\",\n      \"explanation\": \"Disabling tests can lead to undetected bugs.\",\n      \"failure_scenario\": \"Negative amounts are not rejected, causing silent failures.\",\n      \"suggested_test\": {\n        \"description\": \"Enable the test and run it.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The test was disabled, which might indicate a change in the logic of how charges are handled.\",\n      \"failure_scenario\": \"Negative amounts could be processed incorrectly without detection.\",\n      \"suggested_test\": {\n        \"description\": \"Re-enable the test and verify that it passes with negative amounts.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change disables a critical test, which could lead to undetected bugs. The logic of how charges are handled might have changed, but the evidence does not provide enough information to confirm this with certainty.\"\n}",
+  "input_tokens": 847,
+  "output_tokens": 317,
+  "latency_ms": 11534.2,
+  "finish_reason": "stop"
+}

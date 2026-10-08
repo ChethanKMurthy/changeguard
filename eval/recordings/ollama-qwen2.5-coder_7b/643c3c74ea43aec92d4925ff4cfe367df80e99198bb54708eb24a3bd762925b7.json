@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:54:19+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e7fc62b2e5\",\n      \"explanation\": \"Assertions removed from a test case reduce code coverage and make it harder to verify that the function behaves as expected.\",\n      \"failure_scenario\": \"The `test_slugify_basic` test is no longer asserting anything, so any changes in the slugification logic might go unnoticed.\",\n      \"suggested_test\": {\n        \"description\": \"A simple assertion to ensure the basic functionality still works.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-712fb3c746\",\n      \"explanation\": \"A test is disabled, which means it will not be run during the test suite. This could lead to incomplete coverage and undetected issues.\",\n      \"failure_scenario\": \"The `test_slugify_unicode` test is skipped due to flakiness on CI, but it might have uncovered a bug that only manifests under certain conditions.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The removal of assertions and disabling of tests could potentially change the behavior of the code under test without being detected.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E1\"],\n    \"uncertainty\": \"Low, as the evidence does not provide direct support for this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The change reduces test coverage and disables important tests, which could lead to undetected bugs. Additional manual verification should be performed to ensure that the function continues to work as expected.\"\n}",
+  "input_tokens": 1067,
+  "output_tokens": 460,
+  "latency_ms": 15434.2,
+  "finish_reason": "stop"
+}

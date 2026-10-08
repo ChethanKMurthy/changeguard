@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T11:59:50+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-0005ef6b49\",\n      \"explanation\": \"The `describe.skip` block is disabled, which means that the test will not be executed.\",\n      \"failure_scenario\": \"A user runs the application without realizing that the test for negative amounts is skipped.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `charge` function is still exported and can be imported correctly even when the test is disabled.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for a logic error in the `charge` function, which could lead to incorrect calculations. The finding notes suggest that the test for negative amounts is skipped, but it's unclear if the function itself is still working correctly.\" }",
+  "input_tokens": 840,
+  "output_tokens": 216,
+  "latency_ms": 4882.8,
+  "finish_reason": "stop"
+}

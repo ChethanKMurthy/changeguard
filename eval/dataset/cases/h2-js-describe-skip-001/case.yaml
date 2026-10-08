@@ -1,0 +1,21 @@
+id: h2-js-describe-skip-001
+title: Whole test suite skipped
+split: holdout-v2
+language: javascript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: describe.skip disables every test for charge().
+tags:
+- test-integrity
+negative: false
+expected:
+- id: L1
+  category: test_integrity
+  file: src/payments/charge.test.js
+  lines:
+  - 3
+  - 3
+  severity: medium
+  note: ''
+acceptable: []

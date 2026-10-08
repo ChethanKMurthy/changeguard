@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:51:58+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The Haversine formula implementation is correct for calculating great-circle distances, but the evidence does not explicitly state that this function will now handle different ranges of latitude and longitude values differently.\",\n      \"failure_scenario\": \"If the Haversine formula is used in a context where it must handle extreme latitudes or longitudes, incorrect results may occur due to floating-point precision issues.\",\n      \"suggested_test\": {\n        \"description\": \"Test with extreme latitude and longitude values to ensure correct distance calculations.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change appears to be a simple implementation of an existing mathematical formula. The primary risk is related to potential floating-point precision issues when handling extreme geographic coordinates.\"\n}",
+  "input_tokens": 797,
+  "output_tokens": 223,
+  "latency_ms": 6408.0,
+  "finish_reason": "stop"
+}

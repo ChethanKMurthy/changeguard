@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:10:53+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-8269bd6d30\",\n      \"explanation\": \"Dynamic assignment to `innerHTML` can lead to XSS attacks.\",\n      \"failure_scenario\": \"An attacker provides malicious markdown that executes harmful scripts.\",\n      \"suggested_test\": {\n        \"description\": \"Test rendering of user-provided markdown with special characters.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-0df5f2e07f\",\n      \"explanation\": \"Lack of tests for modified components can lead to regressions.\",\n      \"failure_scenario\": \"A change in `Preview` breaks existing functionality without detection.\",\n      \"suggested_test\": {\n        \"description\": \"Add unit test for rendering markdown content.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change modifies the behavior of `Preview` without clear justification.\",\n      \"failure_scenario\": \"Unexpected rendering or functionality issues due to untested logic changes.\",\n      \"suggested_test\": {\n        \"description\": \"Review and document the intended behavior of the modified function.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"The change's intent is unclear from the evidence.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a potential security risk due to dynamic `innerHTML` assignment and lacks adequate testing, which could lead to functional issues. The logic behind the change is not clearly documented or tested, increasing the risk of unintended consequences.\"\n}",
+  "input_tokens": 1092,
+  "output_tokens": 426,
+  "latency_ms": 11690.6,
+  "finish_reason": "stop"
+}

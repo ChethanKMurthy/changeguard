@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:25+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d1b008318b\",\n      \"explanation\": \"The seasonal_discount function in src/billing/discounts.py:5 is never run in tests, which may lead to incorrect results or unexpected behavior.\",\n      \"failure_scenario\": \"A customer's discount is calculated incorrectly because the month is not within the expected range (6 or 7), causing an incorrect return value.\",\n      \"suggested_test\": {\n        \"description\": \"Test that seasonal_discount returns 0.10 when month is 6 or 7 and member is True.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect results or unexpected behavior due to the uncovered lines in the seasonal_discount function. This could lead to customer dissatisfaction or financial losses if not addressed promptly.\" }",
+  "input_tokens": 840,
+  "output_tokens": 224,
+  "latency_ms": 3638.6,
+  "finish_reason": "stop"
+}

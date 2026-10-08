@@ -1,0 +1,12 @@
+diff --git a/src/integrations/payments.py b/src/integrations/payments.py
+index 2f483e6..6bc0147 100644
+--- a/src/integrations/payments.py
++++ b/src/integrations/payments.py
+@@ -1,5 +1,5 @@
+-import os
++PAYMENTS_API_KEY = "pk9Qe7Lm2Zx4Rt8Vb1Nc6Yw3Hs5Jd0Fg"
+ 
+ 
+ def api_key() -> str:
+-    return os.environ["PAYMENTS_API_KEY"]
++    return PAYMENTS_API_KEY

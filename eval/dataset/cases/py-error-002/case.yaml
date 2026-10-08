@@ -1,0 +1,23 @@
+id: py-error-002
+title: Exceptions silently swallowed in a loop
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: '`except Exception: pass` hides every loader failure, including programming errors.'
+tags:
+- error-handling
+negative: false
+expected:
+- id: L1
+  category: error_handling
+  file: src/cache/warmup.py
+  lines:
+  - 7
+  - 7
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

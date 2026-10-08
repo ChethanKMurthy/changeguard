@@ -1,0 +1,23 @@
+id: js-error-001
+title: Parse failures swallowed by an empty catch
+split: dev
+language: javascript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Corrupt preferences are now silently replaced by defaults with no log or signal.
+tags:
+- error-handling
+negative: false
+expected:
+- id: L1
+  category: error_handling
+  file: src/storage/prefs.js
+  lines:
+  - 5
+  - 5
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

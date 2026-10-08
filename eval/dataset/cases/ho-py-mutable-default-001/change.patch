@@ -1,0 +1,10 @@
+diff --git a/src/queue/jobs.py b/src/queue/jobs.py
+index 6ccb4e5..9f56a39 100644
+--- a/src/queue/jobs.py
++++ b/src/queue/jobs.py
+@@ -1,4 +1,3 @@
+-def enqueue(job: str, queue: list[str] | None = None) -> list[str]:
+-    queue = [] if queue is None else queue
++def enqueue(job: str, queue: list[str] = []) -> list[str]:
+     queue.append(job)
+     return queue

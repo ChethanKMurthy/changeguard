@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:34:38+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Error Handling\",\n      \"category\": \"error_handling\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function does not handle cases where `values` is not an array or contains non-numeric values. This could lead to runtime errors.\",\n      \"failure_scenario\": \"If the input is not an array or contains non-numeric values, the function will throw a TypeError.\",\n      \"suggested_test\": {\n        \"description\": \"Test with invalid inputs to ensure proper error handling.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces potential error handling issues without clear evidence of testing for these cases. Error handling should be added and thoroughly tested to ensure robustness.\"\n}",
+  "input_tokens": 633,
+  "output_tokens": 196,
+  "latency_ms": 6301.5,
+  "finish_reason": "stop"
+}

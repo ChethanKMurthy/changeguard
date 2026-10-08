@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:42:47+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The addition or modification of logic may not align with the intended behavior, leading to unexpected outcomes.\",\n      \"failure_scenario\": \"If the `normalizeName` function is used in a context that depends on diacritics being preserved during normalization, it could lead to incorrect results.\",\n      \"suggested_test\": {\n        \"description\": \"Test if the `normalizeName` function maintains the integrity of names with diacritics when normalization is not strictly required.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"The change alters existing logic, which may introduce unintended behavior.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces subtle alterations to the logic of string processing functions that could affect the correctness of downstream applications. It is advisable to conduct thorough testing to ensure no unintended side effects are introduced.\"\n}",
+  "input_tokens": 693,
+  "output_tokens": 233,
+  "latency_ms": 6676.1,
+  "finish_reason": "stop"
+}

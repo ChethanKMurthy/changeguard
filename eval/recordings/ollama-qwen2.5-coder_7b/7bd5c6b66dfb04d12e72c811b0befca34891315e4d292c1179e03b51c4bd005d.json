@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:42:40+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Incorrect handling of non-standard characters\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The code only removes diacritics, but it does not handle other non-standard characters that might affect text normalization. This could lead to unexpected results.\",\n      \"failure_scenario\": \"A string with a non-standard character is normalized incorrectly, causing data inconsistencies.\",\n      \"suggested_test\": {\n        \"description\": \"Test normalization of strings containing non-standard characters.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk, but it is a possibility.\"\n    }\n  ],\n  \"overall_assessment\": \"The change primarily involves removing diacritics from strings. While there are no deterministic findings, the introduction of non-standard characters into the normalization process could pose risks that are not currently covered by the provided evidence.\"\n}",
+  "input_tokens": 693,
+  "output_tokens": 224,
+  "latency_ms": 7480.8,
+  "finish_reason": "stop"
+}

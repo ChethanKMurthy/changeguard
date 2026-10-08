@@ -1,0 +1,39 @@
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+backend/dist/
+
+# Engine data (SQLite databases are created at runtime)
+backend/data/
+*.db
+*.db-shm
+*.db-wal
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+*.tsbuildinfo
+
+# Test output
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/

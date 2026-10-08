@@ -1,0 +1,13 @@
+diff --git a/src/http_client/client.py b/src/http_client/client.py
+index a954a1e..665c364 100644
+--- a/src/http_client/client.py
++++ b/src/http_client/client.py
+@@ -1,7 +1,7 @@
+ import urllib.request
+ 
+ 
+-def fetch(url: str, timeout: float = 30.0, retries: int = 3) -> bytes:
++def fetch(url: str, timeout: float = 30.0, retries: int = 1) -> bytes:
+     last_error: Exception | None = None
+     for _ in range(retries):
+         try:

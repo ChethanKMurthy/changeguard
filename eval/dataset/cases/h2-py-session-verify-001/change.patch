@@ -1,0 +1,12 @@
+diff --git a/src/partners/client.py b/src/partners/client.py
+index 20509b1..75170c3 100644
+--- a/src/partners/client.py
++++ b/src/partners/client.py
+@@ -7,6 +7,6 @@ def __init__(self, base_url: str) -> None:
+         self.session = requests.Session()
+ 
+     def orders(self) -> list[dict]:
+-        response = self.session.get(f"{self.base_url}/orders", timeout=10)
++        response = self.session.get(f"{self.base_url}/orders", timeout=10, verify=False)
+         response.raise_for_status()
+         return response.json()

@@ -1,0 +1,22 @@
+id: js-logic-001
+title: Retry loop runs one extra attempt
+split: dev
+language: javascript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: '`<` becomes `<=`, so withRetry makes maxAttempts + 1 attempts.'
+tags:
+- logic
+- off-by-one
+negative: false
+expected:
+- id: L1
+  category: logic_change
+  file: src/net/retry.js
+  lines:
+  - 3
+  - 3
+  severity: medium
+  note: ''
+acceptable: []

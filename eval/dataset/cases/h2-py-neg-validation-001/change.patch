@@ -1,0 +1,26 @@
+diff --git a/src/billing/charges.py b/src/billing/charges.py
+index ae28461..4171d89 100644
+--- a/src/billing/charges.py
++++ b/src/billing/charges.py
+@@ -1,2 +1,4 @@
+ def charge(amount_cents: int) -> dict:
++    if amount_cents <= 0:
++        raise ValueError("amount must be positive")
+     return {"amount": amount_cents, "status": "pending"}
+diff --git a/tests/test_charges.py b/tests/test_charges.py
+index 4f0b5c3..d3bb406 100644
+--- a/tests/test_charges.py
++++ b/tests/test_charges.py
+@@ -1,5 +1,12 @@
++import pytest
++
+ from billing.charges import charge
+ 
+ 
+ def test_charge_is_pending():
+     assert charge(500)["status"] == "pending"
++
++
++def test_rejects_non_positive_amounts():
++    with pytest.raises(ValueError):
++        charge(0)

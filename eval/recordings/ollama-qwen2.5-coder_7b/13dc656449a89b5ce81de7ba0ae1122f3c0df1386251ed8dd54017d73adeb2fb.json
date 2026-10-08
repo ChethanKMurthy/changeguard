@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:52:36+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-be76e8ae24\",\n      \"explanation\": \"Exposure of sensitive information.\",\n      \"failure_scenario\": \"API key exposed in code, leading to unauthorized access to payment system.\",\n      \"suggested_test\": {\n        \"description\": \"Check if environment variable is used instead of hard-coded API key.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-0964c5dd20\",\n      \"explanation\": \"Lack of test coverage for changed functionality.\",\n      \"failure_scenario\": \"Changed `api_key` function not tested, introducing bugs without detection.\",\n      \"suggested_test\": {\n        \"description\": \"Unit test for the `api_key` function to ensure it returns the correct value.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic change risk\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"Potential logic error if `api_key` function is used in other parts of the codebase.\",\n      \"failure_scenario\": \"Incorrect usage of API key due to unexpected behavior in the `api_key` function.\",\n      \"suggested_test\": {\n        \"description\": \"Integration test for functionality that uses the `api_key` function.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a high-risk secret exposure and a medium-risk test gap. The logic change risk is speculative without further evidence.\"\n}",
+  "input_tokens": 994,
+  "output_tokens": 424,
+  "latency_ms": 14082.0,
+  "finish_reason": "stop"
+}

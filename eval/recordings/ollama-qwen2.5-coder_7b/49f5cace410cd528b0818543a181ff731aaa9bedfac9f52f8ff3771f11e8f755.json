@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:22:46+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fa074633ce\",\n      \"explanation\": \"Removing a function that is still being used can lead to runtime errors.\",\n      \"failure_scenario\": \"The `refreshWindow` function is called in `src/auth/guard.ts`, but it no longer exists, causing an error when the code runs.\",\n      \"suggested_test\": {\n        \"description\": \"Check if calling `shouldRefresh` with a valid issuedAt and now value throws an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The removal of `refreshWindow` might have been intended, but it's unclear if the logic in `shouldRefresh` is still correct without it.\",\n      \"failure_scenario\": \"If `refreshWindow` was a placeholder for a more complex calculation, removing it could lead to incorrect session expiration checks.\",\n      \"suggested_test\": {\n        \"description\": \"Verify that the logic in `shouldRefresh` remains valid after the removal of `refreshWindow`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking behavior by removing a function that is still in use, which could cause runtime errors. Additionally, there's uncertainty about the correctness of the remaining logic without `refreshWindow`.\"\n}",
+  "input_tokens": 1023,
+  "output_tokens": 374,
+  "latency_ms": 12474.0,
+  "finish_reason": "stop"
+}

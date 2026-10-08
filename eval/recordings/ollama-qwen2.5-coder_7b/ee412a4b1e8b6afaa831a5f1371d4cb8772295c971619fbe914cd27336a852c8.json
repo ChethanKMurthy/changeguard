@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:33:01+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Inconsistent handling of decimal places\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The code uses `toFixed(2)` which may not always be necessary, especially if the input cents value already has more than two decimal places. This could lead to unexpected results or precision issues.\",\n      \"failure_scenario\": \"If a large number of cents is passed to the function (e.g., 123456789), it will return a string with an unusually high number of decimal places, which might not be expected by the caller.\",\n      \"suggested_test\": {\n        \"description\": \"Check that the function handles various cases of input cents values correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The impact of using `toFixed(2)` is not immediately clear from the evidence alone.\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a minor risk due to inconsistent handling of decimal places, which could potentially lead to unexpected results. However, this risk is low and may be mitigated by thorough testing.\"\n}",
+  "input_tokens": 704,
+  "output_tokens": 267,
+  "latency_ms": 8818.0,
+  "finish_reason": "stop"
+}

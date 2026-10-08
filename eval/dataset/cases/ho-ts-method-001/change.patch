@@ -1,0 +1,15 @@
+diff --git a/src/cache/lru.ts b/src/cache/lru.ts
+index 6990497..1386dd4 100644
+--- a/src/cache/lru.ts
++++ b/src/cache/lru.ts
+@@ -13,8 +13,8 @@ export class LruCache<V> {
+     this.evict();
+   }
+ 
+-  evict(): void {
+-    while (this.items.size > this.capacity) {
++  evict(limit: number): void {
++    while (this.items.size > limit) {
+       const oldest = this.items.keys().next().value as string;
+       this.items.delete(oldest);
+     }

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:05:17+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-51ff1febc4\",\n      \"explanation\": \"The `it.only` flag in the test is not properly validated, allowing a focused test to be committed without being run.\",\n      \"failure_scenario\": \"A developer commits a focused test with `it.only` but forgets to run it, causing the test to fail silently.\",\n      \"suggested_test\": {\n        \"description\": \"Run all tests in the `round.test.ts` file after committing a change with `it.only`\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for silent test failures due to the misuse of `it.only`. This could lead to undetected bugs in the codebase, making it harder to identify and fix issues.\"}",
+  "input_tokens": 856,
+  "output_tokens": 221,
+  "latency_ms": 3455.0,
+  "finish_reason": "stop"
+}

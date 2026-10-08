@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:10:28+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function `priceLabel` now includes a currency symbol, which may not be intended if the goal was to simply convert cents to units.\",\n      \"failure_scenario\": \"If the function is used in a context where only the numeric value is needed, it will return an unexpected string with a currency symbol.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure that `priceLabel` returns only the numeric value when no currency is specified.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not provide enough context to determine if this change was intentional.\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a minor logic risk by including a currency symbol in the output, which may not be desired. The lack of deterministic findings suggests that further testing is needed to ensure the change behaves as expected.\"\n}",
+  "input_tokens": 704,
+  "output_tokens": 234,
+  "latency_ms": 6350.1,
+  "finish_reason": "stop"
+}

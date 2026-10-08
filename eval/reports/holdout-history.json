@@ -1,0 +1,45 @@
+{
+  "description": "Clean, one-shot holdout results recorded before any change informed by that holdout. Later runs on the same split are no longer clean estimates. Raw console output of each first run is kept in eval/reports/runs/.",
+  "runs": [
+    {
+      "split": "holdout",
+      "cases": 21,
+      "labels": 20,
+      "negative_controls": 3,
+      "ruleset": "2026.10.1",
+      "date": "2026-10-08",
+      "raw_output": "eval/reports/runs/holdout-first-run-ruleset-2026.10.1.txt",
+      "systems": {
+        "changeguard": {"precision": 0.8333, "recall": 0.75, "f1": 0.79, "negative_fp_rate": 0.6667},
+        "changeguard-diff-only": {"precision": 0.9091, "recall": 0.5, "f1": 0.645, "negative_fp_rate": 0.3333},
+        "baseline-keyword": {"precision": 0.5714, "recall": 0.4, "f1": 0.4706, "negative_fp_rate": 0.6667},
+        "baseline-changed-symbols": {"precision": 0.2727, "recall": 0.15, "f1": 0.1935, "negative_fp_rate": 1.0}
+      },
+      "changes_after": [
+        "Fixed: JavaScript/TypeScript methods were treated as having an implicit `self` parameter, hiding new required parameters (ho-ts-method-001).",
+        "Fixed: adding a return annotation where none existed was reported as a return-type change (ho-py-neg-logging-001).",
+        "Changed: pure renames and private helpers whose same-file callers are tested no longer produce test-gap findings (ho-ts-neg-rename-001).",
+        "Added: yaml.unsafe_load / marshal.loads / jsonpickle.decode detection, not covered by Ruff (ho-py-unsafe-load-001).",
+        "Label correction: an omitted acceptable test-gap entry was added to ho-py-dataclass-001, per LABELING.md section 4."
+      ]
+    },
+    {
+      "split": "holdout-v2",
+      "cases": 13,
+      "labels": 11,
+      "negative_controls": 2,
+      "ruleset": "2026.10.2",
+      "date": "2026-10-08",
+      "raw_output": "eval/reports/runs/holdout-v2-first-run-ruleset-2026.10.2.txt",
+      "systems": {
+        "changeguard": {"precision": 1.0, "recall": 0.8182, "f1": 0.9, "negative_fp_rate": 0.0},
+        "changeguard-diff-only": {"precision": 1.0, "recall": 0.6364, "f1": 0.7778, "negative_fp_rate": 0.0},
+        "baseline-keyword": {"precision": 0.4286, "recall": 0.2727, "f1": 0.3333, "negative_fp_rate": 0.5},
+        "baseline-changed-symbols": {"precision": 0.4286, "recall": 0.2727, "f1": 0.3333, "negative_fp_rate": 1.0}
+      },
+      "changes_after": [
+        "Added: verify=False passed through Session/Client methods (Ruff S501 only matches module-level requests calls) (h2-py-session-verify-001)."
+      ]
+    }
+  ]
+}

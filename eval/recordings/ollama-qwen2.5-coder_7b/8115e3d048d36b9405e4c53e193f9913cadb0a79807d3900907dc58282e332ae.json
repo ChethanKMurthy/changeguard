@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:09:29+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The logic for handling non-positive amounts has changed from raising an exception to returning a status of 'pending'. This could lead to unexpected behavior if the calling code does not handle this new status correctly.\",\n      \"failure_scenario\": \"A client attempts to charge zero or negative amount, expecting an error. Instead, they receive a pending charge with no error.\",\n      \"suggested_test\": {\n        \"description\": \"Test that non-positive amounts return a 'pending' status instead of raising an exception.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a subtle logic change that could affect how non-positive amounts are handled. This requires careful review of the calling code to ensure it can handle the new status correctly.\"\n}",
+  "input_tokens": 859,
+  "output_tokens": 230,
+  "latency_ms": 6743.8,
+  "finish_reason": "stop"
+}

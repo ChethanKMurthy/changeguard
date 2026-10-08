@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:20:12+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The addition of a new parameter `ellipsis` in the function signature may change the behavior for existing users who do not provide this parameter.\",\n      \"failure_scenario\": \"Existing users might encounter unexpected results if they rely on the default ellipsis value and pass a limit that is too small.\",\n      \"suggested_test\": {\n        \"description\": \"Test with a large limit and no custom ellipsis to ensure the function returns the original text without truncation.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a new parameter that could affect existing users, but there is no evidence of other significant risks. The logic change should be thoroughly tested to ensure compatibility with existing use cases.\"\n}",
+  "input_tokens": 826,
+  "output_tokens": 224,
+  "latency_ms": 7690.2,
+  "finish_reason": "stop"
+}

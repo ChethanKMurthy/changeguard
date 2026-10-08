@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:11:52+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-238393d7da\",\n      \"explanation\": \"The `__init__` method signature has changed, making existing call sites incompatible.\",\n      \"failure_scenario\": \"A call to `Event.__init__` without the new `occurred_at` parameter will fail at runtime.\",\n      \"suggested_test\": {\n        \"description\": \"Test that passing required parameters correctly initializes an Event object.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-c85b6beb33\",\n      \"explanation\": \"No tests reference the modified `Event` class.\",\n      \"failure_scenario\": \"A bug in the `Event` class could go unnoticed until a test is added that exercises it.\",\n      \"suggested_test\": {\n        \"description\": \"Add a unit test for the `Event` class to ensure it behaves as expected with all parameters.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The addition of a new required parameter `occurred_at` may change the behavior of existing code that relies on the old signature.\",\n      \"failure_scenario\": \"Existing code that does not handle the new parameter correctly may produce unexpected results or errors.\",\n      \"suggested_test\": {\n        \"description\": \"Test that existing call sites continue to work as expected after the signature change.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking behavior due to a new required parameter in the `Event` class, which could cause runtime errors if not handled properly. Additionally, the lack of tests for the modified class increases the risk of undetected bugs.\"\n}",
+  "input_tokens": 1141,
+  "output_tokens": 477,
+  "latency_ms": 13981.6,
+  "finish_reason": "stop"
+}

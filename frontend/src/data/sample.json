@@ -1,0 +1,23 @@
+{
+  "id": "billing-refactor",
+  "title": "A pricing refactor that quietly breaks its callers",
+  "tagline": "Python · signature change, boundary flip, async blocking, coverage gaps",
+  "description": "A developer adds loyalty discounts and switches price formatting from currency codes to locales. The diff looks routine — but one caller still passes the old keyword, a threshold moved by one, a new lookup table was never defined, and a blocking sleep slipped into an async handler.",
+  "language": "Python",
+  "highlights": [
+    "format_price dropped `currency` and gained a required `locale`; ChangeGuard checks every resolved call site against the new signature.",
+    "`percent > 50` became `percent >= 50` — a boundary change worth a boundary-value test.",
+    "REGIONAL_RATES is used but never defined, and a bare `except` swallows the NameError: every non-EU invoice silently skips regional tax.",
+    "The uploaded coverage report shows which changed lines no test ever executes."
+  ],
+  "synthetic": true,
+  "base_files": [
+    "src/billing/__init__.py",
+    "src/billing/api.py",
+    "src/billing/invoice.py",
+    "src/billing/pricing.py",
+    "tests/test_invoice.py",
+    "tests/test_pricing.py"
+  ],
+  "coverage_filename": "coverage.xml"
+}

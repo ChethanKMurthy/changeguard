@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:34:10+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-8269bd6d30\",\n      \"explanation\": \"Dynamic assignment to `innerHTML` can lead to XSS attacks.\",\n      \"failure_scenario\": \"An attacker injects malicious script into the markdown content, which gets executed on the client side.\",\n      \"suggested_test\": {\n        \"description\": \"Test that injecting a malicious script in markdown does not execute it.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-0df5f2e07f\",\n      \"explanation\": \"Lack of tests for changed functionality can lead to regressions.\",\n      \"failure_scenario\": \"The `Preview` component stops working as expected without notice.\",\n      \"suggested_test\": {\n        \"description\": \"Write a unit test for the `Preview` component that checks its output with various markdown inputs.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change modifies the `Preview` component, which could introduce unexpected behavior if assumptions about its previous implementation were incorrect.\",\n      \"failure_scenario\": \"The updated logic does not handle certain edge cases correctly, leading to incorrect rendering of markdown content.\",\n      \"suggested_test\": {\n        \"description\": \"Create a test that checks the output against known correct results for various corner cases in markdown parsing.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a security risk due to dynamic assignment to `innerHTML`, which requires thorough testing to ensure it does not open vulnerabilities. Additionally, the lack of tests increases the risk of regressions without proper verification.\"\n}",
+  "input_tokens": 1092,
+  "output_tokens": 457,
+  "latency_ms": 12899.0,
+  "finish_reason": "stop"
+}

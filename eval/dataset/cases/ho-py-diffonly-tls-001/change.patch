@@ -1,0 +1,11 @@
+diff --git a/src/integrations/webhooks.py b/src/integrations/webhooks.py
+index 9e9b9bc..a2d67b2 100644
+--- a/src/integrations/webhooks.py
++++ b/src/integrations/webhooks.py
+@@ -2,5 +2,5 @@
+ 
+ 
+ def post_event(url: str, payload: dict) -> int:
+-    response = requests.post(url, json=payload, timeout=10)
++    response = requests.post(url, json=payload, timeout=10, verify=False)
+     return response.status_code

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:04:58+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fa074633ce\",\n      \"explanation\": \"The `refreshWindow` function was removed but is still referenced in the `sessionExpired` function.\",\n      \"failure_scenario\": \"If `sessionExpired` is called with a valid `issuedAt` value, it will incorrectly return true when the session has expired.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `sessionExpired` with a valid `issuedAt` value returns false.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\", \"E4\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The removal of `refreshWindow` without updating the referencing code increases the risk of introducing bugs that can cause unexpected behavior. The lack of a clear test for this scenario makes it difficult to ensure the change does not introduce new issues.\" }",
+  "input_tokens": 966,
+  "output_tokens": 221,
+  "latency_ms": 3745.0,
+  "finish_reason": "stop"
+}

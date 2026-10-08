@@ -1,0 +1,23 @@
+id: ho-py-semantic-002
+title: Quantity dropped from a total during a refactor
+split: holdout
+language: python
+difficulty: hard
+mode: full_context
+source: synthetic (authored for this dataset)
+description: While adding a discount, the per-line quantity multiplication disappears; the only test uses quantity
+  1 and still passes.
+tags:
+- logic
+- semantic
+negative: false
+expected:
+- id: L1
+  category: logic_change
+  file: src/cart/totals.py
+  lines:
+  - 13
+  - 13
+  severity: high
+  note: ''
+acceptable: []

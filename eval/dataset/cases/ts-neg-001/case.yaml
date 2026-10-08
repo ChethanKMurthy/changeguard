@@ -1,0 +1,13 @@
+id: ts-neg-001
+title: Type renamed with every usage updated
+split: dev
+language: typescript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: UserRecord is renamed to UserProfile and the only usage is updated in the same change.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

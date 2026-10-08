@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:03+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-5c8737a979\",\n      \"explanation\": \"The `poll` function is not tested, which means that any changes to its behavior may go undetected.\",\n      \"failure_scenario\": \"A developer modifies the `poll` function to always return a value, but forgets to update the tests. This would cause the function to always return a value, even when it should be returning `None`.\",\n      \"suggested_test\": {\n        \"description\": \"Write a test that calls the `poll` function with different inputs and checks that it returns the expected values.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"F-546734f91b\",\n      \"explanation\": \"The `poll` function calls `time.sleep`, which is not suitable for asynchronous functions.\",\n      \"failure_scenario\": \"A developer modifies the `poll` function to call `time.sleep` in an asynchronous context, causing the function to block and prevent other tasks from running. This would lead to performance issues and potentially cause the program to hang.\",\n      \"suggested_test\": {\n        \"description\": \"Write a test that calls the `poll` function with different inputs and checks that it does not call `time.sleep`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for performance issues due to the use of `time.sleep` in an asynchronous context. This could lead to unexpected behavior and make it difficult to debug the program.\"}",
+  "input_tokens": 1133,
+  "output_tokens": 394,
+  "latency_ms": 5658.0,
+  "finish_reason": "stop"
+}

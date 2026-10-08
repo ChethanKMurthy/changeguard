@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:57:58+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-bbf6ba7c3f\",\n      \"explanation\": \"`dangerouslySetInnerHTML` allows arbitrary HTML, which can lead to XSS attacks.\",\n      \"failure_scenario\": \"An attacker could inject malicious script into comments, executing it on user browsers.\",\n      \"suggested_test\": {\n        \"description\": \"Test that XSS prevention works by injecting a script and checking if it's escaped or stripped.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-e2a77cf21d\",\n      \"explanation\": \"No tests reference the modified `Comment` function, potentially leaving it untested.\",\n      \"failure_scenario\": \"The `Comment` component could have bugs or regressions that aren't caught by any test.\",\n      \"suggested_test\": {\n        \"description\": \"Add a unit test for the `Comment` component to ensure it renders correctly with various inputs.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change Risk\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change could introduce logical errors that are hard to detect without thorough testing.\",\n      \"failure_scenario\": \"The `Comment` component might behave unexpectedly under certain conditions due to a subtle logic flaw.\",\n      \"suggested_test\": {\n        \"description\": \"Write comprehensive unit and integration tests for edge cases.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"The evidence suggests the component was modified, but does not confirm any specific changes in logic.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a security risk through the use of `dangerouslySetInnerHTML` without proper safeguards. Additionally, the lack of tests poses a significant risk that bugs could remain undetected. The logic change risk is also noteworthy but less severe compared to the other risks.\"\n}",
+  "input_tokens": 1063,
+  "output_tokens": 490,
+  "latency_ms": 14034.5,
+  "finish_reason": "stop"
+}

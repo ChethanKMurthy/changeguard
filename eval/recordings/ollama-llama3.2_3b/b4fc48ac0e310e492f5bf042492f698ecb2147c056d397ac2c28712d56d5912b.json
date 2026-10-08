@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:13+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it highlights a potential issue with the `charge` function's input validation. If the amount is not positive, it raises a `ValueError`, but does not provide any additional information about the error.\",\n      \"failure_scenario\": \"A user passes a negative amount to the `charge` function, causing it to raise an exception without providing any meaningful error message.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `charge` function raises a `ValueError` with a non-empty error message when passed a negative amount.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect error handling in the `charge` function, which could lead to unexpected behavior or security vulnerabilities. The lack of additional information about the error message raises concerns about the robustness of the code.\" }",
+  "input_tokens": 853,
+  "output_tokens": 244,
+  "latency_ms": 3489.7,
+  "finish_reason": "stop"
+}

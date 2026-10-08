@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:04:08+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it highlights a potential issue with the `clamp` function, which could lead to incorrect results if not used carefully.\",\n      \"failure_scenario\": \"If the `clamp` function is called with a value outside the specified range, it may return an incorrect result.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `clamp` function returns the correct result for values within and outside the specified range.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect results in the `clamp` function, which could have significant consequences in certain use cases. Further testing and review are necessary to ensure the correctness of this function.\" }",
+  "input_tokens": 712,
+  "output_tokens": 209,
+  "latency_ms": 3052.1,
+  "finish_reason": "stop"
+}

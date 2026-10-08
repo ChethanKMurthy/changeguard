@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:31:47+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-d7c8071aa4\",\n      \"explanation\": \"The removal of the `currency` parameter from the `parse` method breaks compatibility with existing call sites.\",\n      \"failure_scenario\": \"Existing code calls `Money.parse(text, currency)` causing a TypeError.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `Money.parse(text, 'USD')` raises a TypeError when only one argument is provided.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-a1ab282abd\",\n      \"explanation\": \"Lack of tests for the updated `Money.parse` method means potential bugs could go unnoticed.\",\n      \"failure_scenario\": \"A bug in `parse` is introduced, but it goes untested and causes issues later.\",\n      \"suggested_test\": {\n        \"description\": \"Add a unit test for `Money.parse` with various inputs to ensure it handles all cases correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might introduce logical errors that are difficult to detect without comprehensive testing.\",\n      \"failure_scenario\": \"The updated `parse` method incorrectly handles certain inputs, leading to incorrect money values.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E4\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking API break that needs thorough testing, and lacks unit tests for the updated method, posing risks to existing functionality.\"\n}",
+  "input_tokens": 1184,
+  "output_tokens": 436,
+  "latency_ms": 12933.3,
+  "finish_reason": "stop"
+}

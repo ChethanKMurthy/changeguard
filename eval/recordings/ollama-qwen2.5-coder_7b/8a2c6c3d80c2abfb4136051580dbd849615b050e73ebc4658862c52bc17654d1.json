@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:20:34+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-be76e8ae24\",\n      \"explanation\": \"Exposure of a secret key can lead to unauthorized access and data breaches.\",\n      \"failure_scenario\": \"An attacker gains access to the codebase and uses the exposed API key to make fraudulent transactions.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the environment variable is not hardcoded in the code.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-0964c5dd20\",\n      \"explanation\": \"Lack of tests for a modified function can lead to regressions.\",\n      \"failure_scenario\": \"A change in the `api_key` function breaks existing functionality without being detected.\",\n      \"suggested_test\": {\n        \"description\": \"Add a unit test that checks if the `api_key` function returns the correct value.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might introduce unexpected behavior if the `api_key` function is used in other parts of the codebase.\",\n      \"failure_scenario\": \"A downstream component relies on the `api_key` function and fails due to an unexpected value or format.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `api_key` function behaves as expected when called from different contexts.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a high-risk secret exposure and a medium-risk behavior change. The lack of tests for the modified function is concerning, as it could lead to undetected regressions.\"\n}",
+  "input_tokens": 994,
+  "output_tokens": 469,
+  "latency_ms": 14866.1,
+  "finish_reason": "stop"
+}

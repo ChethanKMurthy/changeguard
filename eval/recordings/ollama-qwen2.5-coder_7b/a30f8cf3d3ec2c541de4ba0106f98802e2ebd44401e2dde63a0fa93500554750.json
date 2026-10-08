@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:52:17+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Missing type hint for return value\",\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function `clamp` does not have a return type hint, which can lead to type-related errors if the function is used in a context where type checking is enabled.\",\n      \"failure_scenario\": \"A downstream function might call `clamp` without expecting a float, leading to a TypeError.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the return value of `clamp` is of type float.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a new function without clear documentation or error handling, which may lead to unexpected behavior.\"\n}",
+  "input_tokens": 707,
+  "output_tokens": 197,
+  "latency_ms": 6672.0,
+  "finish_reason": "stop"
+}

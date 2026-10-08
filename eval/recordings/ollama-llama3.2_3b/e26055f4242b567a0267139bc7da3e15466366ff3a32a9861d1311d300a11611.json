@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:21+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-17466ac14a\",\n      \"explanation\": \"The `send_receipt` function has become asynchronous, but its callers do not await it, which can lead to unexpected behavior.\",\n      \"failure_scenario\": \"A caller of `send_receipt` does not wait for the result, causing the function to return before all necessary operations are completed.\",\n      \"suggested_test\": {\n        \"description\": \"Test that `send_receipt` is awaited in its callers.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-0f3fa14727\",\n      \"explanation\": \"The signature of `send_receipt` has changed from synchronous to asynchronous, which may break existing code that relies on the old signature.\",\n      \"failure_scenario\": \"A function that calls `send_receipt` with a synchronous signature will fail when it is called asynchronously.\",\n      \"suggested_test\": {\n        \"description\": \"Test that `send_receipt` can be called synchronously without errors.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-1984e9502a\",\n      \"explanation\": \"There are no tests that reference the changed `send_receipt` function, which makes it difficult to ensure its correctness.\",\n      \"failure_scenario\": \"A bug is introduced in `send_receipt` without being caught by any test.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test that references the changed `send_receipt` function.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for unexpected behavior due to asynchronous calls to `send_receipt`. This could lead to errors that are difficult to detect and reproduce, making it challenging to ensure the reliability of the system.\"}",
+  "input_tokens": 1246,
+  "output_tokens": 477,
+  "latency_ms": 7147.3,
+  "finish_reason": "stop"
+}

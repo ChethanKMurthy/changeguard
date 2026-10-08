@@ -1,0 +1,24 @@
+id: ts-security-001
+title: User-controlled message rendered with innerHTML
+split: dev
+language: typescript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: textContent is replaced with an innerHTML template containing the message.
+tags:
+- security
+- xss
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/ui/banner.ts
+  lines:
+  - 2
+  - 2
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

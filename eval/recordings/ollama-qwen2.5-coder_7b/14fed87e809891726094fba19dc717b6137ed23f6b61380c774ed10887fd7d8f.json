@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:56:55+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Type Safety Risk\",\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"confidence\": \"low\",\n      \"description\": \"The evidence does not cover whether the change affects type safety, which could lead to runtime errors if `UserProfile` is modified in a way that breaks the expected structure.\",\n      \"failure_scenario\": \"If additional properties are added to `UserProfile`, the function may throw an error when accessing non-existent properties.\",\n      \"suggested_test\": {\n        \"description\": \"Test adding a new property to UserProfile and ensure emailsOf still works correctly\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential type safety risk that could lead to runtime errors if `UserProfile` is modified. The evidence does not cover this aspect.\"\n}",
+  "input_tokens": 765,
+  "output_tokens": 212,
+  "latency_ms": 7279.7,
+  "finish_reason": "stop"
+}

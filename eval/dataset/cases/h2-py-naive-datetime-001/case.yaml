@@ -1,0 +1,23 @@
+id: h2-py-naive-datetime-001
+title: UTC timestamps become naive local time
+split: holdout-v2
+language: python
+difficulty: hard
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Audit timestamps lose their timezone; ordering across hosts in different zones breaks. No syntactic
+  rule targets this.
+tags:
+- behavior-change
+- semantic
+negative: false
+expected:
+- id: L1
+  category: behavior_change
+  file: src/audit/stamp.py
+  lines:
+  - 5
+  - 5
+  severity: medium
+  note: ''
+acceptable: []

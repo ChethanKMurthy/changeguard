@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:44:04+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-ea57b781d9\",\n      \"explanation\": \"Changing `<` to `<=` alters the condition in a loop, which might cause an infinite loop if maxAttempts is not properly initialized or if fn() never throws.\",\n      \"failure_scenario\": \"If maxAttempts is 0 and fn() always succeeds, the loop will run indefinitely.\",\n      \"suggested_test\": {\n        \"description\": \"Test with maxAttempts=1 and a function that always fails to ensure the loop exits after one attempt.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might introduce a bug if maxAttempts is intended to be exclusive.\",\n      \"failure_scenario\": \"maxAttempts=1 with a function that always fails could lead to unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test with maxAttempts=1 and a function that always succeeds to ensure the loop exits after one attempt.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential infinite loop if maxAttempts is misconfigured. There's uncertainty about the broader impact on behavior without further testing.\"\n}",
+  "input_tokens": 822,
+  "output_tokens": 346,
+  "latency_ms": 11278.8,
+  "finish_reason": "stop"
+}

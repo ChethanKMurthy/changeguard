@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:10+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it indicates a potential issue with the import statement for the datetime module. The evidence shows that the line numbers are different between the original and modified code.\",\n      \"failure_scenario\": \"A developer uses this function without importing the datetime module, resulting in a NameError.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the audit_timestamp function raises an ImportError when called without importing the datetime module.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect timestamp formatting due to changes in the datetime module. This could lead to issues with data consistency and integrity if not properly tested.\"}",
+  "input_tokens": 649,
+  "output_tokens": 200,
+  "latency_ms": 2753.8,
+  "finish_reason": "stop"
+}

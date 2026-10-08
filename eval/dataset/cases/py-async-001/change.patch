@@ -1,0 +1,14 @@
+diff --git a/src/weather/service.py b/src/weather/service.py
+index 41a86fc..2be8baa 100644
+--- a/src/weather/service.py
++++ b/src/weather/service.py
+@@ -1,7 +1,6 @@
+-import httpx
++import requests
+ 
+ 
+ async def current_temperature(city: str) -> float:
+-    async with httpx.AsyncClient(timeout=5) as client:
+-        response = await client.get(f"https://weather.example.invalid/{city}")
++    response = requests.get(f"https://weather.example.invalid/{city}", timeout=5)
+     return float(response.json()["temp"])

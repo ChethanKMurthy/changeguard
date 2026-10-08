@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:56:48+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fa074633ce\",\n      \"explanation\": \"The removal of `refreshWindow` without updating its references can cause a runtime error when the function is called.\",\n      \"failure_scenario\": \"Calling `refreshWindow(issuedAt)` from `src/auth/guard.ts` will throw an undefined variable error.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure `refreshWindow` is not referenced and has been removed.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change in `shouldRefresh` function\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The behavior of the `shouldRefresh` function may have changed due to the removal of `refreshWindow`, but this is difficult to determine without additional context.\",\n      \"failure_scenario\": \"It's unclear how `shouldRefresh` behaves without knowing the original implementation and its intended logic.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for a runtime error due to the removal of `refreshWindow`. However, there is some uncertainty about the behavior change in `shouldRefresh` without additional context.\"\n}",
+  "input_tokens": 1023,
+  "output_tokens": 357,
+  "latency_ms": 10163.1,
+  "finish_reason": "stop"
+}

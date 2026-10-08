@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:12:01+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2b5b7c2dde\",\n      \"explanation\": \"Disabling TLS verification exposes the application to man-in-the-middle attacks.\",\n      \"failure_scenario\": \"An attacker intercepts and modifies the webhook request, leading to unauthorized actions.\",\n      \"suggested_test\": {\n        \"description\": \"Test that a webhook request fails when TLS verification is enabled.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might have unintended side effects if the function is used in a context where TLS verification is required.\",\n      \"failure_scenario\": \"A critical webhook fails due to unexpected behavior when TLS verification is enabled.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the function behaves as expected with and without TLS verification.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change disables TLS verification, which is a significant security risk. The lack of proper testing for this change increases the likelihood of vulnerabilities being exploited in production.\"\n}",
+  "input_tokens": 838,
+  "output_tokens": 326,
+  "latency_ms": 9417.6,
+  "finish_reason": "stop"
+}

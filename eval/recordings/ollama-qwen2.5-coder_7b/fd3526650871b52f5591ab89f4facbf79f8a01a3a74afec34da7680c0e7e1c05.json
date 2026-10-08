@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:57:01+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function `emailsOf` now assumes all users have an email property, which may not be the case.\",\n      \"failure_scenario\": \"If a user object does not have an email property, calling `emailsOf` will throw an error.\",\n      \"suggested_test\": {\n        \"description\": \"Ensure the function handles missing email properties gracefully.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential logic error by assuming all user objects have an email property. Additional tests are needed to ensure the function handles missing properties gracefully.\"\n}",
+  "input_tokens": 765,
+  "output_tokens": 194,
+  "latency_ms": 5555.7,
+  "finish_reason": "stop"
+}

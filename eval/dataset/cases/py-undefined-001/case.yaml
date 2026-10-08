@@ -1,0 +1,24 @@
+id: py-undefined-001
+title: Import removed while another function still uses it
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: ensure_dir is rewritten with pathlib and `import os` is deleted, but home_config (unchanged) still
+  uses os.
+tags:
+- correctness
+negative: false
+expected:
+- id: L1
+  category: correctness
+  file: src/fileops/paths.py
+  lines:
+  - 11
+  - 11
+  severity: high
+  note: NameError on an unchanged line, introduced by the removed import
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

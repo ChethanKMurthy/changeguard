@@ -1,0 +1,23 @@
+id: py-breaking-001
+title: Removed keyword parameter is still passed by a caller
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: shipping_cost drops its `insured` parameter; checkout_total still passes insured=..., which raises
+  TypeError.
+tags:
+- breaking-change
+- signature
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/shipping/rates.py
+  lines:
+  - 4
+  - 4
+  severity: high
+  note: checkout.py passes the removed keyword `insured`
+acceptable: []

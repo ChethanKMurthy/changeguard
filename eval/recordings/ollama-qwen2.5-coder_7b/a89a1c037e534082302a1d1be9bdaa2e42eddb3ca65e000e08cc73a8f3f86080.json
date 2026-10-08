@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:12:28+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-9407c165c1\",\n      \"explanation\": \"The module `src/core/helpers.py` was moved but is still imported, which could lead to a breaking change if the module is no longer available.\",\n      \"failure_scenario\": \"If `src/core/helpers.py` is deleted or renamed, the import in `src/core/export.py` will fail, causing the application to crash.\",\n      \"suggested_test\": {\n        \"description\": \"Check that importing from `src/core/helpers.py` raises an ImportError if the module does not exist.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might affect the behavior of other modules that rely on `src/core/helpers.py` indirectly.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The most significant risk is the potential breaking change due to the module import. The additional risk of behavior changes should be investigated further based on the dependencies of other modules.\"\n}",
+  "input_tokens": 784,
+  "output_tokens": 335,
+  "latency_ms": 9694.9,
+  "finish_reason": "stop"
+}

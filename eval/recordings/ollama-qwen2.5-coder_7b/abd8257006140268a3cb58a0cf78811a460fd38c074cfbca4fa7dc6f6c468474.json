@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:29:49+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fb9ce2996e\",\n      \"explanation\": \"Exposing a secret (JWT) in code can lead to security breaches.\",\n      \"failure_scenario\": \"If the JWT is used for authentication, an attacker could exploit it.\",\n      \"suggested_test\": {\n        \"description\": \"Check that JWTs are not hardcoded and are securely generated.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-5ec6cf6dd5\",\n      \"explanation\": \"The absence of tests for a modified function can lead to bugs.\",\n      \"failure_scenario\": \"A bug in `admin_token` could cause the application to behave unexpectedly.\",\n      \"suggested_test\": {\n        \"description\": \"Write unit tests for `admin_token` to ensure it returns the correct JWT.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Security: Potential misuse of hardcoded tokens\",\n      \"category\": \"security\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"Even if the JWT is not used in this file, it could be accessed by other parts of the codebase.\",\n      \"failure_scenario\": \"If another part of the code uses the hardcoded token, it can expose sensitive information.\",\n      \"suggested_test\": {\n        \"description\": \"Review all files for potential misuse of `ADMIN_JWT`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E3\"],\n      \"uncertainty\": \"This is a potential risk based on the presence of a hardcoded secret, but it requires further investigation.\"\n    }\n  ],\n  \"overall_assessment\": \"The most significant risk is the exposure of a JWT, which could lead to security breaches. Ensuring that the JWT is not misused in other parts of the codebase is also important.\"\n}",
+  "input_tokens": 931,
+  "output_tokens": 463,
+  "latency_ms": 10505.5,
+  "finish_reason": "stop"
+}

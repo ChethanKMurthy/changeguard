@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:54:34+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e7fc62b2e5\",\n      \"explanation\": \"Assertions are removed from a test, which can lead to incomplete test coverage.\",\n      \"failure_scenario\": \"The `test_slugify_basic` assertion is removed, so any failures in the function will not be caught.\",\n      \"suggested_test\": {\n        \"description\": \"A new test should be added to verify that 'Hello World' slugifies correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-712fb3c746\",\n      \"explanation\": \"A test is disabled with `@pytest.mark.skip`, which can hide potential issues.\",\n      \"failure_scenario\": \"The `test_slugify_unicode` test is skipped, so any failures in handling non-ASCII characters will not be caught.\",\n      \"suggested_test\": {\n        \"description\": \"A new test should be added to verify that 'Café Déjà Vu' slugifies correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change risk\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The removal of assertions and skipping a test could inadvertently introduce behavior changes without being caught by automated tests.\",\n      \"failure_scenario\": \"The function may not behave as expected, but the lack of tests will prevent this from being detected.\",\n      \"suggested_test\": {\n        \"description\": \"A new test should be added to verify the expected behavior of the slugify function with various inputs.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E1\"],\n      \"uncertainty\": \"The evidence does not provide specific details about the expected behavior.\"\n    }\n  ],\n  \"overall_assessment\": \"This change removes assertions and skips a test, which can lead to incomplete test coverage. The absence of these tests increases the risk of undetected behavior changes in the slugify function.\"\n}",
+  "input_tokens": 1067,
+  "output_tokens": 494,
+  "latency_ms": 15142.6,
+  "finish_reason": "stop"
+}

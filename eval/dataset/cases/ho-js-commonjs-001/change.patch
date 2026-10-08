@@ -1,0 +1,15 @@
+diff --git a/src/strings.js b/src/strings.js
+index 21840fc..cef0d6d 100644
+--- a/src/strings.js
++++ b/src/strings.js
+@@ -1,9 +1,5 @@
+-function slugify(value) {
+-  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+-}
+-
+ function titleCase(value) {
+   return value.replace(/\b\w/g, (c) => c.toUpperCase());
+ }
+ 
+-module.exports = { slugify, titleCase };
++module.exports = { titleCase };

@@ -1,0 +1,9 @@
+diff --git a/src/events/model.py b/src/events/model.py
+index 5a618b0..a9ff3fc 100644
+--- a/src/events/model.py
++++ b/src/events/model.py
+@@ -5,3 +5,4 @@
+ class Event:
+     name: str
+     payload: dict
++    occurred_at: float

@@ -1,0 +1,7 @@
+{
+  "id": "review",
+  "version": "1.0.0",
+  "description": "Explain deterministic findings and propose additional risks, citing evidence IDs only.",
+  "created": "2026-10-08",
+  "output_schema": "ReviewOutput"
+}

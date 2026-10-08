@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:33:57+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-8269bd6d30\",\n      \"explanation\": \"Assigning dynamic values to `innerHTML` can lead to XSS attacks if the input is not properly sanitized.\",\n      \"failure_scenario\": \"A malicious user provides a script in the markdown content, which gets executed on the client side.\",\n      \"suggested_test\": {\n        \"description\": \"Test that injecting a script into the Preview component does not execute it.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The evidence does not show changes to the logic of how the component handles events or state transitions.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n     \"uncertainty\": \"The evidence suggests a functional change but does not explicitly indicate changes to logic.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a security risk due to the dynamic assignment of `innerHTML`, which could lead to XSS attacks. Additionally, there is no test coverage for the modified component, increasing the risk of unintended behavior.\"\n}",
+  "input_tokens": 1092,
+  "output_tokens": 322,
+  "latency_ms": 11615.8,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,16 @@
+diff --git a/src/geo/lookup.py b/src/geo/lookup.py
+index 05bc949..1174ae9 100644
+--- a/src/geo/lookup.py
++++ b/src/geo/lookup.py
+@@ -6,9 +6,5 @@
+ 
+ 
+ def country_of(ip: str) -> str | None:
+-    try:
+-        response = requests.get(f"https://geo.example.invalid/{ip}", timeout=2)
+-        return response.json()["country"]
+-    except requests.Timeout:
+-        log.warning("geo lookup timed out for %s", ip)
+-        return None
++    response = requests.get(f"https://geo.example.invalid/{ip}", timeout=2)
++    return response.json()["country"]

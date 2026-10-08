@@ -1,0 +1,25 @@
+id: ho-py-alias-module-001
+title: Keyword removed; caller reaches it through a module alias
+split: holdout
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: tax.compute drops `exempt`; invoice.py calls it as tax.compute(..., exempt=False) via `import billing.tax
+  as tax`.
+tags:
+- breaking-change
+- alias
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/billing/tax.py
+  lines:
+  - 1
+  - 1
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

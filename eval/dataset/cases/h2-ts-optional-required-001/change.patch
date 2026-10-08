@@ -1,0 +1,14 @@
+diff --git a/src/search/query.ts b/src/search/query.ts
+index b6d8830..9292047 100644
+--- a/src/search/query.ts
++++ b/src/search/query.ts
+@@ -2,7 +2,6 @@ export interface SearchOptions {
+   limit: number;
+ }
+ 
+-export function search(term: string, options?: SearchOptions): string[] {
+-  const limit = options?.limit ?? 10;
+-  return [term].slice(0, limit);
++export function search(term: string, options: SearchOptions): string[] {
++  return [term].slice(0, options.limit);
+ }

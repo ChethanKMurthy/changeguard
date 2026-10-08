@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:04:13+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-be76e8ae24\",\n      \"explanation\": \"The high-entropy value assigned to 'PAYMENTS_API_KEY' is a security risk because it can be easily guessed by an attacker.\",\n      \"failure_scenario\": \"An attacker uses a dictionary attack to guess the 'PAYMENTS_API_KEY', allowing them to access sensitive payment information.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the 'PAYMENTS_API_KEY' is not hardcoded and is properly secured.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"F-0964c5dd20\",\n      \"explanation\": \"The lack of tests referencing the `api_key` function can lead to unexpected behavior when the function is called.\",\n      \"failure_scenario\": \"When the `api_key` function is called, it returns a hardcoded value instead of the expected secure API key.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `api_key` function returns a secure API key.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential security vulnerability introduced by the high-entropy value assigned to 'PAYMENTS_API_KEY'. This could lead to unauthorized access to sensitive payment information if not properly secured.\" }",
+  "input_tokens": 971,
+  "output_tokens": 344,
+  "latency_ms": 4971.3,
+  "finish_reason": "stop"
+}

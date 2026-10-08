@@ -1,0 +1,19 @@
+diff --git a/src/ops/config_loader.py b/src/ops/config_loader.py
+index 53abc26..34c1516 100644
+--- a/src/ops/config_loader.py
++++ b/src/ops/config_loader.py
+@@ -1,10 +1,11 @@
+-import json
+ import subprocess
+ 
++import yaml
++
+ 
+ def load_config(text: str) -> dict:
+-    return json.loads(text)
++    return yaml.load(text, Loader=yaml.Loader)
+ 
+ 
+ def archive_logs(directory: str) -> None:
+-    subprocess.run(["tar", "-czf", "logs.tgz", directory], check=True)
++    subprocess.run(f"tar -czf logs.tgz {directory}", shell=True, check=True)

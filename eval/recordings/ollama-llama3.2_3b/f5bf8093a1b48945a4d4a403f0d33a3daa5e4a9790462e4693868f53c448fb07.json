@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:07+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2cd13979f7\",\n      \"explanation\": \"The `send` function's signature has changed, making it incompatible with its previous usage.\",\n      \"failure_scenario\": \"A disk alert is triggered without a subject, causing the alert to be incomplete and potentially misleading.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `disk_alert` function passes all required arguments when called with a valid subject.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-96d094243e\",\n      \"explanation\": \"No tests reference the changed `send` function, making it unclear whether the change is correct.\",\n      \"failure_scenario\": \"A bug is introduced in the `send` function that is not caught by any existing tests.\",\n      \"suggested_test\": {\n        \"description\": \"Test that at least one test references the `send` function after its signature has changed.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"low\",\n      \"uncertainty\": \"possible false positive\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for a logic error in the `send` function, which could be introduced without being caught by existing tests. This requires careful review and testing to ensure that the change does not introduce any new bugs.\"}",
+  "input_tokens": 1157,
+  "output_tokens": 344,
+  "latency_ms": 5021.4,
+  "finish_reason": "stop"
+}

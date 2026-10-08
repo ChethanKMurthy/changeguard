@@ -1,0 +1,8 @@
+diff --git a/db/migrations/V12__cleanup.sql b/db/migrations/V12__cleanup.sql
+new file mode 100644
+index 0000000..5ff0196
+--- /dev/null
++++ b/db/migrations/V12__cleanup.sql
+@@ -0,0 +1,2 @@
++-- Remove the pre-2024 status column.
++ALTER TABLE orders DROP COLUMN legacy_status;

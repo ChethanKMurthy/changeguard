@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:46:06+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-3d7b5fad29\",\n      \"explanation\": \"Changing the default value of `retries` to 1 might lead to increased failure rates in network-related operations.\",\n      \"failure_scenario\": \"If a network request fails, the client will not retry, potentially leading to data loss or incomplete downloads.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the fetch function retries multiple times when it encounters an error.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-561c47e43d\",\n      \"explanation\": \"The absence of tests for the changed `fetch` function could introduce bugs without being caught.\",\n      \"failure_scenario\": \"A bug in the `fetch` function is introduced but not detected during testing, leading to production issues.\",\n      \"suggested_test\": {\n        \"description\": \"Write unit tests for the fetch function with various input scenarios, including network errors and edge cases.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Concurrency Risk\",\n      \"category\": \"concurrency\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change does not affect concurrency directly, but the increased failure rate might impact concurrent operations.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"uncertainty\": \"The evidence does not explicitly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential increase in failure rates, which could affect the reliability of network requests. The lack of tests further increases the risk of undiscovered bugs making it to production.\"\n}",
+  "input_tokens": 1305,
+  "output_tokens": 454,
+  "latency_ms": 16247.8,
+  "finish_reason": "stop"
+}

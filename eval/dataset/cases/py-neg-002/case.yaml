@@ -1,0 +1,14 @@
+id: py-neg-002
+title: Backwards-compatible optional parameter, with a new test
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: truncate gains an optional `ellipsis` parameter; existing callers keep working and a test covers the
+  new option.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

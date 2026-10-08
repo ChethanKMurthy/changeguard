@@ -1,0 +1,10 @@
+diff --git a/src/billing/tax.py b/src/billing/tax.py
+index 7a9bf9e..a9cc880 100644
+--- a/src/billing/tax.py
++++ b/src/billing/tax.py
+@@ -1,4 +1,2 @@
+-def compute(amount: float, region: str, exempt: bool = False) -> float:
+-    if exempt:
+-        return 0.0
++def compute(amount: float, region: str) -> float:
+     return amount * (0.2 if region == "EU" else 0.07)

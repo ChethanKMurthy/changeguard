@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:52:10+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"E2 and E3 do not indicate any logical errors. The code appears to implement the intended functionality.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"There is no evidence of critical risks in this change. The code appears to implement the intended functionality without obvious issues.\"\n}",
+  "input_tokens": 826,
+  "output_tokens": 157,
+  "latency_ms": 4518.0,
+  "finish_reason": "stop"
+}

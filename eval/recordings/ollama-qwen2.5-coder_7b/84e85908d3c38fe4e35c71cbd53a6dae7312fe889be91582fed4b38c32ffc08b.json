@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:13:29+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The logic for calculating the refund amount has changed. This could lead to incorrect calculations if the inputs are not as expected.\",\n      \"failure_scenario\": \"If used_days is less than period_days, the function will return a negative refund amount.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the function returns 0 when used_days is equal to period_days.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential logic error in the refund calculation. The riskiest aspect is that the function's behavior may not be as expected with certain input values.\"\n}",
+  "input_tokens": 664,
+  "output_tokens": 197,
+  "latency_ms": 5884.3,
+  "finish_reason": "stop"
+}

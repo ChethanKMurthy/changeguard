@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:02+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fb9ce2996e\",\n      \"explanation\": \"The code commits a JSON Web Token (`ADMIN_JWT`) without proper validation or sanitization, making it vulnerable to exposure.\",\n      \"failure_scenario\": \"An attacker gains access to the `admin_token` function and returns the exposed token to an unauthorized party.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `admin_token` function checks for valid JSON Web Token formats before returning it.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"F-5ec6cf6dd5\",\n      \"explanation\": \"The change to the `admin_token` function does not include any tests that reference it, making it difficult to ensure its correctness.\",\n      \"failure_scenario\": \"A bug is introduced in the `admin_token` function without being caught by existing tests.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `admin_token` function is referenced by at least one test.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential exposure of sensitive information through the unvalidated JSON Web Token. This could lead to security breaches and unauthorized access to system resources.\" }",
+  "input_tokens": 914,
+  "output_tokens": 342,
+  "latency_ms": 4677.6,
+  "finish_reason": "stop"
+}

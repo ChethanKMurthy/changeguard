@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:58:08+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-51ff1febc4\",\n      \"explanation\": \"Focused tests can lead to missed bugs in other test cases.\",\n      \"failure_scenario\": \"Another test case is skipped, missing a bug that only manifests in non-focused tests.\",\n      \"suggested_test\": {\n        \"description\": \"Run all tests without focusing any one of them to ensure coverage.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"Other test cases might be unintentionally skipped, leading to a false sense of security.\",\n      \"failure_scenario\": \"A bug in another test case is missed because it relies on the non-focused tests to catch it.\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not provide concrete examples of other test cases being skipped.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a risk due to the focused test, which could lead to missed bugs in other test cases. Additional testing without focusing is recommended to ensure comprehensive coverage.\"\n}",
+  "input_tokens": 863,
+  "output_tokens": 322,
+  "latency_ms": 10768.6,
+  "finish_reason": "stop"
+}

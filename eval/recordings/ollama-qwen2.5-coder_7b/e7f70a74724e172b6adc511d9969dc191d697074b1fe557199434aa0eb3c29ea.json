@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:56:15+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-58a9585f81\",\n      \"explanation\": \"The `formatAmount` function now requires a currency argument, which breaks existing call sites that only pass an amount.\",\n      \"failure_scenario\": \"Existing code calling `formatAmount(3)` will fail with an error because it now expects two arguments.\",\n      \"suggested_test\": {\n        \"description\": \"Test that passing one argument to `formatAmount` throws an error\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"Existing logic in calling sites may need to be updated to include a currency argument.\",\n      \"failure_scenario\": \"If existing code is not updated, it could lead to incorrect currency formatting or other unintended behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that calling `formatAmount` with both arguments returns the correct formatted string\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a breaking API, which could disrupt existing functionality. It also requires updating call sites that were previously valid.\"\n}",
+  "input_tokens": 1138,
+  "output_tokens": 332,
+  "latency_ms": 11868.4,
+  "finish_reason": "stop"
+}

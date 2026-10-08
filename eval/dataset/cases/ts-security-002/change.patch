@@ -1,0 +1,13 @@
+diff --git a/src/components/Comment.tsx b/src/components/Comment.tsx
+index bbcecc6..6ce1288 100644
+--- a/src/components/Comment.tsx
++++ b/src/components/Comment.tsx
+@@ -4,7 +4,7 @@ export function Comment({ author, body }: Props) {
+   return (
+     <article>
+       <h4>{author}</h4>
+-      <p>{body}</p>
++      <p dangerouslySetInnerHTML={{ __html: body }} />
+     </article>
+   );
+ }

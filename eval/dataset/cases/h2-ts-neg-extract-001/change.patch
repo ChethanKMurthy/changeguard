@@ -1,0 +1,14 @@
+diff --git a/src/format/price.ts b/src/format/price.ts
+index e851b00..e8b937a 100644
+--- a/src/format/price.ts
++++ b/src/format/price.ts
+@@ -1,4 +1,8 @@
++function toUnits(cents: number): string {
++  return (cents / 100).toFixed(2);
++}
++
+ export function priceLabel(cents: number, currency: string): string {
+-  const units = (cents / 100).toFixed(2);
++  const units = toUnits(cents);
+   return currency === "EUR" ? `${units} €` : `$${units}`;
+ }

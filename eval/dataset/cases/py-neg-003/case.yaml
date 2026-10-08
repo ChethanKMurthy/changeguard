@@ -1,0 +1,14 @@
+id: py-neg-003
+title: Equivalent rewrite of a guard clause
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A conditional expression is rewritten as an early return; behaviour is identical and both functions
+  are tested.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

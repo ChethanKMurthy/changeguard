@@ -1,0 +1,38 @@
+id: json-deps-001
+title: React major upgrade and a removed package that is still imported
+split: dev
+language: json
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: react and react-dom move to v19; date-fns is removed although src/format/dates.ts imports it.
+tags:
+- dependency
+negative: false
+expected:
+- id: L1
+  category: dependency
+  file: package.json
+  lines:
+  - 5
+  - 5
+  severity: medium
+  note: ''
+- id: L2
+  category: dependency
+  file: package.json
+  lines:
+  - 6
+  - 6
+  severity: medium
+  note: ''
+- id: L3
+  category: dependency
+  file: package.json
+  lines:
+  - 7
+  - 7
+  severity: high
+  side: base
+  note: ''
+acceptable: []

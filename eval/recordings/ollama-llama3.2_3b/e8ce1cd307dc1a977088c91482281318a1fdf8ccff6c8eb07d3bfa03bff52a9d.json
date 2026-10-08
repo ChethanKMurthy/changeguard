@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:04:54+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-58a9585f81\",\n      \"explanation\": \"The `formatAmount` function now requires a `currency` argument, which was not present in its previous version.\",\n      \"failure_scenario\": \"A user passes only the `amount` argument to `cartLabel`, causing it to return an incorrect total value.\",\n      \"suggested_test\": {\n        \"description\": \"Test that `formatAmount` fails when called with only one argument.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\", \"E4\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect formatting of currency symbols, which could lead to user confusion or financial losses. Additionally, the change may introduce new errors if not thoroughly tested and validated.\" }",
+  "input_tokens": 1096,
+  "output_tokens": 215,
+  "latency_ms": 3717.9,
+  "finish_reason": "stop"
+}

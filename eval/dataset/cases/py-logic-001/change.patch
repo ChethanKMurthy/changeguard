@@ -1,0 +1,12 @@
+diff --git a/src/loans/eligibility.py b/src/loans/eligibility.py
+index d4f90d7..2982798 100644
+--- a/src/loans/eligibility.py
++++ b/src/loans/eligibility.py
+@@ -2,6 +2,6 @@
+ 
+ 
+ def is_eligible(credit_score: int, income: float, debt: float) -> bool:
+-    if credit_score > MIN_SCORE and debt / max(income, 1.0) < 0.4:
++    if credit_score >= MIN_SCORE and debt / max(income, 1.0) <= 0.4:
+         return True
+     return False

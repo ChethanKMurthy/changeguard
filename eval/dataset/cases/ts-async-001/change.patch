@@ -1,0 +1,15 @@
+diff --git a/src/jobs/sync.ts b/src/jobs/sync.ts
+index 35c647a..aef984f 100644
+--- a/src/jobs/sync.ts
++++ b/src/jobs/sync.ts
+@@ -1,8 +1,8 @@
+ import { saveRecord } from "./store";
+ 
+ export async function syncAll(records: string[]): Promise<number> {
+-  for (const record of records) {
++  records.forEach(async (record) => {
+     await saveRecord(record);
+-  }
++  });
+   return records.length;
+ }

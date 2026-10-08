@@ -1,0 +1,25 @@
+id: py-breaking-003
+title: Method gains a required parameter; internal and external callers not updated
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: reserve_units now requires `warehouse`; reserve_bundle (self call) and orders.place_order (instance
+  call) still pass two arguments.
+tags:
+- breaking-change
+- method
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/inventory/stock.py
+  lines:
+  - 5
+  - 5
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

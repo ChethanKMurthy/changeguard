@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:13:35+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The evidence does not provide enough context to determine if the logic of the function has changed in a way that could affect its behavior.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"The evidence does not provide enough context to determine if the logic of the function has changed in a way that could affect its behavior.\"\n    }\n  ],\n  \"overall_assessment\": \"The change appears to be a simple refactoring without any apparent impact on functionality. However, the lack of deterministic findings suggests there might be underlying issues that are not immediately obvious from the provided evidence.\"\n}",
+  "input_tokens": 697,
+  "output_tokens": 197,
+  "latency_ms": 6368.9,
+  "finish_reason": "stop"
+}

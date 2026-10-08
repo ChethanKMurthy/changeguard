@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:02:37+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-eb81146f2b\",\n      \"explanation\": \"This finding matters because it indicates a potential security vulnerability in the `recentCommits` function. If an attacker can manipulate the `branch` parameter, they could execute arbitrary shell commands.\",\n      \"failure_scenario\": \"An attacker passes a malicious branch name to the `recentCommits` function, causing it to execute a command that installs malware on the system.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `recentCommits` function correctly handles invalid input parameters.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-a60f806896\",\n      \"explanation\": \"This finding matters because it indicates that the `recentCommits` function is not properly tested. Without tests, we cannot be confident that the function behaves correctly in all scenarios.\",\n      \"failure_scenario\": \"The `recentCommits` function returns incorrect results when given a specific input parameter.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `recentCommits` function returns correct results for different input parameters.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"low\",\n      \"uncertainty\": \"indirect\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential security vulnerability in the `recentCommits` function, which could be exploited by an attacker to execute arbitrary commands. The lack of tests for this function also increases the likelihood that the bug will go undetected and cause problems downstream.\"}",
+  "input_tokens": 987,
+  "output_tokens": 383,
+  "latency_ms": 5276.5,
+  "finish_reason": "stop"
+}

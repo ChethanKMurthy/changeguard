@@ -1,0 +1,13 @@
+id: h2-py-neg-validation-001
+title: Input validation added with a matching test
+split: holdout-v2
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A guard rejects non-positive amounts and a new test covers it.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

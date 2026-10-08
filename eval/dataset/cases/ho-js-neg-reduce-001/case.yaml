@@ -1,0 +1,13 @@
+id: ho-js-neg-reduce-001
+title: Loop rewritten with reduce
+split: holdout
+language: javascript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Equivalent rewrite of a tested function.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []

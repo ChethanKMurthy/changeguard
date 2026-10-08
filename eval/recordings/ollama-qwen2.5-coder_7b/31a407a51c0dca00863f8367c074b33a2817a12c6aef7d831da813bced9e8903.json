@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:09:22+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The addition of an empty lines between imports and function definition might be a formatting change without altering the logic.\",\n      \"failure_scenario\": \"\",\n      \"suggested_test\": {\n        \"description\": \"\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not provide enough context to determine if this is a logical change.\"\n    }\n  ],\n  \"overall_assessment\": \"The change appears to be minor formatting adjustments without altering the logic or behavior of the function. However, there is uncertainty about its impact due to the lack of deterministic findings.\"\n}",
+  "input_tokens": 648,
+  "output_tokens": 179,
+  "latency_ms": 4907.8,
+  "finish_reason": "stop"
+}

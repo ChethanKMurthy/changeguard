@@ -1,0 +1,12 @@
+diff --git a/src/clients/admin.py b/src/clients/admin.py
+index 82c66e7..633c68b 100644
+--- a/src/clients/admin.py
++++ b/src/clients/admin.py
+@@ -1,5 +1,5 @@
+-import os
++ADMIN_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzZXJ2aWNlLWFjY291bnQiLCJyb2xlIjoiYWRtaW4ifQ.c2lnbmF0dXJlLXBsYWNlaG9sZGVyLW5vdC1yZWFs"
+ 
+ 
+ def admin_token() -> str:
+-    return os.environ["ADMIN_JWT"]
++    return ADMIN_JWT

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:50:40+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-6d6a691111\",\n      \"explanation\": \"Changing `>` to `>=` and `<` to `<=` could alter the decision boundary, potentially accepting more or fewer applications than intended.\",\n      \"failure_scenario\": \"A customer with a credit score just above the minimum but slightly below the previous threshold might now be incorrectly denied a loan.\",\n      \"suggested_test\": {\"description\": \"Test edge cases around the new thresholds\", \"code\": \"assert not is_eligible(MIN_SCORE - 1, 100000, 500)\\nassert is_eligible(MIN_SCORE, 100000, 500)\\nassert is_eligible(MIN_SCORE + 1, 100000, 500)\"},\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change in logic could lead to subtle differences in application outcomes, impacting user experience and expectations.\",\n      \"failure_scenario\": \"Users might perceive a less predictable loan approval process due to the new thresholds.\",\n      \"suggested_test\": {\"description\": \"Compare approval rates before and after the change\", \"code\": \"old_approvals = sum(is_eligible(score, income, debt) for score, income, debt in old_data)\\nnew_approvals = sum(is_eligible(score, income, debt) for score, income, debt in new_data)\\nassert abs(old_approvals - new_approvals) < 10\" },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n    \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The change increases the risk of subtle behavior changes affecting user perception and expectations. It also introduces a potential logic error that could be caught with specific edge-case tests.\"\n}",
+  "input_tokens": 904,
+  "output_tokens": 464,
+  "latency_ms": 15037.4,
+  "finish_reason": "stop"
+}

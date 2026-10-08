@@ -1,0 +1,23 @@
+id: h2-py-timeout-handling-001
+title: Timeout handling removed from a network lookup
+split: holdout-v2
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A slow geo service now raises requests.Timeout into every request handler that calls country_of.
+tags:
+- error-handling
+negative: false
+expected:
+- id: L1
+  category: error_handling
+  file: src/geo/lookup.py
+  lines:
+  - 8
+  - 8
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

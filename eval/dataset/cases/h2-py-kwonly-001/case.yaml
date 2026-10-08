@@ -1,0 +1,24 @@
+id: h2-py-kwonly-001
+title: Parameter made keyword-only; a caller passes it positionally
+split: holdout-v2
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: '`subject` moves behind `*`; disk_alert still passes it positionally (TypeError).'
+tags:
+- breaking-change
+- keyword-only
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/mail/sender.py
+  lines:
+  - 1
+  - 1
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

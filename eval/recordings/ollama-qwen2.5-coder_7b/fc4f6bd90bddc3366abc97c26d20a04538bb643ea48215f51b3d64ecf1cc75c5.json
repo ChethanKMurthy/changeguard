@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:40:28+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-c757f993e6\",\n      \"explanation\": \"The lack of tests for the modified `verify` function can lead to undetected bugs.\",\n      \"failure_scenario\": \"A security vulnerability is introduced without being caught by any test, potentially exposing the application to attacks.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test to verify that the `verify` function correctly authenticates a valid password.\",\n        \"code\": \"def test_verify_accepts_correct_password():\\n    salt = b'salt'\\n    expected = hashlib.pbkdf2_hmac('sha256', b'pw', salt, 100_000)\\n    assert verify('pw', salt, expected)\"\n      },\n      \"evidence_ids\": [\"E2\", \"E3\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The number of iterations in the password hashing process has been reduced from 200,000 to 100,000. This may affect the security of the application.\",\n      \"failure_scenario\": \"A user with a weak password could potentially bypass the authentication due to fewer hash iterations.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test that verifies the `verify` function is not vulnerable to brute-force attacks by attempting many incorrect passwords.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a risk of security vulnerabilities due to the lack of tests, and potentially impacts authentication strength. Careful testing is needed to ensure these risks are mitigated.\"\n}",
+  "input_tokens": 1177,
+  "output_tokens": 423,
+  "latency_ms": 14695.6,
+  "finish_reason": "stop"
+}

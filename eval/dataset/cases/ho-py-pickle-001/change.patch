@@ -1,0 +1,12 @@
+diff --git a/src/api/session_store.py b/src/api/session_store.py
+index e7877c6..4847ff3 100644
+--- a/src/api/session_store.py
++++ b/src/api/session_store.py
+@@ -1,5 +1,5 @@
+-import json
++import pickle
+ 
+ 
+ def decode_session(blob: bytes) -> dict:
+-    return json.loads(blob.decode("utf-8"))
++    return pickle.loads(blob)

@@ -1,0 +1,25 @@
+id: ho-py-dataclass-001
+title: Dataclass gains a required field; constructor calls not updated
+split: holdout
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Event gets a required `occurred_at` field; user_signed_up still constructs Event with two arguments.
+tags:
+- breaking-change
+- dataclass
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/events/model.py
+  lines:
+  - 5
+  - 5
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: 'changed code without a directly related test (secondary observation). Label correction after the first
+    holdout run: this entry was omitted when the case was written (LABELING.md section 4).'

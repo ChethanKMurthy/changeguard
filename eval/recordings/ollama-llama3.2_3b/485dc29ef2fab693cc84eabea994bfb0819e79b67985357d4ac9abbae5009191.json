@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:04:39+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-e7307c11e9\",\n      \"explanation\": \"The `os` name is undefined in the `home_config` function, which could lead to a runtime error when trying to expand the user's home directory.\",\n      \"failure_scenario\": \"If the `ensure_dir` function is called with an invalid path, it will create a directory with the wrong permissions, leading to unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `home_config` function returns a valid Path object when given a valid user home directory.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-41bddf9ca6\",\n      \"explanation\": \"The `ensure_dir` function is not tested, which could lead to issues when this function is called in a different context.\",\n      \"failure_scenario\": \"If the `ensure_dir` function is called with an invalid path, it will create a directory with the wrong permissions, leading to unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `ensure_dir` function returns a valid Path object when given a valid user home directory.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for a runtime error due to an undefined name in the `home_config` function. This could lead to unexpected behavior and errors in the application.\"}",
+  "input_tokens": 1047,
+  "output_tokens": 373,
+  "latency_ms": 5512.4,
+  "finish_reason": "stop"
+}

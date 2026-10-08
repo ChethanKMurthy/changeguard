@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:39:49+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Incorrect calculation of unused ratio\",\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"confidence\": \"low\",\n      \"description\": \"The code attempts to calculate the unused ratio by subtracting 'period_days' from 'used_days', which may lead to incorrect results if 'used_days' is less than or equal to 'period_days'. This could result in a division by zero error or an incorrect refund amount.\",\n      \"failure_scenario\": \"If 'used_days' is 30 and 'period_days' is also 30, the function will return a negative ratio (-1.0), leading to an incorrect refund calculation.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the function returns the correct refund amount when used_days is less than or equal to period_days.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces a potential issue with the calculation of the unused ratio, which could lead to incorrect refund amounts. This is particularly risky because it does not have direct evidence supporting more severe issues like data corruption or security vulnerabilities.\"\n}",
+  "input_tokens": 664,
+  "output_tokens": 270,
+  "latency_ms": 8618.6,
+  "finish_reason": "stop"
+}

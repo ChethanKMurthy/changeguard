@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:34:44+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The return type of the 'total' function may not be as expected, potentially causing issues if used in a context that expects a number.\",\n      \"failure_scenario\": \"If the returned value is converted to a boolean, it could result in unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Check if the function returns a number when given an array of numbers.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"The evidence does not directly indicate the return type, but it's plausible.\"\n    }\n  ],\n  \"overall_assessment\": \"This change might introduce subtle logic issues that could be difficult to detect without proper tests. There is a low risk of breaking changes if downstream code expects a specific type from this function.\"\n}",
+  "input_tokens": 633,
+  "output_tokens": 218,
+  "latency_ms": 6053.0,
+  "finish_reason": "stop"
+}

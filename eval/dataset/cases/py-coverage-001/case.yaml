@@ -1,0 +1,22 @@
+id: py-coverage-001
+title: New branch never executed by the test suite
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A members-only summer discount is added; the uploaded coverage report shows the new return statement
+  never runs.
+tags:
+- coverage
+negative: false
+expected:
+- id: L1
+  category: coverage_gap
+  file: src/billing/discounts.py
+  lines:
+  - 5
+  - 5
+  severity: low
+  note: ''
+acceptable: []

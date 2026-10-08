@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:57:15+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f2bbc247f2\",\n      \"explanation\": \"Dynamic assignment to `innerHTML` can lead to XSS vulnerabilities.\",\n      \"failure_scenario\": \"An attacker can inject malicious HTML into the banner, potentially stealing user data or executing scripts.\",\n      \"suggested_test\": {\n        \"description\": \"Test that injecting a script tag into the message does not execute it.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-26d113b880\",\n      \"explanation\": \"Lack of tests for modified functions can lead to regressions.\",\n      \"failure_scenario\": \"A change in `renderBanner` might break existing functionality without being noticed.\",\n      \"suggested_test\": {\n        \"description\": \"Write unit tests that cover the new behavior of `renderBanner`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change Risk\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change in `renderBanner` might have unintended side effects that are not easily testable.\",\n      \"failure_scenario\": \"New behavior may cause issues when used in conjunction with other components or in different contexts.\",\n      \"suggested_test\": {\n        \"description\": \"Integrate tests with other parts of the application to ensure compatibility.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces security and behavior risks due to dynamic content rendering and untested modifications. Immediate attention should be given to addressing these concerns through appropriate tests and reviews.\"\n}",
+  "input_tokens": 965,
+  "output_tokens": 437,
+  "latency_ms": 14318.3,
+  "finish_reason": "stop"
+}

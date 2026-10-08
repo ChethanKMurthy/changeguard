@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:45:50+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-fa696591a2\",\n      \"explanation\": \"The function `current_temperature` lacks tests, which could lead to undetected bugs in production.\",\n      \"failure_scenario\": \"A regression is introduced, causing incorrect temperature readings without any automated detection.\",\n      \"suggested_test\": {\n        \"description\": \"A simple test to check if the function returns the correct temperature for a known city.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-18ba4f1f71\",\n      \"explanation\": \"Async function `current_temperature` calls a blocking HTTP method, which can lead to performance issues.\",\n      \"failure_scenario\": \"The application becomes unresponsive due to the synchronous execution of an asynchronous function.\",\n      \"suggested_test\": {\n        \"description\": \"A test that measures the time taken by the function and ensures it does not exceed a certain threshold.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Concurrency Risk\",\n      \"category\": \"concurrency\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The function may interfere with other asynchronous operations due to blocking behavior.\",\n      \"failure_scenario\": \"A race condition is introduced, causing unexpected behavior or crashes in concurrent requests.\",\n      \"suggested_test\": {\n        \"description\": \"A test that simulates multiple concurrent calls and checks if they are handled correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not explicitly confirm this risk, but it's a common issue with blocking HTTP calls in async functions.\"\n    }\n  ],\n  \"overall_assessment\": \"The change introduces significant risks due to missing tests and potential concurrency issues. Immediate attention is needed to address these concerns.\"\n}",
+  "input_tokens": 1038,
+  "output_tokens": 461,
+  "latency_ms": 13243.7,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,21 @@
+id: h2-sql-rename-column-001
+title: Column renamed while queries still use the old name
+split: holdout-v2
+language: sql
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: users.fullname becomes display_name; directory.display_names still selects fullname.
+tags:
+- migration
+negative: false
+expected:
+- id: L1
+  category: data_migration
+  file: db/migrations/0004_rename_fullname.sql
+  lines:
+  - 1
+  - 1
+  severity: high
+  note: ''
+acceptable: []

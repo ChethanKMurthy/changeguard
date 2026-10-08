@@ -1,0 +1,26 @@
+# Render Blueprint for the ChangeGuard engine (free plan).
+# The web app is deployed separately (Vercel Hobby); see docs/DEPLOYMENT.md.
+#
+# Free-plan caveats: the service sleeps when idle (first request after a pause
+# is slow) and its disk is ephemeral, so stored reports are lost on restart.
+services:
+  - type: web
+    name: changeguard-engine
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      # Shared secret with the web app's proxy. Copy the generated value into the
+      # web app's CHANGEGUARD_API_KEY.
+      - key: CHANGEGUARD_API_KEYS
+        generateValue: true
+      # Rate limits apply per original client, as forwarded by the web app.
+      - key: CHANGEGUARD_TRUST_PROXY_HEADERS
+        value: "true"
+      - key: CHANGEGUARD_EXPOSE_DOCS
+        value: "false"
+      - key: CHANGEGUARD_AI_PROVIDER
+        value: none

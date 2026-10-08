@@ -1,0 +1,30 @@
+id: py-test-001
+title: A failing test is skipped and an assertion deleted
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Instead of fixing slugify for accented input, the unicode test is skipped and an assertion is removed
+  from the basic test.
+tags:
+- test-integrity
+negative: false
+expected:
+- id: L1
+  category: test_integrity
+  file: tests/test_slug.py
+  lines:
+  - 10
+  - 10
+  severity: medium
+  note: ''
+- id: L2
+  category: test_integrity
+  file: tests/test_slug.py
+  lines:
+  - 6
+  - 6
+  severity: medium
+  note: one assertion removed
+acceptable: []

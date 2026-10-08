@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:23:07+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-f2bbc247f2\",\n      \"explanation\": \"Directly assigning user input to `innerHTML` can lead to XSS attacks.\",\n      \"failure_scenario\": \"An attacker provides a malicious script as the message, which is rendered and executed by the browser.\",\n      \"suggested_test\": {\n        \"description\": \"Test that rendering a malicious message does not execute any scripts.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-26d113b880\",\n      \"explanation\": \"Lack of tests for modified functions can lead to regressions.\",\n      \"failure_scenario\": \"A change in `renderBanner` breaks existing functionality without being detected.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test that verifies the banner renders correctly with various messages.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change may introduce new logic that is not thoroughly tested.\",\n      \"failure_scenario\": \"The banner renders incorrectly for certain messages due to unexpected behavior in the new logic.\",\n      \"suggested_test\": {\n        \"description\": \"Test edge cases and complex scenarios with `renderBanner`.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a security risk due to the direct assignment of user input to `innerHTML`, which could lead to XSS attacks. Additionally, it lacks tests, increasing the risk of regressions and undetected issues.\"\n}",
+  "input_tokens": 965,
+  "output_tokens": 440,
+  "latency_ms": 14216.6,
+  "finish_reason": "stop"
+}

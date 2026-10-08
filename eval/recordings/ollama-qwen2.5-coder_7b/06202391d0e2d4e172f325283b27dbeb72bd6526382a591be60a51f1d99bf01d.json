@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:53:51+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-2ad035bd3c\",\n      \"explanation\": \"SQL injection vulnerability through string-based query construction can lead to unauthorized data access.\",\n      \"failure_scenario\": \"An attacker could input malicious SQL code as a user ID, potentially retrieving or manipulating all user data.\",\n      \"suggested_test\": {\n        \"description\": \"Test SQL injection prevention by passing a crafted user ID that should fail if vulnerable.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-63909c0fd4\",\n      \"explanation\": \"Lack of tests for a modified function can lead to undetected bugs in future changes.\",\n      \"failure_scenario\": \"Future bug fixes or new features could break the `find_user` function without anyone noticing.\",\n      \"suggested_test\": {\n        \"description\": \"Write unit tests for the `find_user` function to ensure it behaves as expected with various inputs.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The function signature has changed, which might break calling code that relies on the old signature.\",\n      \"failure_scenario\": \"Calling code may not handle the new return type or parameters correctly, leading to runtime errors.\",\n      \"suggested_test\": {\n        \"description\": \"Update any calling code to use the new `find_user` function signature and verify it continues to work as expected.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a high-risk SQL injection vulnerability due to string-based query construction. The lack of tests for the modified function increases the risk of undetected bugs in future changes.\"\n}",
+  "input_tokens": 1058,
+  "output_tokens": 467,
+  "latency_ms": 15543.1,
+  "finish_reason": "stop"
+}

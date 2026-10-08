@@ -1,0 +1,13 @@
+diff --git a/src/math/round.test.ts b/src/math/round.test.ts
+index 945efe3..dec45ea 100644
+--- a/src/math/round.test.ts
++++ b/src/math/round.test.ts
+@@ -1,7 +1,7 @@
+ import { roundTo } from "./round";
+ 
+ describe("roundTo", () => {
+-  it("rounds to two places", () => {
++  it.only("rounds to two places", () => {
+     expect(roundTo(1.005, 2)).toBe(1);
+   });
+ 

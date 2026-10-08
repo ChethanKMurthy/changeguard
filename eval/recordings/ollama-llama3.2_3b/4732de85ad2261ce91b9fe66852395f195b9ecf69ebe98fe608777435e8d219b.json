@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:46+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it indicates a potential calculation error in the `refund_amount` function. The unused ratio is calculated incorrectly, which could lead to incorrect refunds.\",\n      \"failure_scenario\": \"A customer is refunded an amount that is less than expected due to the incorrect calculation of the unused ratio.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the refund amount is calculated correctly for different input values.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential calculation error in the `refund_amount` function, which could lead to incorrect refunds. This finding highlights the need for careful review and testing of the code changes to ensure their correctness.\"}",
+  "input_tokens": 667,
+  "output_tokens": 207,
+  "latency_ms": 2925.8,
+  "finish_reason": "stop"
+}

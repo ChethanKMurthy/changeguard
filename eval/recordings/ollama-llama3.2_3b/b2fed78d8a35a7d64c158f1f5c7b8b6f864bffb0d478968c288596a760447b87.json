@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:05:03+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it indicates a potential issue with the import statement in src/services/directory.ts. The diff hunk shows that the import statement has been modified, which could lead to unexpected behavior.\",\n      \"failure_scenario\": \"A developer uses this function without checking the import statement, leading to an error when trying to access the UserProfile type.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the import statement in src/services/directory.ts is correct and does not throw any errors.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    },\n    {\n      \"finding_id\": \"E2\",\n      \"explanation\": \"This finding matters because it indicates a potential issue with the definition of the UserProfile interface in src/types/user.ts. The diff hunk shows that the interface has been modified, which could lead to unexpected behavior.\",\n      \"failure_scenario\": \"A developer uses this interface without checking its definition, leading to an error when trying to access its properties.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the definition of the UserProfile interface in src/types/user.ts is correct and does not throw any errors.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for logic errors due to changes in the import statements and interface definitions. This could lead to unexpected behavior and errors in the codebase if not properly tested and reviewed.\" }",
+  "input_tokens": 766,
+  "output_tokens": 375,
+  "latency_ms": 5374.8,
+  "finish_reason": "stop"
+}

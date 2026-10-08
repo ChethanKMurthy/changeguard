@@ -1,0 +1,32 @@
+id: py-security-001
+title: Unsafe YAML loading and a shell command built from input
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Config parsing switches to yaml.load with the full Loader, and log archiving interpolates a directory
+  into a shell command.
+tags:
+- security
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/ops/config_loader.py
+  lines:
+  - 7
+  - 7
+  severity: high
+  note: ''
+- id: L2
+  category: security
+  file: src/ops/config_loader.py
+  lines:
+  - 11
+  - 11
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

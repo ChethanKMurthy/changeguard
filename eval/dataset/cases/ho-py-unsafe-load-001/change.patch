@@ -1,0 +1,10 @@
+diff --git a/src/ops/manifest.py b/src/ops/manifest.py
+index 48db887..4b76e56 100644
+--- a/src/ops/manifest.py
++++ b/src/ops/manifest.py
+@@ -2,4 +2,4 @@
+ 
+ 
+ def read_manifest(text: str) -> dict:
+-    return yaml.safe_load(text)
++    return yaml.unsafe_load(text)

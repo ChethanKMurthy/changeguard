@@ -1,0 +1,27 @@
+id: h2-py-flask-debug-001
+title: Flask debug mode enabled on all interfaces
+split: holdout-v2
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: The Werkzeug debugger (remote code execution by design) is exposed on every interface.
+tags:
+- security
+- configuration
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/web/server.py
+  lines:
+  - 12
+  - 12
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)
+- category: configuration
+  file: src/web/server.py
+  note: binding to all interfaces

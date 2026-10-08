@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:02:32+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-ea57b781d9\",\n      \"explanation\": \"The condition in the while loop has been changed from `<` to `<=`, which could lead to incorrect results if the maximum attempts is not an integer.\",\n      \"failure_scenario\": \"If maxAttempts is a float, the loop will run indefinitely because 0.5 <= 1.5 is true.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the function withRetry throws an error when maxAttempts is a non-integer\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The change introduces a potential logic error that could lead to incorrect results. The riskiest aspect of this change is the lack of testing for non-integer values of maxAttempts, which could result in unexpected behavior.\" }",
+  "input_tokens": 811,
+  "output_tokens": 221,
+  "latency_ms": 3237.6,
+  "finish_reason": "stop"
+}

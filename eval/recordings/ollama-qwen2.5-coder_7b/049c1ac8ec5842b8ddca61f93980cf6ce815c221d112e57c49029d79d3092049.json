@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:19:26+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-6d6a691111\",\n      \"explanation\": \"Changing `>` to `>=` and `<` to `<=` alters the logic, potentially including more applicants who might not have been eligible before.\",\n      \"failure_scenario\": \"A customer with a credit score just above MIN_SCORE and debt/income ratio slightly below 0.4 could be incorrectly denied eligibility.\",\n      \"suggested_test\": {\n        \"description\": \"Test that a customer just above the minimum credit score and within the debt threshold is still eligible.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change might affect the behavior of the system in edge cases, which could be difficult to detect without comprehensive testing.\",\n      \"failure_scenario\": \"Edge cases where credit scores and debt/income ratios are very close to thresholds might not behave as expected.\",\n      \"suggested_test\": {\n        \"description\": \"Test edge cases around MIN_SCORE and debt threshold limits.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"uncertainty\": \"The evidence does not directly support this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The change alters the logic of eligibility criteria, which could lead to unexpected behavior. It is crucial to thoroughly test edge cases around the new thresholds to ensure correctness.\"\n}",
+  "input_tokens": 904,
+  "output_tokens": 369,
+  "latency_ms": 12038.3,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:23:33+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-51ff1febc4\",\n      \"explanation\": \"Focused tests can lead to incomplete coverage and false confidence.\",\n      \"failure_scenario\": \"The test only runs one scenario, missing other possible edge cases.\",\n      \"suggested_test\": {\n        \"description\": \"Add a test for rounding down with more decimal places.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The test only checks one specific case, which might not cover all logic paths.\",\n      \"failure_scenario\": \"Other rounding scenarios are not tested, potentially introducing bugs.\",\n      \"suggested_test\": {\n        \"description\": \"Add tests for different rounding scenarios and edge cases.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"overall_assessment\": \"The focused test increases the risk of missing other important scenarios, which could lead to undetected bugs. Additional tests are needed to ensure comprehensive coverage.\"\n}",
+  "input_tokens": 863,
+  "output_tokens": 290,
+  "latency_ms": 9634.7,
+  "finish_reason": "stop"
+}

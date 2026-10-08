@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:51:14+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-14bb971a7d\",\n      \"explanation\": \"Changing a boundary constant can lead to off-by-one errors, affecting how pages are calculated.\",\n      \"failure_scenario\": \"If `total` is 5 and `page_size` is 2, the loop will not include the last page (3-4). This may cause data loss or incorrect pagination display.\",\n      \"suggested_test\": {\n        \"description\": \"Verify pagination works correctly for edge cases including total pages that are not multiples of page size.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Off-by-one errors in pagination logic\",\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The change could introduce off-by-one errors that are not immediately obvious.\",\n      \"failure_scenario\": \"Edge cases where `total` is one less than a multiple of `page_size`. The last page might be skipped or incorrectly calculated.\",\n      \"suggested_test\": {\n        \"description\": \"Test pagination with various edge cases, such as total pages equal to 1 and odd multiples of page size.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"uncertainty\": \"The evidence does not directly indicate off-by-one errors.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a potential logic error in pagination, which could lead to data loss or incorrect display. It requires thorough testing of edge cases to ensure correctness.\"\n}",
+  "input_tokens": 841,
+  "output_tokens": 378,
+  "latency_ms": 10906.2,
+  "finish_reason": "stop"
+}

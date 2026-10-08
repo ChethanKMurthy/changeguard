@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:51+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it highlights a potential issue with the diff hunk analysis. The code modification in line 2 could lead to incorrect results if not handled properly.\",\n      \"failure_scenario\": \"A user passes an array of negative numbers to the total function, causing the sum to become negative.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the total function handles negative numbers correctly.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect results due to the diff hunk analysis. This could lead to downstream issues in the application, making it essential to thoroughly test and review the code changes.\"}",
+  "input_tokens": 636,
+  "output_tokens": 201,
+  "latency_ms": 2745.9,
+  "finish_reason": "stop"
+}

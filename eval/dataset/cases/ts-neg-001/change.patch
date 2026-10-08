@@ -1,0 +1,22 @@
+diff --git a/src/services/directory.ts b/src/services/directory.ts
+index 72821b9..2d8cbe7 100644
+--- a/src/services/directory.ts
++++ b/src/services/directory.ts
+@@ -1,5 +1,5 @@
+-import type { UserRecord } from "../types/user";
++import type { UserProfile } from "../types/user";
+ 
+-export function emailsOf(users: UserRecord[]): string[] {
++export function emailsOf(users: UserProfile[]): string[] {
+   return users.map((u) => u.email);
+ }
+diff --git a/src/types/user.ts b/src/types/user.ts
+index 269e3f0..a45f50f 100644
+--- a/src/types/user.ts
++++ b/src/types/user.ts
+@@ -1,4 +1,4 @@
+-export interface UserRecord {
++export interface UserProfile {
+   id: string;
+   email: string;
+ }

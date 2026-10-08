@@ -1,0 +1,1750 @@
+{
+  "schema_version": "1.0",
+  "analysis_id": "sample-billing-refactor",
+  "created_at": "2026-10-08T00:00:00Z",
+  "title": "Sample: A pricing refactor that quietly breaks its callers",
+  "engine_version": "0.1.0",
+  "ruleset_version": "2026.10.4",
+  "input": {
+    "patch_sha256": "fe973e6e9b1a9ae7889f6ca2cd027c8dd71000f4110b3b8a0a03b3e916227590",
+    "patch_format": "git",
+    "subject": null,
+    "mode": "full_context",
+    "has_snapshot": true,
+    "snapshot": {
+      "files": 6,
+      "bytes": 2367,
+      "root_prefix": null,
+      "skipped": {},
+      "format": "zip"
+    },
+    "has_coverage": true,
+    "coverage_format": "cobertura"
+  },
+  "summary": {
+    "files_changed": 3,
+    "additions": 24,
+    "deletions": 5,
+    "languages": [
+      "Python"
+    ],
+    "findings_total": 13,
+    "by_severity": {
+      "high": 2,
+      "medium": 9,
+      "low": 2
+    },
+    "by_kind": {
+      "deterministic": 9,
+      "heuristic": 4
+    },
+    "by_category": {
+      "breaking_change": 1,
+      "correctness": 1,
+      "coverage_gap": 4,
+      "concurrency": 1,
+      "error_handling": 1,
+      "test_gap": 3,
+      "logic_change": 1,
+      "debug_artifact": 1
+    },
+    "review_priority": {
+      "level": "high",
+      "rationale": "2 high-severity deterministic or heuristic finding(s).",
+      "triggered_by": [
+        "F-234110d7c5",
+        "F-b7dec13b21"
+      ]
+    },
+    "changed_symbols": 5,
+    "breaking_symbols": 1,
+    "symbols_with_tests": 2,
+    "testable_symbols": 5,
+    "patch_coverage": {
+      "covered": 4,
+      "executable": 19,
+      "percent": 21.1
+    }
+  },
+  "findings": [
+    {
+      "id": "F-234110d7c5",
+      "rule_id": "CG-API-001",
+      "category": "breaking_change",
+      "kind": "deterministic",
+      "title": "2 call site(s) incompatible with new signature of `format_price`",
+      "description": "`format_price` changed (parameter `currency` removed; required parameter `locale` added). 2 of 3 call site(s) in the repository no longer match the new signature.",
+      "severity": "high",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 16,
+        "end_line": 16,
+        "side": "head",
+        "symbol": "format_price"
+      },
+      "evidence_ids": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "failure_scenario": "src/billing/invoice.py:9 still calls `format_price` the old way: it passes unexpected keyword argument `currency`. Python raises TypeError when that line runs.",
+      "suggested_test": {
+        "description": "Update the incompatible callers, then add a regression test that calls `format_price` the way those callers do.",
+        "kind": "regression",
+        "code": "from billing.pricing import format_price\n\n\ndef test_format_price_matches_callers():\n    # mirror the argument shape used at the call sites listed in the evidence\n    result = format_price(amount=..., locale=...)\n    assert result == ...  # expected value for these inputs",
+        "language": "python",
+        "source": "template"
+      },
+      "explanation": {
+        "text": "A caller still uses the old calling convention. In Python this raises TypeError at call time; in TypeScript it fails compilation.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "format_price"
+      ],
+      "tags": [
+        "signature",
+        "callers"
+      ],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-b7dec13b21",
+      "rule_id": "RUFF-F821",
+      "category": "correctness",
+      "kind": "deterministic",
+      "title": "Undefined name `REGIONAL_RATES`",
+      "description": "Undefined name `REGIONAL_RATES` (Ruff F821) in `total_with_tax`. This diagnostic is new in the head revision.",
+      "severity": "high",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 27,
+        "end_line": 27,
+        "side": "head",
+        "symbol": "total_with_tax"
+      },
+      "evidence_ids": [
+        "E7"
+      ],
+      "failure_scenario": "When `total_with_tax` runs, line 27 raises NameError.",
+      "suggested_test": {
+        "description": "Add a unit test that executes `total_with_tax` (line 27); it fails immediately while this diagnostic is present.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "Undefined name: raises NameError when the line executes.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "total_with_tax"
+      ],
+      "tags": [
+        "ruff",
+        "F821"
+      ],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-43122d378e",
+      "rule_id": "CG-COV-001",
+      "category": "coverage_gap",
+      "kind": "deterministic",
+      "title": "No test executes src/billing/api.py (3 changed executable line(s))",
+      "description": "The coverage report records 0 hits for every one of the 10 executable lines in src/billing/api.py, including the changed line(s) 4, 11, 13. The module is probably never imported by a test.",
+      "severity": "medium",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/api.py",
+        "start_line": 4,
+        "end_line": 13,
+        "side": "head",
+        "symbol": null
+      },
+      "evidence_ids": [
+        "E14"
+      ],
+      "failure_scenario": "Any bug introduced in this file reaches production without a single test running its code.",
+      "suggested_test": {
+        "description": "Add a test module that imports src/billing/api.py and exercises the changed code paths.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "The uploaded coverage report marks these changed executable lines as never executed by the test suite.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-e744c05295",
+      "rule_id": "RUFF-ASYNC251",
+      "category": "concurrency",
+      "kind": "deterministic",
+      "title": "Async functions should not call `time.sleep`",
+      "description": "Async functions should not call `time.sleep` (Ruff ASYNC251) in `handle_invoice`. This diagnostic is new in the head revision.",
+      "severity": "medium",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/api.py",
+        "start_line": 11,
+        "end_line": 11,
+        "side": "head",
+        "symbol": "handle_invoice"
+      },
+      "evidence_ids": [
+        "E5"
+      ],
+      "failure_scenario": "Under load, `handle_invoice` blocks the event loop and stalls every concurrent request.",
+      "suggested_test": {
+        "description": "Exercise `handle_invoice` under asyncio debug mode (PYTHONASYNCIODEBUG=1) and assert no slow-callback warnings; switch to the async equivalent of the blocking call.",
+        "kind": "integration",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "time.sleep inside async function blocks the event loop.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "handle_invoice"
+      ],
+      "tags": [
+        "ruff",
+        "ASYNC251"
+      ],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-b74f63bd0d",
+      "rule_id": "CG-COV-001",
+      "category": "coverage_gap",
+      "kind": "deterministic",
+      "title": "No test executes src/billing/loyalty.py (8 changed executable line(s))",
+      "description": "The coverage report records 0 hits for every one of the 8 executable lines in src/billing/loyalty.py, including the changed line(s) 1, 3, 6–11. The module is probably never imported by a test.",
+      "severity": "medium",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/loyalty.py",
+        "start_line": 1,
+        "end_line": 11,
+        "side": "head",
+        "symbol": null
+      },
+      "evidence_ids": [
+        "E15"
+      ],
+      "failure_scenario": "Any bug introduced in this file reaches production without a single test running its code.",
+      "suggested_test": {
+        "description": "Add a test module that imports src/billing/loyalty.py and exercises the changed code paths.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "The uploaded coverage report marks these changed executable lines as never executed by the test suite.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-919a31c5f2",
+      "rule_id": "CG-COV-001",
+      "category": "coverage_gap",
+      "kind": "deterministic",
+      "title": "3 of 3 changed executable line(s) in `total_with_tax` never run in tests",
+      "description": "The coverage report shows 0 hits for changed line(s) 27–29 of src/billing/pricing.py.",
+      "severity": "medium",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 27,
+        "end_line": 29,
+        "side": "head",
+        "symbol": "total_with_tax"
+      },
+      "evidence_ids": [
+        "E17"
+      ],
+      "failure_scenario": "A bug on line 27 would not fail any existing test, because the test suite never executes it.",
+      "suggested_test": {
+        "description": "Add a test that drives execution through line(s) 27–29 of src/billing/pricing.py, then re-run coverage to confirm.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "The uploaded coverage report marks these changed executable lines as never executed by the test suite.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "total_with_tax"
+      ],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-f190f8a4f9",
+      "rule_id": "RUFF-E722",
+      "category": "error_handling",
+      "kind": "deterministic",
+      "title": "Do not use bare `except`",
+      "description": "Do not use bare `except` (Ruff E722) in `total_with_tax`. This diagnostic is new in the head revision.",
+      "severity": "medium",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 28,
+        "end_line": 28,
+        "side": "head",
+        "symbol": "total_with_tax"
+      },
+      "evidence_ids": [
+        "E8",
+        "E9"
+      ],
+      "failure_scenario": "A failure inside `total_with_tax` is swallowed; the caller proceeds with missing or partial results.",
+      "suggested_test": {
+        "description": "Add a test that makes the guarded call in `total_with_tax` raise, and assert the error is surfaced (logged or re-raised) rather than swallowed.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "Bare except also catches SystemExit and KeyboardInterrupt.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "total_with_tax"
+      ],
+      "tags": [
+        "ruff",
+        "E722"
+      ],
+      "corroborated_by": [
+        "RUFF-S110"
+      ],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-739d146e36",
+      "rule_id": "CG-TST-001",
+      "category": "test_gap",
+      "kind": "heuristic",
+      "title": "No tests reference changed `handle_invoice`",
+      "description": "No test in the repository imports `src/billing/api.py` and references `handle_invoice`. 2 changed line(s) in this function are not verified by a directly related test.",
+      "severity": "medium",
+      "confidence": "medium",
+      "location": {
+        "file": "src/billing/api.py",
+        "start_line": 9,
+        "end_line": 14,
+        "side": "head",
+        "symbol": "handle_invoice"
+      },
+      "evidence_ids": [
+        "E11"
+      ],
+      "failure_scenario": "A regression in `handle_invoice` ships unnoticed because CI has no test that targets it.",
+      "suggested_test": {
+        "description": "Add focused tests for `handle_invoice` (e.g. in tests/test_api.py) covering the changed lines.",
+        "kind": "unit",
+        "code": "from billing.api import handle_invoice\n\nimport pytest\n\n\n@pytest.mark.asyncio\nasync def test_handle_invoice_behaviour():\n    # cover the changed lines; add one case per branch you touched\n    result = await handle_invoice(request_body=...)\n    assert result == ...  # expected value for these inputs",
+        "language": "python",
+        "source": "template"
+      },
+      "explanation": {
+        "text": "No test in the snapshot imports and references the changed symbol, so a regression may go undetected. Tests that exercise it indirectly are not detected.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "handle_invoice"
+      ],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-4c9b2931f1",
+      "rule_id": "CG-TST-001",
+      "category": "test_gap",
+      "kind": "heuristic",
+      "title": "No tests reference new `loyalty_bonus`",
+      "description": "No test in the repository imports `src/billing/loyalty.py` and references `loyalty_bonus`. 6 changed line(s) in this function are not verified by a directly related test.",
+      "severity": "medium",
+      "confidence": "medium",
+      "location": {
+        "file": "src/billing/loyalty.py",
+        "start_line": 6,
+        "end_line": 11,
+        "side": "head",
+        "symbol": "loyalty_bonus"
+      },
+      "evidence_ids": [
+        "E12"
+      ],
+      "failure_scenario": "A regression in `loyalty_bonus` ships unnoticed because CI has no test that targets it.",
+      "suggested_test": {
+        "description": "Add focused tests for `loyalty_bonus` (e.g. in tests/test_loyalty.py) covering the changed lines.",
+        "kind": "unit",
+        "code": "from billing.loyalty import loyalty_bonus\n\n\ndef test_loyalty_bonus_behaviour():\n    # cover the changed lines; add one case per branch you touched\n    result = loyalty_bonus(years=..., tier=...)\n    assert result == ...  # expected value for these inputs",
+        "language": "python",
+        "source": "template"
+      },
+      "explanation": {
+        "text": "No test in the snapshot imports and references the changed symbol, so a regression may go undetected. Tests that exercise it indirectly are not detected.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "loyalty_bonus"
+      ],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-5b578fa2b1",
+      "rule_id": "CG-LOG-001",
+      "category": "logic_change",
+      "kind": "heuristic",
+      "title": "Condition logic changed: `>` → `>=`",
+      "description": "Line 11 in `apply_discount` changed only in `>` → `>=`; the condition's boundary or polarity is different now.",
+      "severity": "medium",
+      "confidence": "medium",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 11,
+        "end_line": 11,
+        "side": "head",
+        "symbol": "apply_discount"
+      },
+      "evidence_ids": [
+        "E10"
+      ],
+      "failure_scenario": "Inputs exactly at the boundary (or on the side the condition now excludes/includes) take the other branch than before — the classic off-by-one / inverted-condition regression.",
+      "suggested_test": {
+        "description": "Add boundary-value tests: the threshold itself, one below, and one above, asserting the intended branch for each.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "A comparison/boolean operator or negation changed. Boundary behaviour differs, which is a classic source of off-by-one and inverted-condition bugs.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "apply_discount"
+      ],
+      "tags": [
+        "boundary"
+      ],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-d91fdf53e3",
+      "rule_id": "CG-TST-001",
+      "category": "test_gap",
+      "kind": "heuristic",
+      "title": "No tests reference changed `total_with_tax`",
+      "description": "No test in the repository imports `src/billing/pricing.py` and references `total_with_tax`. 4 changed line(s) in this function are not verified by a directly related test.",
+      "severity": "medium",
+      "confidence": "medium",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 22,
+        "end_line": 30,
+        "side": "head",
+        "symbol": "total_with_tax"
+      },
+      "evidence_ids": [
+        "E13"
+      ],
+      "failure_scenario": "A regression in `total_with_tax` ships unnoticed because CI has no test that targets it.",
+      "suggested_test": {
+        "description": "Add focused tests for `total_with_tax` (e.g. in tests/test_pricing.py) covering the changed lines.",
+        "kind": "unit",
+        "code": "from billing.pricing import total_with_tax\n\n\ndef test_total_with_tax_behaviour():\n    # cover the changed lines; add one case per branch you touched\n    result = total_with_tax(subtotal=..., region=...)\n    assert result == ...  # expected value for these inputs",
+        "language": "python",
+        "source": "template"
+      },
+      "explanation": {
+        "text": "No test in the snapshot imports and references the changed symbol, so a regression may go undetected. Tests that exercise it indirectly are not detected.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "total_with_tax"
+      ],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-1d6aef5901",
+      "rule_id": "CG-COV-001",
+      "category": "coverage_gap",
+      "kind": "deterministic",
+      "title": "1 of 2 changed executable line(s) in `format_price` never run in tests",
+      "description": "The coverage report shows 0 hits for changed line(s) 18 of src/billing/pricing.py.",
+      "severity": "low",
+      "confidence": "high",
+      "location": {
+        "file": "src/billing/pricing.py",
+        "start_line": 18,
+        "end_line": 18,
+        "side": "head",
+        "symbol": "format_price"
+      },
+      "evidence_ids": [
+        "E16"
+      ],
+      "failure_scenario": "A bug on line 18 would not fail any existing test, because the test suite never executes it.",
+      "suggested_test": {
+        "description": "Add a test that drives execution through line(s) 18 of src/billing/pricing.py, then re-run coverage to confirm.",
+        "kind": "unit",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "The uploaded coverage report marks these changed executable lines as never executed by the test suite.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "format_price"
+      ],
+      "tags": [],
+      "corroborated_by": [],
+      "ai_analysis": null
+    },
+    {
+      "id": "F-c18c58ed0a",
+      "rule_id": "RUFF-T201",
+      "category": "debug_artifact",
+      "kind": "deterministic",
+      "title": "`print` found",
+      "description": "`print` found (Ruff T201) in `handle_invoice`. This diagnostic is new in the head revision.",
+      "severity": "low",
+      "confidence": "medium",
+      "location": {
+        "file": "src/billing/api.py",
+        "start_line": 13,
+        "end_line": 13,
+        "side": "head",
+        "symbol": "handle_invoice"
+      },
+      "evidence_ids": [
+        "E6"
+      ],
+      "failure_scenario": "`handle_invoice` emits debug output or pauses in production.",
+      "suggested_test": {
+        "description": "Remove the debug statement; enable Ruff T10/T20 in CI.",
+        "kind": "static",
+        "code": null,
+        "language": null,
+        "source": "template"
+      },
+      "explanation": {
+        "text": "print() left in non-test code.",
+        "source": "template",
+        "model": null,
+        "uncertainty": null,
+        "evidence_ids": []
+      },
+      "related_symbols": [
+        "handle_invoice"
+      ],
+      "tags": [
+        "ruff",
+        "T201"
+      ],
+      "corroborated_by": [],
+      "ai_analysis": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E2",
+      "type": "signature_change",
+      "title": "Signature of format_price changed",
+      "file": "src/billing/pricing.py",
+      "start_line": 16,
+      "end_line": 16,
+      "side": "head",
+      "excerpt": "\ndef format_price(amount: Decimal, locale: str) -> str:\n    \"\"\"Render an amount using the symbol for the caller's locale.\"\"\"",
+      "excerpt_start_line": 15,
+      "highlight_lines": [
+        16
+      ],
+      "source": "tree-sitter structural diff",
+      "data": {
+        "before": "format_price(amount: Decimal, currency: str = \"USD\") -> str",
+        "after": "format_price(amount: Decimal, locale: str) -> str",
+        "changes": [
+          "parameter `currency` removed",
+          "required parameter `locale` added"
+        ],
+        "breaking": true,
+        "base_line": 15
+      }
+    },
+    {
+      "id": "E3",
+      "type": "call_site",
+      "title": "Call site src/billing/invoice.py:9 in render_line",
+      "file": "src/billing/invoice.py",
+      "start_line": 9,
+      "end_line": 9,
+      "side": "head",
+      "excerpt": "def render_line(description: str, amount: Decimal, currency: str) -> str:\n    return f\"{description}: {format_price(amount, currency=currency)}\"\n",
+      "excerpt_start_line": 8,
+      "highlight_lines": [
+        9
+      ],
+      "source": "repository snapshot (tree-sitter)",
+      "data": {
+        "resolution": "resolved",
+        "via": "import",
+        "call": "format_price(amount, currency=currency)",
+        "problems": [
+          "passes unexpected keyword argument `currency`",
+          "does not pass required argument `locale`"
+        ]
+      }
+    },
+    {
+      "id": "E4",
+      "type": "call_site",
+      "title": "Call site tests/test_pricing.py:18 in test_format_price_defaults_to_usd",
+      "file": "tests/test_pricing.py",
+      "start_line": 18,
+      "end_line": 18,
+      "side": "head",
+      "excerpt": "def test_format_price_defaults_to_usd():\n    assert format_price(Decimal(\"5\")) == \"$5.00\"\n    assert format_price(Decimal(\"5\"), \"EUR\") == \"€5.00\"",
+      "excerpt_start_line": 17,
+      "highlight_lines": [
+        18
+      ],
+      "source": "repository snapshot (tree-sitter)",
+      "data": {
+        "resolution": "resolved",
+        "via": "import",
+        "call": "format_price(Decimal(\"5\"))",
+        "problems": [
+          "does not pass required argument `locale`"
+        ]
+      }
+    },
+    {
+      "id": "E5",
+      "type": "static_diagnostic",
+      "title": "Ruff ASYNC251 at src/billing/api.py:11",
+      "file": "src/billing/api.py",
+      "start_line": 11,
+      "end_line": 11,
+      "side": "head",
+      "excerpt": "async def handle_invoice(request_body: str) -> dict[str, str]:\n    payload = json.loads(request_body)\n    time.sleep(0.05)  # crude rate limiting\n    total = invoice_total(payload[\"items\"], payload.get(\"discount\", 0), payload[\"region\"])\n    print(\"invoice total\", total)",
+      "excerpt_start_line": 9,
+      "highlight_lines": [
+        11
+      ],
+      "source": "ruff (ruff 0.16.10)",
+      "data": {
+        "code": "ASYNC251",
+        "message": "Async functions should not call `time.sleep`",
+        "url": "https://docs.astral.sh/ruff/rules/blocking-sleep-in-async-function",
+        "on_changed_line": true
+      }
+    },
+    {
+      "id": "E6",
+      "type": "static_diagnostic",
+      "title": "Ruff T201 at src/billing/api.py:13",
+      "file": "src/billing/api.py",
+      "start_line": 13,
+      "end_line": 13,
+      "side": "head",
+      "excerpt": "    time.sleep(0.05)  # crude rate limiting\n    total = invoice_total(payload[\"items\"], payload.get(\"discount\", 0), payload[\"region\"])\n    print(\"invoice total\", total)\n    return {\"total\": str(total)}",
+      "excerpt_start_line": 11,
+      "highlight_lines": [
+        13
+      ],
+      "source": "ruff (ruff 0.16.10)",
+      "data": {
+        "code": "T201",
+        "message": "`print` found",
+        "url": "https://docs.astral.sh/ruff/rules/print",
+        "on_changed_line": true
+      }
+    },
+    {
+      "id": "E7",
+      "type": "static_diagnostic",
+      "title": "Ruff F821 at src/billing/pricing.py:27",
+      "file": "src/billing/pricing.py",
+      "start_line": 27,
+      "end_line": 27,
+      "side": "head",
+      "excerpt": "        return subtotal * (1 + TAX_RATE)\n    try:\n        return subtotal * REGIONAL_RATES[region]\n    except:\n        pass",
+      "excerpt_start_line": 25,
+      "highlight_lines": [
+        27
+      ],
+      "source": "ruff (ruff 0.16.10)",
+      "data": {
+        "code": "F821",
+        "message": "Undefined name `REGIONAL_RATES`",
+        "url": "https://docs.astral.sh/ruff/rules/undefined-name",
+        "on_changed_line": true
+      }
+    },
+    {
+      "id": "E8",
+      "type": "static_diagnostic",
+      "title": "Ruff E722 at src/billing/pricing.py:28",
+      "file": "src/billing/pricing.py",
+      "start_line": 28,
+      "end_line": 28,
+      "side": "head",
+      "excerpt": "    try:\n        return subtotal * REGIONAL_RATES[region]\n    except:\n        pass\n    return subtotal",
+      "excerpt_start_line": 26,
+      "highlight_lines": [
+        28
+      ],
+      "source": "ruff (ruff 0.16.10)",
+      "data": {
+        "code": "E722",
+        "message": "Do not use bare `except`",
+        "url": "https://docs.astral.sh/ruff/rules/bare-except",
+        "on_changed_line": true
+      }
+    },
+    {
+      "id": "E9",
+      "type": "static_diagnostic",
+      "title": "Ruff S110 at src/billing/pricing.py:28",
+      "file": "src/billing/pricing.py",
+      "start_line": 28,
+      "end_line": 29,
+      "side": "head",
+      "excerpt": "    try:\n        return subtotal * REGIONAL_RATES[region]\n    except:\n        pass\n    return subtotal",
+      "excerpt_start_line": 26,
+      "highlight_lines": [
+        28,
+        29
+      ],
+      "source": "ruff (ruff 0.16.10)",
+      "data": {
+        "code": "S110",
+        "message": "`try`-`except`-`pass` detected, consider logging the exception",
+        "url": "https://docs.astral.sh/ruff/rules/try-except-pass",
+        "on_changed_line": true
+      }
+    },
+    {
+      "id": "E10",
+      "type": "diff_hunk",
+      "title": "Condition changed at src/billing/pricing.py:11",
+      "file": "src/billing/pricing.py",
+      "start_line": 11,
+      "end_line": 11,
+      "side": "head",
+      "excerpt": "-    if percent > 50:\n+    if percent >= 50:",
+      "excerpt_start_line": null,
+      "highlight_lines": [
+        11
+      ],
+      "source": "diff",
+      "data": {
+        "old_line": 10,
+        "new_line": 11,
+        "change": "`>` → `>=`"
+      }
+    },
+    {
+      "id": "E11",
+      "type": "code",
+      "title": "Modified function handle_invoice",
+      "file": "src/billing/api.py",
+      "start_line": 9,
+      "end_line": 14,
+      "side": "head",
+      "excerpt": "async def handle_invoice(request_body: str) -> dict[str, str]:\n    payload = json.loads(request_body)\n    time.sleep(0.05)  # crude rate limiting\n    total = invoice_total(payload[\"items\"], payload.get(\"discount\", 0), payload[\"region\"])\n    print(\"invoice total\", total)\n    return {\"total\": str(total)}",
+      "excerpt_start_line": 9,
+      "highlight_lines": [
+        11,
+        13
+      ],
+      "source": "repository snapshot",
+      "data": {
+        "change": "modified",
+        "test_search": "no test file imports this module and references the symbol"
+      }
+    },
+    {
+      "id": "E12",
+      "type": "code",
+      "title": "Added function loyalty_bonus",
+      "file": "src/billing/loyalty.py",
+      "start_line": 6,
+      "end_line": 11,
+      "side": "head",
+      "excerpt": "def loyalty_bonus(years: int, tier: str) -> Decimal:\n    if tier == \"gold\" and years > 3:\n        return Decimal(\"0.05\")\n    if tier == \"silver\":\n        return Decimal(\"0.02\")\n    return Decimal(\"0\")",
+      "excerpt_start_line": 6,
+      "highlight_lines": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "source": "repository snapshot",
+      "data": {
+        "change": "added",
+        "test_search": "no test file imports this module and references the symbol"
+      }
+    },
+    {
+      "id": "E13",
+      "type": "code",
+      "title": "Modified function total_with_tax",
+      "file": "src/billing/pricing.py",
+      "start_line": 22,
+      "end_line": 30,
+      "side": "head",
+      "excerpt": "def total_with_tax(subtotal: Decimal, region: str) -> Decimal:\n    \"\"\"Add sales tax for regions that charge it.\"\"\"\n    if region == \"EU\":\n        return subtotal * (1 + TAX_RATE)\n    try:\n        return subtotal * REGIONAL_RATES[region]\n    except:\n        pass\n    return subtotal",
+      "excerpt_start_line": 22,
+      "highlight_lines": [
+        26,
+        27,
+        28,
+        29
+      ],
+      "source": "repository snapshot",
+      "data": {
+        "change": "modified",
+        "test_search": "no test file imports this module and references the symbol"
+      }
+    },
+    {
+      "id": "E14",
+      "type": "coverage",
+      "title": "src/billing/api.py is never executed by the test suite",
+      "file": "src/billing/api.py",
+      "start_line": 4,
+      "end_line": 13,
+      "side": "head",
+      "excerpt": "import time\n\nfrom billing.invoice import invoice_total\n\n\nasync def handle_invoice(request_body: str) -> dict[str, str]:\n    payload = json.loads(request_body)\n    time.sleep(0.05)  # crude rate limiting\n    total = invoice_total(payload[\"items\"], payload.get(\"discount\", 0), payload[\"region\"])\n    print(\"invoice total\", total)",
+      "excerpt_start_line": 4,
+      "highlight_lines": [
+        4,
+        11,
+        13
+      ],
+      "source": "coverage report (cobertura)",
+      "data": {
+        "uncovered_lines": [
+          4,
+          11,
+          13
+        ],
+        "file_executable_lines": 10,
+        "file_covered_lines": 0
+      }
+    },
+    {
+      "id": "E15",
+      "type": "coverage",
+      "title": "src/billing/loyalty.py is never executed by the test suite",
+      "file": "src/billing/loyalty.py",
+      "start_line": 1,
+      "end_line": 11,
+      "side": "head",
+      "excerpt": "\"\"\"Loyalty programme bonuses.\"\"\"\n\nfrom decimal import Decimal\n\n\ndef loyalty_bonus(years: int, tier: str) -> Decimal:\n    if tier == \"gold\" and years > 3:\n        return Decimal(\"0.05\")\n    if tier == \"silver\":\n        return Decimal(\"0.02\")\n    return Decimal(\"0\")",
+      "excerpt_start_line": 1,
+      "highlight_lines": [
+        1,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "source": "coverage report (cobertura)",
+      "data": {
+        "uncovered_lines": [
+          1,
+          3,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "file_executable_lines": 8,
+        "file_covered_lines": 0
+      }
+    },
+    {
+      "id": "E16",
+      "type": "coverage",
+      "title": "Uncovered changed lines in format_price",
+      "file": "src/billing/pricing.py",
+      "start_line": 18,
+      "end_line": 18,
+      "side": "head",
+      "excerpt": "    \"\"\"Render an amount using the symbol for the caller's locale.\"\"\"\n    symbol = {\"en_US\": \"$\", \"de_DE\": \"€\", \"en_GB\": \"£\"}.get(locale, \"\")\n    return f\"{symbol}{amount:.2f}\"",
+      "excerpt_start_line": 17,
+      "highlight_lines": [
+        18
+      ],
+      "source": "coverage report (cobertura)",
+      "data": {
+        "uncovered_lines": [
+          18
+        ],
+        "changed_executable_lines": [
+          16,
+          18
+        ],
+        "hits": {
+          "16": 1,
+          "18": 0
+        }
+      }
+    },
+    {
+      "id": "E17",
+      "type": "coverage",
+      "title": "Uncovered changed lines in total_with_tax",
+      "file": "src/billing/pricing.py",
+      "start_line": 27,
+      "end_line": 29,
+      "side": "head",
+      "excerpt": "    try:\n        return subtotal * REGIONAL_RATES[region]\n    except:\n        pass\n    return subtotal",
+      "excerpt_start_line": 26,
+      "highlight_lines": [
+        27,
+        28,
+        29
+      ],
+      "source": "coverage report (cobertura)",
+      "data": {
+        "uncovered_lines": [
+          27,
+          28,
+          29
+        ],
+        "changed_executable_lines": [
+          27,
+          28,
+          29
+        ],
+        "hits": {
+          "27": 0,
+          "28": 0,
+          "29": 0
+        }
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "src/billing/api.py",
+      "old_path": null,
+      "status": "modified",
+      "language": "Python",
+      "structural_support": true,
+      "is_test": false,
+      "is_binary": false,
+      "additions": 3,
+      "deletions": 0,
+      "full_context": true,
+      "hunks": [
+        {
+          "header": "@@ -1,11 +1,14 @@",
+          "old_start": 1,
+          "old_count": 11,
+          "new_start": 1,
+          "new_count": 14,
+          "section": "",
+          "lines": [
+            {
+              "kind": "context",
+              "content": "\"\"\"HTTP handlers for the billing service.\"\"\"",
+              "old": 1,
+              "new": 1
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 2,
+              "new": 2
+            },
+            {
+              "kind": "context",
+              "content": "import json",
+              "old": 3,
+              "new": 3
+            },
+            {
+              "kind": "add",
+              "content": "import time",
+              "old": null,
+              "new": 4
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 4,
+              "new": 5
+            },
+            {
+              "kind": "context",
+              "content": "from billing.invoice import invoice_total",
+              "old": 5,
+              "new": 6
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 6,
+              "new": 7
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 7,
+              "new": 8
+            },
+            {
+              "kind": "context",
+              "content": "async def handle_invoice(request_body: str) -> dict[str, str]:",
+              "old": 8,
+              "new": 9
+            },
+            {
+              "kind": "context",
+              "content": "    payload = json.loads(request_body)",
+              "old": 9,
+              "new": 10
+            },
+            {
+              "kind": "add",
+              "content": "    time.sleep(0.05)  # crude rate limiting",
+              "old": null,
+              "new": 11
+            },
+            {
+              "kind": "context",
+              "content": "    total = invoice_total(payload[\"items\"], payload.get(\"discount\", 0), payload[\"region\"])",
+              "old": 10,
+              "new": 12
+            },
+            {
+              "kind": "add",
+              "content": "    print(\"invoice total\", total)",
+              "old": null,
+              "new": 13
+            },
+            {
+              "kind": "context",
+              "content": "    return {\"total\": str(total)}",
+              "old": 11,
+              "new": 14
+            }
+          ]
+        }
+      ],
+      "changed_symbols": [
+        "handle_invoice"
+      ],
+      "coverage": {
+        "covered": 0,
+        "executable": 3,
+        "uncovered_lines": [
+          4,
+          11,
+          13
+        ]
+      }
+    },
+    {
+      "path": "src/billing/loyalty.py",
+      "old_path": null,
+      "status": "added",
+      "language": "Python",
+      "structural_support": true,
+      "is_test": false,
+      "is_binary": false,
+      "additions": 11,
+      "deletions": 0,
+      "full_context": true,
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,11 @@",
+          "old_start": 0,
+          "old_count": 0,
+          "new_start": 1,
+          "new_count": 11,
+          "section": "",
+          "lines": [
+            {
+              "kind": "add",
+              "content": "\"\"\"Loyalty programme bonuses.\"\"\"",
+              "old": null,
+              "new": 1
+            },
+            {
+              "kind": "add",
+              "content": "",
+              "old": null,
+              "new": 2
+            },
+            {
+              "kind": "add",
+              "content": "from decimal import Decimal",
+              "old": null,
+              "new": 3
+            },
+            {
+              "kind": "add",
+              "content": "",
+              "old": null,
+              "new": 4
+            },
+            {
+              "kind": "add",
+              "content": "",
+              "old": null,
+              "new": 5
+            },
+            {
+              "kind": "add",
+              "content": "def loyalty_bonus(years: int, tier: str) -> Decimal:",
+              "old": null,
+              "new": 6
+            },
+            {
+              "kind": "add",
+              "content": "    if tier == \"gold\" and years > 3:",
+              "old": null,
+              "new": 7
+            },
+            {
+              "kind": "add",
+              "content": "        return Decimal(\"0.05\")",
+              "old": null,
+              "new": 8
+            },
+            {
+              "kind": "add",
+              "content": "    if tier == \"silver\":",
+              "old": null,
+              "new": 9
+            },
+            {
+              "kind": "add",
+              "content": "        return Decimal(\"0.02\")",
+              "old": null,
+              "new": 10
+            },
+            {
+              "kind": "add",
+              "content": "    return Decimal(\"0\")",
+              "old": null,
+              "new": 11
+            }
+          ]
+        }
+      ],
+      "changed_symbols": [
+        "loyalty_bonus"
+      ],
+      "coverage": {
+        "covered": 0,
+        "executable": 8,
+        "uncovered_lines": [
+          1,
+          3,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    },
+    {
+      "path": "src/billing/pricing.py",
+      "old_path": null,
+      "status": "modified",
+      "language": "Python",
+      "structural_support": true,
+      "is_test": false,
+      "is_binary": false,
+      "additions": 10,
+      "deletions": 5,
+      "full_context": true,
+      "hunks": [
+        {
+          "header": "@@ -5,16 +5,17 @@",
+          "old_start": 5,
+          "old_count": 16,
+          "new_start": 5,
+          "new_count": 17,
+          "section": "",
+          "lines": [
+            {
+              "kind": "context",
+              "content": "TAX_RATE = Decimal(\"0.20\")",
+              "old": 5,
+              "new": 5
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 6,
+              "new": 6
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 7,
+              "new": 7
+            },
+            {
+              "kind": "del",
+              "content": "def apply_discount(subtotal: Decimal, percent: int) -> Decimal:",
+              "old": 8,
+              "new": null
+            },
+            {
+              "kind": "add",
+              "content": "def apply_discount(subtotal: Decimal, percent: int, loyalty_years: int = 0) -> Decimal:",
+              "old": null,
+              "new": 8
+            },
+            {
+              "kind": "context",
+              "content": "    \"\"\"Apply a percentage discount; discounts above 50% need manual approval.\"\"\"",
+              "old": 9,
+              "new": 9
+            },
+            {
+              "kind": "del",
+              "content": "    if percent > 50:",
+              "old": 10,
+              "new": null
+            },
+            {
+              "kind": "add",
+              "content": "    percent = percent + min(loyalty_years, 5)",
+              "old": null,
+              "new": 10
+            },
+            {
+              "kind": "add",
+              "content": "    if percent >= 50:",
+              "old": null,
+              "new": 11
+            },
+            {
+              "kind": "context",
+              "content": "        raise ValueError(\"discount requires approval\")",
+              "old": 11,
+              "new": 12
+            },
+            {
+              "kind": "context",
+              "content": "    return subtotal * (Decimal(100 - percent) / 100)",
+              "old": 12,
+              "new": 13
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 13,
+              "new": 14
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 14,
+              "new": 15
+            },
+            {
+              "kind": "del",
+              "content": "def format_price(amount: Decimal, currency: str = \"USD\") -> str:",
+              "old": 15,
+              "new": null
+            },
+            {
+              "kind": "del",
+              "content": "    \"\"\"Render an amount with its currency symbol.\"\"\"",
+              "old": 16,
+              "new": null
+            },
+            {
+              "kind": "del",
+              "content": "    symbol = {\"USD\": \"$\", \"EUR\": \"€\", \"GBP\": \"£\"}.get(currency, currency + \" \")",
+              "old": 17,
+              "new": null
+            },
+            {
+              "kind": "add",
+              "content": "def format_price(amount: Decimal, locale: str) -> str:",
+              "old": null,
+              "new": 16
+            },
+            {
+              "kind": "add",
+              "content": "    \"\"\"Render an amount using the symbol for the caller's locale.\"\"\"",
+              "old": null,
+              "new": 17
+            },
+            {
+              "kind": "add",
+              "content": "    symbol = {\"en_US\": \"$\", \"de_DE\": \"€\", \"en_GB\": \"£\"}.get(locale, \"\")",
+              "old": null,
+              "new": 18
+            },
+            {
+              "kind": "context",
+              "content": "    return f\"{symbol}{amount:.2f}\"",
+              "old": 18,
+              "new": 19
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 19,
+              "new": 20
+            },
+            {
+              "kind": "context",
+              "content": "",
+              "old": 20,
+              "new": 21
+            }
+          ]
+        },
+        {
+          "header": "@@ -22,4 +23,8 @@ def total_with_tax(subtotal: Decimal, region: str) -> Decimal:",
+          "old_start": 22,
+          "old_count": 4,
+          "new_start": 23,
+          "new_count": 8,
+          "section": "def total_with_tax(subtotal: Decimal, region: str) -> Decimal:",
+          "lines": [
+            {
+              "kind": "context",
+              "content": "    \"\"\"Add sales tax for regions that charge it.\"\"\"",
+              "old": 22,
+              "new": 23
+            },
+            {
+              "kind": "context",
+              "content": "    if region == \"EU\":",
+              "old": 23,
+              "new": 24
+            },
+            {
+              "kind": "context",
+              "content": "        return subtotal * (1 + TAX_RATE)",
+              "old": 24,
+              "new": 25
+            },
+            {
+              "kind": "add",
+              "content": "    try:",
+              "old": null,
+              "new": 26
+            },
+            {
+              "kind": "add",
+              "content": "        return subtotal * REGIONAL_RATES[region]",
+              "old": null,
+              "new": 27
+            },
+            {
+              "kind": "add",
+              "content": "    except:",
+              "old": null,
+              "new": 28
+            },
+            {
+              "kind": "add",
+              "content": "        pass",
+              "old": null,
+              "new": 29
+            },
+            {
+              "kind": "context",
+              "content": "    return subtotal",
+              "old": 25,
+              "new": 30
+            }
+          ]
+        }
+      ],
+      "changed_symbols": [
+        "apply_discount",
+        "format_price",
+        "total_with_tax"
+      ],
+      "coverage": {
+        "covered": 4,
+        "executable": 8,
+        "uncovered_lines": [
+          18,
+          27,
+          28,
+          29
+        ]
+      }
+    }
+  ],
+  "symbols": [
+    {
+      "file": "src/billing/api.py",
+      "qualname": "handle_invoice",
+      "kind": "function",
+      "change": "modified",
+      "renamed_from": null,
+      "signature_before": "async handle_invoice(request_body: str) -> dict[str, str]",
+      "signature_after": "async handle_invoice(request_body: str) -> dict[str, str]",
+      "breaking": false,
+      "start_line": 9,
+      "end_line": 14,
+      "call_sites": 0,
+      "call_site_files": 0,
+      "incompatible_call_sites": 0,
+      "related_tests": 0,
+      "complexity_before": 1,
+      "complexity_after": 1,
+      "approximate": false
+    },
+    {
+      "file": "src/billing/loyalty.py",
+      "qualname": "loyalty_bonus",
+      "kind": "function",
+      "change": "added",
+      "renamed_from": null,
+      "signature_before": null,
+      "signature_after": "loyalty_bonus(years: int, tier: str) -> Decimal",
+      "breaking": false,
+      "start_line": 6,
+      "end_line": 11,
+      "call_sites": 0,
+      "call_site_files": 0,
+      "incompatible_call_sites": 0,
+      "related_tests": 0,
+      "complexity_before": null,
+      "complexity_after": 4,
+      "approximate": false
+    },
+    {
+      "file": "src/billing/pricing.py",
+      "qualname": "apply_discount",
+      "kind": "function",
+      "change": "modified",
+      "renamed_from": null,
+      "signature_before": "apply_discount(subtotal: Decimal, percent: int) -> Decimal",
+      "signature_after": "apply_discount(subtotal: Decimal, percent: int, loyalty_years: int = 0) -> Decimal",
+      "breaking": false,
+      "start_line": 8,
+      "end_line": 13,
+      "call_sites": 3,
+      "call_site_files": 2,
+      "incompatible_call_sites": 0,
+      "related_tests": 2,
+      "complexity_before": 2,
+      "complexity_after": 2,
+      "approximate": false
+    },
+    {
+      "file": "src/billing/pricing.py",
+      "qualname": "format_price",
+      "kind": "function",
+      "change": "modified",
+      "renamed_from": null,
+      "signature_before": "format_price(amount: Decimal, currency: str = \"USD\") -> str",
+      "signature_after": "format_price(amount: Decimal, locale: str) -> str",
+      "breaking": true,
+      "start_line": 16,
+      "end_line": 19,
+      "call_sites": 3,
+      "call_site_files": 2,
+      "incompatible_call_sites": 2,
+      "related_tests": 1,
+      "complexity_before": 1,
+      "complexity_after": 1,
+      "approximate": false
+    },
+    {
+      "file": "src/billing/pricing.py",
+      "qualname": "total_with_tax",
+      "kind": "function",
+      "change": "modified",
+      "renamed_from": null,
+      "signature_before": "total_with_tax(subtotal: Decimal, region: str) -> Decimal",
+      "signature_after": "total_with_tax(subtotal: Decimal, region: str) -> Decimal",
+      "breaking": false,
+      "start_line": 22,
+      "end_line": 30,
+      "call_sites": 1,
+      "call_site_files": 1,
+      "incompatible_call_sites": 0,
+      "related_tests": 0,
+      "complexity_before": 2,
+      "complexity_after": 3,
+      "approximate": false
+    }
+  ],
+  "pipeline": [
+    {
+      "name": "ingest",
+      "label": "Parse inputs",
+      "status": "ok",
+      "duration_ms": 0.68,
+      "summary": {
+        "files": 3,
+        "additions": 24,
+        "deletions": 5,
+        "format": "git",
+        "snapshot_files": 6,
+        "coverage_format": "cobertura"
+      },
+      "notes": []
+    },
+    {
+      "name": "workspace",
+      "label": "Reconstruct revisions",
+      "status": "ok",
+      "duration_ms": 0.08,
+      "summary": {
+        "mode": "full_context",
+        "full_context_files": 3,
+        "repository_files": 7,
+        "warnings": 0
+      },
+      "notes": []
+    },
+    {
+      "name": "structure",
+      "label": "Structural diff",
+      "status": "ok",
+      "duration_ms": 1.59,
+      "summary": {
+        "indexed_files": 3,
+        "fragment_indexed_files": 0,
+        "changed_symbols": 5,
+        "signature_changes": 2,
+        "breaking": 1
+      },
+      "notes": []
+    },
+    {
+      "name": "references",
+      "label": "Cross-file references",
+      "status": "ok",
+      "duration_ms": 1.01,
+      "summary": {
+        "signature_changes": 2,
+        "breaking": 1,
+        "call_sites_checked": 6,
+        "incompatible": 2,
+        "removed_checked": 0,
+        "blast_radius_symbols": 2,
+        "files_parsed": 2
+      },
+      "notes": []
+    },
+    {
+      "name": "static",
+      "label": "Static analysis",
+      "status": "ok",
+      "duration_ms": 23.53,
+      "summary": {
+        "python_files": 3,
+        "new_diagnostics": 5,
+        "tool": "ruff 0.16.10",
+        "syntax_errors": 0
+      },
+      "notes": []
+    },
+    {
+      "name": "rules",
+      "label": "Risk rules",
+      "status": "ok",
+      "duration_ms": 1.49,
+      "summary": {
+        "patterns": {},
+        "textual": {
+          "secrets": 0,
+          "prompt_injection": 0,
+          "migrations": 0,
+          "env_files": 0
+        },
+        "dependencies": {
+          "manifests": 0,
+          "changes": 0
+        },
+        "logic": {
+          "logic_changes": 1
+        },
+        "metrics": {
+          "complexity": 0,
+          "error_handling": 0,
+          "assertions": 0,
+          "deleted_tests": 0
+        }
+      },
+      "notes": []
+    },
+    {
+      "name": "tests",
+      "label": "Test mapping",
+      "status": "ok",
+      "duration_ms": 0.38,
+      "summary": {
+        "testable_symbols": 5,
+        "with_tests": 2,
+        "test_gaps": 3
+      },
+      "notes": []
+    },
+    {
+      "name": "coverage",
+      "label": "Coverage",
+      "status": "ok",
+      "duration_ms": 0.42,
+      "summary": {
+        "format": "cobertura",
+        "matched_files": 3,
+        "unmatched_report_files": 2,
+        "changed_executable_lines": 19,
+        "changed_covered_lines": 4,
+        "patch_coverage_percent": 21.1,
+        "stale_files": []
+      },
+      "notes": []
+    },
+    {
+      "name": "synthesis",
+      "label": "AI synthesis",
+      "status": "skipped",
+      "duration_ms": 0.0,
+      "summary": {},
+      "notes": [
+        "AI disabled for this analysis"
+      ]
+    },
+    {
+      "name": "verification",
+      "label": "Grounding verification",
+      "status": "skipped",
+      "duration_ms": 0.0,
+      "summary": {},
+      "notes": [
+        "AI disabled for this analysis"
+      ]
+    },
+    {
+      "name": "report",
+      "label": "Assemble report",
+      "status": "ok",
+      "duration_ms": 0.45,
+      "summary": {
+        "findings": 13,
+        "evidence": 16
+      },
+      "notes": []
+    }
+  ],
+  "ai": {
+    "status": "disabled",
+    "provider": null,
+    "model": null,
+    "prompt_id": null,
+    "prompt_version": null,
+    "prompt_sha256": null,
+    "samples": 1,
+    "context_chars": null,
+    "context_truncated": false,
+    "calls": [],
+    "verification": null,
+    "overall_assessment": null,
+    "note": "AI synthesis was not requested; explanations are rule templates."
+  },
+  "warnings": [],
+  "limitations": [
+    "Static, name-based reference resolution: dynamic dispatch, reflection, monkey-patching, and dependency injection are not followed.",
+    "Severity and confidence are categorical judgements defined per rule; they are not calibrated probabilities of a production incident.",
+    "Test mapping detects tests that import and reference a changed symbol; tests that exercise it indirectly are not counted.",
+    "ChangeGuard never executes code or tests; coverage numbers come only from an uploaded report."
+  ]
+}

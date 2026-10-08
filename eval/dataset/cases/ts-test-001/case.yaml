@@ -1,0 +1,21 @@
+id: ts-test-001
+title: Focused test (.only) committed
+split: dev
+language: typescript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: it.only left in a test file makes the runner skip every other test in the file.
+tags:
+- test-integrity
+negative: false
+expected:
+- id: L1
+  category: test_integrity
+  file: src/math/round.test.ts
+  lines:
+  - 4
+  - 4
+  severity: high
+  note: ''
+acceptable: []

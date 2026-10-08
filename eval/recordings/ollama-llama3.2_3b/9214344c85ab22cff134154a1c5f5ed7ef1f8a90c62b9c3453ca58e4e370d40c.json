@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:01:10+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-238393d7da\",\n      \"explanation\": \"The `__init__` method of the `Event` class now requires an additional argument `occurred_at`, which was not present in the previous version. This change may cause issues if the calling code does not provide this required argument.\",\n      \"failure_scenario\": \"A function that creates a new `Event` object without providing the `occurred_at` argument will fail with an incompatible call site error.\",\n      \"suggested_test\": {\n        \"description\": \"Test that creating a new Event object without provided occurred_at argument raises an incompatible call site error\",\n        \"code\": \"def test_event_init_without_occurred_at(user_id: int) -> None:\\n    event = Event('user.signed.up', {'user_id': user_id})\\n    with self.assertRaises(ValueError):\\n        event.__init__(self, 'name', {})\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-c85b6beb33\",\n      \"explanation\": \"The `Event` class has been modified, but no tests reference this change. This may indicate that the change is not thoroughly tested.\",\n      \"failure_scenario\": \"A test that uses an outdated version of the `Event` class will fail unexpectedly due to the modification.\",\n      \"suggested_test\": {\n        \"description\": \"Test that using an outdated Event class raises a test_gap error\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E3\"],\n      \"confidence\": \"low\",\n      \"uncertainty\": \"The evidence is indirect and may not accurately reflect the impact of this change.\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for breaking changes due to the modification of the `Event` class. The lack of thorough testing for this change increases the likelihood of unexpected behavior or errors.\"}",
+  "input_tokens": 1102,
+  "output_tokens": 440,
+  "latency_ms": 6141.5,
+  "finish_reason": "stop"
+}

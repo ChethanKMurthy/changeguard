@@ -1,0 +1,23 @@
+id: h2-py-jwt-001
+title: Admin JWT pasted into source
+split: holdout-v2
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A bearer token (synthetic, unsigned placeholder) replaces an environment lookup.
+tags:
+- secret
+negative: false
+expected:
+- id: L1
+  category: secret_exposure
+  file: src/clients/admin.py
+  lines:
+  - 1
+  - 1
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

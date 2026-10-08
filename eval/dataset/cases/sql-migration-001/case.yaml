@@ -1,0 +1,21 @@
+id: sql-migration-001
+title: SQL migration drops a column still queried by the application
+split: dev
+language: sql
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: V12 drops orders.legacy_status, but repo.pending_orders still filters on it.
+tags:
+- migration
+negative: false
+expected:
+- id: L1
+  category: data_migration
+  file: db/migrations/V12__cleanup.sql
+  lines:
+  - 2
+  - 2
+  severity: high
+  note: ''
+acceptable: []

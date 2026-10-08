@@ -1,0 +1,24 @@
+id: ho-py-pickle-001
+title: Session cookies deserialised with pickle
+split: holdout
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: Client-supplied session blobs are now unpickled, which executes attacker-controlled payloads.
+tags:
+- security
+- deserialization
+negative: false
+expected:
+- id: L1
+  category: security
+  file: src/api/session_store.py
+  lines:
+  - 5
+  - 5
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

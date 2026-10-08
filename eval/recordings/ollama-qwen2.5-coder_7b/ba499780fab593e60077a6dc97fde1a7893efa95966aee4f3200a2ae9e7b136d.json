@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:46:34+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-3c6e90d034\",\n      \"explanation\": \"The removal of the `insured` parameter from `shipping_cost` breaks existing code that passes it.\",\n      \"failure_scenario\": \"A call to `checkout_total` with `insured=True` will now fail due to an unexpected keyword argument.\",\n      \"suggested_test\": {\n        \"description\": \"Test that passing `insured=True` to `checkout_total` raises a TypeError.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"Removing the `insured` parameter may change how shipping costs are calculated for certain shipments.\",\n      \"failure_scenario\": \"Shipping costs might be incorrectly calculated because the `insured` flag is no longer considered.\",\n      \"suggested_test\": {\n        \"description\": \"Compare the total cost before and after removing the `insured` parameter for a shipment with high value.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E3\"],\n      \"uncertainty\": \"The impact on shipping costs is not directly supported by evidence E2.\"\n    }\n  ],\n  \"overall_assessment\": \"This change introduces a breaking behavior that could disrupt existing functionality. Additional tests are needed to ensure compatibility and maintain correct behavior.\"\n}",
+  "input_tokens": 1071,
+  "output_tokens": 352,
+  "latency_ms": 12486.0,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:04:45+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-cbcfb9832d\",\n      \"explanation\": \"This finding matters because it indicates a destructive migration that drops a column without updating the code to reference the new column name. This could lead to unexpected behavior or errors when running the application.\",\n      \"failure_scenario\": \"A developer runs the migration script and doesn't update the code to use the new column name, causing the application to fail when trying to access the dropped column.\",\n      \"suggested_test\": {\n        \"description\": \"Test that dropping a column in a migration script causes an error when referenced in the code.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-ab676d7e14\",\n      \"explanation\": \"This finding matters because it indicates that the column `legacy_status` is dropped/renamed but still referenced in code, which could lead to unexpected behavior or errors. The reference to `legacy_status` might be used in a way that doesn't account for the change.\",\n      \"failure_scenario\": \"A developer uses the old column name `legacy_status` in their code and gets an error when trying to access it after the migration script has dropped the column.\",\n      \"suggested_test\": {\n        \"description\": \"Test that referencing an old column name causes an error after dropping the column in a migration script.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for unexpected behavior or errors due to the dropped column. The developer should thoroughly review their code to ensure it accounts for the changes made in the migration script.\" }",
+  "input_tokens": 830,
+  "output_tokens": 416,
+  "latency_ms": 5889.4,
+  "finish_reason": "stop"
+}

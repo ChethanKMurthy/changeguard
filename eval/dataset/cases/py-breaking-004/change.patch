@@ -1,0 +1,15 @@
+diff --git a/src/notify/email.py b/src/notify/email.py
+index af50ad6..685d025 100644
+--- a/src/notify/email.py
++++ b/src/notify/email.py
+@@ -1,5 +1,9 @@
+-def send_receipt(address: str, order_id: str) -> bool:
++import asyncio
++
++
++async def send_receipt(address: str, order_id: str) -> bool:
+     message = f"Receipt for order {order_id}"
++    await asyncio.sleep(0)
+     return deliver(address, message)
+ 
+ 

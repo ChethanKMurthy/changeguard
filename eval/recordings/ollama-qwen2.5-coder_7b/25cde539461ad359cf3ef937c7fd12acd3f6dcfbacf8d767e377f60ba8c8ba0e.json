@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:20:04+00:00",
+  "text": "{\n  \"finding_notes\": [],\n  \"additional_risks\": [\n    {\n      \"title\": \"Logic Change\",\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The evidence does not provide enough context to determine if the logic of the haversine_km function has been intentionally changed. The change appears to be a minor formatting adjustment, which could have been done by an IDE or text editor.\",\n      \"failure_scenario\": \"If the original logic was incorrect and this change is unintentional, it could lead to inaccurate distance calculations.\",\n      \"suggested_test\": {\n        \"description\": \"A test that verifies the correctness of the haversine_km function with known data points.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"overall_assessment\": \"The change appears to be a minor formatting adjustment, which could have been done by an IDE or text editor. However, the evidence does not provide enough context to determine if the logic of the haversine_km function has been intentionally changed.\"\n}",
+  "input_tokens": 797,
+  "output_tokens": 241,
+  "latency_ms": 8104.9,
+  "finish_reason": "stop"
+}

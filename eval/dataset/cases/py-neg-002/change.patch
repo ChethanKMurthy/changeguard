@@ -1,0 +1,23 @@
+diff --git a/src/textutil/wrap.py b/src/textutil/wrap.py
+index 4c097e3..c0766d3 100644
+--- a/src/textutil/wrap.py
++++ b/src/textutil/wrap.py
+@@ -1,4 +1,4 @@
+-def truncate(text: str, limit: int) -> str:
++def truncate(text: str, limit: int, ellipsis: str = "…") -> str:
+     if len(text) <= limit:
+         return text
+-    return text[: limit - 1] + "…"
++    return text[: limit - len(ellipsis)] + ellipsis
+diff --git a/tests/test_wrap.py b/tests/test_wrap.py
+index 8fa07ca..e6620b3 100644
+--- a/tests/test_wrap.py
++++ b/tests/test_wrap.py
+@@ -7,3 +7,7 @@ def test_short_text_unchanged():
+ 
+ def test_long_text_truncated():
+     assert truncate("abcdefghij", 5) == "abcd…"
++
++
++def test_custom_ellipsis():
++    assert truncate("abcdefghij", 5, "...") == "ab..."

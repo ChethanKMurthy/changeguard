@@ -1,0 +1,23 @@
+id: ts-breaking-001
+title: Exported function gains a required parameter
+split: dev
+language: typescript
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: formatAmount now requires `currency`; cart.ts and the existing test still call it with one argument
+  (compile error).
+tags:
+- breaking-change
+- signature
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/pricing/currency.ts
+  lines:
+  - 1
+  - 1
+  severity: high
+  note: ''
+acceptable: []

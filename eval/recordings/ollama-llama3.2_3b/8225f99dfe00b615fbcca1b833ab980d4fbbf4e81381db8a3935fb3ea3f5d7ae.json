@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:00:36+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"E1\",\n      \"explanation\": \"This finding matters because it indicates a potential issue with the formatting of currency values in the `priceLabel` function.\",\n      \"failure_scenario\": \"If the `toUnits` function is called with a negative number, the result will be incorrect. For example, if `cents` is -100, the function will return '0.00', which is not a valid representation of a negative price.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `priceLabel` function returns an error or throws an exception when called with a negative number.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect formatting of currency values, which could lead to user confusion or financial losses. Additionally, the lack of testing for negative input values increases the likelihood of a bug being introduced in production.\" }",
+  "input_tokens": 703,
+  "output_tokens": 239,
+  "latency_ms": 3229.5,
+  "finish_reason": "stop"
+}

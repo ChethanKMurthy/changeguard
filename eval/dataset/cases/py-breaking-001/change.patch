@@ -1,0 +1,16 @@
+diff --git a/src/shipping/rates.py b/src/shipping/rates.py
+index 397bf7e..01e1afd 100644
+--- a/src/shipping/rates.py
++++ b/src/shipping/rates.py
+@@ -1,10 +1,8 @@
+ """Shipping rate calculation."""
+ 
+ 
+-def shipping_cost(weight_kg: float, express: bool = False, insured: bool = False) -> float:
++def shipping_cost(weight_kg: float, express: bool = False) -> float:
+     base = 4.0 + 1.5 * weight_kg
+     if express:
+         base *= 1.8
+-    if insured:
+-        base += 2.5
+     return round(base, 2)

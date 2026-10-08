@@ -1,0 +1,25 @@
+id: py-breaking-004
+title: Function became async; caller uses the coroutine as a value
+split: dev
+language: python
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: send_receipt becomes a coroutine. finish_order does not await it, so `sent` is always a truthy coroutine
+  object.
+tags:
+- breaking-change
+- async
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/notify/email.py
+  lines:
+  - 4
+  - 4
+  severity: high
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

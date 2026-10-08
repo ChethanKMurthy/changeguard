@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:05:13+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-bbf6ba7c3f\",\n      \"explanation\": \"The `dangerouslySetInnerHTML` attribute is added to the `<p>` element, which can lead to XSS attacks if user input is not properly sanitized.\",\n      \"failure_scenario\": \"An attacker injects malicious HTML code into the comment body, causing a cross-site scripting (XSS) attack.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `dangerouslySetInnerHTML` attribute is properly sanitized to prevent XSS attacks.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"none\"\n    },\n    {\n      \"finding_id\": \"F-e2a77cf21d\",\n      \"explanation\": \"No tests reference the `Comment` component, which may lead to unexpected behavior or errors when used in a test environment.\",\n      \"failure_scenario\": \"The `Comment` component is used in a test environment without proper setup, causing an error or unexpected behavior.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `Comment` component is properly referenced in tests.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"none\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for XSS attacks due to the use of `dangerouslySetInnerHTML`. This requires immediate attention and proper sanitization to prevent security vulnerabilities.\"}",
+  "input_tokens": 1054,
+  "output_tokens": 346,
+  "latency_ms": 5203.3,
+  "finish_reason": "stop"
+}

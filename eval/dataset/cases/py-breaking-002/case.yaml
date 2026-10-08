@@ -1,0 +1,26 @@
+id: py-breaking-002
+title: Renamed function is still imported under its old name
+split: dev
+language: python
+difficulty: easy
+mode: full_context
+source: synthetic (authored for this dataset)
+description: make_token is renamed to generate_token; reset.py is updated but invite.py still imports make_token
+  (ImportError at import time).
+tags:
+- breaking-change
+- rename
+negative: false
+expected:
+- id: L1
+  category: breaking_change
+  file: src/accounts/tokens.py
+  lines:
+  - 4
+  - 4
+  severity: critical
+  side: base
+  note: invite.py imports the old name
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

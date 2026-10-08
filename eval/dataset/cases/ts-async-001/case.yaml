@@ -1,0 +1,24 @@
+id: ts-async-001
+title: Sequential awaits replaced by an async forEach
+split: dev
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: syncAll now returns before any record is saved, and save failures become unhandled rejections.
+tags:
+- concurrency
+- async
+negative: false
+expected:
+- id: L1
+  category: concurrency
+  file: src/jobs/sync.ts
+  lines:
+  - 4
+  - 4
+  severity: medium
+  note: ''
+acceptable:
+- category: test_gap
+  note: changed code without a directly related test (secondary observation)

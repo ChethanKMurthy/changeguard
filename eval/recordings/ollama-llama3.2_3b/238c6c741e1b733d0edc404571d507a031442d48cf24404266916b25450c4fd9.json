@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:03:47+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-6d6a691111\",\n      \"explanation\": \"The condition logic has been changed from `>` to `>=` and `<` to `<=`. This matters because it could lead to incorrect eligibility decisions.\",\n      \"failure_scenario\": \"A borrower with a credit score of 500 is eligible for a loan, but the new logic would not consider them eligible due to their low income.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the `is_eligible` function returns False for a borrower with a credit score of 500 and an income of 1000.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"low\"\n    }\n  ],\n  \"additional_risks\": [],\n  \"overall_assessment\": \"The riskiest aspect of this change is the potential for incorrect eligibility decisions, which could lead to financial losses for borrowers. The change also introduces a new logic that may not be thoroughly tested, increasing the likelihood of errors.\" }",
+  "input_tokens": 889,
+  "output_tokens": 240,
+  "latency_ms": 3736.6,
+  "finish_reason": "stop"
+}

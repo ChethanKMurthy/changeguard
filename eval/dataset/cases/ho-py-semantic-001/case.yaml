@@ -1,0 +1,22 @@
+id: ho-py-semantic-001
+title: Operands swapped in a refund calculation
+split: holdout
+language: python
+difficulty: hard
+mode: full_context
+source: synthetic (authored for this dataset)
+description: The subtraction is reversed, so refunds become negative. No syntactic rule targets this.
+tags:
+- logic
+- semantic
+negative: false
+expected:
+- id: L1
+  category: logic_change
+  file: src/billing/refunds.py
+  lines:
+  - 2
+  - 2
+  severity: high
+  note: ''
+acceptable: []

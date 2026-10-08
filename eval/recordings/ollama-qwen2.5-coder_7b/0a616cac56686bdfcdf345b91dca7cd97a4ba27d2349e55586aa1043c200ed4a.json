@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:57:44+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-bbf6ba7c3f\",\n      \"explanation\": \"`dangerouslySetInnerHTML` can lead to XSS attacks.\",\n      \"failure_scenario\": \"An attacker provides malicious HTML in the `body` prop, which is rendered on the page.\",\n      \"suggested_test\": {\n        \"description\": \"Check if XSS is prevented when rendering user-provided content.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-e2a77cf21d\",\n      \"explanation\": \"Lack of tests increases the risk of regressions.\",\n      \"failure_scenario\": \"A future change breaks the `Comment` component without being detected by tests.\",\n      \"suggested_test\": {\n        \"description\": \"Add a unit test for rendering a simple comment.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"medium\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Behavior Change\",\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"confidence\": \"low\",\n      \"description\": \"The change adds `dangerouslySetInnerHTML`, which may alter the visual representation of comments differently than before.\",\n      \"failure_scenario\": \"Visual differences in rendered comments that could confuse users or break integrations.\",\n      \"suggested_test\": {\n        \"description\": \"Compare visual output with previous versions to ensure no unintended changes.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E2\", \"E3\"],\n      \"uncertainty\": \"The change is clearly a behavior change, but the specific impact cannot be confirmed without manual verification.\"\n    }\n  ],\n  \"overall_assessment\": \"This change adds a significant security risk with `dangerouslySetInnerHTML` and lacks adequate testing. Both issues should be addressed before approval to prevent potential vulnerabilities and ensure test coverage.\"\n}",
+  "input_tokens": 1063,
+  "output_tokens": 444,
+  "latency_ms": 14854.8,
+  "finish_reason": "stop"
+}

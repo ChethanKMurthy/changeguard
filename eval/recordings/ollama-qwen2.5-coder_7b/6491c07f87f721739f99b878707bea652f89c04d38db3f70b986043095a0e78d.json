@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_id": "review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-08T12:35:34+00:00",
+  "text": "{\n  \"finding_notes\": [\n    {\n      \"finding_id\": \"F-5c8737a979\",\n      \"explanation\": \"The lack of tests for the changed `poll` function could lead to bugs going unnoticed.\",\n      \"failure_scenario\": \"A critical bug in the `poll` logic is introduced, but it's not caught by any existing tests.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the poll function returns results correctly when successful.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E2\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    },\n    {\n      \"finding_id\": \"F-546734f91b\",\n      \"explanation\": \"Calling `time.sleep` in an async function can block the event loop, leading to performance issues.\",\n      \"failure_scenario\": \"The poller becomes unresponsive and does not handle tasks concurrently as intended.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the poll function completes within expected time under load.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\"],\n      \"confidence\": \"high\",\n      \"uncertainty\": \"\"\n    }\n  ],\n  \"additional_risks\": [\n    {\n      \"title\": \"Concurrency issues\",\n      \"category\": \"concurrency\",\n      \"severity\": \"medium\",\n      \"confidence\": \"low\",\n      \"description\": \"The `time.sleep` call in an async function may block other tasks, reducing concurrency.\",\n      \"failure_scenario\": \"Concurrent requests are delayed or not handled properly, affecting system performance.\",\n      \"suggested_test\": {\n        \"description\": \"Test that the poller handles multiple concurrent requests efficiently.\",\n        \"code\": \"\"\n      },\n      \"evidence_ids\": [\"E1\", \"E4\"],\n      \"uncertainty\": \"The evidence does not directly confirm this risk.\"\n    }\n  ],\n  \"overall_assessment\": \"The lack of tests for the `poll` function is a significant concern, as it may hide critical bugs. Additionally, using `time.sleep` in an async function could lead to concurrency issues and performance degradation, which should be addressed.\"\n}",
+  "input_tokens": 1195,
+  "output_tokens": 463,
+  "latency_ms": 15634.5,
+  "finish_reason": "stop"
+}

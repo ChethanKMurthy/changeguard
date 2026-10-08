@@ -1,0 +1,13 @@
+id: ho-ts-neg-rename-001
+title: Private helper renamed with its only call site
+split: holdout
+language: typescript
+difficulty: medium
+mode: full_context
+source: synthetic (authored for this dataset)
+description: A module-private helper is renamed; the exported function and its test are unchanged.
+tags:
+- negative-control
+negative: true
+expected: []
+acceptable: []
