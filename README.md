@@ -112,7 +112,7 @@ docs/       architecture, API, setup, deployment, security, evaluation, limitati
 | Check | Command | Status here |
 |-------|---------|-------------|
 | Engine tests (unit, API integration, data freshness) | `make test-engine` | 182 passing |
-| Web unit and component tests | `make test-web` | 35 passing |
+| Web unit and component tests | `make test-web` | 36 passing |
 | End-to-end (Playwright, real engine, production build) | `make e2e` | 9 passing |
 | Lint, format, types (Ruff, mypy strict, ESLint, tsc) | `make lint typecheck` | clean |
 | Evaluation regression gate (replayed models) | `make eval-check` | no regressions |
@@ -123,9 +123,12 @@ docs/       architecture, API, setup, deployment, security, evaluation, limitati
 
 ## Deploy at zero cost
 
-Docker Compose on your machine, or the engine on Render's free plan with the web
-app on Vercel Hobby (`render.yaml` included). Public deployments give each
-browser its own workspace and keep the engine key server-side.
+On AWS's Free plan, `deploy/aws/deploy.sh` brings up one EC2 instance behind
+CloudFront and prints an HTTPS link; it checks the account plan first so it
+cannot run up a bill without your say-so. Alternatives: Docker Compose on your
+machine, or the engine on Render's free plan with the web app on Vercel Hobby
+(`render.yaml` included). Public deployments give each browser its own workspace
+and keep the engine key server-side.
 [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) covers the trade-offs (free-tier
 persistence, access control, hosted models).
 

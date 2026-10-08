@@ -1,0 +1,192 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  ChangeGuard on a single EC2 instance behind CloudFront. Sized for the AWS Free
+  plan: one t3.micro, a 20 GB gp3 volume, and CloudFront's always-free allowance.
+  Deploy with deploy/aws/deploy.sh, remove everything with deploy/aws/destroy.sh.
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t3.micro
+    AllowedValues: [t3.micro, t3.small, t4g.micro, t4g.small]
+    Description: Free plan eligible types. t4g types run on ARM (Graviton).
+  RepositoryUrl:
+    Type: String
+    Default: https://github.com/ChethanKMurthy/changeguard.git
+  Branch:
+    Type: String
+    Default: main
+  CloudFrontPrefixListId:
+    Type: String
+    Default: ""
+    Description: >-
+      ID of the com.amazonaws.global.cloudfront.origin-facing managed prefix list in
+      this region (deploy.sh looks it up). When set, only CloudFront can reach the instance.
+  EnableCloudFront:
+    Type: String
+    Default: "true"
+    AllowedValues: ["true", "false"]
+    Description: Set to false if the account cannot create CloudFront distributions yet (HTTP-only link).
+  AmiX86:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
+  AmiArm:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64
+
+Conditions:
+  UseCloudFront: !Equals [!Ref EnableCloudFront, "true"]
+  OnlyFromCloudFront: !And
+    - !Condition UseCloudFront
+    - !Not [!Equals [!Ref CloudFrontPrefixListId, ""]]
+  IsArm: !Or
+    - !Equals [!Ref InstanceType, t4g.micro]
+    - !Equals [!Ref InstanceType, t4g.small]
+
+Resources:
+  WebSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: ChangeGuard web app on port 80 (from CloudFront only when available)
+      SecurityGroupIngress:
+        - !If
+          - OnlyFromCloudFront
+          - IpProtocol: tcp
+            FromPort: 80
+            ToPort: 80
+            SourcePrefixListId: !Ref CloudFrontPrefixListId
+            Description: CloudFront origin-facing addresses
+          - IpProtocol: tcp
+            FromPort: 80
+            ToPort: 80
+            CidrIp: 0.0.0.0/0
+            Description: Public HTTP
+      Tags:
+        - Key: Name
+          Value: changeguard
+
+  # Shell access through Systems Manager Session Manager: no SSH port, no key pair.
+  InstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles: [!Ref InstanceRole]
+
+  Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !If [IsArm, !Ref AmiArm, !Ref AmiX86]
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref InstanceProfile
+      SecurityGroupIds: [!GetAtt WebSecurityGroup.GroupId]
+      MetadataOptions:
+        HttpTokens: required
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 20
+            VolumeType: gp3
+            Encrypted: true
+            DeleteOnTermination: true
+      Tags:
+        - Key: Name
+          Value: changeguard
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          # First boot: install Docker, add swap for the build, create the engine key, build and start.
+          set -euxo pipefail
+          exec > >(tee -a /var/log/changeguard-setup.log) 2>&1
+          dnf install -y docker git
+          systemctl enable --now docker
+          if [ ! -f /swapfile ]; then
+            fallocate -l 2G /swapfile
+            chmod 600 /swapfile
+            mkswap /swapfile
+            swapon /swapfile
+            echo '/swapfile none swap sw 0 0' >> /etc/fstab
+          fi
+          install -d -m 700 /etc/changeguard
+          if [ ! -f /etc/changeguard/env ]; then
+            key=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n')
+            printf 'CHANGEGUARD_API_KEY=%s\nCHANGEGUARD_API_KEYS=%s\n' "$key" "$key" > /etc/changeguard/env
+            chmod 600 /etc/changeguard/env
+          fi
+          rm -rf /opt/changeguard
+          git clone --depth 1 --branch ${Branch} ${RepositoryUrl} /opt/changeguard
+          bash /opt/changeguard/deploy/aws/start.sh
+
+  OriginRequestPolicy:
+    Type: AWS::CloudFront::OriginRequestPolicy
+    Condition: UseCloudFront
+    Properties:
+      OriginRequestPolicyConfig:
+        Name: !Sub ${AWS::StackName}-all-viewer-and-proto
+        Comment: Forward everything the app needs, plus whether the viewer used HTTPS
+        HeadersConfig:
+          HeaderBehavior: allViewerAndWhitelistCloudFront
+          Headers: [CloudFront-Forwarded-Proto]
+        CookiesConfig:
+          CookieBehavior: all
+        QueryStringsConfig:
+          QueryStringBehavior: all
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Condition: UseCloudFront
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: ChangeGuard
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        PriceClass: PriceClass_100
+        Origins:
+          - Id: changeguard-instance
+            DomainName: !GetAtt Instance.PublicDnsName
+            CustomOriginConfig:
+              HTTPPort: 80
+              OriginProtocolPolicy: http-only
+              OriginReadTimeout: 60
+              OriginKeepaliveTimeout: 5
+        DefaultCacheBehavior:
+          TargetOriginId: changeguard-instance
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS, PUT, PATCH, POST, DELETE]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          # Managed policy "CachingDisabled": pages, API calls and progress streams go straight to the instance.
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+          OriginRequestPolicyId: !Ref OriginRequestPolicy
+        CacheBehaviors:
+          # Fingerprinted build assets are immutable: cache them at the edge ("CachingOptimized").
+          - PathPattern: /_next/static/*
+            TargetOriginId: changeguard-instance
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods: [GET, HEAD]
+            CachedMethods: [GET, HEAD]
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+
+Outputs:
+  Url:
+    Description: Public link to the app
+    Value: !If
+      - UseCloudFront
+      - !Sub https://${Distribution.DomainName}
+      - !Sub http://${Instance.PublicDnsName}
+  InstanceId:
+    Description: For shell access (aws ssm start-session) and redeploys
+    Value: !Ref Instance

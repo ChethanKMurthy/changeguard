@@ -13,7 +13,15 @@
  */
 import type { NextRequest } from "next/server";
 
-import { isValidWorkspace, newWorkspaceId, WORKSPACE_COOKIE, WORKSPACE_HEADER, workspaceCookie, workspacesEnabled } from "@/lib/workspace";
+import {
+  isValidWorkspace,
+  newWorkspaceId,
+  viewerUsesHttps,
+  WORKSPACE_COOKIE,
+  WORKSPACE_HEADER,
+  workspaceCookie,
+  workspacesEnabled,
+} from "@/lib/workspace";
 
 const UPSTREAM = process.env.CHANGEGUARD_API_URL ?? "http://127.0.0.1:8000";
 const API_KEY = process.env.CHANGEGUARD_API_KEY;
@@ -82,7 +90,7 @@ async function forward(request: NextRequest, context: Context): Promise<Response
   }
   const responseHeaders = new Headers(upstream.headers);
   for (const name of HOP_BY_HOP_RESPONSE_HEADERS) responseHeaders.delete(name);
-  if (issuedWorkspace) responseHeaders.append("set-cookie", workspaceCookie(issuedWorkspace, request.nextUrl.protocol === "https:"));
+  if (issuedWorkspace) responseHeaders.append("set-cookie", workspaceCookie(issuedWorkspace, viewerUsesHttps(request.headers, request.nextUrl.protocol)));
   return new Response(upstream.body, { status: upstream.status, statusText: upstream.statusText, headers: responseHeaders });
 }
 

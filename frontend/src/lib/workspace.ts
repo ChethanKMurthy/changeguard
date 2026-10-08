@@ -23,6 +23,16 @@ export function workspacesEnabled(): boolean {
   return process.env.CHANGEGUARD_WORKSPACES !== "shared";
 }
 
+/**
+ * Whether the browser reached us over HTTPS. Behind a proxy that terminates TLS
+ * (CloudFront, Vercel, a load balancer) the server itself sees plain HTTP.
+ */
+export function viewerUsesHttps(headers: Headers, protocol: string): boolean {
+  if (headers.get("cloudfront-forwarded-proto") === "https") return true;
+  if ((headers.get("x-forwarded-proto") ?? "").split(",")[0].trim() === "https") return true;
+  return protocol === "https:";
+}
+
 export function workspaceCookie(value: string, secure: boolean): string {
   return `${WORKSPACE_COOKIE}=${value}; Path=/; Max-Age=${WORKSPACE_MAX_AGE}; HttpOnly; SameSite=Lax${secure ? "; Secure" : ""}`;
 }

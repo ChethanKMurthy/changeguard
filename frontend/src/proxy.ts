@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { isValidWorkspace, newWorkspaceId, WORKSPACE_COOKIE, WORKSPACE_MAX_AGE, workspacesEnabled } from "@/lib/workspace";
+import { isValidWorkspace, newWorkspaceId, viewerUsesHttps, WORKSPACE_COOKIE, WORKSPACE_MAX_AGE, workspacesEnabled } from "@/lib/workspace";
 
 /**
  * Give each browser a workspace on its first page view, before any API call
@@ -12,7 +12,7 @@ export function proxy(request: NextRequest) {
     response.cookies.set(WORKSPACE_COOKIE, newWorkspaceId(), {
       httpOnly: true,
       sameSite: "lax",
-      secure: request.nextUrl.protocol === "https:",
+      secure: viewerUsesHttps(request.headers, request.nextUrl.protocol),
       path: "/",
       maxAge: WORKSPACE_MAX_AGE,
     });

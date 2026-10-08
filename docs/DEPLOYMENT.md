@@ -7,18 +7,28 @@ What has been verified, and what has not: the engine and web app run locally,
 the engine was installed exactly as its image installs it (non-editable, outside
 the source tree) and served the sample correctly, and the web app's standalone
 server was run as its image runs it. The images themselves are built in CI; they
-were not built locally because no Docker daemon was available. `render.yaml`
-and the Vercel and Hugging Face steps below have not been deployed from this
-repository.
+were not built locally because no Docker daemon was available. The AWS template
+passes `cfn-lint` and its scripts pass ShellCheck. None of the hosted options
+(AWS, Render, Vercel, Hugging Face) had been deployed when this was written.
 
 | Option | Cost | Who can reach it | Reports persist? |
 |--------|------|------------------|------------------|
+| AWS: EC2 + CloudFront ([`deploy/aws`](../deploy/aws/README.md)) | free on the AWS Free plan (credits); about USD 13/month on a paid plan | anyone with the HTTPS link | yes, on the instance's disk |
 | A. Docker Compose on your machine or a VM | free | you (ports bind to localhost) | yes, in a Docker volume |
 | B. Engine on Render (free) + web app on Vercel (Hobby) | free | anyone with the URL | no, Render's free disk is ephemeral |
 | C. Engine on Hugging Face Spaces (Docker) + web app on Vercel | free | anyone with the URL | no, unless you add paid storage |
 
 Vercel's Hobby plan is for non-commercial use. Free tiers change; check the
 providers' current terms.
+
+## AWS (Free plan)
+
+`deploy/aws/deploy.sh` creates one CloudFormation stack: a `t3.micro` instance
+that builds and runs both containers, and a CloudFront distribution that gives
+it an HTTPS link. Only CloudFront can reach the instance, and shell access is
+through Systems Manager rather than SSH. The script checks the account plan
+first and will not deploy on a paid plan without `--accept-paid-plan`. Costs,
+updates and teardown are in [`deploy/aws/README.md`](../deploy/aws/README.md).
 
 ## A. Docker Compose
 
@@ -65,6 +75,11 @@ sample report) keep working while the engine sleeps.
    - `CHANGEGUARD_API_KEY` = the key from step 1.3
 3. Deploy. Browsers only talk to the Vercel origin; the API proxy adds the key
    server-side and gives each browser its own workspace.
+
+Vercel limits a function's request and response bodies to 4.5 MB, so through a
+Vercel-hosted web app an upload (patch, snapshot and coverage together) must stay
+under that, even though the engine itself accepts up to 25 MB archives. Pasted
+diffs and the samples are far below it.
 
 ### Public deployments: what to decide
 
