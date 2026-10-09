@@ -1,8 +1,8 @@
-# Skeptical review
+# Design review
 
-A review of this implementation as a senior engineer would review a portfolio
-project: what is weak, what was fixed during the review, and what a careful
-interviewer is likely to press on. Fixed items say how they were verified.
+A critical review of the system as it stands: what is weak, what was fixed
+during the review, and the questions a careful technical reader tends to ask.
+Fixed items say how they were verified.
 
 ## Fixed during the final review
 
@@ -59,7 +59,7 @@ interviewer is likely to press on. Fixed items say how they were verified.
   which. The project's own contribution is the 40 rules and the cross-file
   binding checker, and the review should credit only those.
 
-## Questions an interviewer is likely to ask
+## Questions worth asking
 
 - *Why is precision 100% on the full set?* Because the dev split was written
   alongside the rules. Point to the first holdout runs and what they exposed.
