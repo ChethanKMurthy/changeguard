@@ -60,16 +60,7 @@ structural analysis; secrets, migrations and dependency rules apply to any file.
 
 ## How it works
 
-```mermaid
-flowchart LR
-  P[Patch] --> I[Parse]
-  S[Snapshot] --> I
-  C[Coverage] --> I
-  I --> W[Rebuild both revisions<br/>in memory] --> X[Structural diff] --> R[Callers and<br/>argument binding]
-  R --> L[Differential lint] --> K[Risk rules] --> T[Tests and coverage]
-  T --> A{{Optional AI:<br/>propose, then verify}} --> F[Report]
-  T --> F
-```
+![System overview: untrusted inputs, the eleven-stage engine, the optional model zone, and the surfaces](docs/images/method-architecture.png)
 
 - **Eleven observable stages.** Each reports its status, timing and a structured
   summary, streamed to the browser as it runs.
@@ -87,16 +78,17 @@ flowchart LR
 ## Results
 
 Measured on 67 labelled code changes (65 labels, 9 safe changes as negative
-controls), with 95% bootstrap intervals, two naive baselines, and an ablation.
+controls) against two naive baselines and an ablation. Ranges in parentheses
+are 95% bootstrap intervals.
 
 | System | Precision | Recall | False alarms on safe changes |
 |--------|-----------|--------|------------------------------|
 | ChangeGuard, first run on holdout set 1 (21 cases, written after the rules froze) | 83.3% | 75.0% | 2 of 3 |
 | ChangeGuard, first run on holdout set 2 (13 cases) | 100.0% | 81.8% | 0 of 2 |
-| ChangeGuard, all cases, current rules | 100.0% [100–100] | 93.8% [88–99] | 0 of 9 |
-| Same rules without the repository snapshot | 100.0% [100–100] | 72.3% [61–83] | 0 of 9 |
-| Keyword-search baseline | 59.3% [46–73] | 49.2% [37–61] | 4 of 9 |
-| Flag-every-change baseline | 31.4% [16–50] | 16.9% [8–27] | 9 of 9 |
+| ChangeGuard, all cases, current rules | 100.0%&nbsp;(100–100) | 93.8%&nbsp;(88–99) | 0 of 9 |
+| Same rules without the repository snapshot | 100.0%&nbsp;(100–100) | 72.3%&nbsp;(61–83) | 0 of 9 |
+| Keyword-search baseline | 59.3%&nbsp;(46–73) | 49.2%&nbsp;(37–61) | 4 of 9 |
+| Flag-every-change baseline | 31.4%&nbsp;(16–50) | 16.9%&nbsp;(8–27) | 9 of 9 |
 
 No finding in any system cited evidence that failed an independent re-check.
 The dataset is small and synthetic, and the same author wrote the cases and the
@@ -118,8 +110,6 @@ Across three local models on the labelled set, grounding held for all of them.
 Correctness did not: a 7B code model proposed 57 extra risks, all citing real
 evidence, and 2 matched a label. That is why model findings live in their own
 labelled lane, capped at medium confidence and never able to fail a build.
-
-![One recorded AI pass, from evidence pack to verified note](docs/images/experience-ai.png)
 
 ## Security and privacy
 
@@ -144,6 +134,8 @@ Threat model and mitigations: [docs/SECURITY.md](docs/SECURITY.md).
 | **Guided walkthrough.** One change followed through every stage, run live on the engine and checked against a recording. | **Cross-file checks.** Every caller of a changed signature, bound against the new parameter list. |
 | ![A report with a finding and its evidence open](docs/images/report.png) | ![Model comparison with confidence intervals](docs/images/evaluation.png) |
 | **Reports.** Findings by severity and provenance, evidence with exact lines, the annotated diff, the pipeline and AI traces, and exports to Markdown, SARIF 2.1.0 and JSON. | **Evaluation.** Research-style results with intervals, clean holdout runs, misses, and a model comparison. |
+| ![One recorded AI pass, from evidence pack to verified note](docs/images/experience-ai.png) | ![The app in dark mode](docs/images/landing-dark.png) |
+| **Verified AI.** What the model saw, what it was allowed to say, and which claims survived verification. | **Light and dark.** Follows the system theme, with a manual switch. |
 
 ## Architecture
 
