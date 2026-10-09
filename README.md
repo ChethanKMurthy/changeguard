@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/ChethanKMurthy/changeguard/actions/workflows/ci.yml/badge.svg)](https://github.com/ChethanKMurthy/changeguard/actions/workflows/ci.yml)
 
+**Live demo: [changeguard-navy.vercel.app](https://changeguard-navy.vercel.app)** (recorded runs; run it locally to analyse your own changes)
+
 **Evidence for every risk in your diff.** ChangeGuard reads a code change the way
 a careful reviewer does: it rebuilds both revisions, follows every caller,
 reruns static analysis on what is new, and measures the changed lines your tests
