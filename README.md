@@ -78,17 +78,17 @@ structural analysis; secrets, migrations and dependency rules apply to any file.
 ## Results
 
 Measured on 67 labelled code changes (65 labels, 9 safe changes as negative
-controls) against two naive baselines and an ablation. Ranges in parentheses
-are 95% bootstrap intervals.
+controls) against two naive baselines and an ablation. Bootstrap intervals and
+per-split results are on the Evaluation page.
 
 | System | Precision | Recall | False alarms on safe changes |
 |--------|-----------|--------|------------------------------|
 | ChangeGuard, first run on holdout set 1 (21 cases, written after the rules froze) | 83.3% | 75.0% | 2 of 3 |
 | ChangeGuard, first run on holdout set 2 (13 cases) | 100.0% | 81.8% | 0 of 2 |
-| ChangeGuard, all cases, current rules | 100.0%&nbsp;(100–100) | 93.8%&nbsp;(88–99) | 0 of 9 |
-| Same rules without the repository snapshot | 100.0%&nbsp;(100–100) | 72.3%&nbsp;(61–83) | 0 of 9 |
-| Keyword-search baseline | 59.3%&nbsp;(46–73) | 49.2%&nbsp;(37–61) | 4 of 9 |
-| Flag-every-change baseline | 31.4%&nbsp;(16–50) | 16.9%&nbsp;(8–27) | 9 of 9 |
+| ChangeGuard, all cases, current rules | 100.0% | 93.8% | 0 of 9 |
+| Same rules without the repository snapshot | 100.0% | 72.3% | 0 of 9 |
+| Keyword-search baseline | 59.3% | 49.2% | 4 of 9 |
+| Flag-every-change baseline | 31.4% | 16.9% | 9 of 9 |
 
 No finding in any system cited evidence that failed an independent re-check.
 The dataset is small and synthetic, and the same author wrote the cases and the
