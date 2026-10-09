@@ -10,9 +10,11 @@ minute after 15 idle minutes.
 What has been verified, and what has not: the engine and web app run locally,
 both container images build in CI, the engine was installed exactly as its image
 installs it and served the sample correctly, and the web app's standalone server
-was run as its image runs it. The AWS template passes `cfn-lint` and its scripts
-pass ShellCheck. None of the hosted options had been deployed when this was
-written.
+was run as its image runs it. Option B is deployed at
+https://changeguard-navy.vercel.app and was checked end to end: pages load for
+anonymous visitors, a live analysis through the site reproduces the recorded
+finding IDs, and one browser cannot open another's report. The AWS template
+passes `cfn-lint` and its scripts pass ShellCheck but has not been deployed.
 
 | Option | Cost | Lasts | Who can reach it | Reports persist? |
 |--------|------|-------|------------------|------------------|

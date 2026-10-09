@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ChethanKMurthy/changeguard/actions/workflows/ci.yml/badge.svg)](https://github.com/ChethanKMurthy/changeguard/actions/workflows/ci.yml)
 
-**Live demo: [changeguard-navy.vercel.app](https://changeguard-navy.vercel.app)** (recorded runs; run it locally to analyse your own changes)
+**Live: [changeguard-navy.vercel.app](https://changeguard-navy.vercel.app)** · web app on Vercel, engine on Render's free plan (it sleeps when idle, so the first analysis after a quiet spell takes about a minute)
 
 **Evidence for every risk in your diff.** ChangeGuard reads a code change the way
 a careful reviewer does: it rebuilds both revisions, follows every caller,
