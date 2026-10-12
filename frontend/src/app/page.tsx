@@ -288,7 +288,7 @@ export default function Home() {
             </h2>
             <p className="prose-lab mt-5">
               {evaluation.manifest.cases} code changes with {evaluation.manifest.labels} hand-written labels and{" "}
-              {evaluation.manifest.negative_controls} negative controls, compared against two naive baselines. Two holdout sets
+              {evaluation.manifest.negative_controls} negative controls, compared against three baselines, one of them a language model reviewing the change alone. Two holdout sets
               were written only after the rules were frozen, and each was run once before anything changed.
             </p>
             {cleanRuns.length > 0 && (
