@@ -330,7 +330,7 @@ export default function Home() {
             caption={
               <>
                 Precision and recall on all {evaluation.manifest.cases} cases, with 95% bootstrap intervals over cases (
-                {evaluation.manifest.bootstrap.samples.toLocaleString()} resamples). The diff-only row is the same engine without a
+                {evaluation.manifest.bootstrap.samples.toLocaleString("en-US")} resamples). The diff-only row is the same engine without a
                 repository snapshot. Evidence integrity: {primary?.evidence.unsupported_findings ?? 0} of{" "}
                 {primary?.evidence.findings_checked ?? 0} findings cited evidence that failed an independent re-check.
               </>
