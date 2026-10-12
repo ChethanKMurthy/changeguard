@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:59+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/password.py\",\n      \"start_line\": 6,\n      \"end_line\": 7,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Constant changed from 200_000 to 100_000 in the PBKDF2 iteration count\"\n    },\n    {\n      \"file\": \"tests/test_password.py\",\n      \"start_line\": -1,\n      \"end_line\": -1,\n      \"category\": \"test_gap\",\n      \"severity\": \"low\",\n      \"title\": \"Test for verify function with correct password removed\"\n    }\n  ]\n}",
+  "input_tokens": 913,
+  "output_tokens": 141,
+  "latency_ms": 2238.7,
+  "finish_reason": "stop"
+}

@@ -86,11 +86,11 @@
   },
   "manifest": {
     "format_version": "1",
-    "generated_at": "2026-10-08T16:43:36+00:00",
+    "generated_at": "2026-10-12T13:26:18+00:00",
     "changeguard_version": "0.1.0",
     "ruleset_version": "2026.10.4",
     "report_schema_version": "1.0",
-    "git_sha": null,
+    "git_sha": "9f1f1989aa54-dirty",
     "dataset_sha256": "b65381532aba57ce7cb625b1b2c540b2c26b03c173567dd59abfee08cd456b7f",
     "cases": 67,
     "splits": {
@@ -388,8 +388,8 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 7.8,
-        "p95": 13.6
+        "mean": 9.5,
+        "p95": 17.9
       },
       "ai": {}
     },
@@ -644,8 +644,8 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 9.2,
-        "p95": 15.7
+        "mean": 10.3,
+        "p95": 17.9
       },
       "ai": {
         "cases_with_ai": 67,
@@ -922,8 +922,8 @@
         "within_one_level": 0.9683
       },
       "latency_ms": {
-        "mean": 9.2,
-        "p95": 15.6
+        "mean": 10.8,
+        "p95": 19.0
       },
       "ai": {
         "cases_with_ai": 67,
@@ -1198,8 +1198,8 @@
         "within_one_level": 0.9683
       },
       "latency_ms": {
-        "mean": 10.9,
-        "p95": 17.3
+        "mean": 13.6,
+        "p95": 22.1
       },
       "ai": {
         "cases_with_ai": 67,
@@ -1468,8 +1468,8 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 0.7,
-        "p95": 1.1
+        "mean": 1.0,
+        "p95": 1.7
       },
       "ai": {}
     },
@@ -1709,7 +1709,7 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 0.0,
+        "mean": 0.1,
         "p95": 0.1
       },
       "ai": {}
@@ -1958,10 +1958,282 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 0.6,
-        "p95": 0.9
+        "mean": 0.7,
+        "p95": 1.1
       },
       "ai": {}
+    },
+    {
+      "system": "baseline-llm-review:llama3.2:3b",
+      "description": "The model alone reviews the whole change (llama3.2:3b), unverified",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 110,
+      "overall": {
+        "tp": 13,
+        "fp": 93,
+        "fn": 52,
+        "precision": 0.1226,
+        "recall": 0.2,
+        "f1": 0.152
+      },
+      "ci95": {
+        "precision": [
+          0.0631,
+          0.1863
+        ],
+        "recall": [
+          0.1061,
+          0.2985
+        ],
+        "f1": [
+          0.0804,
+          0.2293
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 7,
+          "fp": 46,
+          "fn": 27,
+          "precision": 0.1321,
+          "recall": 0.2059,
+          "f1": 0.1609
+        },
+        "holdout": {
+          "tp": 3,
+          "fp": 29,
+          "fn": 17,
+          "precision": 0.0938,
+          "recall": 0.15,
+          "f1": 0.1154
+        },
+        "holdout-v2": {
+          "tp": 3,
+          "fp": 18,
+          "fn": 8,
+          "precision": 0.1429,
+          "recall": 0.2727,
+          "f1": 0.1875
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.0517,
+            0.2264
+          ],
+          "recall": [
+            0.0789,
+            0.3333
+          ],
+          "f1": [
+            0.0638,
+            0.2727
+          ]
+        },
+        "holdout": {
+          "precision": [
+            0.0,
+            0.2121
+          ],
+          "recall": [
+            0.0,
+            0.3333
+          ],
+          "f1": [
+            0.0,
+            0.25
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            0.0,
+            0.3158
+          ],
+          "recall": [
+            0.0,
+            0.5833
+          ],
+          "f1": [
+            0.0,
+            0.4
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 22,
+          "fn": 1,
+          "precision": 0.0435,
+          "recall": 0.5,
+          "f1": 0.08
+        },
+        "breaking_change": {
+          "tp": 2,
+          "fp": 2,
+          "fn": 13,
+          "precision": 0.5,
+          "recall": 0.1333,
+          "f1": 0.2105
+        },
+        "concurrency": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "correctness": {
+          "tp": 0,
+          "fp": 24,
+          "fn": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "coverage_gap": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "data_migration": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "dependency": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 3,
+          "precision": 0.6667,
+          "recall": 0.4,
+          "f1": 0.5
+        },
+        "error_handling": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        },
+        "logic_change": {
+          "tp": 5,
+          "fp": 31,
+          "fn": 0,
+          "precision": 0.1389,
+          "recall": 1.0,
+          "f1": 0.2439
+        },
+        "prompt_injection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "secret_exposure": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "security": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 14,
+          "precision": 0.6667,
+          "recall": 0.125,
+          "f1": 0.2105
+        },
+        "syntax_error": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null
+        },
+        "test_gap": {
+          "tp": 0,
+          "fp": 11,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null
+        },
+        "test_integrity": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        }
+      },
+      "by_kind": {
+        "ai": {
+          "fp": 93,
+          "tp": 13,
+          "acceptable": 4,
+          "precision": 0.1226
+        }
+      },
+      "by_confidence": {
+        "medium": {
+          "fp": 93,
+          "tp": 13,
+          "acceptable": 4,
+          "precision": 0.1226
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 9,
+        "false_positive_rate": 1.0,
+        "false_positives_per_case": 1.667
+      },
+      "evidence": {
+        "findings_checked": 110,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.5385,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 0.4,
+        "p95": 0.5
+      },
+      "ai": {
+        "cases_with_ai": 67,
+        "completed": 67,
+        "failed": 0,
+        "claims_total": 0,
+        "claims_rejected": 0,
+        "claim_rejection_rate": null,
+        "rejection_reasons": {},
+        "notes_applied": 0,
+        "ai_findings": 0,
+        "ai_true_positives": 13,
+        "mean_model_latency_ms": 1779.1,
+        "mean_input_tokens": 795.5,
+        "mean_output_tokens": 111.9,
+        "replay_misses": 0
+      }
     }
   ],
   "cases": [
@@ -1977,7 +2249,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 2.2
+      "duration_ms": 2.8
     },
     {
       "case": "h2-py-flask-debug-001",
@@ -1991,7 +2263,7 @@
       "acceptable": 2,
       "unsupported": [],
       "error": null,
-      "duration_ms": 15.3
+      "duration_ms": 30.7
     },
     {
       "case": "h2-py-jwt-001",
@@ -2005,7 +2277,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.3
+      "duration_ms": 13.2
     },
     {
       "case": "h2-py-kwonly-001",
@@ -2045,7 +2317,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 14.0
+      "duration_ms": 14.1
     },
     {
       "case": "h2-py-session-verify-001",
@@ -2059,7 +2331,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.0
+      "duration_ms": 15.0
     },
     {
       "case": "h2-py-staticmethod-001",
@@ -2073,7 +2345,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.9
+      "duration_ms": 14.4
     },
     {
       "case": "h2-py-timeout-handling-001",
@@ -2087,7 +2359,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.6
+      "duration_ms": 15.3
     },
     {
       "case": "h2-sql-rename-column-001",
@@ -2101,7 +2373,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.2
+      "duration_ms": 1.4
     },
     {
       "case": "h2-ts-neg-extract-001",
@@ -2113,7 +2385,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.2
+      "duration_ms": 1.4
     },
     {
       "case": "h2-ts-optional-required-001",
@@ -2127,7 +2399,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.3
+      "duration_ms": 1.4
     },
     {
       "case": "h2-tsx-innerhtml-001",
@@ -2141,7 +2413,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.1
+      "duration_ms": 1.2
     },
     {
       "case": "ho-js-commonjs-001",
@@ -2167,7 +2439,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.9
+      "duration_ms": 1.0
     },
     {
       "case": "ho-py-alias-module-001",
@@ -2181,7 +2453,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.7
+      "duration_ms": 14.2
     },
     {
       "case": "ho-py-async-sleep-001",
@@ -2195,7 +2467,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.4
+      "duration_ms": 13.2
     },
     {
       "case": "ho-py-dataclass-001",
@@ -2209,7 +2481,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.4
+      "duration_ms": 12.6
     },
     {
       "case": "ho-py-diffonly-tls-001",
@@ -2223,7 +2495,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.7
+      "duration_ms": 0.8
     },
     {
       "case": "ho-py-injection-001",
@@ -2238,7 +2510,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.2
+      "duration_ms": 14.5
     },
     {
       "case": "ho-py-moved-module-001",
@@ -2252,7 +2524,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.5
+      "duration_ms": 14.8
     },
     {
       "case": "ho-py-mutable-default-001",
@@ -2266,7 +2538,7 @@
       "acceptable": 2,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.4
+      "duration_ms": 13.6
     },
     {
       "case": "ho-py-neg-logging-001",
@@ -2278,7 +2550,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.7
+      "duration_ms": 13.5
     },
     {
       "case": "ho-py-pickle-001",
@@ -2292,7 +2564,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 10.6
+      "duration_ms": 12.5
     },
     {
       "case": "ho-py-popen-shell-001",
@@ -2306,7 +2578,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.2
+      "duration_ms": 12.8
     },
     {
       "case": "ho-py-semantic-001",
@@ -2320,7 +2592,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 10.9
+      "duration_ms": 12.1
     },
     {
       "case": "ho-py-semantic-002",
@@ -2334,7 +2606,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.4
+      "duration_ms": 12.5
     },
     {
       "case": "ho-py-test-deleted-001",
@@ -2350,7 +2622,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.4
+      "duration_ms": 18.3
     },
     {
       "case": "ho-py-unsafe-load-001",
@@ -2364,7 +2636,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 10.7
+      "duration_ms": 21.5
     },
     {
       "case": "ho-sql-delete-all-001",
@@ -2378,7 +2650,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.8
+      "duration_ms": 1.1
     },
     {
       "case": "ho-ts-constructor-001",
@@ -2392,7 +2664,7 @@
       "acceptable": 2,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.5
+      "duration_ms": 1.7
     },
     {
       "case": "ho-ts-method-001",
@@ -2406,7 +2678,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.5
+      "duration_ms": 1.7
     },
     {
       "case": "ho-ts-neg-rename-001",
@@ -2418,7 +2690,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.2
+      "duration_ms": 1.4
     },
     {
       "case": "ho-ts-new-function-001",
@@ -2432,7 +2704,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.1
+      "duration_ms": 1.3
     },
     {
       "case": "js-error-001",
@@ -2446,7 +2718,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.0
+      "duration_ms": 1.2
     },
     {
       "case": "js-logic-001",
@@ -2460,7 +2732,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.0
+      "duration_ms": 1.2
     },
     {
       "case": "js-security-001",
@@ -2474,7 +2746,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.9
+      "duration_ms": 1.1
     },
     {
       "case": "json-deps-001",
@@ -2490,7 +2762,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.8
+      "duration_ms": 0.9
     },
     {
       "case": "py-async-001",
@@ -2504,7 +2776,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.9
+      "duration_ms": 16.4
     },
     {
       "case": "py-behavior-001",
@@ -2518,7 +2790,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.0
+      "duration_ms": 14.0
     },
     {
       "case": "py-breaking-001",
@@ -2532,7 +2804,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.3
+      "duration_ms": 13.9
     },
     {
       "case": "py-breaking-002",
@@ -2546,7 +2818,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.9
+      "duration_ms": 17.9
     },
     {
       "case": "py-breaking-003",
@@ -2560,7 +2832,7 @@
       "acceptable": 2,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.2
+      "duration_ms": 17.1
     },
     {
       "case": "py-breaking-004",
@@ -2574,7 +2846,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.7
+      "duration_ms": 16.6
     },
     {
       "case": "py-coverage-001",
@@ -2588,7 +2860,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.5
+      "duration_ms": 15.6
     },
     {
       "case": "py-deps-001",
@@ -2603,7 +2875,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.9
+      "duration_ms": 1.1
     },
     {
       "case": "py-error-001",
@@ -2617,7 +2889,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.3
+      "duration_ms": 15.2
     },
     {
       "case": "py-error-002",
@@ -2631,7 +2903,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.0
+      "duration_ms": 15.4
     },
     {
       "case": "py-logic-001",
@@ -2645,7 +2917,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 12.0
+      "duration_ms": 15.9
     },
     {
       "case": "py-logic-002",
@@ -2659,7 +2931,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.2
+      "duration_ms": 15.3
     },
     {
       "case": "py-migration-001",
@@ -2673,7 +2945,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 6.6
+      "duration_ms": 8.8
     },
     {
       "case": "py-neg-001",
@@ -2685,7 +2957,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.0
+      "duration_ms": 15.0
     },
     {
       "case": "py-neg-002",
@@ -2697,7 +2969,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 13.6
+      "duration_ms": 15.6
     },
     {
       "case": "py-neg-003",
@@ -2709,7 +2981,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.8
+      "duration_ms": 14.2
     },
     {
       "case": "py-secret-001",
@@ -2723,7 +2995,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.5
+      "duration_ms": 13.6
     },
     {
       "case": "py-security-001",
@@ -2738,7 +3010,7 @@
       "acceptable": 2,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.6
+      "duration_ms": 13.5
     },
     {
       "case": "py-security-002",
@@ -2752,7 +3024,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.6
+      "duration_ms": 13.8
     },
     {
       "case": "py-test-001",
@@ -2767,7 +3039,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.0
+      "duration_ms": 12.4
     },
     {
       "case": "py-undefined-001",
@@ -2781,7 +3053,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 11.1
+      "duration_ms": 12.6
     },
     {
       "case": "sql-migration-001",
@@ -2795,7 +3067,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.9
+      "duration_ms": 1.0
     },
     {
       "case": "ts-async-001",
@@ -2809,7 +3081,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.0
+      "duration_ms": 1.1
     },
     {
       "case": "ts-breaking-001",
@@ -2823,7 +3095,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.3
+      "duration_ms": 1.5
     },
     {
       "case": "ts-breaking-002",
@@ -2837,7 +3109,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.8
+      "duration_ms": 0.9
     },
     {
       "case": "ts-neg-001",
@@ -2849,7 +3121,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.3
+      "duration_ms": 1.5
     },
     {
       "case": "ts-security-001",
@@ -2863,7 +3135,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.7
+      "duration_ms": 0.8
     },
     {
       "case": "ts-security-002",
@@ -2877,7 +3149,7 @@
       "acceptable": 1,
       "unsupported": [],
       "error": null,
-      "duration_ms": 0.8
+      "duration_ms": 0.9
     },
     {
       "case": "ts-test-001",
@@ -2891,7 +3163,7 @@
       "acceptable": 0,
       "unsupported": [],
       "error": null,
-      "duration_ms": 1.0
+      "duration_ms": 1.1
     }
   ],
   "misses": [
@@ -2908,7 +3180,9 @@
         5
       ],
       "note": "",
-      "found_by": []
+      "found_by": [
+        "baseline-llm-review:llama3.2:3b"
+      ]
     },
     {
       "case": "ho-py-semantic-001",
@@ -2925,7 +3199,8 @@
       "note": "",
       "found_by": [
         "changeguard+ai:qwen2.5-coder:7b",
-        "changeguard+ai:qwen2.5-coder:7b@3"
+        "changeguard+ai:qwen2.5-coder:7b@3",
+        "baseline-llm-review:llama3.2:3b"
       ]
     },
     {
@@ -2944,7 +3219,8 @@
       "found_by": [
         "changeguard+ai:qwen2.5-coder:7b",
         "changeguard+ai:qwen2.5-coder:7b@3",
-        "baseline-keyword"
+        "baseline-keyword",
+        "baseline-llm-review:llama3.2:3b"
       ]
     },
     {

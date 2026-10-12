@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:26:05+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/services/directory.ts\",\n      \"start_line\": 3,\n      \"end_line\": 4,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Function name changed from emailsOf to emailsOf\"\n    },\n    {\n      \"file\": \"src/types/user.ts\",\n      \"start_line\": 1,\n      \"end_line\": 1,\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"title\": \"Type alias renamed from UserRecord to UserProfile\"\n    }\n  ]\n}",
+  "input_tokens": 872,
+  "output_tokens": 131,
+  "latency_ms": 2112.0,
+  "finish_reason": "stop"
+}

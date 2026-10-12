@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:26:03+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/session.ts\",\n      \"start_line\": 2,\n      \"end_line\": 3,\n      \"category\": \"correctness\",\n      \"severity\": \"critical\",\n      \"title\": \"Removed function with no replacement\"\n    },\n    {\n      \"file\": \"src/auth/guard.ts\",\n      \"start_line\": 4,\n      \"end_line\": 5,\n      \"category\": \"behavior_change\",\n      \"severity\": \"high\",\n      \"title\": \"Logic change: shouldRefresh now depends on refreshWindow, which is no longer defined\"\n    }\n  ]\n}",
+  "input_tokens": 742,
+  "output_tokens": 135,
+  "latency_ms": 2001.4,
+  "finish_reason": "stop"
+}

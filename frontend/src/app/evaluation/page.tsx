@@ -16,7 +16,7 @@ import { evaluation, type EvalSystem } from "@/lib/static-data";
 export const metadata: Metadata = {
   title: "Evaluation",
   description:
-    "Precision, recall, negative controls, and evidence integrity on 67 labelled code changes, with bootstrap intervals, clean holdout results, baselines, an ablation, and three local language models.",
+    "Precision, recall, negative controls, and evidence integrity on 67 labelled code changes, with bootstrap intervals, clean holdout results, baselines including a model reviewing alone, an ablation, and three local language models.",
 };
 
 const SECTIONS = [
@@ -115,7 +115,7 @@ export default function EvaluationPage() {
         <h1 className="display mt-5 max-w-[19ch] text-[clamp(2.3rem,4.6vw,3.9rem)]">What the evaluation shows, and what it cannot.</h1>
         <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-16">
           <p className="prose-lab text-[1.125rem]">
-            {m.cases} labelled code changes, two naive baselines, an ablation without the repository snapshot, and three local
+            {m.cases} labelled code changes, three baselines (one of them a model reviewing the whole change alone), an ablation without the repository snapshot, and three local
             language models, all scored with one-to-one matching and bootstrap intervals over cases. The dataset is small and
             synthetic, and the same author wrote it and the rules. Read every number with that in mind.
           </p>
@@ -625,7 +625,7 @@ export default function EvaluationPage() {
               ["Dataset", `${m.cases} cases, each a patch with the repository before the change and, for some, a coverage report. Each case lists expected labels (category, file, lines, severity) and acceptable extra observations. Labelling rules are in eval/LABELING.md.`],
               ["Matching", `${m.matching.rule[0].toUpperCase()}${m.matching.rule.slice(1)}. Precision and recall are micro-averaged over all labels.`],
               ["Intervals", `95% percentile bootstrap over ${m.bootstrap.unit}s, ${m.bootstrap.samples.toLocaleString("en-US")} resamples, seed ${m.bootstrap.seed}, overall and per split.`],
-              ["Baselines", "A keyword search over added lines, and a system that flags every changed function. The diff-only ablation runs the same rules without the repository snapshot."],
+              ["Baselines", "A keyword search over added lines, a system that flags every changed function, and a language model reviewing the whole change on its own: the diff, every file with line numbers, the coverage report and the category list, with its findings scored unverified. The diff-only ablation runs the same rules without the repository snapshot."],
               ["Language models", `Local inference through ${aiInfo.provider ?? "a local provider"}, temperature ${aiInfo.decoding?.temperature ?? 0} and seed ${aiInfo.decoding?.seed ?? "fixed"}. Responses are recorded per request fingerprint and replayed exactly.`],
               ["Regression gate", "CI replays the evaluation against a committed baseline. It fails if precision, recall or F1 drops by more than 2 points, the false-alarm rate rises by more than 5, unsupported evidence increases, or a previously found label is missed."],
             ].map(([title, body]) => (

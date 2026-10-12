@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:16+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/weather/service.py\",\n      \"start_line\": 4,\n      \"end_line\": 6,\n      \"category\": \"behavior_change\",\n      \"severity\": \"high\",\n      \"title\": \"Using a non-async HTTP client in an async function\"\n    },\n    {\n      \"file\": \"src/weather/service.py\",\n      \"start_line\": 1,\n      \"end_line\": 1,\n      \"category\": \"syntax_error\",\n      \"severity\": \"critical\",\n      \"title\": \"Import statement removed\"\n    }\n  ]\n}",
+  "input_tokens": 717,
+  "output_tokens": 127,
+  "latency_ms": 1841.5,
+  "finish_reason": "stop"
+}

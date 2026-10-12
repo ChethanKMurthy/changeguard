@@ -1,13 +1,18 @@
 from __future__ import annotations
 
+import json
+import subprocess
 from pathlib import Path
 
+from changeguard.ai.providers.base import GenerationRequest, GenerationResult, ProviderHealth
+from changeguard.cli import main as cli_main
 from changeguard.evaluation.dataset import Case, Label
+from changeguard.evaluation.llm_review import LLMReviewBaseline, parse_findings
 from changeguard.evaluation.matching import Prediction, match_case
 from changeguard.evaluation.metrics import Counts, bootstrap, micro
 from changeguard.evaluation.reporting import compare_to_baseline
 from changeguard.report.exporters import _fence, _md, to_markdown, to_sarif
-from tests.conftest import ChangeRunner
+from tests.conftest import ChangeRunner, write_tree
 
 
 def _p(pid: str, category: str, file: str, line: int) -> Prediction:
@@ -144,3 +149,79 @@ def test_schema_migration_keeps_existing_analyses(tmp_path: Path) -> None:
     assert row is not None and row.title == "old"
     assert store.get("an_00000000000000000001", workspace="w" * 16) is None
     assert store.list_page(limit=10, offset=0)[1] == 1
+
+
+class _FakeProvider:
+    name = "fake"
+    model = "fake-model"
+
+    def __init__(self, text: str) -> None:
+        self.text = text
+        self.requests: list[GenerationRequest] = []
+
+    def generate(self, request: GenerationRequest) -> GenerationResult:
+        self.requests.append(request)
+        return GenerationResult(text=self.text, model=self.model, input_tokens=10, output_tokens=5)
+
+    def health(self) -> ProviderHealth:
+        return ProviderHealth(self.name, self.model, True, True, True)
+
+
+def test_llm_review_baseline_scores_reported_findings_as_is(tmp_path: Path) -> None:
+    case_dir = tmp_path / "c"
+    write_tree(case_dir / "head", {"app.py": "def f(x):\n    return x > 1\n"})
+    (case_dir / "change.patch").write_text("--- a/app.py\n+++ b/app.py\n")
+    case = _case([Label(id="L1", category="logic_change", file="app.py", lines=(2, 2))])
+    case.directory = case_dir
+    response = {
+        "findings": [
+            {"file": "b/app.py", "start_line": 2, "end_line": 2, "category": "logic_change",
+             "severity": "medium", "title": "boundary moved"},
+            {"file": "app.py", "start_line": 1, "end_line": 1, "category": "not_a_category",
+             "severity": "high", "title": "dropped"},
+        ]
+    }  # fmt: skip
+    provider = _FakeProvider("Here you go: " + json.dumps(response))
+    output = LLMReviewBaseline(provider, label="fake-model").run(case)
+    assert output.error is None
+    assert [(p.file, p.category, p.kind) for p in output.predictions] == [
+        ("app.py", "logic_change", "ai")
+    ]
+    assert "    2 |     return x > 1" in provider.requests[0].user
+    assert [label for label, _ in match_case(case, output.predictions).true_positives] == ["L1"]
+
+
+def test_llm_review_baseline_records_unparseable_responses_as_failures(tmp_path: Path) -> None:
+    case_dir = tmp_path / "c"
+    (case_dir / "head").mkdir(parents=True)
+    (case_dir / "change.patch").write_text("")
+    case = _case([])
+    case.directory = case_dir
+    output = LLMReviewBaseline(_FakeProvider("no json here"), label="m").run(case)
+    assert output.predictions == []
+    assert output.error is not None and output.error.startswith("bad_response")
+    assert parse_findings('{"findings": []}') == []
+
+
+def test_cli_writes_every_format_from_one_run(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    write_tree(repo, {"app.py": "def f(x):\n    return x\n"})
+    git = ["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@example.com"]
+    subprocess.run([*git, "init", "-q"], check=True)
+    subprocess.run([*git, "add", "."], check=True)
+    subprocess.run([*git, "commit", "-qm", "base"], check=True)
+    (repo / "app.py").write_text(
+        "def f(x):\n    try:\n        return x\n    except:\n        pass\n"
+    )
+    out = tmp_path / "out"
+    out.mkdir()
+    code = cli_main(
+        ["analyze", "--git-repo", str(repo), "--base", "HEAD", "--format", "text",
+         "--json-out", str(out / "r.json"), "--markdown-out", str(out / "r.md"),
+         "--sarif-out", str(out / "r.sarif")]
+    )  # fmt: skip
+    assert code == 0
+    report = json.loads((out / "r.json").read_text())
+    sarif = json.loads((out / "r.sarif").read_text())
+    assert report["summary"]["findings_total"] == len(sarif["runs"][0]["results"]) > 0
+    assert (out / "r.md").read_text().startswith("# ChangeGuard report")

@@ -54,6 +54,7 @@ jobs:
         run: |
           uv run changeguard eval --ai replay \
             --ai-model "llama3.2:3b,qwen2.5-coder:7b,qwen2.5-coder:7b@3" \
+            --llm-review "ollama:llama3.2:3b" \
             --ai-base-url http://127.0.0.1:9 \
             --out "$RUNNER_TEMP/eval" --frontend-out "$RUNNER_TEMP/eval/evaluation.json" \
             --check-baseline ../eval/baselines/changeguard.json

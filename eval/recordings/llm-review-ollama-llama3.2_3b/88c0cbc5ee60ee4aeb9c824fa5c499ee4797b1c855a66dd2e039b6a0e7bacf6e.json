@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:15+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/clients/admin.py\",\n      \"start_line\": 1,\n      \"end_line\": 1,\n      \"category\": \"security\",\n      \"severity\": \"high\",\n      \"title\": \"Hardcoded JWT token\"\n    }\n  ]\n}",
+  "input_tokens": 838,
+  "output_tokens": 66,
+  "latency_ms": 1308.8,
+  "finish_reason": "stop"
+}

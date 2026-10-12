@@ -14,5 +14,8 @@ describe("system labels", () => {
     expect(isAISystem("changeguard-diff-only")).toBe(false);
     expect(isBaseline("baseline-keyword")).toBe(true);
     expect(systemLabel("something-new")).toBe("something-new");
+    expect(systemLabel("baseline-llm-review:claude-opus-5-5")).toBe("Claude Opus 5.5 reviewing alone");
+    expect(systemLabel("baseline-llm-review:llama3.2:3b")).toBe("llama3.2:3b reviewing alone");
+    expect(isBaseline("baseline-llm-review:claude-opus-5-5")).toBe(true);
   });
 });

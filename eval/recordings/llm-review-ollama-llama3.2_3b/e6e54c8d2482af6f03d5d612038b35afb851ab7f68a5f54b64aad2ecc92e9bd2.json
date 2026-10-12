@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:11+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/net/retry.js\",\n      \"start_line\": 4,\n      \"end_line\": 6,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Infinite loop if maxAttempts is 0\"\n    }\n  ]\n}",
+  "input_tokens": 799,
+  "output_tokens": 72,
+  "latency_ms": 1302.6,
+  "finish_reason": "stop"
+}

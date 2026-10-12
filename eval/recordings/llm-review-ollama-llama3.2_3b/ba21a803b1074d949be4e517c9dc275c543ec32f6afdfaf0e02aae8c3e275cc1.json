@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:23+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/money/amount.py\",\n      \"start_line\": 11,\n      \"end_line\": 12,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Removed currency parameter from parse method\"\n    },\n    {\n      \"file\": \"src/money/amount.py\",\n      \"start_line\": 7,\n      \"end_line\": 8,\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"title\": \"Value attribute not initialized in Money class\"\n    }\n  ]\n}",
+  "input_tokens": 850,
+  "output_tokens": 130,
+  "latency_ms": 2028.6,
+  "finish_reason": "stop"
+}

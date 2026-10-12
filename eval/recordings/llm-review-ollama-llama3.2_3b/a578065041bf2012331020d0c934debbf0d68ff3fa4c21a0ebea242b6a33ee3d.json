@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:10+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/storage/prefs.js\",\n      \"start_line\": 3,\n      \"end_line\": 6,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Added try-catch block around loading preferences, which may mask errors\"\n    }\n  ]\n}",
+  "input_tokens": 703,
+  "output_tokens": 76,
+  "latency_ms": 1225.4,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:42+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/integrations/webhooks.py\",\n      \"start_line\": 3,\n      \"end_line\": 4,\n      \"category\": \"security\",\n      \"severity\": \"high\",\n      \"title\": \"Disabled TLS verification\"\n    }\n  ]\n}",
+  "input_tokens": 641,
+  "output_tokens": 67,
+  "latency_ms": 1047.6,
+  "finish_reason": "stop"
+}

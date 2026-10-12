@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:42+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/geo/distance.py\",\n      \"start_line\": 4,\n      \"end_line\": 11,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Constant changed from `r` to `earth_radius_km` without explanation\"\n    }\n  ]\n}",
+  "input_tokens": 1023,
+  "output_tokens": 78,
+  "latency_ms": 1740.5,
+  "finish_reason": "stop"
+}

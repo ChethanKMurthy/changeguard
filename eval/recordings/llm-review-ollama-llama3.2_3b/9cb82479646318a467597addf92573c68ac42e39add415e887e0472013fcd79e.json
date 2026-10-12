@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:01+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"db/migrations/0042_reset_sessions.sql\",\n      \"start_line\": 1,\n      \"end_line\": 2,\n      \"category\": \"correctness\",\n      \"severity\": \"critical\",\n      \"title\": \"Missing check for session existence before deletion\"\n    }\n  ]\n}",
+  "input_tokens": 648,
+  "output_tokens": 74,
+  "latency_ms": 1160.2,
+  "finish_reason": "stop"
+}

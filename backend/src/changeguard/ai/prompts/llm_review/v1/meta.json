@@ -1,0 +1,7 @@
+{
+  "id": "llm_review",
+  "version": "1.0.0",
+  "description": "Evaluation baseline: a model reviews the whole change on its own, with no rules, tools or verification.",
+  "created": "2026-10-12",
+  "output_schema": "LLMReviewOutput"
+}

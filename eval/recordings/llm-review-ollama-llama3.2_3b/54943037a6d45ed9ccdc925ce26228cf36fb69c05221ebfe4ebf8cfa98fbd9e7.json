@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:26:10+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/math/round.test.ts\",\n      \"start_line\": 5,\n      \"end_line\": 6,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Only assertion added\"\n    },\n    {\n      \"file\": \"src/math/round.test.ts\",\n      \"start_line\": 8,\n      \"end_line\": 9,\n      \"category\": \"test_gap\",\n      \"severity\": \"low\",\n      \"title\": \"New test case without related test\"\n    }\n  ]\n}",
+  "input_tokens": 818,
+  "output_tokens": 126,
+  "latency_ms": 1981.1,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:14+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/web/server.py\",\n      \"start_line\": 9,\n      \"end_line\": 10,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Changed debug mode from False to True\"\n    },\n    {\n      \"file\": \"src/web/server.py\",\n      \"start_line\": 11,\n      \"end_line\": 12,\n      \"category\": \"logic_change\",\n      \"severity\": \"low\",\n      \"title\": \"Changed host from \\\"127.0.0.1\\\" to \\\"0.0.0.0\\\"\"\n    }\n  ]\n}",
+  "input_tokens": 735,
+  "output_tokens": 142,
+  "latency_ms": 2003.4,
+  "finish_reason": "stop"
+}

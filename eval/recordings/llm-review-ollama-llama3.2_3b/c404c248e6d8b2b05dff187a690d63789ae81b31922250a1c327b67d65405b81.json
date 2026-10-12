@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:20+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/billing/charges.py\",\n      \"start_line\": 3,\n      \"end_line\": 4,\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"title\": \"Raising ValueError for non-positive amount\"\n    }\n  ]\n}",
+  "input_tokens": 912,
+  "output_tokens": 71,
+  "latency_ms": 1426.5,
+  "finish_reason": "stop"
+}

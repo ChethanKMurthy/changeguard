@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:31+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"requirements.txt\",\n      \"start_line\": 2,\n      \"end_line\": 3,\n      \"category\": \"dependency\",\n      \"severity\": \"high\",\n      \"title\": \"Risky dependency update: sqlalchemy version changed from 1.4.52 to 2.0.36\"\n    },\n    {\n      \"file\": \"src/app/db.py\",\n      \"start_line\": 5,\n      \"end_line\": 5,\n      \"category\": \"correctness\",\n      \"severity\": \"medium\",\n      \"title\": \"Future parameter added to create_engine, may break existing code\"\n    }\n  ]\n}",
+  "input_tokens": 716,
+  "output_tokens": 143,
+  "latency_ms": 2046.6,
+  "finish_reason": "stop"
+}

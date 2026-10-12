@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:53+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"tests/test_slug.py\",\n      \"start_line\": 10,\n      \"end_line\": 12,\n      \"category\": \"test_gap\",\n      \"severity\": \"critical\",\n      \"title\": \"Test for slugify_basic() is skipped\"\n    },\n    {\n      \"file\": \"src/textutil/slug.py\",\n      \"start_line\": 4,\n      \"end_line\": 5,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Comparison operator changed from == to ->\"\n    }\n  ]\n}",
+  "input_tokens": 854,
+  "output_tokens": 130,
+  "latency_ms": 2065.7,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,28 @@
+name: ChangeGuard
+
+# Runs this repository's own action on its pull requests. The gate is off here
+# because the evaluation cases and samples are deliberately risky code; a
+# typical repository would keep the default `fail-on: high`.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+concurrency:
+  group: changeguard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Review the change
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./
+        with:
+          fail-on: never

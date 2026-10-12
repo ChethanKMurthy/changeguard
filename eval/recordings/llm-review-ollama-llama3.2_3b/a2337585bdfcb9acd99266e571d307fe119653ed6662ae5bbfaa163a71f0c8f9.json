@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:18+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/http_client/client.py\",\n      \"start_line\": 4,\n      \"end_line\": 9,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Reduced retries in fetch function\"\n    },\n    {\n      \"file\": \"src/http_client/reports.py\",\n      \"start_line\": 5,\n      \"end_line\": 6,\n      \"category\": \"test_gap\",\n      \"severity\": \"low\",\n      \"title\": \"fetch not tested with new retry count\"\n    }\n  ]\n}",
+  "input_tokens": 853,
+  "output_tokens": 129,
+  "latency_ms": 2029.6,
+  "finish_reason": "stop"
+}

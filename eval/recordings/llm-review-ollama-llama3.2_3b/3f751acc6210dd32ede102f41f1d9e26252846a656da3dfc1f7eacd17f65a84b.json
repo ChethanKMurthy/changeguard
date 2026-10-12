@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:12+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/payments/charge.test.js\",\n      \"start_line\": 3,\n      \"end_line\": 6,\n      \"category\": \"test_gap\",\n      \"severity\": \"high\",\n      \"title\": \"Test suite for charge function is skipped\"\n    }\n  ]\n}",
+  "input_tokens": 749,
+  "output_tokens": 72,
+  "latency_ms": 1406.9,
+  "finish_reason": "stop"
+}

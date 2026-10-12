@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:50+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ops/config_loader.py\",\n      \"start_line\": 7,\n      \"end_line\": 7,\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"title\": \"Using `yaml.load()` without specifying the Loader can lead to a `yaml.YAMLError` being raised unexpectedly.\"\n    },\n    {\n      \"file\": \"src/ops/config_loader.py\",\n      \"start_line\": 11,\n      \"end_line\": 11,\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"title\": \"Using `shell=True` with `subprocess.run()` can lead to shell injection vulnerabilities.\"\n    }\n  ]\n}",
+  "input_tokens": 783,
+  "output_tokens": 156,
+  "latency_ms": 2274.1,
+  "finish_reason": "stop"
+}

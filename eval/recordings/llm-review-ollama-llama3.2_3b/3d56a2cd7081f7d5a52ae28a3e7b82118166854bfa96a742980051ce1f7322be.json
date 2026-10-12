@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:27+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notify/email.py\",\n      \"start_line\": 4,\n      \"end_line\": 7,\n      \"category\": \"behavior_change\",\n      \"severity\": \"high\",\n      \"title\": \"Async function call without awaiting\"\n    },\n    {\n      \"file\": \"src/notify/email.py\",\n      \"start_line\": 6,\n      \"end_line\": 6,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Sleeping for an indeterminate amount of time\"\n    }\n  ]\n}",
+  "input_tokens": 833,
+  "output_tokens": 129,
+  "latency_ms": 2012.0,
+  "finish_reason": "stop"
+}

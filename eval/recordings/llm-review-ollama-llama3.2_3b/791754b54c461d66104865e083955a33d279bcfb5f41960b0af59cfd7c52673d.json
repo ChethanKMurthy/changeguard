@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:26:06+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ui/banner.ts\",\n      \"start_line\": 1,\n      \"end_line\": 3,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"HTML structure changed from text content to inner HTML\"\n    }\n  ]\n}",
+  "input_tokens": 633,
+  "output_tokens": 71,
+  "latency_ms": 1126.8,
+  "finish_reason": "stop"
+}

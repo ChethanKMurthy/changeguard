@@ -1,11 +1,11 @@
 {
   "manifest": {
     "format_version": "1",
-    "generated_at": "2026-10-08T16:41:51+00:00",
+    "generated_at": "2026-10-12T13:26:27+00:00",
     "changeguard_version": "0.1.0",
     "ruleset_version": "2026.10.4",
     "report_schema_version": "1.0",
-    "git_sha": null,
+    "git_sha": "9f1f1989aa54-dirty",
     "dataset_sha256": "b65381532aba57ce7cb625b1b2c540b2c26b03c173567dd59abfee08cd456b7f",
     "cases": 67,
     "splits": {
@@ -373,8 +373,8 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 7.8,
-        "p95": 13.8
+        "mean": 9.0,
+        "p95": 16.8
       },
       "ai": {}
     },
@@ -699,8 +699,8 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 9.1,
-        "p95": 15.0
+        "mean": 9.7,
+        "p95": 15.7
       },
       "ai": {
         "cases_with_ai": 67,
@@ -1047,8 +1047,8 @@
         "within_one_level": 0.9683
       },
       "latency_ms": {
-        "mean": 9.2,
-        "p95": 15.0
+        "mean": 10.4,
+        "p95": 17.3
       },
       "ai": {
         "cases_with_ai": 67,
@@ -1393,8 +1393,8 @@
         "within_one_level": 0.9683
       },
       "latency_ms": {
-        "mean": 10.9,
-        "p95": 17.0
+        "mean": 12.1,
+        "p95": 19.1
       },
       "ai": {
         "cases_with_ai": 67,
@@ -1733,8 +1733,8 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 0.7,
-        "p95": 1.0
+        "mean": 0.8,
+        "p95": 1.2
       },
       "ai": {}
     },
@@ -2363,10 +2363,352 @@
         "within_one_level": 1.0
       },
       "latency_ms": {
-        "mean": 0.6,
-        "p95": 0.9
+        "mean": 0.8,
+        "p95": 1.2
       },
       "ai": {}
+    },
+    {
+      "system": "baseline-llm-review:llama3.2:3b",
+      "description": "The model alone reviews the whole change (llama3.2:3b), unverified",
+      "cases": 67,
+      "labels": 65,
+      "predictions": 110,
+      "acceptable": 4,
+      "errors": 0,
+      "overall": {
+        "tp": 13,
+        "fp": 93,
+        "fn": 52,
+        "precision": 0.1226,
+        "recall": 0.2,
+        "f1": 0.152
+      },
+      "ci95": {
+        "precision": [
+          0.0631,
+          0.1863
+        ],
+        "recall": [
+          0.1061,
+          0.2985
+        ],
+        "f1": [
+          0.0804,
+          0.2293
+        ]
+      },
+      "by_split": {
+        "dev": {
+          "tp": 7,
+          "fp": 46,
+          "fn": 27,
+          "precision": 0.1321,
+          "recall": 0.2059,
+          "f1": 0.1609
+        },
+        "holdout": {
+          "tp": 3,
+          "fp": 29,
+          "fn": 17,
+          "precision": 0.0938,
+          "recall": 0.15,
+          "f1": 0.1154
+        },
+        "holdout-v2": {
+          "tp": 3,
+          "fp": 18,
+          "fn": 8,
+          "precision": 0.1429,
+          "recall": 0.2727,
+          "f1": 0.1875
+        }
+      },
+      "ci95_by_split": {
+        "dev": {
+          "precision": [
+            0.0517,
+            0.2264
+          ],
+          "recall": [
+            0.0789,
+            0.3333
+          ],
+          "f1": [
+            0.0638,
+            0.2727
+          ]
+        },
+        "holdout": {
+          "precision": [
+            0.0,
+            0.2121
+          ],
+          "recall": [
+            0.0,
+            0.3333
+          ],
+          "f1": [
+            0.0,
+            0.25
+          ]
+        },
+        "holdout-v2": {
+          "precision": [
+            0.0,
+            0.3158
+          ],
+          "recall": [
+            0.0,
+            0.5833
+          ],
+          "f1": [
+            0.0,
+            0.4
+          ]
+        }
+      },
+      "by_category": {
+        "behavior_change": {
+          "tp": 1,
+          "fp": 22,
+          "fn": 1,
+          "precision": 0.0435,
+          "recall": 0.5,
+          "f1": 0.08
+        },
+        "breaking_change": {
+          "tp": 2,
+          "fp": 2,
+          "fn": 13,
+          "precision": 0.5,
+          "recall": 0.1333,
+          "f1": 0.2105
+        },
+        "concurrency": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "correctness": {
+          "tp": 0,
+          "fp": 24,
+          "fn": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "coverage_gap": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "data_migration": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "dependency": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 3,
+          "precision": 0.6667,
+          "recall": 0.4,
+          "f1": 0.5
+        },
+        "error_handling": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        },
+        "logic_change": {
+          "tp": 5,
+          "fp": 31,
+          "fn": 0,
+          "precision": 0.1389,
+          "recall": 1.0,
+          "f1": 0.2439
+        },
+        "prompt_injection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "secret_exposure": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "security": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 14,
+          "precision": 0.6667,
+          "recall": 0.125,
+          "f1": 0.2105
+        },
+        "syntax_error": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null
+        },
+        "test_gap": {
+          "tp": 0,
+          "fp": 11,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": null
+        },
+        "test_integrity": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        }
+      },
+      "by_difficulty": {
+        "easy": {
+          "tp": 6,
+          "fp": 35,
+          "fn": 19,
+          "precision": 0.1463,
+          "recall": 0.24,
+          "f1": 0.1818
+        },
+        "hard": {
+          "tp": 3,
+          "fp": 3,
+          "fn": 2,
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1": 0.5455
+        },
+        "medium": {
+          "tp": 4,
+          "fp": 55,
+          "fn": 31,
+          "precision": 0.0678,
+          "recall": 0.1143,
+          "f1": 0.0851
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "tp": 1,
+          "fp": 6,
+          "fn": 4,
+          "precision": 0.1429,
+          "recall": 0.2,
+          "f1": 0.1667
+        },
+        "json": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.5,
+          "recall": 0.3333,
+          "f1": 0.4
+        },
+        "python": {
+          "tp": 10,
+          "fp": 58,
+          "fn": 33,
+          "precision": 0.1471,
+          "recall": 0.2326,
+          "f1": 0.1802
+        },
+        "sql": {
+          "tp": 0,
+          "fp": 5,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "typescript": {
+          "tp": 1,
+          "fp": 23,
+          "fn": 10,
+          "precision": 0.0417,
+          "recall": 0.0909,
+          "f1": 0.0572
+        }
+      },
+      "by_kind": {
+        "ai": {
+          "fp": 93,
+          "tp": 13,
+          "acceptable": 4,
+          "precision": 0.1226
+        }
+      },
+      "by_confidence": {
+        "medium": {
+          "fp": 93,
+          "tp": 13,
+          "acceptable": 4,
+          "precision": 0.1226
+        }
+      },
+      "negative_controls": {
+        "cases": 9,
+        "cases_with_false_positive": 9,
+        "false_positive_rate": 1.0,
+        "false_positives_per_case": 1.667
+      },
+      "evidence": {
+        "findings_checked": 110,
+        "unsupported_findings": 0,
+        "unsupported_rate": 0.0
+      },
+      "severity_agreement": {
+        "exact": 0.5385,
+        "within_one_level": 1.0
+      },
+      "latency_ms": {
+        "mean": 0.4,
+        "p95": 0.5
+      },
+      "ai": {
+        "cases_with_ai": 67,
+        "completed": 67,
+        "failed": 0,
+        "claims_total": 0,
+        "claims_rejected": 0,
+        "claim_rejection_rate": null,
+        "rejection_reasons": {},
+        "notes_applied": 0,
+        "ai_findings": 0,
+        "ai_true_positives": 13,
+        "mean_model_latency_ms": 1779.1,
+        "mean_input_tokens": 795.5,
+        "mean_output_tokens": 111.9,
+        "replay_misses": 0
+      }
     }
   ],
   "cases": {
@@ -2383,7 +2725,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.2
       },
       {
         "case": "h2-py-flask-debug-001",
@@ -2397,7 +2739,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.7
+        "duration_ms": 15.1
       },
       {
         "case": "h2-py-jwt-001",
@@ -2411,7 +2753,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.2
+        "duration_ms": 12.5
       },
       {
         "case": "h2-py-kwonly-001",
@@ -2425,7 +2767,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.9
+        "duration_ms": 13.2
       },
       {
         "case": "h2-py-naive-datetime-001",
@@ -2439,7 +2781,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.8
+        "duration_ms": 12.6
       },
       {
         "case": "h2-py-neg-validation-001",
@@ -2451,7 +2793,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.3
+        "duration_ms": 14.2
       },
       {
         "case": "h2-py-session-verify-001",
@@ -2465,7 +2807,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.7
+        "duration_ms": 13.3
       },
       {
         "case": "h2-py-staticmethod-001",
@@ -2479,7 +2821,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.7
+        "duration_ms": 12.6
       },
       {
         "case": "h2-py-timeout-handling-001",
@@ -2493,7 +2835,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.7
+        "duration_ms": 12.6
       },
       {
         "case": "h2-sql-rename-column-001",
@@ -2507,7 +2849,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.2
+        "duration_ms": 1.5
       },
       {
         "case": "h2-ts-neg-extract-001",
@@ -2519,7 +2861,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.3
+        "duration_ms": 1.4
       },
       {
         "case": "h2-ts-optional-required-001",
@@ -2547,7 +2889,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.1
+        "duration_ms": 1.2
       },
       {
         "case": "ho-js-commonjs-001",
@@ -2561,7 +2903,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.0
+        "duration_ms": 1.1
       },
       {
         "case": "ho-js-neg-reduce-001",
@@ -2573,7 +2915,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.0
       },
       {
         "case": "ho-py-alias-module-001",
@@ -2587,7 +2929,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.8
+        "duration_ms": 12.7
       },
       {
         "case": "ho-py-async-sleep-001",
@@ -2601,7 +2943,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.3
+        "duration_ms": 12.2
       },
       {
         "case": "ho-py-dataclass-001",
@@ -2615,7 +2957,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.4
+        "duration_ms": 12.1
       },
       {
         "case": "ho-py-diffonly-tls-001",
@@ -2644,7 +2986,937 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.7
+        "duration_ms": 13.2
+      },
+      {
+        "case": "ho-py-moved-module-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.2
+      },
+      {
+        "case": "ho-py-mutable-default-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 2,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.5
+      },
+      {
+        "case": "ho-py-neg-logging-001",
+        "split": "holdout",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.1
+      },
+      {
+        "case": "ho-py-pickle-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.1
+      },
+      {
+        "case": "ho-py-popen-shell-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.4
+      },
+      {
+        "case": "ho-py-semantic-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.5
+      },
+      {
+        "case": "ho-py-semantic-002",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.9
+      },
+      {
+        "case": "ho-py-test-deleted-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [
+          "L2"
+        ],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.8
+      },
+      {
+        "case": "ho-py-unsafe-load-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 11.8
+      },
+      {
+        "case": "ho-sql-delete-all-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.9
+      },
+      {
+        "case": "ho-ts-constructor-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 2,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.5
+      },
+      {
+        "case": "ho-ts-method-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.7
+      },
+      {
+        "case": "ho-ts-neg-rename-001",
+        "split": "holdout",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.4
+      },
+      {
+        "case": "ho-ts-new-function-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.3
+      },
+      {
+        "case": "js-error-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.1
+      },
+      {
+        "case": "js-logic-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.7
+      },
+      {
+        "case": "js-security-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.0
+      },
+      {
+        "case": "json-deps-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.9
+      },
+      {
+        "case": "py-async-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.2
+      },
+      {
+        "case": "py-behavior-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.8
+      },
+      {
+        "case": "py-breaking-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.3
+      },
+      {
+        "case": "py-breaking-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.7
+      },
+      {
+        "case": "py-breaking-003",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 2,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 16.1
+      },
+      {
+        "case": "py-breaking-004",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.3
+      },
+      {
+        "case": "py-coverage-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.9
+      },
+      {
+        "case": "py-deps-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1",
+          "L2"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.1
+      },
+      {
+        "case": "py-error-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.3
+      },
+      {
+        "case": "py-error-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.8
+      },
+      {
+        "case": "py-logic-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.8
+      },
+      {
+        "case": "py-logic-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 17.4
+      },
+      {
+        "case": "py-migration-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 10.6
+      },
+      {
+        "case": "py-neg-001",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 16.8
+      },
+      {
+        "case": "py-neg-002",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.7
+      },
+      {
+        "case": "py-neg-003",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.5
+      },
+      {
+        "case": "py-secret-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 12.6
+      },
+      {
+        "case": "py-security-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1",
+          "L2"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 2,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.1
+      },
+      {
+        "case": "py-security-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.6
+      },
+      {
+        "case": "py-test-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1",
+          "L2"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 22.5
+      },
+      {
+        "case": "py-undefined-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 18.2
+      },
+      {
+        "case": "sql-migration-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.1
+      },
+      {
+        "case": "ts-async-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.1
+      },
+      {
+        "case": "ts-breaking-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.7
+      },
+      {
+        "case": "ts-breaking-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.9
+      },
+      {
+        "case": "ts-neg-001",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.4
+      },
+      {
+        "case": "ts-security-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.8
+      },
+      {
+        "case": "ts-security-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.0
+      },
+      {
+        "case": "ts-test-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.0
+      }
+    ],
+    "changeguard+ai:llama3.2:3b": [
+      {
+        "case": "h2-js-describe-skip-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.6
+      },
+      {
+        "case": "h2-py-flask-debug-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 2,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 16.0
+      },
+      {
+        "case": "h2-py-jwt-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.0
+      },
+      {
+        "case": "h2-py-kwonly-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.5
+      },
+      {
+        "case": "h2-py-naive-datetime-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.9
+      },
+      {
+        "case": "h2-py-neg-validation-001",
+        "split": "holdout-v2",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.5
+      },
+      {
+        "case": "h2-py-session-verify-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.9
+      },
+      {
+        "case": "h2-py-staticmethod-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.3
+      },
+      {
+        "case": "h2-py-timeout-handling-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.8
+      },
+      {
+        "case": "h2-sql-rename-column-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.1
+      },
+      {
+        "case": "h2-ts-neg-extract-001",
+        "split": "holdout-v2",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.4
+      },
+      {
+        "case": "h2-ts-optional-required-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.6
+      },
+      {
+        "case": "h2-tsx-innerhtml-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.3
+      },
+      {
+        "case": "ho-js-commonjs-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.1
+      },
+      {
+        "case": "ho-js-neg-reduce-001",
+        "split": "holdout",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 2.0
+      },
+      {
+        "case": "ho-py-alias-module-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.9
+      },
+      {
+        "case": "ho-py-async-sleep-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.4
+      },
+      {
+        "case": "ho-py-dataclass-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 14.1
+      },
+      {
+        "case": "ho-py-diffonly-tls-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 1.8
+      },
+      {
+        "case": "ho-py-injection-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1",
+          "L2"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 15.3
       },
       {
         "case": "ho-py-moved-module-001",
@@ -2672,7 +3944,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 11.2
+        "duration_ms": 14.7
       },
       {
         "case": "ho-py-neg-logging-001",
@@ -2682,956 +3954,12 @@
         "missed": [],
         "false_positives": [],
         "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.1
-      },
-      {
-        "case": "ho-py-pickle-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 10.8
-      },
-      {
-        "case": "ho-py-popen-shell-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 10.9
-      },
-      {
-        "case": "ho-py-semantic-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [],
-        "missed": [
-          "L1"
-        ],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 10.5
-      },
-      {
-        "case": "ho-py-semantic-002",
-        "split": "holdout",
-        "negative": false,
-        "matched": [],
-        "missed": [
-          "L1"
-        ],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.7
-      },
-      {
-        "case": "ho-py-test-deleted-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [
-          "L2"
-        ],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.4
-      },
-      {
-        "case": "ho-py-unsafe-load-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 10.4
-      },
-      {
-        "case": "ho-sql-delete-all-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.8
-      },
-      {
-        "case": "ho-ts-constructor-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 2,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.5
-      },
-      {
-        "case": "ho-ts-method-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.5
-      },
-      {
-        "case": "ho-ts-neg-rename-001",
-        "split": "holdout",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.2
-      },
-      {
-        "case": "ho-ts-new-function-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.1
-      },
-      {
-        "case": "js-error-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.0
-      },
-      {
-        "case": "js-logic-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.0
-      },
-      {
-        "case": "js-security-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.9
-      },
-      {
-        "case": "json-deps-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1",
-          "L2",
-          "L3"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.8
-      },
-      {
-        "case": "py-async-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.5
-      },
-      {
-        "case": "py-behavior-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.9
-      },
-      {
-        "case": "py-breaking-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.0
-      },
-      {
-        "case": "py-breaking-002",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
         "unsupported": [],
         "error": null,
         "duration_ms": 13.8
       },
       {
-        "case": "py-breaking-003",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 2,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.0
-      },
-      {
-        "case": "py-breaking-004",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.6
-      },
-      {
-        "case": "py-coverage-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.4
-      },
-      {
-        "case": "py-deps-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1",
-          "L2"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.9
-      },
-      {
-        "case": "py-error-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.1
-      },
-      {
-        "case": "py-error-002",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.0
-      },
-      {
-        "case": "py-logic-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.2
-      },
-      {
-        "case": "py-logic-002",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.6
-      },
-      {
-        "case": "py-migration-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 6.7
-      },
-      {
-        "case": "py-neg-001",
-        "split": "dev",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.6
-      },
-      {
-        "case": "py-neg-002",
-        "split": "dev",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 14.3
-      },
-      {
-        "case": "py-neg-003",
-        "split": "dev",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.6
-      },
-      {
-        "case": "py-secret-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.4
-      },
-      {
-        "case": "py-security-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1",
-          "L2"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 2,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.7
-      },
-      {
-        "case": "py-security-002",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.3
-      },
-      {
-        "case": "py-test-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1",
-          "L2"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.1
-      },
-      {
-        "case": "py-undefined-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 11.5
-      },
-      {
-        "case": "sql-migration-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.9
-      },
-      {
-        "case": "ts-async-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.0
-      },
-      {
-        "case": "ts-breaking-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.3
-      },
-      {
-        "case": "ts-breaking-002",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.8
-      },
-      {
-        "case": "ts-neg-001",
-        "split": "dev",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.3
-      },
-      {
-        "case": "ts-security-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.7
-      },
-      {
-        "case": "ts-security-002",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.8
-      },
-      {
-        "case": "ts-test-001",
-        "split": "dev",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 0.9
-      }
-    ],
-    "changeguard+ai:llama3.2:3b": [
-      {
-        "case": "h2-js-describe-skip-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 2.5
-      },
-      {
-        "case": "h2-py-flask-debug-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 2,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 15.0
-      },
-      {
-        "case": "h2-py-jwt-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.0
-      },
-      {
-        "case": "h2-py-kwonly-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.7
-      },
-      {
-        "case": "h2-py-naive-datetime-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [],
-        "missed": [
-          "L1"
-        ],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.9
-      },
-      {
-        "case": "h2-py-neg-validation-001",
-        "split": "holdout-v2",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 14.5
-      },
-      {
-        "case": "h2-py-session-verify-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 14.5
-      },
-      {
-        "case": "h2-py-staticmethod-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.3
-      },
-      {
-        "case": "h2-py-timeout-handling-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.7
-      },
-      {
-        "case": "h2-sql-rename-column-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.8
-      },
-      {
-        "case": "h2-ts-neg-extract-001",
-        "split": "holdout-v2",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 2.2
-      },
-      {
-        "case": "h2-ts-optional-required-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 2.3
-      },
-      {
-        "case": "h2-tsx-innerhtml-001",
-        "split": "holdout-v2",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 2.2
-      },
-      {
-        "case": "ho-js-commonjs-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.9
-      },
-      {
-        "case": "ho-js-neg-reduce-001",
-        "split": "holdout",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.9
-      },
-      {
-        "case": "ho-py-alias-module-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.2
-      },
-      {
-        "case": "ho-py-async-sleep-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.8
-      },
-      {
-        "case": "ho-py-dataclass-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.2
-      },
-      {
-        "case": "ho-py-diffonly-tls-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 1.5
-      },
-      {
-        "case": "ho-py-injection-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1",
-          "L2"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 14.2
-      },
-      {
-        "case": "ho-py-moved-module-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 14.3
-      },
-      {
-        "case": "ho-py-mutable-default-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 2,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.8
-      },
-      {
-        "case": "ho-py-neg-logging-001",
-        "split": "holdout",
-        "negative": true,
-        "matched": [],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 0,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 13.2
-      },
-      {
         "case": "ho-py-pickle-001",
-        "split": "holdout",
-        "negative": false,
-        "matched": [
-          "L1"
-        ],
-        "missed": [],
-        "false_positives": [],
-        "acceptable": 1,
-        "unsupported": [],
-        "error": null,
-        "duration_ms": 12.3
-      },
-      {
-        "case": "ho-py-popen-shell-001",
         "split": "holdout",
         "negative": false,
         "matched": [
@@ -3645,6 +3973,20 @@
         "duration_ms": 13.1
       },
       {
+        "case": "ho-py-popen-shell-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 13.8
+      },
+      {
         "case": "ho-py-semantic-001",
         "split": "holdout",
         "negative": false,
@@ -3656,7 +3998,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.4
+        "duration_ms": 13.8
       },
       {
         "case": "ho-py-semantic-002",
@@ -3670,7 +4012,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.3
+        "duration_ms": 14.3
       },
       {
         "case": "ho-py-test-deleted-001",
@@ -3686,7 +4028,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.5
+        "duration_ms": 18.4
       },
       {
         "case": "ho-py-unsafe-load-001",
@@ -3700,7 +4042,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.1
+        "duration_ms": 14.1
       },
       {
         "case": "ho-sql-delete-all-001",
@@ -3714,7 +4056,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 5.5
+        "duration_ms": 1.6
       },
       {
         "case": "ho-ts-constructor-001",
@@ -3728,7 +4070,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.7
+        "duration_ms": 2.9
       },
       {
         "case": "ho-ts-method-001",
@@ -3742,7 +4084,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.6
+        "duration_ms": 2.9
       },
       {
         "case": "ho-ts-neg-rename-001",
@@ -3754,7 +4096,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.3
+        "duration_ms": 2.4
       },
       {
         "case": "ho-ts-new-function-001",
@@ -3768,7 +4110,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.2
+        "duration_ms": 2.5
       },
       {
         "case": "js-error-001",
@@ -3782,7 +4124,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.2
       },
       {
         "case": "js-logic-001",
@@ -3796,7 +4138,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.2
       },
       {
         "case": "js-security-001",
@@ -3810,7 +4152,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.1
       },
       {
         "case": "json-deps-001",
@@ -3828,7 +4170,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.8
+        "duration_ms": 2.0
       },
       {
         "case": "py-async-001",
@@ -3842,7 +4184,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.4
+        "duration_ms": 14.6
       },
       {
         "case": "py-behavior-001",
@@ -3856,7 +4198,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.1
+        "duration_ms": 15.0
       },
       {
         "case": "py-breaking-001",
@@ -3870,7 +4212,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.2
+        "duration_ms": 14.4
       },
       {
         "case": "py-breaking-002",
@@ -3884,7 +4226,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.3
+        "duration_ms": 15.7
       },
       {
         "case": "py-breaking-003",
@@ -3898,7 +4240,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.2
+        "duration_ms": 15.1
       },
       {
         "case": "py-breaking-004",
@@ -3912,7 +4254,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.6
+        "duration_ms": 14.9
       },
       {
         "case": "py-coverage-001",
@@ -3926,7 +4268,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.9
+        "duration_ms": 13.7
       },
       {
         "case": "py-deps-001",
@@ -3955,7 +4297,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.6
+        "duration_ms": 14.0
       },
       {
         "case": "py-error-002",
@@ -3969,7 +4311,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.2
+        "duration_ms": 14.5
       },
       {
         "case": "py-logic-001",
@@ -3983,7 +4325,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.3
+        "duration_ms": 13.8
       },
       {
         "case": "py-logic-002",
@@ -3997,7 +4339,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.1
+        "duration_ms": 13.7
       },
       {
         "case": "py-migration-001",
@@ -4011,7 +4353,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 8.3
+        "duration_ms": 8.8
       },
       {
         "case": "py-neg-001",
@@ -4023,7 +4365,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.8
+        "duration_ms": 14.5
       },
       {
         "case": "py-neg-002",
@@ -4035,7 +4377,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.2
+        "duration_ms": 15.8
       },
       {
         "case": "py-neg-003",
@@ -4047,7 +4389,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.3
+        "duration_ms": 14.3
       },
       {
         "case": "py-secret-001",
@@ -4061,7 +4403,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.8
+        "duration_ms": 14.1
       },
       {
         "case": "py-security-001",
@@ -4076,7 +4418,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.3
+        "duration_ms": 14.7
       },
       {
         "case": "py-security-002",
@@ -4090,7 +4432,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.3
+        "duration_ms": 15.1
       },
       {
         "case": "py-test-001",
@@ -4105,7 +4447,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.0
+        "duration_ms": 14.4
       },
       {
         "case": "py-undefined-001",
@@ -4119,7 +4461,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.6
+        "duration_ms": 14.2
       },
       {
         "case": "sql-migration-001",
@@ -4133,7 +4475,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.9
+        "duration_ms": 2.1
       },
       {
         "case": "ts-async-001",
@@ -4147,7 +4489,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.3
       },
       {
         "case": "ts-breaking-001",
@@ -4161,7 +4503,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.5
+        "duration_ms": 2.7
       },
       {
         "case": "ts-breaking-002",
@@ -4175,7 +4517,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.8
+        "duration_ms": 2.0
       },
       {
         "case": "ts-neg-001",
@@ -4187,7 +4529,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.4
+        "duration_ms": 2.6
       },
       {
         "case": "ts-security-001",
@@ -4201,7 +4543,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.8
+        "duration_ms": 1.9
       },
       {
         "case": "ts-security-002",
@@ -4215,7 +4557,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.1
       },
       {
         "case": "ts-test-001",
@@ -4247,7 +4589,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 3.0
       },
       {
         "case": "h2-py-flask-debug-001",
@@ -4263,7 +4605,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.6
+        "duration_ms": 17.2
       },
       {
         "case": "h2-py-jwt-001",
@@ -4279,7 +4621,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.2
+        "duration_ms": 13.9
       },
       {
         "case": "h2-py-kwonly-001",
@@ -4295,7 +4637,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.6
+        "duration_ms": 14.4
       },
       {
         "case": "h2-py-naive-datetime-001",
@@ -4311,7 +4653,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.2
+        "duration_ms": 13.9
       },
       {
         "case": "h2-py-neg-validation-001",
@@ -4325,7 +4667,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.8
+        "duration_ms": 15.5
       },
       {
         "case": "h2-py-session-verify-001",
@@ -4339,7 +4681,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.7
+        "duration_ms": 15.5
       },
       {
         "case": "h2-py-staticmethod-001",
@@ -4355,7 +4697,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.5
+        "duration_ms": 14.8
       },
       {
         "case": "h2-py-timeout-handling-001",
@@ -4371,7 +4713,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.9
+        "duration_ms": 15.3
       },
       {
         "case": "h2-sql-rename-column-001",
@@ -4385,7 +4727,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.8
+        "duration_ms": 2.1
       },
       {
         "case": "h2-ts-neg-extract-001",
@@ -4399,7 +4741,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.2
+        "duration_ms": 2.5
       },
       {
         "case": "h2-ts-optional-required-001",
@@ -4415,7 +4757,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.4
+        "duration_ms": 2.6
       },
       {
         "case": "h2-tsx-innerhtml-001",
@@ -4431,7 +4773,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.3
       },
       {
         "case": "ho-js-commonjs-001",
@@ -4445,7 +4787,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.2
       },
       {
         "case": "ho-js-neg-reduce-001",
@@ -4459,7 +4801,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.9
+        "duration_ms": 2.1
       },
       {
         "case": "ho-py-alias-module-001",
@@ -4475,7 +4817,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.8
+        "duration_ms": 15.6
       },
       {
         "case": "ho-py-async-sleep-001",
@@ -4489,7 +4831,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.6
+        "duration_ms": 14.8
       },
       {
         "case": "ho-py-dataclass-001",
@@ -4505,7 +4847,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.8
+        "duration_ms": 15.6
       },
       {
         "case": "ho-py-diffonly-tls-001",
@@ -4521,7 +4863,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.7
+        "duration_ms": 2.0
       },
       {
         "case": "ho-py-injection-001",
@@ -4538,7 +4880,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.2
+        "duration_ms": 19.8
       },
       {
         "case": "ho-py-moved-module-001",
@@ -4552,7 +4894,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.3
+        "duration_ms": 19.9
       },
       {
         "case": "ho-py-mutable-default-001",
@@ -4566,7 +4908,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.8
+        "duration_ms": 19.4
       },
       {
         "case": "ho-py-neg-logging-001",
@@ -4580,7 +4922,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.1
+        "duration_ms": 17.3
       },
       {
         "case": "ho-py-pickle-001",
@@ -4596,7 +4938,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.8
+        "duration_ms": 17.1
       },
       {
         "case": "ho-py-popen-shell-001",
@@ -4612,7 +4954,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.0
+        "duration_ms": 16.3
       },
       {
         "case": "ho-py-semantic-001",
@@ -4626,7 +4968,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.5
+        "duration_ms": 15.9
       },
       {
         "case": "ho-py-semantic-002",
@@ -4640,7 +4982,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.2
+        "duration_ms": 16.1
       },
       {
         "case": "ho-py-test-deleted-001",
@@ -4658,7 +5000,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.4
+        "duration_ms": 15.6
       },
       {
         "case": "ho-py-unsafe-load-001",
@@ -4674,7 +5016,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.1
+        "duration_ms": 14.1
       },
       {
         "case": "ho-sql-delete-all-001",
@@ -4688,7 +5030,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.5
+        "duration_ms": 1.7
       },
       {
         "case": "ho-ts-constructor-001",
@@ -4704,7 +5046,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.7
+        "duration_ms": 2.9
       },
       {
         "case": "ho-ts-method-001",
@@ -4720,7 +5062,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.7
+        "duration_ms": 3.0
       },
       {
         "case": "ho-ts-neg-rename-001",
@@ -4734,7 +5076,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.3
+        "duration_ms": 2.6
       },
       {
         "case": "ho-ts-new-function-001",
@@ -4750,7 +5092,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.4
+        "duration_ms": 2.5
       },
       {
         "case": "js-error-001",
@@ -4766,7 +5108,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.3
       },
       {
         "case": "js-logic-001",
@@ -4782,7 +5124,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.2
+        "duration_ms": 2.3
       },
       {
         "case": "js-security-001",
@@ -4798,7 +5140,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.2
       },
       {
         "case": "json-deps-001",
@@ -4816,7 +5158,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.9
+        "duration_ms": 2.0
       },
       {
         "case": "py-async-001",
@@ -4830,7 +5172,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.6
+        "duration_ms": 15.3
       },
       {
         "case": "py-behavior-001",
@@ -4846,7 +5188,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.5
+        "duration_ms": 15.6
       },
       {
         "case": "py-breaking-001",
@@ -4862,7 +5204,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.8
+        "duration_ms": 14.1
       },
       {
         "case": "py-breaking-002",
@@ -4878,7 +5220,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.0
+        "duration_ms": 17.2
       },
       {
         "case": "py-breaking-003",
@@ -4894,7 +5236,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.0
+        "duration_ms": 15.9
       },
       {
         "case": "py-breaking-004",
@@ -4910,7 +5252,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.9
+        "duration_ms": 15.0
       },
       {
         "case": "py-coverage-001",
@@ -4926,7 +5268,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.6
+        "duration_ms": 14.0
       },
       {
         "case": "py-deps-001",
@@ -4943,7 +5285,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.8
+        "duration_ms": 2.0
       },
       {
         "case": "py-error-001",
@@ -4959,7 +5301,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.7
+        "duration_ms": 14.2
       },
       {
         "case": "py-error-002",
@@ -4975,7 +5317,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.1
+        "duration_ms": 14.0
       },
       {
         "case": "py-logic-001",
@@ -4991,7 +5333,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.3
+        "duration_ms": 13.9
       },
       {
         "case": "py-logic-002",
@@ -5007,7 +5349,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 12.5
+        "duration_ms": 14.0
       },
       {
         "case": "py-migration-001",
@@ -5021,7 +5363,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 8.7
+        "duration_ms": 9.2
       },
       {
         "case": "py-neg-001",
@@ -5035,7 +5377,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.5
+        "duration_ms": 14.9
       },
       {
         "case": "py-neg-002",
@@ -5049,7 +5391,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.4
+        "duration_ms": 16.1
       },
       {
         "case": "py-neg-003",
@@ -5063,7 +5405,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.1
+        "duration_ms": 14.6
       },
       {
         "case": "py-secret-001",
@@ -5079,7 +5421,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.0
+        "duration_ms": 14.9
       },
       {
         "case": "py-security-001",
@@ -5096,7 +5438,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.8
+        "duration_ms": 16.5
       },
       {
         "case": "py-security-002",
@@ -5112,7 +5454,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.9
+        "duration_ms": 16.4
       },
       {
         "case": "py-test-001",
@@ -5129,7 +5471,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.5
+        "duration_ms": 15.6
       },
       {
         "case": "py-undefined-001",
@@ -5145,7 +5487,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 13.0
+        "duration_ms": 14.7
       },
       {
         "case": "sql-migration-001",
@@ -5161,7 +5503,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.8
       },
       {
         "case": "ts-async-001",
@@ -5175,7 +5517,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.3
       },
       {
         "case": "ts-breaking-001",
@@ -5191,7 +5533,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.6
+        "duration_ms": 2.8
       },
       {
         "case": "ts-breaking-002",
@@ -5207,7 +5549,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.9
+        "duration_ms": 2.1
       },
       {
         "case": "ts-neg-001",
@@ -5221,7 +5563,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.9
+        "duration_ms": 2.6
       },
       {
         "case": "ts-security-001",
@@ -5237,7 +5579,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.8
+        "duration_ms": 1.9
       },
       {
         "case": "ts-security-002",
@@ -5253,7 +5595,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.1
+        "duration_ms": 2.3
       },
       {
         "case": "ts-test-001",
@@ -5269,7 +5611,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 2.0
+        "duration_ms": 2.2
       }
     ],
     "changeguard+ai:qwen2.5-coder:7b@3": [
@@ -5285,7 +5627,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.5
+        "duration_ms": 3.9
       },
       {
         "case": "h2-py-flask-debug-001",
@@ -5299,7 +5641,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.4
+        "duration_ms": 18.6
       },
       {
         "case": "h2-py-jwt-001",
@@ -5313,7 +5655,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.3
+        "duration_ms": 16.8
       },
       {
         "case": "h2-py-kwonly-001",
@@ -5329,7 +5671,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.9
+        "duration_ms": 17.0
       },
       {
         "case": "h2-py-naive-datetime-001",
@@ -5343,7 +5685,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.5
+        "duration_ms": 15.6
       },
       {
         "case": "h2-py-neg-validation-001",
@@ -5357,7 +5699,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 17.0
+        "duration_ms": 18.3
       },
       {
         "case": "h2-py-session-verify-001",
@@ -5371,7 +5713,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.0
+        "duration_ms": 17.4
       },
       {
         "case": "h2-py-staticmethod-001",
@@ -5387,7 +5729,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.9
+        "duration_ms": 17.7
       },
       {
         "case": "h2-py-timeout-handling-001",
@@ -5401,7 +5743,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.9
+        "duration_ms": 17.1
       },
       {
         "case": "h2-sql-rename-column-001",
@@ -5427,7 +5769,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.9
+        "duration_ms": 4.2
       },
       {
         "case": "h2-ts-optional-required-001",
@@ -5443,7 +5785,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 4.1
+        "duration_ms": 4.3
       },
       {
         "case": "h2-tsx-innerhtml-001",
@@ -5459,7 +5801,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.8
+        "duration_ms": 4.1
       },
       {
         "case": "ho-js-commonjs-001",
@@ -5473,7 +5815,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.7
+        "duration_ms": 4.0
       },
       {
         "case": "ho-js-neg-reduce-001",
@@ -5487,7 +5829,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.6
+        "duration_ms": 3.8
       },
       {
         "case": "ho-py-alias-module-001",
@@ -5503,7 +5845,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.1
+        "duration_ms": 17.0
       },
       {
         "case": "ho-py-async-sleep-001",
@@ -5517,7 +5859,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.6
+        "duration_ms": 16.7
       },
       {
         "case": "ho-py-dataclass-001",
@@ -5533,7 +5875,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 18.8
+        "duration_ms": 16.7
       },
       {
         "case": "ho-py-diffonly-tls-001",
@@ -5549,7 +5891,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.4
+        "duration_ms": 3.6
       },
       {
         "case": "ho-py-injection-001",
@@ -5564,7 +5906,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 18.4
+        "duration_ms": 18.6
       },
       {
         "case": "ho-py-moved-module-001",
@@ -5578,7 +5920,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.5
+        "duration_ms": 18.3
       },
       {
         "case": "ho-py-mutable-default-001",
@@ -5592,7 +5934,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.7
+        "duration_ms": 16.3
       },
       {
         "case": "ho-py-neg-logging-001",
@@ -5604,7 +5946,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.2
+        "duration_ms": 16.6
       },
       {
         "case": "ho-py-pickle-001",
@@ -5618,7 +5960,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.7
+        "duration_ms": 15.7
       },
       {
         "case": "ho-py-popen-shell-001",
@@ -5632,7 +5974,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.8
+        "duration_ms": 16.7
       },
       {
         "case": "ho-py-semantic-001",
@@ -5646,7 +5988,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.8
+        "duration_ms": 16.0
       },
       {
         "case": "ho-py-semantic-002",
@@ -5660,7 +6002,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.6
+        "duration_ms": 16.0
       },
       {
         "case": "ho-py-test-deleted-001",
@@ -5678,7 +6020,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.5
+        "duration_ms": 16.2
       },
       {
         "case": "ho-py-unsafe-load-001",
@@ -5692,7 +6034,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.2
+        "duration_ms": 15.5
       },
       {
         "case": "ho-sql-delete-all-001",
@@ -5706,7 +6048,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.0
+        "duration_ms": 3.2
       },
       {
         "case": "ho-ts-constructor-001",
@@ -5722,7 +6064,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 4.3
+        "duration_ms": 4.6
       },
       {
         "case": "ho-ts-method-001",
@@ -5738,7 +6080,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 4.4
+        "duration_ms": 5.0
       },
       {
         "case": "ho-ts-neg-rename-001",
@@ -5752,7 +6094,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.9
+        "duration_ms": 4.2
       },
       {
         "case": "ho-ts-new-function-001",
@@ -5768,7 +6110,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 4.4
+        "duration_ms": 4.2
       },
       {
         "case": "js-error-001",
@@ -5784,7 +6126,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.8
+        "duration_ms": 4.2
       },
       {
         "case": "js-logic-001",
@@ -5800,7 +6142,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.7
+        "duration_ms": 4.2
       },
       {
         "case": "js-security-001",
@@ -5816,7 +6158,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.7
+        "duration_ms": 4.0
       },
       {
         "case": "json-deps-001",
@@ -5834,7 +6176,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.4
+        "duration_ms": 3.6
       },
       {
         "case": "py-async-001",
@@ -5848,7 +6190,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.0
+        "duration_ms": 19.0
       },
       {
         "case": "py-behavior-001",
@@ -5862,7 +6204,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.6
+        "duration_ms": 18.7
       },
       {
         "case": "py-breaking-001",
@@ -5878,7 +6220,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.9
+        "duration_ms": 18.8
       },
       {
         "case": "py-breaking-002",
@@ -5892,7 +6234,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 17.1
+        "duration_ms": 20.5
       },
       {
         "case": "py-breaking-003",
@@ -5908,7 +6250,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.6
+        "duration_ms": 20.1
       },
       {
         "case": "py-breaking-004",
@@ -5924,7 +6266,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.9
+        "duration_ms": 20.7
       },
       {
         "case": "py-coverage-001",
@@ -5940,7 +6282,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.7
+        "duration_ms": 18.7
       },
       {
         "case": "py-deps-001",
@@ -5957,7 +6299,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.8
+        "duration_ms": 3.7
       },
       {
         "case": "py-error-001",
@@ -5973,7 +6315,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.1
+        "duration_ms": 19.1
       },
       {
         "case": "py-error-002",
@@ -5987,7 +6329,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.6
+        "duration_ms": 16.9
       },
       {
         "case": "py-logic-001",
@@ -6003,7 +6345,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.6
+        "duration_ms": 16.9
       },
       {
         "case": "py-logic-002",
@@ -6017,7 +6359,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.6
+        "duration_ms": 16.3
       },
       {
         "case": "py-migration-001",
@@ -6031,7 +6373,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 9.7
+        "duration_ms": 12.4
       },
       {
         "case": "py-neg-001",
@@ -6045,7 +6387,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.0
+        "duration_ms": 16.6
       },
       {
         "case": "py-neg-002",
@@ -6059,7 +6401,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 17.0
+        "duration_ms": 17.9
       },
       {
         "case": "py-neg-003",
@@ -6073,7 +6415,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.4
+        "duration_ms": 16.3
       },
       {
         "case": "py-secret-001",
@@ -6087,7 +6429,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 14.2
+        "duration_ms": 15.7
       },
       {
         "case": "py-security-001",
@@ -6102,7 +6444,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.1
+        "duration_ms": 17.4
       },
       {
         "case": "py-security-002",
@@ -6118,7 +6460,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 16.2
+        "duration_ms": 16.4
       },
       {
         "case": "py-test-001",
@@ -6135,7 +6477,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.4
+        "duration_ms": 16.0
       },
       {
         "case": "py-undefined-001",
@@ -6151,7 +6493,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 15.2
+        "duration_ms": 15.8
       },
       {
         "case": "sql-migration-001",
@@ -6165,7 +6507,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.4
+        "duration_ms": 3.7
       },
       {
         "case": "ts-async-001",
@@ -6179,7 +6521,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.8
+        "duration_ms": 4.0
       },
       {
         "case": "ts-breaking-001",
@@ -6193,7 +6535,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 4.2
+        "duration_ms": 4.4
       },
       {
         "case": "ts-breaking-002",
@@ -6207,7 +6549,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.5
+        "duration_ms": 3.7
       },
       {
         "case": "ts-neg-001",
@@ -6221,7 +6563,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 4.0
+        "duration_ms": 4.2
       },
       {
         "case": "ts-security-001",
@@ -6235,7 +6577,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.4
+        "duration_ms": 3.6
       },
       {
         "case": "ts-security-002",
@@ -6251,7 +6593,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.7
+        "duration_ms": 3.9
       },
       {
         "case": "ts-test-001",
@@ -6267,7 +6609,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 3.7
+        "duration_ms": 3.8
       }
     ],
     "changeguard-diff-only": [
@@ -6283,7 +6625,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.8
+        "duration_ms": 0.7
       },
       {
         "case": "h2-py-flask-debug-001",
@@ -6311,7 +6653,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "h2-py-kwonly-001",
@@ -6351,7 +6693,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.8
+        "duration_ms": 0.9
       },
       {
         "case": "h2-py-session-verify-001",
@@ -6379,7 +6721,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "h2-py-timeout-handling-001",
@@ -6433,7 +6775,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.9
       },
       {
         "case": "h2-tsx-innerhtml-001",
@@ -6447,7 +6789,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "ho-js-commonjs-001",
@@ -6487,7 +6829,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "ho-py-async-sleep-001",
@@ -6501,7 +6843,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "ho-py-dataclass-001",
@@ -6544,7 +6886,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 0.8
       },
       {
         "case": "ho-py-moved-module-001",
@@ -6640,7 +6982,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 1.2
       },
       {
         "case": "ho-py-test-deleted-001",
@@ -6656,7 +6998,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.1
       },
       {
         "case": "ho-py-unsafe-load-001",
@@ -6712,7 +7054,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.0
       },
       {
         "case": "ho-ts-neg-rename-001",
@@ -6724,7 +7066,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.8
+        "duration_ms": 0.9
       },
       {
         "case": "ho-ts-new-function-001",
@@ -6766,7 +7108,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "js-security-001",
@@ -6780,7 +7122,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "json-deps-001",
@@ -6838,7 +7180,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-breaking-002",
@@ -6866,7 +7208,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.1
+        "duration_ms": 1.2
       },
       {
         "case": "py-breaking-004",
@@ -6880,7 +7222,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-coverage-001",
@@ -6894,7 +7236,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-deps-001",
@@ -6909,7 +7251,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.2
+        "duration_ms": 0.3
       },
       {
         "case": "py-error-001",
@@ -6923,7 +7265,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "py-error-002",
@@ -6965,7 +7307,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-migration-001",
@@ -6979,7 +7321,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 7.9
+        "duration_ms": 8.2
       },
       {
         "case": "py-neg-001",
@@ -6991,7 +7333,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.3
+        "duration_ms": 1.4
       },
       {
         "case": "py-neg-002",
@@ -7015,7 +7357,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "py-secret-001",
@@ -7044,7 +7386,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.8
+        "duration_ms": 0.9
       },
       {
         "case": "py-security-002",
@@ -7058,7 +7400,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "py-test-001",
@@ -7074,7 +7416,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-undefined-001",
@@ -7102,7 +7444,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.2
+        "duration_ms": 0.3
       },
       {
         "case": "ts-async-001",
@@ -7130,7 +7472,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "ts-breaking-002",
@@ -7144,7 +7486,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.3
+        "duration_ms": 0.4
       },
       {
         "case": "ts-neg-001",
@@ -7156,7 +7498,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "ts-security-001",
@@ -7170,7 +7512,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "ts-security-002",
@@ -7184,7 +7526,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "ts-test-001",
@@ -7228,7 +7570,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "h2-py-jwt-001",
@@ -7358,7 +7700,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "h2-ts-optional-required-001",
@@ -7372,7 +7714,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "h2-tsx-innerhtml-001",
@@ -7762,7 +8104,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.1
       },
       {
         "case": "py-behavior-001",
@@ -7842,7 +8184,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "py-coverage-001",
@@ -7858,7 +8200,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "py-deps-001",
@@ -7915,7 +8257,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "py-logic-002",
@@ -7958,7 +8300,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "py-neg-002",
@@ -8060,7 +8402,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.0
+        "duration_ms": 0.1
       },
       {
         "case": "sql-migration-001",
@@ -8188,7 +8530,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 1.0
       },
       {
         "case": "h2-py-flask-debug-001",
@@ -8202,7 +8544,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.8
       },
       {
         "case": "h2-py-jwt-001",
@@ -8216,7 +8558,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.8
       },
       {
         "case": "h2-py-kwonly-001",
@@ -8230,7 +8572,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.8
       },
       {
         "case": "h2-py-naive-datetime-001",
@@ -8246,7 +8588,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "h2-py-neg-validation-001",
@@ -8260,7 +8602,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "h2-py-session-verify-001",
@@ -8274,7 +8616,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 1.0
       },
       {
         "case": "h2-py-staticmethod-001",
@@ -8288,7 +8630,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.8
       },
       {
         "case": "h2-py-timeout-handling-001",
@@ -8302,7 +8644,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "h2-sql-rename-column-001",
@@ -8316,7 +8658,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "h2-ts-neg-extract-001",
@@ -8331,7 +8673,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "h2-ts-optional-required-001",
@@ -8345,7 +8687,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.7
       },
       {
         "case": "h2-tsx-innerhtml-001",
@@ -8373,7 +8715,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.7
       },
       {
         "case": "ho-js-neg-reduce-001",
@@ -8387,7 +8729,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "ho-py-alias-module-001",
@@ -8401,7 +8743,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "ho-py-async-sleep-001",
@@ -8415,7 +8757,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.8
       },
       {
         "case": "ho-py-dataclass-001",
@@ -8429,7 +8771,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "ho-py-diffonly-tls-001",
@@ -8445,7 +8787,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.2
+        "duration_ms": 0.4
       },
       {
         "case": "ho-py-injection-001",
@@ -8460,7 +8802,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.0
+        "duration_ms": 1.4
       },
       {
         "case": "ho-py-moved-module-001",
@@ -8474,7 +8816,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 1.1
       },
       {
         "case": "ho-py-mutable-default-001",
@@ -8490,7 +8832,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "ho-py-neg-logging-001",
@@ -8504,7 +8846,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 1.0
       },
       {
         "case": "ho-py-pickle-001",
@@ -8518,7 +8860,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.9
       },
       {
         "case": "ho-py-popen-shell-001",
@@ -8532,7 +8874,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.9
       },
       {
         "case": "ho-py-semantic-001",
@@ -8548,7 +8890,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.7
       },
       {
         "case": "ho-py-semantic-002",
@@ -8564,7 +8906,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "ho-py-test-deleted-001",
@@ -8579,7 +8921,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.0
       },
       {
         "case": "ho-py-unsafe-load-001",
@@ -8593,7 +8935,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "ho-sql-delete-all-001",
@@ -8607,7 +8949,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.2
+        "duration_ms": 0.4
       },
       {
         "case": "ho-ts-constructor-001",
@@ -8621,7 +8963,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.8
       },
       {
         "case": "ho-ts-method-001",
@@ -8635,7 +8977,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.0
       },
       {
         "case": "ho-ts-neg-rename-001",
@@ -8650,7 +8992,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.9
       },
       {
         "case": "ho-ts-new-function-001",
@@ -8664,7 +9006,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "js-error-001",
@@ -8678,7 +9020,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "js-logic-001",
@@ -8694,7 +9036,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.9
       },
       {
         "case": "js-security-001",
@@ -8708,7 +9050,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.7
       },
       {
         "case": "json-deps-001",
@@ -8724,7 +9066,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.3
+        "duration_ms": 0.6
       },
       {
         "case": "py-async-001",
@@ -8738,7 +9080,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.8
       },
       {
         "case": "py-behavior-001",
@@ -8754,7 +9096,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.8
+        "duration_ms": 0.9
       },
       {
         "case": "py-breaking-001",
@@ -8768,7 +9110,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 1.1
       },
       {
         "case": "py-breaking-002",
@@ -8782,7 +9124,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 1.1
       },
       {
         "case": "py-breaking-003",
@@ -8796,7 +9138,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.5
       },
       {
         "case": "py-breaking-004",
@@ -8810,7 +9152,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 1.2
       },
       {
         "case": "py-coverage-001",
@@ -8826,7 +9168,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.7
       },
       {
         "case": "py-deps-001",
@@ -8841,7 +9183,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.3
+        "duration_ms": 0.4
       },
       {
         "case": "py-error-001",
@@ -8855,7 +9197,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-error-002",
@@ -8885,7 +9227,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.8
       },
       {
         "case": "py-logic-002",
@@ -8901,7 +9243,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 1.0
       },
       {
         "case": "py-migration-001",
@@ -8918,7 +9260,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.8
       },
       {
         "case": "py-neg-001",
@@ -8932,7 +9274,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 1.0
+        "duration_ms": 1.4
       },
       {
         "case": "py-neg-002",
@@ -8946,7 +9288,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.9
+        "duration_ms": 1.0
       },
       {
         "case": "py-neg-003",
@@ -8961,7 +9303,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.9
       },
       {
         "case": "py-secret-001",
@@ -8975,7 +9317,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.6
       },
       {
         "case": "py-security-001",
@@ -8990,7 +9332,7 @@
         "acceptable": 2,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.7
       },
       {
         "case": "py-security-002",
@@ -9004,7 +9346,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "py-test-001",
@@ -9019,7 +9361,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "py-undefined-001",
@@ -9033,7 +9375,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.6
+        "duration_ms": 0.7
       },
       {
         "case": "sql-migration-001",
@@ -9047,7 +9389,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.6
       },
       {
         "case": "ts-async-001",
@@ -9061,7 +9403,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.8
       },
       {
         "case": "ts-breaking-001",
@@ -9075,7 +9417,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.5
+        "duration_ms": 0.6
       },
       {
         "case": "ts-breaking-002",
@@ -9089,7 +9431,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.5
       },
       {
         "case": "ts-neg-001",
@@ -9103,7 +9445,7 @@
         "acceptable": 0,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.7
+        "duration_ms": 0.8
       },
       {
         "case": "ts-security-001",
@@ -9131,7 +9473,7 @@
         "acceptable": 1,
         "unsupported": [],
         "error": null,
-        "duration_ms": 0.4
+        "duration_ms": 0.6
       },
       {
         "case": "ts-test-001",
@@ -9146,6 +9488,1091 @@
         "unsupported": [],
         "error": null,
         "duration_ms": 0.7
+      }
+    ],
+    "baseline-llm-review:llama3.2:3b": [
+      {
+        "case": "h2-js-describe-skip-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-test_gap@src/payments/charge.test.js:3"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.7
+      },
+      {
+        "case": "h2-py-flask-debug-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/web/server.py:9",
+          "LLM-logic_change@src/web/server.py:11"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "h2-py-jwt-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-security@src/clients/admin.py:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "h2-py-kwonly-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [
+          "LLM-breaking_change@src/mail/alerts.py:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "h2-py-naive-datetime-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [
+          "LLM-test_gap@tests/test_stamp.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "h2-py-neg-validation-001",
+        "split": "holdout-v2",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-correctness@src/billing/charges.py:3"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "h2-py-session-verify-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "h2-py-staticmethod-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/money/amount.py:7",
+          "LLM-logic_change@src/money/amount.py:11"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "h2-py-timeout-handling-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/geo/lookup.py:9",
+          "LLM-logic_change@src/geo/lookup.py:6"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "h2-sql-rename-column-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@db/migrations/0004_rename_fullname.sql:1",
+          "LLM-correctness@src/users/directory.py:2"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "h2-ts-neg-extract-001",
+        "split": "holdout-v2",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-logic_change@src/format/price.ts:2",
+          "LLM-test_gap@tests/price.test.ts:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "h2-ts-optional-required-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/search/query.ts:5",
+          "LLM-breaking_change@src/search/autocomplete.ts:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "h2-tsx-innerhtml-001",
+        "split": "holdout-v2",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/components/Preview.tsx:6"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "ho-js-commonjs-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/routes.js:2",
+          "LLM-correctness@src/strings.js:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "ho-js-neg-reduce-001",
+        "split": "holdout",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-logic_change@src/util/sum.js:2"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-alias-module-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/billing/tax.py:1"
+        ],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-async-sleep-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/workers/poller.py:5",
+          "LLM-logic_change@src/workers/poller.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-dataclass-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/events/model.py:8"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-diffonly-tls-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-injection-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1",
+          "L2"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/calc/expr.py:8",
+          "LLM-behavior_change@src/calc/expr.py:9",
+          "LLM-logic_change@src/calc/expr.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-moved-module-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-dependency@src/core/helpers.py:0",
+          "LLM-logic_change@src/core/batch.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-mutable-default-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/queue/jobs.py:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-neg-logging-001",
+        "split": "holdout",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-correctness@src/payments/ledger.py:8",
+          "LLM-logic_change@src/payments/ledger.py:6"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-pickle-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/api/session_store.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-popen-shell-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/media/thumbs.py:4",
+          "LLM-logic_change@src/media/thumbs.py:5"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-semantic-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-semantic-002",
+        "split": "holdout",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [
+          "LLM-test_gap@src/cart/totals.py:10"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ho-py-test-deleted-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1",
+          "L2"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/auth/password.py:6"
+        ],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-py-unsafe-load-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/ops/manifest.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-sql-delete-all-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@db/migrations/0042_reset_sessions.sql:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-ts-constructor-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/app/main.ts:4",
+          "LLM-logic_change@src/log/logger.ts:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-ts-method-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/cache/lru.ts:13"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-ts-neg-rename-001",
+        "split": "holdout",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-logic_change@src/text/normalize.ts:2",
+          "LLM-logic_change@src/text/normalize.ts:6",
+          "LLM-test_gap@tests/normalize.test.ts:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ho-ts-new-function-001",
+        "split": "holdout",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/rules/engine.ts:2"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.2
+      },
+      {
+        "case": "js-error-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/storage/prefs.js:3"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.2
+      },
+      {
+        "case": "js-logic-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "js-security-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/git/log.js:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.2
+      },
+      {
+        "case": "json-deps-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [
+          "L2",
+          "L3"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/format/dates.ts:3"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "py-async-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/weather/service.py:4",
+          "LLM-syntax_error@src/weather/service.py:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "py-behavior-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/http_client/client.py:4"
+        ],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "py-breaking-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/shipping/checkout.py:5",
+          "LLM-logic_change@src/shipping/rates.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-breaking-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/accounts/reset.py:4",
+          "LLM-logic_change@src/accounts/tokens.py:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-breaking-003",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/inventory/orders.py:4",
+          "LLM-logic_change@src/inventory/stock.py:5"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-breaking-004",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/notify/email.py:4",
+          "LLM-logic_change@src/notify/email.py:6"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "py-coverage-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/billing/discounts.py:4",
+          "LLM-test_gap@tests/test_discounts.py:5"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.6
+      },
+      {
+        "case": "py-deps-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [
+          "L2"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/app/db.py:5"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-error-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/sync/importer.py:8"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "py-error-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [
+          "LLM-behavior_change@src/cache/warmup.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "py-logic-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-logic-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-migration-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/app/models.py:8",
+          "LLM-test_gap@src/app/export.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "py-neg-001",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-logic_change@src/geo/distance.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-neg-002",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-logic_change@src/textutil/wrap.py:3",
+          "LLM-logic_change@src/textutil/wrap.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-neg-003",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-logic_change@src/metrics/stats.py:3"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-secret-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/integrations/payments.py:1"
+        ],
+        "acceptable": 1,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "py-security-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1",
+          "L2"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/ops/config_loader.py:11",
+          "LLM-correctness@src/ops/config_loader.py:7"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-security-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/store/queries.py:5"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "py-test-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1",
+          "L2"
+        ],
+        "false_positives": [
+          "LLM-logic_change@src/textutil/slug.py:4",
+          "LLM-test_gap@tests/test_slug.py:10"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "py-undefined-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@src/fileops/paths.py:4",
+          "LLM-logic_change@src/fileops/paths.py:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "sql-migration-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-correctness@db/migrations/V12__cleanup.sql:2",
+          "LLM-test_gap@src/orders/repo.py:2"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.5
+      },
+      {
+        "case": "ts-async-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/jobs/sync.ts:4",
+          "LLM-correctness@src/jobs/store.ts:2"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ts-breaking-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [
+          "L1"
+        ],
+        "missed": [],
+        "false_positives": [
+          "LLM-test_gap@tests/currency.test.ts:4"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ts-breaking-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/auth/guard.ts:4",
+          "LLM-correctness@src/auth/session.ts:2"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ts-neg-001",
+        "split": "dev",
+        "negative": true,
+        "matched": [],
+        "missed": [],
+        "false_positives": [
+          "LLM-behavior_change@src/services/directory.ts:3",
+          "LLM-correctness@src/types/user.ts:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.4
+      },
+      {
+        "case": "ts-security-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/ui/banner.ts:1"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
+      },
+      {
+        "case": "ts-security-002",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/components/Comment.tsx:7"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.2
+      },
+      {
+        "case": "ts-test-001",
+        "split": "dev",
+        "negative": false,
+        "matched": [],
+        "missed": [
+          "L1"
+        ],
+        "false_positives": [
+          "LLM-behavior_change@src/math/round.test.ts:5",
+          "LLM-test_gap@src/math/round.test.ts:8"
+        ],
+        "acceptable": 0,
+        "unsupported": [],
+        "error": null,
+        "duration_ms": 0.3
       }
     ]
   }

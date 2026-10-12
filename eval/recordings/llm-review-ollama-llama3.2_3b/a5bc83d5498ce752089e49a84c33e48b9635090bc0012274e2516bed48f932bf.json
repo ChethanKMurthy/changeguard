@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:31+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/search/query.ts\",\n      \"start_line\": 5,\n      \"end_line\": 6,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Function signature changed from optional limit to required limit\"\n    },\n    {\n      \"file\": \"src/search/autocomplete.ts\",\n      \"start_line\": 4,\n      \"end_line\": 4,\n      \"category\": \"breaking_change\",\n      \"severity\": \"high\",\n      \"title\": \"Import of search function with different signature\"\n    }\n  ]\n}",
+  "input_tokens": 763,
+  "output_tokens": 130,
+  "latency_ms": 1907.8,
+  "finish_reason": "stop"
+}

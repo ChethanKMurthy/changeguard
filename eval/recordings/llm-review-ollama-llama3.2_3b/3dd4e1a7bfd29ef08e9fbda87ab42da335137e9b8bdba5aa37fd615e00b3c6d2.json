@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:26:01+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/pricing/currency.ts\",\n      \"start_line\": 2,\n      \"end_line\": 3,\n      \"category\": \"breaking_change\",\n      \"severity\": \"critical\",\n      \"title\": \"Function formatAmount now requires a currency parameter\"\n    },\n    {\n      \"file\": \"tests/currency.test.ts\",\n      \"start_line\": 4,\n      \"end_line\": 5,\n      \"category\": \"test_gap\",\n      \"severity\": \"medium\",\n      \"title\": \"Test for new formatAmount function is missing\"\n    }\n  ]\n}",
+  "input_tokens": 822,
+  "output_tokens": 132,
+  "latency_ms": 2036.6,
+  "finish_reason": "stop"
+}

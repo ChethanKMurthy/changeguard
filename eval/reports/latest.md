@@ -1,6 +1,6 @@
 # ChangeGuard evaluation report
 
-Generated 2026-10-08T16:43:36+00:00 · ChangeGuard 0.1.0 · ruleset 2026.10.4
+Generated 2026-10-12T13:26:18+00:00 · ChangeGuard 0.1.0 · ruleset 2026.10.4 · commit `9f1f1989aa54-dirty`
 
 Dataset: 67 cases (33 dev, 21 holdout, 13 holdout-v2), 65 labels, 9 negative controls · sha256 `b65381532aba57ce…`
 
@@ -17,6 +17,7 @@ Matching: same category and file, line ranges overlapping within ±3 lines, one-
 | `changeguard-diff-only` — Same rules without the repository snapshot (ablation) | 100.0% [100–100] | 72.3% [61–83] | 83.9% | 0.0% (0/9) | 0/48 |
 | `baseline-keyword` — Regex search for risky-looking tokens on added lines | 59.3% [46–73] | 49.2% [37–61] | 53.8% | 44.4% (4/9) | — |
 | `baseline-changed-symbols` — Flag every changed function (signature changes as breaking) | 31.4% [16–50] | 16.9% [8–27] | 22.0% | 100.0% (9/9) | — |
+| `baseline-llm-review:llama3.2:3b` — The model alone reviews the whole change (llama3.2:3b), unverified | 12.3% [6–19] | 20.0% [11–30] | 15.2% | 100.0% (9/9) | — |
 
 ## Clean holdout estimates (first run, before any holdout-informed change)
 

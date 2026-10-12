@@ -191,7 +191,9 @@ def run_to_markdown(data: dict[str, Any]) -> str:
         f"Severity agreement on matched findings: exact {_fmt(sev['exact'])}, within one level {_fmt(sev['within_one_level'])}.",
         "",
     ]
-    ai_systems = [s for s in data["systems"] if s.get("ai")]
+    ai_systems = [
+        s for s in data["systems"] if s.get("ai") and s["system"].startswith("changeguard+ai:")
+    ]
     if ai_systems:
         lines += ["## AI synthesis", ""]
         for s in ai_systems:

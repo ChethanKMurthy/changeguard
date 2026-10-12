@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:33+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/sync/importer.py\",\n      \"start_line\": 8,\n      \"end_line\": 10,\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"title\": \"Potential JSONDecodeError not handled\"\n    }\n  ]\n}",
+  "input_tokens": 740,
+  "output_tokens": 70,
+  "latency_ms": 1256.1,
+  "finish_reason": "stop"
+}

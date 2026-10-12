@@ -78,7 +78,7 @@ structural analysis; secrets, migrations and dependency rules apply to any file.
 ## Results
 
 Measured on 67 labelled code changes (65 labels, 9 safe changes as negative
-controls) against two naive baselines and an ablation. Bootstrap intervals and
+controls) against three baselines and an ablation. Bootstrap intervals and
 per-split results are on the Evaluation page.
 
 | System | Precision | Recall | False alarms on safe changes |
@@ -89,13 +89,56 @@ per-split results are on the Evaluation page.
 | Same rules without the repository snapshot | 100.0% | 72.3% | 0 of 9 |
 | Keyword-search baseline | 59.3% | 49.2% | 4 of 9 |
 | Flag-every-change baseline | 31.4% | 16.9% | 9 of 9 |
+| A language model reviewing the whole change alone (llama3.2:3b) | 12.3% | 20.0% | 9 of 9 |
 
-No finding in any system cited evidence that failed an independent re-check.
+The last row answers "why not just ask a model to review the change?" The model
+gets the diff, every file of the repository with line numbers, the coverage
+report and the category list, and its findings are scored as reported. A 3B
+local model is a floor, not a frontier model: the same harness records any
+model with one command (`--llm-review anthropic:claude-opus-5-5
+--llm-review-mode record`), and a frontier-model run has not been published yet.
+
+No finding from a system that cites evidence failed an independent re-check.
 The dataset is small and synthetic, and the same author wrote the cases and the
 rules, so the clean holdout first runs are the honest estimate. The full
 method, including the four labels it misses and why, is on the
 [Evaluation page](https://changeguard-navy.vercel.app/evaluation) and in
 [docs/EVALUATION.md](docs/EVALUATION.md).
+
+## On pull requests
+
+ChangeGuard ships as a GitHub Action. On every pull request it annotates the
+changed lines through code scanning, posts the report as one comment that is
+updated on each push, writes it to the job summary, and fails the check when a
+deterministic or heuristic finding reaches the chosen severity.
+
+```yaml
+# .github/workflows/changeguard.yml
+on: pull_request
+permissions:
+  contents: read
+  pull-requests: write    # the summary comment
+  security-events: write  # line annotations through code scanning
+jobs:
+  changeguard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ChethanKMurthy/changeguard@main
+        with:
+          fail-on: high              # critical, high, medium, low or never
+          # coverage: coverage.xml   # after your tests, to check changed lines ran
+```
+
+The action compares the pull request with the merge base of its target branch,
+runs nothing from the repository under review, and never lets an AI finding fail
+the check. Outputs (`findings`, `priority`, `gate`, `report-dir`) are available
+to later steps. Code scanning needs a public repository or GitHub Advanced
+Security; without it the comment and job summary still work. This repository
+runs the action on its own pull requests
+([workflow](.github/workflows/changeguard.yml)).
 
 ## AI, held to the evidence
 
@@ -155,7 +198,8 @@ Browser ──HTTPS──▶ Web app (Next.js 16, Vercel) ──server-side prox
 
 Integration surfaces: a REST API with server-sent progress events
 ([docs/API.md](docs/API.md)), exports to SARIF for code scanning and Markdown for
-pull requests, and a CLI that gates CI on a severity threshold. The full design,
+pull requests, a GitHub Action ([action.yml](action.yml)), and a CLI that gates CI
+on a severity threshold. The full design,
 module map and AI boundary are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Engineering standards

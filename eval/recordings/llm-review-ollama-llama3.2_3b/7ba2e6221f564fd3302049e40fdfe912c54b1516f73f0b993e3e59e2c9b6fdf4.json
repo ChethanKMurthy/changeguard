@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:45+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/metrics/stats.py\",\n      \"start_line\": 3,\n      \"end_line\": 4,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Simplified condition in mean function\"\n    }\n  ]\n}",
+  "input_tokens": 902,
+  "output_tokens": 69,
+  "latency_ms": 1481.7,
+  "finish_reason": "stop"
+}

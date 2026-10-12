@@ -63,6 +63,8 @@ cd backend
 uv run changeguard analyze change.patch --repo-archive base.zip --coverage coverage.xml
 uv run changeguard analyze --git-repo /path/to/repo --base origin/main --head HEAD --format markdown
 uv run changeguard analyze --git-repo . --base origin/main --format sarif -o changeguard.sarif --fail-on high
+uv run changeguard analyze --git-repo . --base origin/main --head HEAD \
+  --json-out report.json --markdown-out report.md --sarif-out report.sarif   # every format, one run
 uv run changeguard samples
 uv run changeguard serve --port 8000
 uv run changeguard eval --help
@@ -70,7 +72,8 @@ uv run changeguard eval --help
 
 `--fail-on` exits with code 1 when a deterministic or heuristic finding at or
 above the given severity exists (AI findings never count); invalid input or a
-git error exits with 2.
+git error exits with 2. The GitHub Action in [`action.yml`](../action.yml) wraps
+these commands for pull requests; see the README for a workflow.
 
 ## Tests
 

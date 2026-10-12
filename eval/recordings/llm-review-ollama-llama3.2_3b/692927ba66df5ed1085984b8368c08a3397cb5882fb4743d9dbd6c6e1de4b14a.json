@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:36+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/loans/eligibility.py\",\n      \"start_line\": 5,\n      \"end_line\": 7,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Changed comparison operator from '>' to '>='\"\n    }\n  ]\n}",
+  "input_tokens": 879,
+  "output_tokens": 73,
+  "latency_ms": 1502.9,
+  "finish_reason": "stop"
+}

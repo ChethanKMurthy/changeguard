@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:32+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/components/Preview.tsx\",\n      \"start_line\": 6,\n      \"end_line\": 7,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"innerHTML is used instead of textContent\"\n    }\n  ]\n}",
+  "input_tokens": 753,
+  "output_tokens": 71,
+  "latency_ms": 1242.1,
+  "finish_reason": "stop"
+}

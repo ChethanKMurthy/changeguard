@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:25+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/inventory/stock.py\",\n      \"start_line\": 5,\n      \"end_line\": 10,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Added warehouse parameter to reserve_units method\"\n    },\n    {\n      \"file\": \"src/inventory/orders.py\",\n      \"start_line\": 4,\n      \"end_line\": 5,\n      \"category\": \"behavior_change\",\n      \"severity\": \"low\",\n      \"title\": \"Updated place_order function call with new warehouse parameter\"\n    }\n  ]\n}",
+  "input_tokens": 1018,
+  "output_tokens": 132,
+  "latency_ms": 2297.0,
+  "finish_reason": "stop"
+}

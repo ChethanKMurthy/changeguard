@@ -3,6 +3,7 @@ SHELL := /bin/bash
 ENGINE_PORT ?= 8000
 WEB_PORT ?= 3000
 EVAL_MODELS ?= llama3.2:3b,qwen2.5-coder:7b,qwen2.5-coder:7b@3
+REVIEW_MODELS ?= ollama:llama3.2:3b
 
 .DEFAULT_GOAL := help
 .PHONY: help setup dev engine web test test-engine test-web e2e lint typecheck check eval eval-check contract data docker clean
@@ -48,10 +49,10 @@ typecheck: ## Static type checks (mypy strict, tsc)
 check: lint typecheck test eval-check ## Everything CI runs except e2e and container builds
 
 eval: ## Run the evaluation (models replayed from recordings) and refresh the reports
-	cd backend && uv run changeguard eval --ai replay --ai-model "$(EVAL_MODELS)"
+	cd backend && uv run changeguard eval --ai replay --ai-model "$(EVAL_MODELS)" --llm-review "$(REVIEW_MODELS)"
 
 eval-check: ## Evaluation regression gate against the committed baseline
-	cd backend && uv run changeguard eval --ai replay --ai-model "$(EVAL_MODELS)" --no-write \
+	cd backend && uv run changeguard eval --ai replay --ai-model "$(EVAL_MODELS)" --llm-review "$(REVIEW_MODELS)" --no-write \
 		--check-baseline ../eval/baselines/changeguard.json
 
 contract: ## Regenerate the OpenAPI document and the web app's TypeScript types

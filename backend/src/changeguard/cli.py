@@ -171,11 +171,25 @@ def cmd_analyze(args: argparse.Namespace) -> int:
         "text": lambda: render_text(report, color=sys.stdout.isatty() and not args.output),
     }[args.format]()
     if args.output:
-        Path(args.output).write_text(rendered if rendered.endswith("\n") else rendered + "\n")
+        _write(Path(args.output), rendered)
         print(f"wrote {args.output} ({report.summary.findings_total} findings)", file=sys.stderr)
     else:
         print(rendered)
+    # Extra outputs come from the same run, so CI gets every format from one analysis.
+    extra = (
+        (args.json_out, to_json),
+        (args.markdown_out, to_markdown),
+        (args.sarif_out, to_sarif_json),
+    )
+    for path, export in extra:
+        if path:
+            _write(Path(path), export(report))
+            print(f"wrote {path}", file=sys.stderr)
     return _exit_code(report, args.fail_on)
+
+
+def _write(path: Path, text: str) -> None:
+    path.write_text(text if text.endswith("\n") else text + "\n")
 
 
 def cmd_serve(args: argparse.Namespace) -> int:
@@ -229,6 +243,9 @@ def main(argv: list[str] | None = None) -> int:
     analyze.add_argument("--title", help="report title")
     analyze.add_argument("--format", choices=["text", "json", "markdown", "sarif"], default="text")
     analyze.add_argument("--output", "-o", help="write the report to a file")
+    analyze.add_argument("--json-out", help="also write the JSON report to this file")
+    analyze.add_argument("--markdown-out", help="also write the Markdown report to this file")
+    analyze.add_argument("--sarif-out", help="also write the SARIF 2.1.0 report to this file")
     analyze.add_argument(
         "--fail-on", choices=["critical", "high", "medium", "low", "never"], default="never",
         help="exit 1 if a non-AI finding at or above this severity exists (CI gate)",

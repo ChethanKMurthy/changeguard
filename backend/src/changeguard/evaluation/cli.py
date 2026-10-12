@@ -59,6 +59,18 @@ def add_eval_parser(sub: argparse._SubParsersAction) -> None:  # type: ignore[ty
     )
     p.add_argument("--ai-base-url", default=None)
     p.add_argument("--ai-samples", type=int, default=1, help="self-consistency samples per case")
+    p.add_argument(
+        "--llm-review",
+        default="",
+        metavar="PROVIDER:MODEL[,...]",
+        help="add a model-only review baseline per model (e.g. anthropic:claude-opus-5-5)",
+    )
+    p.add_argument(
+        "--llm-review-mode",
+        choices=["replay", "record", "live"],
+        default="replay",
+        help="replay recorded reviews (default), record new ones, or call the model directly",
+    )
     p.add_argument("--recordings", type=Path, default=root / "eval" / "recordings")
     p.add_argument("--out", type=Path, default=root / "eval" / "reports")
     p.add_argument(
@@ -142,6 +154,44 @@ def _ai_systems(args: argparse.Namespace) -> tuple[list[System], dict[str, Any]]
     return systems, info
 
 
+def _llm_review_systems(args: argparse.Namespace) -> list[System]:
+    """One model-only review baseline per ``provider:model`` spec, recorded like the AI systems."""
+    from changeguard.ai.prompts import load_prompt
+    from changeguard.ai.providers import _live
+    from changeguard.ai.providers.base import LLMProvider
+    from changeguard.ai.providers.replay import ReplayProvider
+    from changeguard.config import Settings
+    from changeguard.evaluation.llm_review import LLMReviewBaseline
+
+    systems: list[System] = []
+    for spec in [m.strip() for m in args.llm_review.split(",") if m.strip()]:
+        provider_name, sep, model = spec.partition(":")
+        if not sep or provider_name not in ("ollama", "openai", "anthropic") or not model:
+            raise SystemExit(f"--llm-review expects provider:model, got '{spec}'")
+        settings = Settings(
+            ai_provider=provider_name,
+            ai_model=model,
+            ai_base_url=args.ai_base_url if provider_name != "anthropic" else None,
+            ai_timeout_seconds=600,
+        )
+        live: LLMProvider | None = (
+            _live(settings, provider_name) if args.llm_review_mode != "replay" else None
+        )
+        provider: LLMProvider
+        if args.llm_review_mode == "live":
+            assert live is not None
+            provider = live
+        else:
+            provider = ReplayProvider(
+                args.recordings / f"llm-review-{provider_name}-{_slug(model)}",
+                model=model, live=live, record=args.llm_review_mode == "record",
+                prompt_id="llm_review", prompt_version=load_prompt("llm_review", "v1").version,
+                provider_label=provider_name,
+            )  # fmt: skip
+        systems.append(LLMReviewBaseline(provider, label=model))
+    return systems
+
+
 def build_systems(names: list[str]) -> list[System]:
     factories: dict[str, System] = {
         "changeguard": ChangeGuardSystem(),
@@ -176,6 +226,8 @@ def cmd_eval(args: argparse.Namespace) -> int:
     if args.ai != "off":
         ai_systems, ai_info = _ai_systems(args)
         systems[1:1] = ai_systems
+    if args.llm_review:
+        systems.extend(_llm_review_systems(args))
     run = run_evaluation(
         cases,
         systems,

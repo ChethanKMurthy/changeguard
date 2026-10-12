@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:00+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ops/manifest.py\",\n      \"start_line\": 4,\n      \"end_line\": 4,\n      \"category\": \"correctness\",\n      \"severity\": \"high\",\n      \"title\": \"Using unsafe_load on untrusted input can lead to code injection attacks\"\n    }\n  ]\n}",
+  "input_tokens": 653,
+  "output_tokens": 77,
+  "latency_ms": 1204.3,
+  "finish_reason": "stop"
+}

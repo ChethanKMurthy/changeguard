@@ -54,6 +54,7 @@ optimistic):
 | ChangeGuard, diff only (ablation) | 100.0% [100–100] | 72.3% [61–83] | 83.9% | 0/9 | 0/48 |
 | Keyword baseline | 59.3% [46–73] | 49.2% [37–61] | 53.8% | 4/9 | — |
 | Flag-every-change baseline | 31.4% [16–50] | 16.9% [8–27] | 22.0% | 9/9 | — |
+| llama3.2:3b reviewing the whole change alone | 12.3% [6–19] | 20.0% [11–30] | 15.2% | 9/9 | — |
 
 These include the dev split the rules were written against and the holdout
 cases after their fixes. By split, ChangeGuard's recall is 100% (dev), 85.0%
@@ -63,6 +64,32 @@ The ablation is the clearest result: without the repository snapshot the same
 rules keep their precision, but recall falls from 93.8% to 72.3%. That gap is
 what reconstructing both revisions and following callers, imports and tests
 contributes.
+
+### A model reviewing on its own
+
+The last row is the obvious alternative to a rule engine: give a language model
+the change and ask for a review. The model receives the full diff, every file of
+the head revision with line numbers, the coverage report when the case has one,
+and the category taxonomy the labels use, and answers in a closed JSON schema
+(prompt `llm_review` v1). Its findings are not verified; they are scored exactly
+as reported with the same one-to-one matching. Telling it the taxonomy and
+handing it the coverage report makes this a generous baseline.
+
+llama3.2:3b reported 110 findings, 13 of which matched a label, and raised at
+least one false alarm on every safe change. That is a floor: a 3B local model is
+far from a frontier model, and this result says nothing yet about how a frontier
+model reviewing alone compares. The harness records any provider with one
+command, after which CI replays the recordings:
+
+```bash
+CHANGEGUARD_AI_API_KEY=... uv run changeguard eval \
+  --llm-review anthropic:claude-opus-5-5 --llm-review-mode record
+```
+
+Whatever such a run shows about recall, two properties are structural rather
+than measured: the model's findings carry no evidence that can be re-checked,
+and the same change can produce different findings on another run, so they
+cannot gate a merge the way deterministic findings can.
 
 ## 3. What it misses
 

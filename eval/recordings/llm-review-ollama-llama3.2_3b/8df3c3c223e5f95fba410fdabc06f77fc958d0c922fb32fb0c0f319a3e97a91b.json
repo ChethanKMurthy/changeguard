@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:25:57+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"db/migrations/V12__cleanup.sql\",\n      \"start_line\": 2,\n      \"end_line\": 2,\n      \"category\": \"correctness\",\n      \"severity\": \"critical\",\n      \"title\": \"ALTER TABLE orders DROP COLUMN legacy_status; may cause data loss if the column is not empty\"\n    },\n    {\n      \"file\": \"src/orders/repo.py\",\n      \"start_line\": 2,\n      \"end_line\": 2,\n      \"category\": \"test_gap\",\n      \"severity\": \"medium\",\n      \"title\": \"conn.execute(\\\"SELECT id FROM orders WHERE legacy_status = 'pending'\\\").fetchall() may not work if the column is dropped\"\n    }\n  ]\n}",
+  "input_tokens": 702,
+  "output_tokens": 162,
+  "latency_ms": 2238.0,
+  "finish_reason": "stop"
+}

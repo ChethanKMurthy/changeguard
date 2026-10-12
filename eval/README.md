@@ -27,9 +27,13 @@ uv run changeguard eval
 # Add the recorded language-model systems (replayed, no model needed):
 uv run changeguard eval --ai replay --ai-model "llama3.2:3b,qwen2.5-coder:7b,qwen2.5-coder:7b@3"
 
+# Add a model reviewing the whole change on its own (replayed):
+uv run changeguard eval --llm-review ollama:llama3.2:3b
+
 # Gate on the committed baseline, as CI does:
 uv run changeguard eval --ai replay \
   --ai-model "llama3.2:3b,qwen2.5-coder:7b,qwen2.5-coder:7b@3" \
+  --llm-review ollama:llama3.2:3b \
   --check-baseline ../eval/baselines/changeguard.json
 ```
 
@@ -71,6 +75,11 @@ uv run changeguard eval --ai record --ai-model qwen2.5-coder:7b
 - `baseline-keyword` flags added lines containing risky-looking tokens.
 - `baseline-changed-symbols` flags every changed function, and every signature
   change as breaking.
+- `baseline-llm-review:<model>` gives a model the diff, the whole head
+  revision with line numbers, the coverage report and the category list, and
+  scores its findings unverified. Record a new model with
+  `--llm-review provider:model --llm-review-mode record`; recordings live in
+  `recordings/llm-review-<provider>-<model>/`.
 - `changeguard-diff-only` runs the same rules without the repository snapshot,
   which isolates what cross-file analysis contributes.
 

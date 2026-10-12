@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:24:53+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/media/thumbs.py\",\n      \"start_line\": 5,\n      \"end_line\": 6,\n      \"category\": \"logic_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Hardcoded resize value\"\n    },\n    {\n      \"file\": \"src/media/thumbs.py\",\n      \"start_line\": 4,\n      \"end_line\": 4,\n      \"category\": \"correctness\",\n      \"severity\": \"low\",\n      \"title\": \"Missing error handling\"\n    }\n  ]\n}",
+  "input_tokens": 718,
+  "output_tokens": 122,
+  "latency_ms": 1774.2,
+  "finish_reason": "stop"
+}

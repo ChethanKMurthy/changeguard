@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "prompt_id": "llm_review",
+  "prompt_version": "1.0.0",
+  "recorded_at": "2026-10-12T13:26:08+00:00",
+  "text": "{\n  \"findings\": [\n    {\n      \"file\": \"src/components/Comment.tsx\",\n      \"start_line\": 7,\n      \"end_line\": 8,\n      \"category\": \"behavior_change\",\n      \"severity\": \"medium\",\n      \"title\": \"Dangerously setting HTML in JSX\"\n    }\n  ]\n}",
+  "input_tokens": 731,
+  "output_tokens": 70,
+  "latency_ms": 1222.2,
+  "finish_reason": "stop"
+}
