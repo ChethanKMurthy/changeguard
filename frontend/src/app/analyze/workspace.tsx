@@ -144,7 +144,7 @@ export function AnalyzeWorkspace() {
                     {stats ? (
                       <span className="numeric">
                         {stats.files} file{stats.files === 1 ? "" : "s"} · <span className="text-ok">+{stats.additions}</span>{" "}
-                        <span className="text-danger">−{stats.deletions}</span> · {stats.lines.toLocaleString()} lines ·{" "}
+                        <span className="text-danger">−{stats.deletions}</span> · {stats.lines.toLocaleString("en-US")} lines ·{" "}
                         {formatBytes(new Blob([patchText]).size)}
                       </span>
                     ) : (

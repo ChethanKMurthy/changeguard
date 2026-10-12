@@ -277,7 +277,7 @@ export function AIPanel({ report }: { report: Report }) {
           </table>
         </div>
         <p className="mt-2 text-xs text-muted">
-          Context sent to the model: {ai.context_chars?.toLocaleString() ?? "—"} characters
+          Context sent to the model: {ai.context_chars?.toLocaleString("en-US") ?? "—"} characters
           {ai.context_truncated ? " (truncated to the highest-severity findings)" : ""}. Secrets and prompt-injection text are
           withheld from it.
         </p>
