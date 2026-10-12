@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+import subprocess
+import sys
+
+import pytest
+
 from changeguard.analysis.references import check_call
 from changeguard.analysis.structure import diff_signatures
 from changeguard.languages import index_file
@@ -186,3 +191,31 @@ def test_js_signature_diff_is_positional() -> None:
         False,
     )
     assert not same.any_change
+
+
+_LARGE_FILES = {
+    "big.ts": "export function big() {\n"
+    + "\n".join(f"  const v{i} = {i} + 1;" for i in range(3000))
+    + "\n  return 0;\n}\n",
+    "big.tsx": "export default function Big() {\n  return (\n    <div>\n"
+    + "\n".join(f'      <p className="x">item {i} {{i}}</p>' for i in range(1500))
+    + "\n    </div>\n  );\n}\n",
+    "big.py": "def big():\n" + "\n".join(f"    v{i} = {i} + 1" for i in range(3000)) + "\n",
+}
+
+
+@pytest.mark.parametrize("path", sorted(_LARGE_FILES))
+def test_large_functions_index_without_crashing(path: str) -> None:
+    # tree-sitter 0.26.0 segfaults on trees this size; run in a subprocess so a
+    # native crash fails this test instead of killing the test run.
+    code = (
+        "import sys\nfrom changeguard.languages import index_file\n"
+        "index = index_file(sys.argv[1], sys.stdin.read())\n"
+        "print(len(index.symbols))\n"
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", code, path],
+        input=_LARGE_FILES[path], capture_output=True, text=True, timeout=120, check=False,
+    )  # fmt: skip
+    assert result.returncode == 0, f"indexing {path} crashed (exit {result.returncode})"
+    assert int(result.stdout) >= 1
